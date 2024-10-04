@@ -26,4 +26,6 @@
 	<select id="login" parameterType="com.pandas.model.Members" resultType="com.pandas.model.Members">
 		SELECT * FROM MEMBERS WHERE MEM_ID = #{mem_id} AND MEM_PW = #{mem_pw}
 	</select>
+	
+
 </mapper>
