@@ -25,18 +25,16 @@ public class FindSchool extends HttpServlet {
 		String name = request.getParameter("school_name");
 		SchoolDAO dao = new SchoolDAO();
 		List<Schools> res = dao.findSchool(name);
-		for (Schools s : res) {
-			System.out.println(s.getSchool_name());
-		}
 		//JavaObject => JSON Object(json 형식의 객체 구조) -> GSON
 		Gson gson = new Gson();
 		// toJson  : 안쪽에 넣은 데이터를 json형식으로 반환해줌
 		String json = gson.toJson(res);
 		response.setCharacterEncoding("UTF-8");		// 
-//		response.setContentType("text/html; charset=UTF-8");			// 응답하는 content의 타입 지정해서 브라우저에 알려주는 방식
+		response.setContentType("application/json; charset=UTF-8");			// 응답하는 content의 타입 지정해서 브라우저에 알려주는 방식
 		//텍스트를 출력(out/Server -> Client) 해줄 수 있는 스트링 -> PrintWriter
 		PrintWriter out = response.getWriter();
 		out.print(json);
+		out.flush();
 	}
 
 }

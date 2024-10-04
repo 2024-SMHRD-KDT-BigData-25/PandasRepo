@@ -3,235 +3,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Spot</title>
+<title>Study SPOT</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link
-	href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet" href="fonts/icomoon/style.css">
-
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/magnific-popup.css">
-<link rel="stylesheet" href="css/jquery-ui.css">
-<link rel="stylesheet" href="css/owl.carousel.min.css">
-<link rel="stylesheet" href="css/owl.theme.default.min.css">
-
-<link rel="stylesheet" href="css/lightgallery.min.css">
-
-<link rel="stylesheet" href="css/bootstrap-datepicker.css">
-
-<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-
-<link rel="stylesheet" href="css/swiper.css">
-
 <link rel="stylesheet" href="css/aos.css">
+<link rel="stylesheet" href="css/newStyle.css">
+<style>
+.content-container {
+	display: flex; /* Flexbox로 컨테이너 설정 */
+	justify-content: center; /* 수평 중앙 정렬 */
+	align-items: center; /* 수직 중앙 정렬 */
+	background-color: #EBE3D5;
+	padding-bottom: 30px;
+}
 
-<link rel="stylesheet" href="css/style.css">
+.join-title {
+	font-family: 둥근미소;
+	text-align: center;
+	color: #776B5D;
+}
 
+.join-input {
+	display: block;
+	width: 300px;
+	padding: 10px;
+	margin-top: 15px;
+	font-family : 교육새음;
+	font-size : 20px;
+}
+
+.no-match, .match {
+	font-family : 교육새음;
+}
+
+.no-match {
+	font-size: 10px;
+}
+.join-input-btn {
+
+}
+</style>
 </head>
 <body>
 
-	<div class="site-wrap">
+	<%@ include file="header.jsp"%>
 
-		<div class="site-mobile-menu">
-			<div class="site-mobile-menu-header">
-				<div class="site-mobile-menu-close mt-3">
-					<span class="icon-close2 js-menu-toggle"></span>
-				</div>
-			</div>
-			<div class="site-mobile-menu-body"></div>
-		</div>
-
-
-
-
-		<header class="site-navbar py-3" role="banner">
-
-			<div class="container-fluid">
-				<div class="row align-items-center">
-
-					<div class="col-6 col-xl-2" data-aos="fade-down">
-						<h1 class="mb-0">
-							<a href="index.html" class="text-white h2 mb-0">Photosen</a>
-						</h1>
-					</div>
-					<div class="col-10 col-md-8 d-none d-xl-block" data-aos="fade-down">
-						<nav
-							class="site-navigation position-relative text-right text-lg-center"
-							role="navigation">
-
-							<ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
-								<li><a href="index.html">Home</a></li>
-								<li class="has-children"><a href="single.html">Gallery</a>
-									<ul class="dropdown">
-										<li><a href="#">Nature</a></li>
-										<li><a href="#">Portrait</a></li>
-										<li><a href="#">People</a></li>
-										<li><a href="#">Architecture</a></li>
-										<li><a href="#">Animals</a></li>
-										<li><a href="#">Sports</a></li>
-										<li><a href="#">Travel</a></li>
-										<li class="has-children"><a href="#">Sub Menu</a>
-											<ul class="dropdown">
-												<li><a href="#">Menu One</a></li>
-												<li><a href="#">Menu Two</a></li>
-												<li><a href="#">Menu Three</a></li>
-											</ul></li>
-									</ul></li>
-								<li><a href="services.html">Services</a></li>
-								<li><a href="about.html">About</a></li>
-								<li class="active"><a href="join.jsp">Join</a></li>
-							</ul>
-						</nav>
-					</div>
-
-					<div class="col-6 col-xl-2 text-right" data-aos="fade-down">
-						<div class="d-none d-xl-inline-block">
-							<ul
-								class="site-menu js-clone-nav ml-auto list-unstyled d-flex text-right mb-0"
-								data-class="social">
-								<li><a href="#" class="pl-0 pr-3"><span
-										class="icon-facebook"></span></a></li>
-								<li><a href="#" class="pl-3 pr-3"><span
-										class="icon-twitter"></span></a></li>
-								<li><a href="#" class="pl-3 pr-3"><span
-										class="icon-instagram"></span></a></li>
-								<li><a href="#" class="pl-3 pr-3"><span
-										class="icon-youtube-play"></span></a></li>
-							</ul>
-						</div>
-
-						<div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3"
-							style="position: relative; top: 3px;">
-							<a href="#" class="site-menu-toggle js-menu-toggle text-white"><span
-								class="icon-menu h3"></span></a>
-						</div>
-
-					</div>
-
-				</div>
-			</div>
-
-		</header>
-
-
-
-		<div class="site-section" data-aos="fade">
-			<div class="container">
-
-				<div class="row justify-content-center">
-
-					<div class="col-md-7">
-						<div class="row mb-5">
-							<div class="col-12 ">
-								<h2 class="site-section-heading text-center">Join SPOT</h2>
-							</div>
-						</div>
-					</div>
-
-				</div>
-				<!-- join : 은유 -->
-				<div class="row justify-content-center">
-					<div class="col-lg-8 mb-5">
-						<form action="Join" method="post">
-
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label class="text-white" for="mem_name">이름</label> <input
-										type="text" id="mem_name" name="mem_name" class="form-control">
-								</div>
-							</div>
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label class="text-white" for="mem_id">아이디</label> <input
-										type="text" id="mem_id" name="mem_id" class="form-control">
-								</div>
-							</div>
-
-							<div class="row form-group">
-
-								<div class="col-md-12">
-									<label class="text-white" for="mem_pw">비밀번호</label> <input
-										type="password" id="mem_pw" name="mem_pw" class="form-control">
-								</div>
-								<div class="col-md-12">
-									<label class="text-white" for="pw_confirm">비밀번호 확인</label> <input
-										type="password" id="pw_confirm" name="pw_confirm" class="form-control"  oninput="validatePasswords()">
-								</div>
-								 <div id="message"></div>
-							</div>
-
-							<div class="row form-group">
-
-								<div class="col-md-12">
-									<label class="text-white" for="mem_nick">닉네임</label> <input
-										type="text" id="mem_nick" name="mem_nick" class="form-control">
-								</div>
-							</div>
-							
-							<div class="row form-group">
-
-								<div class="col-md-12">
-									<label class="text-white" for="mem_birthdate">생년월일</label> <input
-										type="date" id="mem_birthdate" name="mem_birthdate" class="form-control">
-								</div>
-							</div>
-							
-							<div class="row form-group">
-
-								<div class="col-md-12">
-									<label class="text-white" for="mem_school">학교</label> <input
-										type="text" id="mem_school" name="mem_school" class="form-control">
-										<button class="btn btn-primary py-2 px-4 text-white" onclick="openSchoolSearch()">학교 찾기</button>
-								</div>
-							</div>
-							
-							<div class="row form-group">
-
-								<div class="col-md-12">
-									<label class="text-white" for="mem_profile_img">프로필 사진</label> <input
-										type="file" id="mem_profile_img" name="mem_profile_img" class="form-control">
-								</div>
-							</div>
-
-							<div class="row form-group">
-								<div class="col-md-12">
-									<input type="submit" value="join"
-										class="btn btn-primary py-2 px-4 text-white">
-								</div>
-							</div>
-
-
-						</form>
-					</div>
+	<div class="content-container" data-aos="fade">
+		<div>
+			<h2 class="join-title">Join SPOT!</h2>
+			<!-- join : 은유 -->
+			<div>
+				<div>
+					<form action="Join" method="post">
+						<input class="join-input" type="text" id="mem_name"
+							name="mem_name" placeholder="이름을 입력하세요"> <input
+							class="join-input" type="text" id="mem_id" name="mem_id"
+							placeholder="아이디를 입력하세요"> <input class="join-input"
+							type="password" id="mem_pw" name="mem_pw"
+							placeholder="비밀번호를 입력하세요"> 
+							<input class="join-input" type="password" id="pw_confirm" name="pw_confirm" placeholder="비밀번호 확인" oninput="validatePasswords()">
+						<div id="message"></div>
+						<input class="join-input" type="text" id="mem_nick"
+							name="mem_nick" placeholder="닉네임을 입력하세요"> <input
+							class="join-input" type="date" id="mem_birthdate"
+							name="mem_birthdate"> <input class="join-input"
+							type="text" id="mem_school" name="mem_school"
+							placeholder="학교명을 입력하세요(예: 능주고등학교 -> 능주)"> 
+							<input class="join-input join-input-btn" type="button" value="학교 검색"
+							onclick="findSchool()">
+						<div id="find_school_result"></div>
+						<input class="join-input" type="file" id="mem_profile_img"
+							name="mem_profile_img" placeholder="프로필 사진"> <input
+							class="join-input join-input-btn" type="submit" value="join">
+					</form>
 				</div>
 			</div>
 		</div>
-
-		<div class="footer py-4">
-			<div class="container-fluid text-center">
-				<p>
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					Copyright &copy;
-					<script data-cfasync="false"
-						src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-					<script>document.write(new Date().getFullYear());</script>
-					All rights reserved | This template is made with <i
-						class="icon-heart-o" aria-hidden="true"></i> by <a
-						href="https://colorlib.com" target="_blank">Colorlib</a>
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-				</p>
-			</div>
-		</div>
-
-
-
-
-
 	</div>
+
+
 
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -253,42 +105,73 @@
 	<script src="js/main.js"></script>
 
 	<script>
-    $(document).ready(function(){
-      $('#lightgallery').lightGallery();
-    });
-    
-    function openSchoolSearch() {
-        // 팝업 창 열기 (새 창 크기 지정)
-        window.open('schoolSearch.jsp', '학교 검색', 'width=600,height=400');
-    }
+		$(document).ready(function() {
+			$('#lightgallery').lightGallery();
+		});
 
-    // 팝업에서 선택한 학교 정보 가져오기
-    function setSchool(schoolName) {
-        document.getElementById('school').value = schoolName;
-    }
-  </script>
-  
-   <script>
-        function validatePasswords() {
-            const password = document.getElementById("mem_pw").value;
-            const confirmPassword = document.getElementById("pw_confirm").value;
-            const message = document.getElementById("message");
-            
-            console.log(password);
-            console.log(confirmPassword);
-            // 비밀번호가 일치하는지 확인
-            if (password === confirmPassword) {
-                message.textContent = "비밀번호가 일치합니다.";
-                message.style.color = "green";
-                document.getElementById("pw_confirm").classList.add("match");
-                document.getElementById("pw_confirm").classList.remove("no-match");
-            } else {
-                message.textContent = "비밀번호가 일치하지 않습니다.";
-                message.style.color = "red";
-                document.getElementById("pw_confirm").classList.add("no-match");
-                document.getElementById("pw_confirm").classList.remove("match");
-            }
-        }
-    </script>
+		function findSchool() {
+			// 입력된 학교명을 가져옴
+			var schoolName = document.getElementById("mem_school").value;
+
+			// AJAX 요청을 보냄
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", "FindSchool", true); // 서블릿 경로 설정
+			xhr.setRequestHeader("Content-Type",
+					"application/x-www-form-urlencoded");
+
+			// 서버 응답 처리
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === 4 && xhr.status === 200) {
+					// 응답을 받아 처리 (예: 결과를 콘솔에 출력)
+					var data = JSON.parse(xhr.responseText);
+					var resultContainer = document
+							.getElementById("find_school_result");
+					resultContainer.innerHTML = ""; // 이전 결과 초기화
+
+					data.forEach(function(item) {
+						var schoolLink = document.createElement("a");
+						schoolLink.className = "find_school_result"
+						schoolLink.href = "#"; // 실제 링크 URL로 변경
+						schoolLink.textContent = item.school_name + " "
+								+ item.school_region; // 예시 필드
+						resultContainer.appendChild(schoolLink); // 결과 요소에 추가
+					});
+
+				}
+			};
+
+			// 서버로 데이터 전송 (school_name을 파라미터로)
+			xhr.send("school_name=" + encodeURIComponent(schoolName));
+		}
+
+		// 팝업에서 선택한 학교 정보 가져오기
+		function setSchool(schoolName) {
+			document.getElementById('school').value = schoolName;
+		}
+	</script>
+
+	<script>
+		function validatePasswords() {
+			const password = document.getElementById("mem_pw").value;
+			const confirmPassword = document.getElementById("pw_confirm").value;
+			const message = document.getElementById("message");
+
+			console.log(password);
+			console.log(confirmPassword);
+			// 비밀번호가 일치하는지 확인
+			if (password === confirmPassword) {
+				message.textContent = "비밀번호가 일치합니다.";
+				message.style.color = "green";
+				document.getElementById("pw_confirm").classList.add("match");
+				document.getElementById("pw_confirm").classList
+						.remove("no-match");
+			} else {
+				message.textContent = "비밀번호가 일치하지 않습니다.";
+				message.style.color = "red";
+				document.getElementById("pw_confirm").classList.add("no-match");
+				document.getElementById("pw_confirm").classList.remove("match");
+			}
+		}
+	</script>
 
 </body>

@@ -1,0 +1,64 @@
+@charset "UTF-8";
+/* 제목 */
+@font-face {
+	font-family: '둥근미소';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimDunggeunmisoTTF-B.woff2')
+		format('woff2');
+	font-weight: 700;
+	font-style: normal;
+}
+/* 본문 */
+@font-face {
+	font-family: '받아쓰기';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimBadasseugiTTF-L.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+/* 태그 */
+@font-face {
+	font-family: '교육새음';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+/* 채팅 */
+@font-face {
+	font-family: '의연체';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105@1.1/Uiyeun.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+/* 타이틀 */
+@font-face {
+	font-family: '다예쁨';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: '순천체';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/SuncheonR.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: '레페리포인트';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-WhiteObliqueA.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
