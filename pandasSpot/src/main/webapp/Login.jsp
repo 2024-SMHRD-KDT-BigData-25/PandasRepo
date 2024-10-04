@@ -1,3 +1,4 @@
+<%@page import="java.io.Console"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -127,7 +128,7 @@
 					<div class="col-md-7">
 						<div class="row mb-5">
 							<div class="col-12 ">
-								<h2 class="site-section-heading text-center">Join SPOT</h2>
+								<h2 class="site-section-heading text-center">Login</h2>
 							</div>
 						</div>
 					</div>
@@ -136,14 +137,8 @@
 				<!-- join : 은유 -->
 				<div class="row justify-content-center">
 					<div class="col-lg-8 mb-5">
-						<form action="Join" method="post">
+						<form action="Login" method="post">
 
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label class="text-white" for="mem_name">이름</label> <input
-										type="text" id="mem_name" name="mem_name" class="form-control">
-								</div>
-							</div>
 							<div class="row form-group">
 								<div class="col-md-12">
 									<label class="text-white" for="mem_id">아이디</label> <input
@@ -157,49 +152,11 @@
 									<label class="text-white" for="mem_pw">비밀번호</label> <input
 										type="password" id="mem_pw" name="mem_pw" class="form-control">
 								</div>
-								<div class="col-md-12">
-									<label class="text-white" for="pw_confirm">비밀번호 확인</label> <input
-										type="password" id="pw_confirm" name="pw_confirm" class="form-control"  oninput="validatePasswords()">
-								</div>
-								 <div id="message"></div>
-							</div>
-
-							<div class="row form-group">
-
-								<div class="col-md-12">
-									<label class="text-white" for="mem_nick">닉네임</label> <input
-										type="text" id="mem_nick" name="mem_nick" class="form-control">
-								</div>
-							</div>
-							
-							<div class="row form-group">
-
-								<div class="col-md-12">
-									<label class="text-white" for="mem_birthdate">생년월일</label> <input
-										type="date" id="mem_birthdate" name="mem_birthdate" class="form-control">
-								</div>
-							</div>
-							
-							<div class="row form-group">
-
-								<div class="col-md-12">
-									<label class="text-white" for="mem_school">학교</label> <input
-										type="text" id="mem_school" name="mem_school" class="form-control">
-										<button class="btn btn-primary py-2 px-4 text-white" onclick="openSchoolSearch()">학교 찾기</button>
-								</div>
-							</div>
-							
-							<div class="row form-group">
-
-								<div class="col-md-12">
-									<label class="text-white" for="mem_profile_img">프로필 사진</label> <input
-										type="file" id="mem_profile_img" name="mem_profile_img" class="form-control">
-								</div>
 							</div>
 
 							<div class="row form-group">
 								<div class="col-md-12">
-									<input type="submit" value="join"
+									<input type="submit" value="Login"
 										class="btn btn-primary py-2 px-4 text-white">
 								</div>
 							</div>
@@ -210,26 +167,6 @@
 				</div>
 			</div>
 		</div>
-
-		<div class="footer py-4">
-			<div class="container-fluid text-center">
-				<p>
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					Copyright &copy;
-					<script data-cfasync="false"
-						src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-					<script>document.write(new Date().getFullYear());</script>
-					All rights reserved | This template is made with <i
-						class="icon-heart-o" aria-hidden="true"></i> by <a
-						href="https://colorlib.com" target="_blank">Colorlib</a>
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-				</p>
-			</div>
-		</div>
-
-
-
-
 
 	</div>
 
@@ -252,43 +189,7 @@
 
 	<script src="js/main.js"></script>
 
-	<script>
-    $(document).ready(function(){
-      $('#lightgallery').lightGallery();
-    });
-    
-    function openSchoolSearch() {
-        // 팝업 창 열기 (새 창 크기 지정)
-        window.open('schoolSearch.jsp', '학교 검색', 'width=600,height=400');
-    }
 
-    // 팝업에서 선택한 학교 정보 가져오기
-    function setSchool(schoolName) {
-        document.getElementById('school').value = schoolName;
-    }
-  </script>
-  
-   <script>
-        function validatePasswords() {
-            const password = document.getElementById("mem_pw").value;
-            const confirmPassword = document.getElementById("confirm_pw").value;
-            const message = document.getElementById("message");
-            
-            console.log(password);
-            console.log(confirmPassword);
-            // 비밀번호가 일치하는지 확인
-            if (password === confirmPassword) {
-                message.textContent = "비밀번호가 일치합니다.";
-                message.style.color = "green";
-                document.getElementById("confirmPassword").classList.add("match");
-                document.getElementById("confirmPassword").classList.remove("no-match");
-            } else {
-                message.textContent = "비밀번호가 일치하지 않습니다.";
-                message.style.color = "red";
-                document.getElementById("confirmPassword").classList.add("no-match");
-                document.getElementById("confirmPassword").classList.remove("match");
-            }
-        }
-    </script>
 
 </body>
+</html>
