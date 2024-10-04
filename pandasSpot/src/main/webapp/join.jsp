@@ -271,7 +271,7 @@
    <script>
         function validatePasswords() {
             const password = document.getElementById("mem_pw").value;
-            const confirmPassword = document.getElementById("confirm_pw").value;
+            const confirmPassword = document.getElementById("pw_confirm").value;
             const message = document.getElementById("message");
             
             console.log(password);
@@ -280,13 +280,13 @@
             if (password === confirmPassword) {
                 message.textContent = "비밀번호가 일치합니다.";
                 message.style.color = "green";
-                document.getElementById("confirmPassword").classList.add("match");
-                document.getElementById("confirmPassword").classList.remove("no-match");
+                document.getElementById("pw_confirm").classList.add("match");
+                document.getElementById("pw_confirm").classList.remove("no-match");
             } else {
                 message.textContent = "비밀번호가 일치하지 않습니다.";
                 message.style.color = "red";
-                document.getElementById("confirmPassword").classList.add("no-match");
-                document.getElementById("confirmPassword").classList.remove("match");
+                document.getElementById("pw_confirm").classList.add("no-match");
+                document.getElementById("pw_confirm").classList.remove("match");
             }
         }
     </script>
