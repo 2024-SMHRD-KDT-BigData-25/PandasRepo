@@ -517,6 +517,7 @@ a {
   .site-blocks-cover, .site-blocks-cover .row {
     min-height: 600px;
     height: calc(100vh - 73px); }
+
   .site-blocks-cover.inner-page-cover, .site-blocks-cover.inner-page-cover .row {
     min-height: 600px;
     height: calc(30vh); }
@@ -1243,3 +1244,6 @@ img {
     filter: none;
     -webkit-filter: grayscale(0);
     -webkit-transform: scale(1.01); }
+    
+    
+ 
