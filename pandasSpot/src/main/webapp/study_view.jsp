@@ -1,3 +1,5 @@
+<%@page import="com.pandas.model.Diaries"%>
+<%@page import="com.pandas.model.DiaryDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -116,15 +118,24 @@
 
 <!-- 게시글 부분 -->
 <body>
+	<%
+		String idxString = request.getParameter("idx");
+	
+		System.out.println("idx 번호는 " + idxString);	
+
+	 	int idx = Integer.parseInt(idxString);
+		DiaryDAO dao = new DiaryDAO();
+	  	Diaries diary = dao.getDiary(idx);
+	%>
 <div class="container">
   <div class="panel panel-default">
     <div class="panel-heading" align="center"><h3>STUDY LOG</h3></div>
     <div class="panel-body">
     	<div class="form-horizontal">	
     	  	<div class="form-group" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #000; padding-bottom: 10px; padding-right: 15px;">
-    			<span class="date">날짜(2024/10/04)</span>
-    			<span class="title">글 제목</span>
-    			<span class="author"><i class="glyphicon glyphicon-user"></i> 작성자 이름</span>
+    			<span class="date"><%=diary.getCreated_at() %></span>
+    			<span class="title"><%=diary.getDiary_title() %></span>
+    			<span class="author"><i class="glyphicon glyphicon-user"></i> <%=diary.getMem_id() %></span>
     	  	</div>
     	  	<div style="width: 80%; max-width: 500px; display: flex; justify-content: space-between; margin: 0 auto; margin-bottom: 10px;">
 	    			<button class="btn btn-secondary">목록</button>
@@ -134,7 +145,10 @@
 		    </div>
 		    <div class="form-group">
 		      <div style="width: 80%; max-width: 500px; min-height: 200px; margin: 0 auto; background-color: lightgrey; padding: 20px;">
- 				<span>스터디로그는 사진 따윈 없어</span>
+ 				<span>
+ 				스터디로그는 사진 따윈 없어
+ 				<%=diary.getDiary_content() %>
+ 				</span>
 				</div>
 		      </div>
 		    </div>

@@ -212,9 +212,9 @@
 		
 	      html += "<tr>"
 	      html += "<td>"+board.diary_idx+"</td>"
-	      html += "<td>"+board.diary_title+"</td>"
-	      html += "<td>"+board.mem_id+"</td>"
-	      html += "<td>"+board.created_at+"</td>"
+	      html += "<td class='text-black'><a href='study_view.jsp?idx="+board.diary_idx+"'>"+board.diary_title+"</a></td>"
+	      html += "<td class='text-black'><a>"+board.mem_id+"</a></td>"
+	      html += "<td class='text-black'>"+board.created_at+"</td>"
 	      html += "<td><button class='btn btn-primary py-2 px-4 text-white' onclick='deleteBoard("+board.diary_idx+")'>삭제</button></td>"
 	      html += "</tr>"
 	    }

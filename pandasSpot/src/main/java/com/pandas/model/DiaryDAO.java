@@ -17,4 +17,12 @@ public class DiaryDAO {
 		sqlSession.close();
 		return list;
 	}
+
+// SpotMapper에서 getDiary 호출
+	public Diaries getDiary(int idx) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		Diaries res = sqlSession.selectOne("SpotMapper.getDiary", idx);
+		sqlSession.close();
+		return res;
+	}
 }
