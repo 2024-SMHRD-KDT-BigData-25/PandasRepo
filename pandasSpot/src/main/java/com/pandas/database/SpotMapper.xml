@@ -4,4 +4,8 @@
 	<select id="SchoolList" resultType="com.pandas.model.Schools">
 		select * from schools
 	</select>
+	<select id="DiaryList" resultType="com.pandas.model.Diaries">
+		select * from diaries
+	</select>
+	
 </mapper>
