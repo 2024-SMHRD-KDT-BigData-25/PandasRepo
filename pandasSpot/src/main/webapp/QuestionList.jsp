@@ -127,7 +127,7 @@
 					<div class="col-md-7">
 						<div class="row mb-5">
 							<div class="col-12 ">
-								<h2 class="site-section-heading text-center">커뮤니티 게시판</h2>
+								<h2 class="site-section-heading text-center">질의 게시판</h2>
 							</div>
 						</div>
 					</div>
@@ -214,7 +214,7 @@
 		
 	      html += "<tr>"
 	      html += "<td>"+board.q_idx+"</td>"
-	      html += "<td>"+board.q_title+"</td>"
+	      html += "<td class='text-black'>"+board.q_title+"</td>"
 	      html += "<td>"+board.mem_id+"</td>"
 	      html += "<td>"+board.created_at+"</td>"
 	      html += "<td>"+board.q_file+"</td>"
