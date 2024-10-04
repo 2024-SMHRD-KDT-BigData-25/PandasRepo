@@ -13,6 +13,10 @@
 	<select id="DiaryList" resultType="com.pandas.model.Diaries">
 		select * from diaries
 	</select>
+	<!-- Diary 글 불러오기 -->
+	<select id="getDiary" parameterType="int" resultType="com.pandas.model.Diaries">
+		select * from diaries where DIARY_IDX=#{idx}
+	</select>
 	
 <!-- Community -->
 	<select id="CommunityList" resultType="com.pandas.model.Communities">

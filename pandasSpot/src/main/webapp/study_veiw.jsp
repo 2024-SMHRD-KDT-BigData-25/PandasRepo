@@ -1,3 +1,5 @@
+<%@page import="com.pandas.model.Diaries"%>
+<%@page import="com.pandas.model.DiaryDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -116,6 +118,11 @@
 
 <!-- 게시글 부분 -->
 <body>
+	<%
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		DiaryDAO dao = new DiaryDAO();
+		Diaries diary = dao.getDiary(idx);
+	%>
 <div class="container">
   <div class="panel panel-default">
     <div class="panel-heading" align="center"><h3>STUDY LOG</h3></div>
