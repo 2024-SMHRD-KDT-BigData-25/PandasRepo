@@ -49,6 +49,10 @@ public class Members {
 		this.mem_school = mem_school;
 		this.mem_profile_img = mem_profile_img;
 	}
-    
-    
+
+	public Members(String mem_id, String mem_pw) {
+		super();
+		this.mem_id = mem_id;
+		this.mem_pw = mem_pw;
+	}
 }

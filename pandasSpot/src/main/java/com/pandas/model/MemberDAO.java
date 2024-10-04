@@ -14,4 +14,10 @@ public class MemberDAO {
 		session.close();
 		return res;
 	}
+	public Members login(Members m) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		Members res = session.selectOne("SpotMapper.login", m);
+		session.close();
+		return res;
+	}
 }
