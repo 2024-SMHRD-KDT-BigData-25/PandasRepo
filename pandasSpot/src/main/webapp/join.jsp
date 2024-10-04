@@ -159,9 +159,9 @@
 								</div>
 								<div class="col-md-12">
 									<label class="text-white" for="pw_confirm">비밀번호 확인</label> <input
-										type="password" id="pw_confirm" name="pw_confirm" class="form-control">
+										type="password" id="pw_confirm" name="pw_confirm" class="form-control"  oninput="validatePasswords()">
 								</div>
-								<span>비밀번호를 입력해주세요!</span>
+								 <div id="message"></div>
 							</div>
 
 							<div class="row form-group">
@@ -267,5 +267,28 @@
         document.getElementById('school').value = schoolName;
     }
   </script>
+  
+   <script>
+        function validatePasswords() {
+            const password = document.getElementById("mem_pw").value;
+            const confirmPassword = document.getElementById("confirm_pw").value;
+            const message = document.getElementById("message");
+            
+            console.log(password);
+            console.log(confirmPassword);
+            // 비밀번호가 일치하는지 확인
+            if (password === confirmPassword) {
+                message.textContent = "비밀번호가 일치합니다.";
+                message.style.color = "green";
+                document.getElementById("confirmPassword").classList.add("match");
+                document.getElementById("confirmPassword").classList.remove("no-match");
+            } else {
+                message.textContent = "비밀번호가 일치하지 않습니다.";
+                message.style.color = "red";
+                document.getElementById("confirmPassword").classList.add("no-match");
+                document.getElementById("confirmPassword").classList.remove("match");
+            }
+        }
+    </script>
 
 </body>
