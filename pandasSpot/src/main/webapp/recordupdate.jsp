@@ -39,6 +39,26 @@
             max-width: 100%;
             max-height: 400px;
      }
+     
+     .tag {
+            display: inline-block;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin: 5px;
+            color: #333;
+        }
+        .delete-btn {
+            margin-left: 5px;
+            cursor: pointer;
+            color: red;
+        }
+        #tagInput {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
    </style>
 </head>
 <body>
@@ -152,8 +172,9 @@
               <div class="row form-group">
 
                 <div class="col-md-12">
-                  <label class="text-white" for="subject">태그</label> 
-                  <input type="text" id="tag" class="form-control" placeholder="#새 태그 추가">
+                  <label class="text-white" for="subject">Tag</label> 
+                  <input type="text" id="tagInput" class="form-control" placeholder="#새 태그 추가">
+    			  <div id="tagContainer"></div>
                 </div>
               </div>
 
@@ -215,6 +236,36 @@
                 reader.readAsDataURL(file);
             } else {
                 preview.style.display = 'none';
+            }
+        });
+    </script>
+    
+    <script>
+        const tagInput = document.getElementById('tagInput');
+        const tagContainer = document.getElementById('tagContainer');
+
+        tagInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter' && tagInput.value.trim() !== '') {
+                const tagValue = tagInput.value.trim();
+                if (tagValue.startsWith('#')) {
+                    const tag = document.createElement('span');
+                    tag.className = 'tag';
+                    tag.textContent = tagValue;
+
+                    // 삭제 버튼 생성
+                    const deleteBtn = document.createElement('span');
+                    deleteBtn.className = 'delete-btn';
+                    deleteBtn.textContent = 'X';
+                    deleteBtn.onclick = function() {
+                        tagContainer.removeChild(tag);
+                    };
+
+                    tag.appendChild(deleteBtn);
+                    tagContainer.appendChild(tag);
+                    tagInput.value = ''; // 입력 필드 초기화
+                } else {
+                    alert('해시태그는 #로 시작해야 합니다.');
+                }
             }
         });
     </script>
