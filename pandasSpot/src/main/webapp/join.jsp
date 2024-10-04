@@ -134,10 +134,9 @@
 
 				</div>
 				<!-- join : 은유 -->
-				<div class="row">
+				<div class="row justify-content-center">
 					<div class="col-lg-8 mb-5">
-						<form action="#">
-
+						<form action="Join" method="post">
 
 							<div class="row form-group">
 								<div class="col-md-12">

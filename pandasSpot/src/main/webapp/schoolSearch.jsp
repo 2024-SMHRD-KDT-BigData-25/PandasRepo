@@ -1,3 +1,5 @@
+<%@page import="com.pandas.model.Schools"%>
+<%@page import="com.pandas.model.SchoolDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -33,9 +35,8 @@
 
 </head>
 <body>
-
 	<div class="site-wrap">
-<div class="site-section" data-aos="fade">
+		<div class="site-section" data-aos="fade">
 			<div class="container">
 
 				<div class="row justify-content-center">
@@ -43,7 +44,20 @@
 					<div class="col-md-7">
 						<div class="row mb-5">
 							<div class="col-12 ">
-								<h2 class="site-section-heading text-center">학교 찾기</h2>
+								<h3 class="text-center">학교 찾기</h3>
+							</div>
+							<!-- 학교 검색 입력 필드 -->
+							<div class="col-md-12 text-center">
+								<form action="FindSchool">
+									<input type="text" class="no_new_line_form-group"
+										id="schoolSearch" name="school_name" placeholder="학교 이름 검색">
+									<button class="btn btn-primary py-2 px-4 text-white"
+										type="submit">검색</button>
+								</form>
+							</div>
+							<div>
+								<!-- 검색 결과 리스트 -->
+								<ul id="resultList"></ul>
 							</div>
 						</div>
 					</div>
@@ -71,34 +85,15 @@
 	<script src="js/jquery.mousewheel.min.js"></script>
 
 	<script src="js/main.js"></script>
-	
-	 <script>
-        // 임의의 학교 데이터 (백엔드와 연동하는 경우 이 부분은 서버에서 처리)
-        const schoolData = ["서울대학교", "연세대학교", "고려대학교", "한양대학교", "중앙대학교"];
 
-        // 학교 검색 기능
-        function searchSchool() {
-            const searchTerm = document.getElementById('schoolSearch').value;
-            const resultList = document.getElementById('resultList');
-            resultList.innerHTML = ''; // 검색 결과 초기화
-
-            // 검색어와 일치하는 학교 목록 필터링
-            const results = schoolData.filter(school => school.includes(searchTerm));
-
-            // 결과를 목록으로 표시
-            results.forEach(school => {
-                const li = document.createElement('li');
-                li.textContent = school;
-                li.onclick = () => selectSchool(school); // 학교 선택 시 함수 호출
-                resultList.appendChild(li);
-            });
-        }
-
+	<script>
         // 학교 선택 시 부모 창에 값 전달
         function selectSchool(schoolName) {
             // 부모 창의 setSchool 함수 호출
             window.opener.setSchool(schoolName);
             window.close(); // 선택 후 팝업 창 닫기
         }
+        
+        
     </script>
 </body>
