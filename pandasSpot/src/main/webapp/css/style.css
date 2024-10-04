@@ -1243,13 +1243,3 @@ img {
     filter: none;
     -webkit-filter: grayscale(0);
     -webkit-transform: scale(1.01); }
-
-
-/* 스타일 추가: 일치 여부에 따라 색상 변경 */
-.match {
-   border: 2px solid green;
-}
-
-.no-match {
-   border: 2px solid red;
-}
