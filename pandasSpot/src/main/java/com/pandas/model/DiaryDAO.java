@@ -8,11 +8,13 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import com.pandas.database.SqlSessionManager;
 
 public class DiaryDAO {
+	
 	SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSessionFactory();
 	
 	public List<Diaries> getList() {
-		SqlSession session = sqlSessionFactory.openSession(true);
-		List<Diaries> res = session.selectList("SpotMapper.DiaryList");
-		return res;
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		List<Diaries> list = sqlSession.selectList("SpotMapper.DiaryList");
+		sqlSession.close();
+		return list;
 	}
 }
