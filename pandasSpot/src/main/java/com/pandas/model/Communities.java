@@ -37,4 +37,6 @@ public class Communities {
 
     // 글 작성자 
     private String mem_id;
+    
+    
 }

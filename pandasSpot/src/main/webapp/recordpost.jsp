@@ -39,6 +39,34 @@
             max-width: 100%;
             max-height: 400px;
      }
+     
+     body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+     .tag {
+            display: inline-block;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin: 5px;
+            color: #333;
+     }
+     .delete-btn {
+            margin-left: 5px;
+            cursor: pointer;
+            color: red;
+     }
+     #tagInput {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+     }
+     .author {
+            text-align: right;
+            margin-top: 10px; /* Optional: add some space above the author name */
+     }
    </style>
 </head>
 <body>
@@ -54,8 +82,6 @@
       <div class="site-mobile-menu-body"></div>
     </div>
     
-
-
 
     <header class="site-navbar py-3" role="banner">
 
@@ -124,8 +150,6 @@
       
     </header>
 
-
-
     <div class="site-section"  data-aos="fade">
       <div class="container">
 
@@ -134,10 +158,10 @@
           <div class="col-md-7">
             <div class="row mb-5">
               <div class="col-12 ">
-              	<!-- 작성일자 받아오기 -->
                 <h2 class="site-section-heading text-center">공부 기록</h2>
-                <span class="author"><i class="glyphicon glyphicon-user"></i> 작성자 이름</span>
-                <!-- 작성자 받아오기 -->
+                <div class="author text-right">
+                  <span><i class="glyphicon glyphicon-user"></i> 작성자 이름</span>
+                </div>
               </div>
             </div>
           </div>
@@ -148,24 +172,21 @@
           <div class="col-lg-8 mb-5">
             <form action="#">
 
-			  
               <div class="row form-group">
-
                 <div class="col-md-12">
                   <label class="text-white" for="subject">태그</label> 
-                  <input type="text" id="tag" class="form-control" placeholder="#새 태그 추가">
+                  <input type="text" id="tagInput" class="form-control" placeholder="#새 태그 추가">
+                  <div id="tagContainer"></div>
                 </div>
               </div>
 
-			  
-			  <div class="row form-group">
+              <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-white" for="message">파일 첨부 : </label> 
                   <input type="file" id="file-upload" name="file-upload"  accept="image/*" style="border: none; border-bottom:1px solid #fff; outline: none;">
                   <img id="preview" src="" alt="미리보기 이미지" style="display: none;">
                 </div>
               </div>
-              
               
               <br>
               <div class="row form-group" align="center">
@@ -175,29 +196,21 @@
                 </div>
               </div>
 
-
             </form>
           </div>
 
-          
         </div>
       </div>
     </div>
 
-    <div class="footer py-4">ㄴ
+    <div class="footer py-4">
       <div class="container-fluid text-center">
         <p>
-          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
           Copyright &copy;<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
         </p>
       </div>
     </div>
 
-    
-
-    
-    
   </div>
   
    <script>
@@ -215,6 +228,36 @@
                 reader.readAsDataURL(file);
             } else {
                 preview.style.display = 'none';
+            }
+        });
+    </script>
+    
+    <script>
+        const tagInput = document.getElementById('tagInput');
+        const tagContainer = document.getElementById('tagContainer');
+
+        tagInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter' && tagInput.value.trim() !== '') {
+                const tagValue = tagInput.value.trim();
+                if (tagValue.startsWith('#')) {
+                    const tag = document.createElement('span');
+                    tag.className = 'tag';
+                    tag.textContent = tagValue;
+
+                    // 삭제 버튼 생성
+                    const deleteBtn = document.createElement('span');
+                    deleteBtn.className = 'delete-btn';
+                    deleteBtn.textContent = 'X';
+                    deleteBtn.onclick = function() {
+                        tagContainer.removeChild(tag);
+                    };
+
+                    tag.appendChild(deleteBtn);
+                    tagContainer.appendChild(tag);
+                    tagInput.value = ''; // 입력 필드 초기화
+                } else {
+                    alert('해시태그는 #로 시작해야 합니다.');
+                }
             }
         });
     </script>

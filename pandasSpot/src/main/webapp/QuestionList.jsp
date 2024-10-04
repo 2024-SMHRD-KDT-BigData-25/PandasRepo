@@ -127,7 +127,7 @@
 					<div class="col-md-7">
 						<div class="row mb-5">
 							<div class="col-12 ">
-								<h2 class="site-section-heading text-center">공부일기 게시판</h2>
+								<h2 class="site-section-heading text-center">질의 게시판</h2>
 							</div>
 						</div>
 					</div>
@@ -142,6 +142,8 @@
 								<th>제목</th>
 								<th>작성자</th>
 								<th>작성일</th>
+								<th>첨부파일</th>
+								<th>문제집</th>
 							</tr>
 						</thead>
 						<tbody id="list">
@@ -193,7 +195,7 @@
 	//비동기 통신 시 사용하는 데이터 형식 : json {key:value,key:value} / xml
 		function getList(){
 			$.ajax({
-			url : "diaryList", //요청경로
+			url : "questionList", //요청경로
 			type : "get", //요청방식(http 요청 메서드)
 			success : printList,
 			error : function(){
@@ -211,11 +213,13 @@
 		for(var board of data){
 		
 	      html += "<tr>"
-	      html += "<td>"+board.diary_idx+"</td>"
-	      html += "<td class='text-black'><a href='study_view.jsp?idx="+board.diary_idx+"'>"+board.diary_title+"</a></td>"
-	      html += "<td class='text-black'><a>"+board.mem_id+"</a></td>"
-	      html += "<td class='text-black'>"+board.created_at+"</td>"
-	      html += "<td><button class='btn btn-primary py-2 px-4 text-white' onclick='deleteBoard("+board.diary_idx+")'>삭제</button></td>"
+	      html += "<td>"+board.q_idx+"</td>"
+	      html += "<td class='text-black'>"+board.q_title+"</td>"
+	      html += "<td>"+board.mem_id+"</td>"
+	      html += "<td>"+board.created_at+"</td>"
+	      html += "<td>"+board.q_file+"</td>"
+	      html += "<td>"+board.q_workbook+"</td>"
+	      html += "<td><button class='btn btn-primary py-2 px-4 text-white' onclick='deleteBoard("+board.q_idx+")'>삭제</button></td>"
 	      html += "</tr>"
 	    }
 		//html() : 특정 태그 사이에 html 코드를 바꾸고 싶을때
