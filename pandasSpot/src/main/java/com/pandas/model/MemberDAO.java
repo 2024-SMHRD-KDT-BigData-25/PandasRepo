@@ -1,25 +1,22 @@
 package com.pandas.model;
 
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.pandas.database.SqlSessionManager;
 
-public class SchoolDAO {
+public class MemberDAO {
 	SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSessionFactory();
 	
-	public List<Schools> getList() {
+	public int join(Members m) {
 		SqlSession session = sqlSessionFactory.openSession(true);
-		List<Schools> res = session.selectList("SpotMapper.SchoolList");
+		int res = session.insert("SpotMapper.join", m);		
 		session.close();
 		return res;
 	}
-	public List<Schools> findSchool(String name) {
-		System.out.println(name);
+	public Members login(Members m) {
 		SqlSession session = sqlSessionFactory.openSession(true);
-		List<Schools> res = session.selectList("SpotMapper.FindSchool", name);
+		Members res = session.selectOne("SpotMapper.login", m);
 		session.close();
 		return res;
 	}
