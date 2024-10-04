@@ -13,6 +13,13 @@ public class SchoolDAO {
 	public List<Schools> getList() {
 		SqlSession session = sqlSessionFactory.openSession(true);
 		List<Schools> res = session.selectList("SpotMapper.SchoolList");
+		session.close();
+		return res;
+	}
+	public Schools findSchool(String name) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		Schools res = session.selectOne("", name);
+		session.close();
 		return res;
 	}
 }
