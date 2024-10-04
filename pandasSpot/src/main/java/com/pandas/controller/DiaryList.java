@@ -14,21 +14,21 @@ import com.google.gson.Gson;
 import com.pandas.model.Diaries;
 import com.pandas.model.DiaryDAO;
 
-@WebServlet("/diary")
+@WebServlet("/diaryList")
 public class DiaryList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("diaryList 호출");
 		DiaryDAO dao = new DiaryDAO();
 		List<Diaries> list = dao.getList();
-		
+		//JavaObject => JSONObject(json 형식의 객체구조) => GSON
 		Gson gson = new Gson();
 		String json = gson.toJson(list);
 		
 		response.setCharacterEncoding("UTF-8");
-		
-		
+		//response.setContentType("text/html; charset=UTF-8");
+		//텍스트 출력(out /Server -> Client) 스트림 => PrintWriter
 		PrintWriter out = response.getWriter();
 		out.print(json);
 	}
