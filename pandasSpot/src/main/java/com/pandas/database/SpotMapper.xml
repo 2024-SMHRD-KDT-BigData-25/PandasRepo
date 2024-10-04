@@ -23,6 +23,11 @@
 		select * from communities
 	</select>
 
+<!-- Question -->
+	<select id="QuestionList" resultType="com.pandas.model.Questions">
+		select * from questions
+	</select>
+
 <!-- Member -->
 	<insert id="join" parameterType="com.pandas.model.Members">
 		INSERT INTO MEMBERS(MEM_ID, MEM_PW, MEM_NAME, MEM_NICK, MEM_BIRTHDATE, MEM_SCHOOL, MEM_PROFILE_IMG) VALUES (#{mem_id}, #{mem_pw}, #{mem_name}, #{mem_nick}, #{mem_birthdate}, #{mem_school}, #{mem_profile_img})
