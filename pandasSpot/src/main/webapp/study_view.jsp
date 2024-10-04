@@ -146,7 +146,7 @@
 		    <div class="form-group">
 		      <div style="width: 80%; max-width: 500px; min-height: 200px; margin: 0 auto; background-color: lightgrey; padding: 20px;">
  				<span>
- 				스터디로그는 사진 따윈 없어
+ 				스터디로그는 사진 따윈 없어 공부나 하렴
  				<%=diary.getDiary_content() %>
  				</span>
 				</div>
