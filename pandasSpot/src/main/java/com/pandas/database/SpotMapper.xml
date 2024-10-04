@@ -13,6 +13,11 @@
 	<select id="DiaryList" resultType="com.pandas.model.Diaries">
 		select * from diaries
 	</select>
+	
+<!-- Community -->
+	<select id="CommunityList" resultType="com.pandas.model.Communities">
+		select * from communities
+	</select>
 
 <!-- Member -->
 	<insert id="join" parameterType="com.pandas.model.Members">
