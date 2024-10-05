@@ -28,10 +28,12 @@
 .join-input {
 	display: block;
 	width: 300px;
+	height: 20px;
 	padding: 10px;
 	margin-top: 15px;
 	font-family : 교육새음;
 	font-size : 20px;
+	border: 1px solid transparent;
 }
 
 .no-match, .match {
@@ -41,8 +43,90 @@
 .no-match {
 	font-size: 10px;
 }
-.join-input-btn {
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  -o-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out; 
+  }
 
+.join-input-btn {
+	background : #C0C78C;
+	width : 200px;
+	color: white;
+	display: flex;
+	margin: 10px auto 10px auto;
+	font-size: 20px;
+	height: 40px;
+}
+
+#mem_profile_img {
+	display: none;
+}
+
+.img_input_label{
+  padding: 6px 25px;
+  background-color:#FF6600;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+#input-image {
+	max-width: 300px;
+	width: 30px;
+}
+
+#mem_school {
+	width : 220px;
+	font-size: 15px;
+	display: inline-block;	
+}
+
+#school_search_btn {
+	width : 80px;
+	display: inline-block;	
+}
+
+#message {
+	display: none;
+	margin-top: 15px;
+	font-family : 교육새음;
+	font-size : 20px;
+}
+
+.display_flex {
+	display: felx;
+}
+
+.find_school_result {
+	color : #776B5D;
+	font-size: 20px;
+	margin-right : 20px;
+	text-decoration : none;
+	font-family : 교육새음;
+	font-size : 20px;
+}
+
+.image_label{
+	margin: 10px 0 10px 0;
+	font-family : 교육새음;
+	font-size : 20px;
 }
 </style>
 </head>
@@ -56,34 +140,27 @@
 			<!-- join : 은유 -->
 			<div>
 				<div>
-					<form action="Join" method="post">
-						<input class="join-input" type="text" id="mem_name"
-							name="mem_name" placeholder="이름을 입력하세요"> <input
-							class="join-input" type="text" id="mem_id" name="mem_id"
-							placeholder="아이디를 입력하세요"> <input class="join-input"
-							type="password" id="mem_pw" name="mem_pw"
-							placeholder="비밀번호를 입력하세요"> 
-							<input class="join-input" type="password" id="pw_confirm" name="pw_confirm" placeholder="비밀번호 확인" oninput="validatePasswords()">
+					<form action="Join" method="post" enctype="multipart/form-data">
+						<input class="join-input" type="text" id="mem_name" name="mem_name" placeholder="이름을 입력하세요"> 
+						<input class="join-input" type="text" id="mem_id" name="mem_id" placeholder="아이디를 입력하세요"> 
+						<input class="join-input" type="password" id="mem_pw" name="mem_pw" placeholder="비밀번호를 입력하세요" oninput="changeFontFamily()"> 
+						<input class="join-input" type="password" id="pw_confirm" name="pw_confirm" placeholder="비밀번호 확인" oninput="validatePasswords()">
 						<div id="message"></div>
-						<input class="join-input" type="text" id="mem_nick"
-							name="mem_nick" placeholder="닉네임을 입력하세요"> <input
-							class="join-input" type="date" id="mem_birthdate"
-							name="mem_birthdate"> <input class="join-input"
-							type="text" id="mem_school" name="mem_school"
-							placeholder="학교명을 입력하세요(예: 능주고등학교 -> 능주)"> 
-							<input class="join-input join-input-btn" type="button" value="학교 검색"
-							onclick="findSchool()">
+						<input class="join-input" type="text" id="mem_nick" name="mem_nick" placeholder="닉네임을 입력하세요"> 
+						<input class="join-input" type="date" id="mem_birthdate" name="mem_birthdate"> <input class="join-input" type="text" id="mem_school" name="mem_school" placeholder="학교명을 입력하세요(예: 한국고등학교 -> 한국)"> 
+						<input class="join-input join-input-btn btn" id="school_search_btn" type="button" value="학교 검색" onclick="findSchool()">
 						<div id="find_school_result"></div>
-						<input class="join-input" type="file" id="mem_profile_img"
-							name="mem_profile_img" placeholder="프로필 사진"> <input
-							class="join-input join-input-btn" type="submit" value="join">
+						<div class="image_label">프로필 사진</div>
+						<label>
+						    <img src= "icon/add (1).png" alt="이미지 추가하기" id="input-image"/>
+							<input type="file" id="mem_profile_img" name="mem_profile_img"> 
+						</label>
+						<input class="join-input join-input-btn btn" type="submit" value="Join to SPOT!">
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
 
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -116,23 +193,27 @@
 			// AJAX 요청을 보냄
 			var xhr = new XMLHttpRequest();
 			xhr.open("POST", "FindSchool", true); // 서블릿 경로 설정
-			xhr.setRequestHeader("Content-Type",
-					"application/x-www-form-urlencoded");
+			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
 			// 서버 응답 처리
 			xhr.onreadystatechange = function() {
 				if (xhr.readyState === 4 && xhr.status === 200) {
 					// 응답을 받아 처리 (예: 결과를 콘솔에 출력)
 					var data = JSON.parse(xhr.responseText);
-					var resultContainer = document
-							.getElementById("find_school_result");
+					var resultContainer = document.getElementById("find_school_result");
 					resultContainer.innerHTML = ""; // 이전 결과 초기화
 
 					data.forEach(function(item) {
 						var schoolLink = document.createElement("a");
 						schoolLink.className = "find_school_result"
-						schoolLink.href = "#"; // 실제 링크 URL로 변경
-						schoolLink.textContent = item.school_name + " "
+						schoolLink.href = "#"
+						schoolLink.onclick = function(event) {
+		                    console.log(event.target.innerText); // item.school_name 값을 넘김
+		                    document.getElementById("mem_school").value = event.target.innerText;
+		                    return false; // 링크 이동을 막기 위해 false 반환
+		                };
+		                
+						schoolLink.textContent = item.school_name + "-"
 								+ item.school_region; // 예시 필드
 						resultContainer.appendChild(schoolLink); // 결과 요소에 추가
 					});
@@ -143,6 +224,11 @@
 			// 서버로 데이터 전송 (school_name을 파라미터로)
 			xhr.send("school_name=" + encodeURIComponent(schoolName));
 		}
+		
+		function select_school(event) {
+			console.log(event.target.value);
+		}
+
 
 		// 팝업에서 선택한 학교 정보 가져오기
 		function setSchool(schoolName) {
@@ -151,27 +237,69 @@
 	</script>
 
 	<script>
+	
+		function changeFontFamily() {
+			const password = document.getElementById("mem_pw");
+			password.style.fontFamily = "arial";
+			
+			if (password.value =="") {
+				password.style.fontFamily = "교육새음";
+			}
+		}
+		
 		function validatePasswords() {
-			const password = document.getElementById("mem_pw").value;
-			const confirmPassword = document.getElementById("pw_confirm").value;
+			const confirmPassword = document.getElementById("pw_confirm");
+			const password = document.getElementById("mem_pw");
+			
+			const passwordval = password.value;	
+			const confirmPasswordval = confirmPassword.value;
 			const message = document.getElementById("message");
-
-			console.log(password);
-			console.log(confirmPassword);
+			
+			if (confirmPasswordval =="") {
+				message.style.display = "none";
+				confirmPassword.style.fontFamily = "교육새음";
+			} else {
+				confirmPassword.style.fontFamily = "arial";
+				message.style.display = "block";
+			}
+			
+			console.log(passwordval);
+			console.log(confirmPasswordval);
 			// 비밀번호가 일치하는지 확인
-			if (password === confirmPassword) {
+			if (passwordval === confirmPasswordval) {
 				message.textContent = "비밀번호가 일치합니다.";
 				message.style.color = "green";
-				document.getElementById("pw_confirm").classList.add("match");
-				document.getElementById("pw_confirm").classList
-						.remove("no-match");
 			} else {
 				message.textContent = "비밀번호가 일치하지 않습니다.";
 				message.style.color = "red";
-				document.getElementById("pw_confirm").classList.add("no-match");
-				document.getElementById("pw_confirm").classList.remove("match");
 			}
 		}
+	</script>
+	
+	<script>
+	document.getElementById('mem_profile_img').addEventListener('change', handleImageChange);
+
+	function handleImageChange(event) {
+		  const file = event.target.files[0]; // 파일 선택
+
+		  if (file) {
+		    const reader = new FileReader(); // FileReader 생성
+
+		    // 파일을 읽은 후 호출되는 함수
+		    reader.onload = function(e) {
+		      const imageUrl = e.target.result; // Base64로 인코딩된 이미지 데이터
+		      const image_preview = document.getElementById('input-image');
+		      image_preview.src = imageUrl; // 이미지의 src 속성 변경
+		      image_preview.style.width = 'auto';
+		    };
+
+		    reader.readAsDataURL(file); // 파일을 Base64 데이터 URL로 읽음
+		  } else {
+		    document.getElementById('input-image').src = "icon/add (1).png"; // 파일이 없으면 이미지 초기화
+		    document.getElementById('input-image').style.width = '30px'; // 파일이 없으면 이미지 초기화
+		  }
+		}
+
 	</script>
 
 </body>

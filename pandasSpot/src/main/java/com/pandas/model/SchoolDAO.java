@@ -17,10 +17,18 @@ public class SchoolDAO {
 		return res;
 	}
 	public List<Schools> findSchool(String name) {
-		System.out.println(name);
 		SqlSession session = sqlSessionFactory.openSession(true);
 		List<Schools> res = session.selectList("SpotMapper.FindSchool", name);
 		session.close();
 		return res;
 	}
+	
+	public double findSchool(Schools s) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		double res = session.selectOne("SpotMapper.FindSchoolNum", s);
+		session.close();
+		return res;
+	}
+	
+	
 }

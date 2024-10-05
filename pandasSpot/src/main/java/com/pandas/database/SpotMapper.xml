@@ -5,15 +5,18 @@
 	<select id="SchoolList" resultType="com.pandas.model.Schools">
 		select * from schools
 	</select>
-		<select id="FindSchool" parameterType="String" resultType="com.pandas.model.Schools">
+	<select id="FindSchool" parameterType="String" resultType="com.pandas.model.Schools">
 		select * from schools where SCHOOL_NAME LIKE '%' || #{name} || '%'
+	</select>
+	<select id="FindSchoolNum" parameterType="com.pandas.model.Schools" resultType="Double">
+		select SCHOOL_IDX from SCHOOLS where SCHOOL_NAME = #{school_name} and SCHOOL_REGION = #{school_region}
 	</select>
 	
 <!-- Diary -->
 	<select id="DiaryList" resultType="com.pandas.model.Diaries">
 		select * from diaries
 	</select>
-	<!-- Diary 글 불러오기 -->
+<!-- Diary 글 불러오기 -->
 	<select id="getDiary" parameterType="int" resultType="com.pandas.model.Diaries">
 		select * from diaries where DIARY_IDX=#{idx}
 	</select>

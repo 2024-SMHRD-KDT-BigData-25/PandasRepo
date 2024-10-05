@@ -23,4 +23,12 @@ public class Schools {
 
     // 학교 지역 
     private String school_region;
+
+	public Schools(String school_name, String school_region) {
+		super();
+		this.school_name = school_name;
+		this.school_region = school_region;
+	}
+    
+    
 }
