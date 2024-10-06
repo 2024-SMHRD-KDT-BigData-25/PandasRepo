@@ -40,7 +40,6 @@ public class JoinMember extends HttpServlet {
 		String mem_nick = multi.getParameter("mem_nick");
 		String mem_birthdate = multi.getParameter("mem_birthdate").replace("-", "");
 		String mem_school = multi.getParameter("mem_school");
-		System.out.println(mem_school);
 		String mem_school_name = mem_school.split("-")[0];
 		String mem_school_region = mem_school.split("-")[1];
 

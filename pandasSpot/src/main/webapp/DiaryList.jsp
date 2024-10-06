@@ -8,83 +8,32 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link
-	href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet" href="fonts/icomoon/style.css">
-
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/magnific-popup.css">
-<link rel="stylesheet" href="css/jquery-ui.css">
-<link rel="stylesheet" href="css/owl.carousel.min.css">
-<link rel="stylesheet" href="css/owl.theme.default.min.css">
-
-<link rel="stylesheet" href="css/lightgallery.min.css">
-
-<link rel="stylesheet" href="css/bootstrap-datepicker.css">
-
-<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-
-<link rel="stylesheet" href="css/swiper.css">
-
 <link rel="stylesheet" href="css/aos.css">
-
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/eyStyle.css">
 
 </head>
 <body>
-
-	<div class="site-wrap">
-
-		<div class="site-mobile-menu">
-			<div class="site-mobile-menu-header">
-				<div class="site-mobile-menu-close mt-3">
-					<span class="icon-close2 js-menu-toggle"></span>
-				</div>
-			</div>
-			<div class="site-mobile-menu-body"></div>
-		</div>
-
-
-
-		<%@ include file="header.jsp"%>
-
-		<div class="site-section" data-aos="fade">
-			<div class="container-fluid">
-
-				<div class="row justify-content-center">
-
-					<div class="col-md-7">
-						<div class="row mb-5">
-							<div class="col-12 ">
-								<h2 class="site-section-heading text-center">공부일기 게시판</h2>
-							</div>
-						</div>
-					</div>
-
-				</div>
-
-				<div class="panel-body container-fluid">
-					<table class="table table-bordered text-white">
-						<thead>
-							<tr>
-								<th>번호</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>작성일</th>
-							</tr>
-						</thead>
-						<tbody id="list">
-
-						</tbody>
-					</table>
-
-				</div>
-
-			</div>
-		</div>
+	<%@ include file="header.jsp"%>
+	<div class="content-container" data-aos="fade">
+		<h2 class="join-title before-table">Study Log</h2>
 	</div>
+	<div class="content-container" data-aos="fade">
 
+		<table class="content-list-table">
+			<thead class="table-content">
+				<tr class="table-header">
+					<th class="cell_padding">번호</th>
+					<th class="cell_padding">제목</th>
+					<th class="cell_padding">작성자</th>
+					<th class="cell_padding">작성일</th>
+				</tr>
+			</thead>
+			<tbody id="list">
+
+			</tbody>
+		</table>
+
+	</div>
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/jquery-migrate-3.0.1.min.js"></script>
 	<script src="js/jquery-ui.js"></script>

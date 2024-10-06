@@ -8,84 +8,24 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<link
-	href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet" href="fonts/icomoon/style.css">
-
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/magnific-popup.css">
-<link rel="stylesheet" href="css/jquery-ui.css">
-<link rel="stylesheet" href="css/owl.carousel.min.css">
-<link rel="stylesheet" href="css/owl.theme.default.min.css">
-
-<link rel="stylesheet" href="css/lightgallery.min.css">
-
-<link rel="stylesheet" href="css/bootstrap-datepicker.css">
-
-<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-
-<link rel="stylesheet" href="css/swiper.css">
-
 <link rel="stylesheet" href="css/aos.css">
-
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/eyStyle.css">
 
 </head>
 <body>
-<%@ include file="header.jsp" %>
-	<div class="site-wrap">
+	<%@ include file="header.jsp"%>
 
-		<div class="site-section" data-aos="fade">
-			<div class="container">
+		<div class="content-container" data-aos="fade">
+			<form action="Login" method="post">
+			<h2 class="join-title">Login</h2>
 
-				<div class="row justify-content-center">
-
-					<div class="col-md-7">
-						<div class="row mb-5">
-							<div class="col-12 ">
-								<h2 class="site-section-heading text-center">Login</h2>
-							</div>
-						</div>
-					</div>
-
-				</div>
-				<!-- join : 은유 -->
-				<div class="row justify-content-center">
-					<div class="col-lg-8 mb-5">
-						<form action="Login" method="post">
-
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label class="text-brown" for="mem_id">아이디</label> <input
-										type="text" id="mem_id" name="mem_id" class="form-control">
-								</div>
-							</div>
-
-							<div class="row form-group">
-
-								<div class="col-md-12">
-									<label class="text-white" for="mem_pw">비밀번호</label> <input
-										type="password" id="mem_pw" name="mem_pw" class="form-control">
-								</div>
-							</div>
-
-							<div class="row form-group">
-								<div class="col-md-12">
-									<input type="submit" value="Login"
-										class="btn btn-primary py-2 px-4 text-white">
-								</div>
-							</div>
-
-
-						</form>
-					</div>
-				</div>
-			</div>
+			<!-- login : 은유 -->
+			<input type="text" id="mem_id" name="mem_id" class="join-input" placeholder="아이디를 입력하세요">
+			<input type="password" id="mem_pw" name="mem_pw" class="join-input" oninput="changeFontFamily()" placeholder="비밀번호를 입력하세요">
+			<input type="submit" value="Login" class="join-input join-input-btn btn">
+							
+			</form>
 		</div>
-
-	</div>
 
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -105,7 +45,17 @@
 	<script src="js/jquery.mousewheel.min.js"></script>
 
 	<script src="js/main.js"></script>
-
+	
+	<script type="text/javascript">
+		function changeFontFamily() {
+			const password = document.getElementById("mem_pw");
+			password.style.fontFamily = "arial";
+			
+			if (password.value =="") {
+				password.style.fontFamily = "교육새음";
+			}
+		}
+	</script>
 
 
 </body>

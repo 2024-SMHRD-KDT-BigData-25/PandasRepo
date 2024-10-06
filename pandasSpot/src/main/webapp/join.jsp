@@ -1,134 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>Study SPOT</title>
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="css/eyStyle.css">
 <link rel="stylesheet" href="css/aos.css">
-<link rel="stylesheet" href="css/newStyle.css">
-<style>
-.content-container {
-	display: flex; /* Flexbox로 컨테이너 설정 */
-	justify-content: center; /* 수평 중앙 정렬 */
-	align-items: center; /* 수직 중앙 정렬 */
-	background-color: #EBE3D5;
-	padding-bottom: 30px;
-}
-
-.join-title {
-	font-family: 둥근미소;
-	text-align: center;
-	color: #776B5D;
-}
-
-.join-input {
-	display: block;
-	width: 300px;
-	height: 20px;
-	padding: 10px;
-	margin-top: 15px;
-	font-family : 교육새음;
-	font-size : 20px;
-	border: 1px solid transparent;
-}
-
-.no-match, .match {
-	font-family : 교육새음;
-}
-
-.no-match {
-	font-size: 10px;
-}
-.btn {
-  display: inline-block;
-  font-weight: 400;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border: 1px solid transparent;
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-radius: 0.25rem;
-  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  -o-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out; 
-  }
-
-.join-input-btn {
-	background : #C0C78C;
-	width : 200px;
-	color: white;
-	display: flex;
-	margin: 10px auto 10px auto;
-	font-size: 20px;
-	height: 40px;
-}
-
-#mem_profile_img {
-	display: none;
-}
-
-.img_input_label{
-  padding: 6px 25px;
-  background-color:#FF6600;
-  border-radius: 4px;
-  color: white;
-  cursor: pointer;
-}
-
-#input-image {
-	max-width: 300px;
-	width: 30px;
-}
-
-#mem_school {
-	width : 220px;
-	font-size: 15px;
-	display: inline-block;	
-}
-
-#school_search_btn {
-	width : 80px;
-	display: inline-block;	
-}
-
-#message {
-	display: none;
-	margin-top: 15px;
-	font-family : 교육새음;
-	font-size : 20px;
-}
-
-.display_flex {
-	display: felx;
-}
-
-.find_school_result {
-	color : #776B5D;
-	font-size: 20px;
-	margin-right : 20px;
-	text-decoration : none;
-	font-family : 교육새음;
-	font-size : 20px;
-}
-
-.image_label{
-	margin: 10px 0 10px 0;
-	font-family : 교육새음;
-	font-size : 20px;
-}
-</style>
 </head>
 <body>
 
@@ -182,10 +60,6 @@
 	<script src="js/main.js"></script>
 
 	<script>
-		$(document).ready(function() {
-			$('#lightgallery').lightGallery();
-		});
-
 		function findSchool() {
 			// 입력된 학교명을 가져옴
 			var schoolName = document.getElementById("mem_school").value;
@@ -202,7 +76,18 @@
 					var data = JSON.parse(xhr.responseText);
 					var resultContainer = document.getElementById("find_school_result");
 					resultContainer.innerHTML = ""; // 이전 결과 초기화
-
+					
+					
+					if (data.length == 0) {
+					    alert("학교 이름을 정확히 입력해주세요!");
+					    document.getElementById("mem_school").value = "";
+					    return;
+					}
+					else {
+						alert("학교 이름을 입력해주세요!");
+						return;
+					}
+					
 					data.forEach(function(item) {
 						var schoolLink = document.createElement("a");
 						schoolLink.className = "find_school_result"

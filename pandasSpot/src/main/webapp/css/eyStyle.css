@@ -1,0 +1,279 @@
+@charset "UTF-8";
+
+/* 은유 */
+/* 제목 */
+@font-face {
+	font-family: '둥근미소';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimDunggeunmisoTTF-B.woff2')
+		format('woff2');
+	font-weight: 700;
+	font-style: normal;
+}
+/* 본문 */
+@font-face {
+	font-family: '받아쓰기';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimBadasseugiTTF-L.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+/* 태그 */
+@font-face {
+	font-family: '교육새음';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+/* 채팅 */
+@font-face {
+	font-family: '의연체';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105@1.1/Uiyeun.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+/* 타이틀 */
+@font-face {
+	font-family: '다예쁨';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: '순천체';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/SuncheonR.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: '레페리포인트';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-WhiteObliqueA.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+    font-family: '레페리포인트_bold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-BlackObliqueA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	background-color : #fdfae6;
+	margin: 0;
+	padding: 0;
+}
+
+.header-container {
+    display: flex;                /* Flexbox로 컨테이너 설정 */
+    justify-content: center;      /* 수평 중앙 정렬 */
+    align-items: baseline;          /* 수직 중앙 정렬 */
+    height: 80px;                 /* 헤더 높이 설정 (필요시 조정) */
+    width: 100vw;
+}
+
+.header-title {
+    font-family: 다예쁨;
+    color: #6C4E31;
+    text-decoration: none;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.header-title-cotainer {
+	padding: 20px;
+}
+
+.nav-ul {
+    list-style-type: none;
+    display: flex;                /* 가로로 배치 */
+    margin: 0;
+    padding: 0;
+}
+
+.nav-ul>li {
+    margin: 20px;            /* 각 메뉴 간의 간격 설정 */
+    font-family: 레페리포인트;
+}
+
+.nav-li-a {
+    color: #776B5D;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-li-a:hover {
+    color: #EE4E4E;
+    font-weight: bold;
+}
+
+.content-container {
+	display: flex; /* Flexbox로 컨테이너 설정 */
+	height: auto;
+	justify-content: center; /* 수평 중앙 정렬 */
+	align-items: center; /* 수직 중앙 정렬 */
+	padding-bottom: 30px;
+}
+
+
+.join-title {
+	font-family: 둥근미소;
+	text-align: center;
+	color: #776B5D;
+	padding-top: 20px;
+}
+
+.join-input {
+	display: block;
+	width: 300px;
+	height: 20px;
+	padding: 10px;
+	margin-top: 15px;
+	font-family : 교육새음;
+	font-size : 20px;
+	border: 1px solid transparent;
+}
+
+.no-match, .match {
+	font-family : 교육새음;
+	font-size: 10px;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  -o-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out; 
+  }
+
+.join-input-btn {
+	background : #C0C78C;
+	width : 200px;
+	color: white;
+	display: flex;
+	margin: 10px auto 10px auto;
+	font-size: 20px;
+	height: 40px;
+}
+
+#mem_profile_img {
+	display: none;
+}
+
+.img_input_label{
+  padding: 6px 25px;
+  background-color:#FF6600;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+#input-image {
+	max-width: 300px;
+	width: 30px;
+}
+
+#mem_school {
+	width : 220px;
+	font-size: 15px;
+	display: inline-block;	
+}
+
+#school_search_btn {
+	width : 80px;
+	display: inline-block;	
+}
+
+#message {
+	display: none;
+	margin-top: 15px;
+	font-family : 교육새음;
+	font-size : 20px;
+}
+
+.display_flex {
+	display: felx;
+}
+
+.find_school_result {
+	color : #776B5D;
+	font-size: 20px;
+	margin-right : 20px;
+	text-decoration : none;
+	font-family : 교육새음;
+	font-size : 20px;
+}
+
+.image_label{
+	margin: 10px 0 10px 0;
+	font-family : 교육새음;
+	font-size : 20px;
+}
+
+.before-table {
+	width: 100vw;
+}
+
+.table-content {
+	font-family: "받아쓰기";
+}
+
+.red-color {
+	color: #EE4E4E;
+}
+
+.content-list-table {
+  font-size: 1em;
+  width: 100%;
+  padding: 10px 0 10px 0;
+  margin: 0 5px 0 5px;
+  border-collapse: collapse;
+}
+
+.table-header {
+	border-bottom: 1px solid #966f47;
+}
+
+.cell_padding {
+	padding: 1em 0 1em 0;
+}
+
+header {
+	background-color: #DED0B6;
+}
+
+.menu_explain {
+	text-align: center;
+	font-family : 교육새음;
+	font-size: 20px;
+}
+
