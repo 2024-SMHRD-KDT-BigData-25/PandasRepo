@@ -38,7 +38,7 @@
 	<select id="login" parameterType="com.pandas.model.Members" resultType="com.pandas.model.Members">
 		SELECT * FROM MEMBERS WHERE MEM_ID = #{mem_id} AND MEM_PW = #{mem_pw}
 	</select>
-	
+
 <!-- Community 등록, 수정 -->
 	<insert id="post" parameterType="com.pandas.model.Communities">
 		INSERT INTO COMMUNITIES(COMM_TITLE,COMM_CONTENT,COMM_FILE,CREATED_AT,COMM_VIEWS,COMM_LIKES,MEM_ID) VALUES (#{comm_title}, #{comm_content}, #{comm_file}, #{ceated_at}, #{comm_views}, #{comm_likes}, #{mem_id})
