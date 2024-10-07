@@ -1,5 +1,5 @@
+
 var id_checked = false;
-var pw_checked = false;
 
 function findSchool() {
 	// 입력된 학교명을 가져옴
@@ -143,7 +143,7 @@ function idCheck() {
 			// 응답을 받아 처리 (예: 결과를 콘솔에 출력)
 			var data = xhr.responseText;
 			var resultContainer = document.getElementById("id_check_message");
-
+			resultContainer.style.display = "block";
 			if (data == "True") {
 				resultContainer.innerText = "사용가능한 아이디입니다.";
 				resultContainer.style.color = "green";
@@ -162,57 +162,109 @@ function idCheck() {
 
 function validateForm() {
 	// 각 입력 필드를 변수에 저장
-	console.log("validateForm 호출");
-	return false;
 	const name = document.getElementById("mem_name").value;
 	const id = document.getElementById("mem_id").value;
 	const nick = document.getElementById("mem_nick").value;
 	const birth = document.getElementById("mem_birthdate").value;
 	const password = document.getElementById("mem_pw").value;
-	const passwordConfirm = document.getElementById("pw_confirm").value;
+	const password_cofirm = document.getElementById("pw_confirm").value;
+	const school = document.getElementById("mem_school").value;
 
-	// 오류 메시지 초기화
-	errorMessage.innerHTML = "";
+	//id 중복확인 했는지 확인
+	if (id_checked == false) {
+		alert("id 중복 확인을 진행해주세요!");
+		return false;
+	}
 
+	//pw 일치 확인 했는지 확인
+	if (password != password_cofirm) {
+		alert("pw가 일치하지 않습니다!");
+		return false;
+	}
 	// 이름 검증 (빈칸 체크)
 	if (name === "") {
-		const errorMessage = document.getElementById("id_check_message");
+		const errorMessage = document.getElementById("name_message");
 		errorMessage.style.display = "block";
 		errorMessage.innerHTML = "이름을 입력하세요.";
+		errorMessage.style.color = "red";
 		return false;  // 검증 실패 시 제출 중단
-	}
-	
-	if (birth == "") {
-		errorMessage.innerHTML = "생년월일을 입력하세요.";
-		return false;
-	}
-	
-	if (nick === "") {
-		errorMessage.innerHTML = "닉네임을 입력하세요.";
-		return false;
 	}
 
 	// 아이디 검증 (빈칸 체크)
 	if (id === "") {
+		const errorMessage = document.getElementById("id_check_message");
+		errorMessage.style.display = "block";
 		errorMessage.innerHTML = "아이디를 입력하세요.";
+		errorMessage.style.color = "red";
 		return false;
 	}
+
+
 
 	// 비밀번호 검증 (빈칸 체크 및 길이 확인)
 	if (password === "") {
+		const errorMessage = document.getElementById("pw_message");
+		errorMessage.style.display = "block";
 		errorMessage.innerHTML = "비밀번호를 입력하세요.";
+		errorMessage.style.color = "red";
 		return false;
 	} else if (password.length < 8) {
+		const errorMessage = document.getElementById("pw_message");
+		errorMessage.style.display = "block";
 		errorMessage.innerHTML = "비밀번호는 최소 8자 이상이어야 합니다.";
+		errorMessage.style.color = "red";
 		return false;
 	}
 
-	// 비밀번호 확인 검증 (비밀번호와 일치하는지 확인)
-	if (password !== passwordConfirm) {
-		errorMessage.innerHTML = "비밀번호가 일치하지 않습니다.";
+
+	if (nick === "") {
+		const errorMessage = document.getElementById("nick_message");
+		errorMessage.style.display = "block";
+		errorMessage.innerHTML = "닉네임을 입력하세요.";
+		errorMessage.style.color = "red";
+		return false;
+	}
+
+	if (birth == "") {
+		const errorMessage = document.getElementById("birth_message");
+		errorMessage.style.display = "block";
+		errorMessage.innerHTML = "생년월일을 입력하세요.";
+		errorMessage.style.color = "red";
+		return false;
+	}
+	
+
+
+	if (birth == "") {
+		const errorMessage = document.getElementById("birth_message");
+		errorMessage.style.display = "block";
+		errorMessage.innerHTML = "생년월일을 입력하세요.";
+		errorMessage.style.color = "red";
+		return false;
+	}
+	else if (birth.length != 10){
+		const errorMessage = document.getElementById("birth_message");
+		errorMessage.style.display = "block";
+		errorMessage.innerHTML = "생년월일을 8자로 입력하세요.(예 : 2024-10-10)";
+		errorMessage.style.color = "red";
+		return false;
+	}
+
+	if (school == "") {
+		const errorMessage = document.getElementById("school_message");
+		errorMessage.style.display = "block";
+		errorMessage.innerHTML = "학교를 입력하세요.";
+		errorMessage.style.color = "red";
+		return false;
+	}
+	else if (school.split("-").length < 2) {
+		const errorMessage = document.getElementById("school_message");
+		errorMessage.style.display = "block";
+		errorMessage.innerHTML = "학교 이름을 검색해주세요.";
+		errorMessage.style.color = "red";
 		return false;
 	}
 
 	// 모든 검증 통과 시 true를 반환하여 제출 허용
-	return true;
+	return false;
 }

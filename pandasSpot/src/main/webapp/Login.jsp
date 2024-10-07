@@ -15,15 +15,15 @@
 <body>
 	<%@ include file="header.jsp"%>
 
-		<div class="content-container" data-aos="fade">
+		<div class="content-container" data-aos="fade" onsubmit="return loginFromVal()">
 			<form action="Login" method="post">
 			<h2 class="join-title">Login</h2>
 
 			<!-- login : 은유 -->
-			<input type="text" id="mem_id" name="mem_id" class="join-input" placeholder="아이디를 입력하세요">
-			<input type="password" id="mem_pw" name="mem_pw" class="join-input" oninput="changeFontFamily()" placeholder="비밀번호를 입력하세요">
-			<input type="submit" value="Login" class="join-input join-input-btn btn">
-							
+			<input type="text" id="login_id" name="mem_id" class="join-input" placeholder="아이디를 입력하세요">
+			<input type="password" id="login_pw" name="mem_pw" class="join-input" oninput="changeFontFamily()" placeholder="비밀번호를 입력하세요">
+			<div class="message" id="login_message"></div>
+			<input type="submit" value="Login" class="join-input join-input-btn btn">							
 			</form>
 		</div>
 
@@ -45,17 +45,7 @@
 	<script src="js/jquery.mousewheel.min.js"></script>
 
 	<script src="js/main.js"></script>
-	
-	<script type="text/javascript">
-		function changeFontFamily() {
-			const password = document.getElementById("mem_pw");
-			password.style.fontFamily = "arial";
-			
-			if (password.value =="") {
-				password.style.fontFamily = "교육새음";
-			}
-		}
-	</script>
+	<script src="js/login.js"></script>
 
 
 </body>
