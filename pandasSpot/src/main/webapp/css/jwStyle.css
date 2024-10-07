@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+div {
+    font-family: 교육새음;
+    font-size: 20px;
+    font-weight: 400;
+    color: #333;
+}
+
+button {
+    font-family: 의연체; 
+    font-size: 24px;
+    font-weight: 500;
+    padding: 5px 15px;
+    border-radius: 10px;
+    text-align: center;
+    border: none;
+}
+
+.join-input-btn-min {
+	background : #FFFFFF;
+	color: black;
+    padding: 5px 15px;
+	font-size: 24px;
+	text-align: center;
+	font-family: 의연체; 
+	border-radius: 10px;
+}
+
+.join-input-dat {
+	display: block;
+	width: 300px;
+	height: 20px;
+	padding: 10px;
+	margin-top: 15px;
+	font-family : 교육새음;
+	font-size : 20px;
+	border: 1px solid black;
+}
+
+div.main {
+	width: 80%; 
+	max-width: 800px; 
+	min-height: 200px; 
+	margin: 0 auto; 
+	background-color: lightgrey; 
+	padding: 10px;
+}
+
+div.dat {
+	width: 80%; 
+	max-width: 800px; 
+	min-height: 150px; 
+	margin: 0 auto; 
+	background-color: white; 
+	display: flex; 
+	flex-direction: column; 
+	justify-content: space-between; 
+	padding: 15px;
+	margin-bottom:50px;
+}	
+
+
+button.gray-btn {
+    background-color: #c0c0c0;
+    color: white;
+}
+
+	
+button.black-btn {
+    background-color: #333333;
+    color: white;
+}
+
+button.white-btn {
+    background-color: #000000;
+    color: black;
+}
+
