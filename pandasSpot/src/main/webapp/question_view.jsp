@@ -16,6 +16,16 @@
 
 <%@ include file="header.jsp" %>
 
+	<%
+		String idxString = request.getParameter("idx");
+	
+		System.out.println("idx 번호는 " + idxString);	
+
+	 	int idx = Integer.parseInt(idxString);
+		questionDAO dao = new CommunityDAO();
+	  	Communities community = dao.getCommunities(idx);
+	%> 
+
 	<!-- 게시글 부분 -->
 	<div data-aos="fade">
 		<h2 class="join-title before-table">Q & A</h2>

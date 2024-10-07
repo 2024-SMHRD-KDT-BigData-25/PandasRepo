@@ -34,6 +34,10 @@
 	<select id="QuestionList" resultType="com.pandas.model.Questions">
 		select * from questions
 	</select>
+<!-- Question 글 불러오기 -->
+	<select id="QuestionList" resultType="com.pandas.model.Questions">
+		select * from questions where Q_IDX=#{idx}
+	</select>
 
 <!-- Member -->
 	<insert id="join" parameterType="com.pandas.model.Members">
