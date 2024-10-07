@@ -42,10 +42,10 @@
      
      body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 100px;
         }
      .tag {
-            display: inline-block;
+            display: inline;
             background-color: #e0e0e0;
             border-radius: 5px;
             padding: 5px 10px;
@@ -84,7 +84,7 @@
     
 <%@ include file="header.jsp"%>
 
-    <div class="site-section"  data-aos="fade">
+    <div class="site-section"  data-aos="fade" >
       <div class="container">
 
         <div class="row justify-content-center">
@@ -92,7 +92,7 @@
           <div class="col-md-7">
             <div class="row mb-5">
               <div class="col-12 ">
-                <h2 class="site-section-heading text-center">공부 기록</h2>
+                <h2 class="join-title">공부 기록</h2>
                 <div class="author text-right">
                   <span><i class="glyphicon glyphicon-user"></i> 작성자 이름</span>
                 </div>
@@ -104,29 +104,33 @@
         
         <div class="row justify-content-center">
           <div class="col-lg-8 mb-5">
-            <form action="#">
+            <form action="Record">
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-white" for="subject">태그</label> 
-                  <input type="text" id="tagInput" class="form-control" placeholder="#새 태그 추가">
+                  <label class="image_label" for="subject">태그</label> 
+                  <input type="text" id="tagInput" class="join-input" placeholder="#새 태그 추가">
                   <div id="tagContainer"></div>
                 </div>
               </div>
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-white" for="message">파일 첨부 : </label> 
-                  <input type="file" id="file-upload" name="file-upload"  accept="image/*" style="border: none; border-bottom:1px solid #fff; outline: none;">
-                  <img id="preview" src="" alt="미리보기 이미지" style="display: none;">
+                        <div class="image_label">파일 업로드</div>
+						<label>
+						    <img src= "icon/add (1).png" alt="이미지 추가하기" id="input-image"/>
+							<input type="file" id="mem_profile_img" name="record_post_img"> 
+							<input type="file" id="mem_profile_img" name="record_post_img"  accept="image/*" style="border: none; border-bottom:1px solid #fff; outline: none;">
+                  			<img id="preview" src="" alt="미리보기 이미지" style="display: none;">
+						</label>
                 </div>
               </div>
               
               <br>
               <div class="row form-group" align="center">
                 <div class="col-md-12">
-                  <input type="submit" value="등록" class="btn btn-primary py-2 px-4 text-white">
-                  <input type="submit" value="취소" class="btn btn-primary py-2 px-4 text-white">
+                  <input type="submit" value="등록" class="join-input post-input-btn btn">
+                  <input type="submit" value="취소" class="join-input post-input-btn btn">
                 </div>
               </div>
 
@@ -148,7 +152,7 @@
   </div>
   
    <script>
-        const imageInput = document.getElementById('file-upload');
+        const imageInput = document.getElementById('mem_profile_img');
         const preview = document.getElementById('preview');
 
         imageInput.addEventListener('change', function() {
