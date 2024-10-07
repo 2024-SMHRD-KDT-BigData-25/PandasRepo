@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="css/jquery-ui.css">
   <link rel="stylesheet" href="css/owl.carousel.min.css">
   <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
   <link rel="stylesheet" href="css/lightgallery.min.css">    
 
@@ -52,18 +54,18 @@
 
         <div class="row justify-content-center">
 
-          <div class="col-md-7">
-            <div class="row mb-5">
-              <div class="col-12 ">
-                <h2 class="site-section-heading text-center">Study Log</h2>
-                <div class="author text-right">
-                  <span><i class="glyphicon glyphicon-user"></i> 작성자 이름</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
+		          <div class="col-md-7">
+		            <div class="row mb-5">
+		              <div class="col-12 ">
+		                <h2 class="join-title">Study Log</h2>
+		                <div class="author text-right">
+		                  <span><i class="glyphicon glyphicon-user"></i> 작성자 이름</span>
+		                </div>
+		              </div>
+		            </div>
+		          </div>
+		
+		        </div>
         
         <div class="row justify-content-center">
           <div class="col-lg-8 mb-5">
@@ -87,8 +89,8 @@
 
               <div class="row form-group" align="center">
                 <div class="col-md-12">
-                  <input type="submit" value="등록" class="btn btn-primary py-2 px-4 text-white">
-                  <input type="submit" value="취소" class="btn btn-primary py-2 px-4 text-white">
+                  <input type="submit" value="등록" class="join-input post-input-btn btn">
+                  <input type="submit" value="취소" class="join-input post-input-btn btn">
                 </div>
               </div>
 

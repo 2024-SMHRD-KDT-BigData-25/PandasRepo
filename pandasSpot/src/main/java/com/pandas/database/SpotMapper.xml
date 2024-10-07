@@ -72,6 +72,15 @@
 		VALUES (#{comm_title}, #{comm_content}, #{comm_file}, #{ceated_at},
 		#{comm_views}, #{comm_likes}, #{mem_id})
 	</insert>
+	
+	<!-- Records 등록 -->
+	<insert id="post" parameterType="com.pandas.model.Record">
+		INSERT INTO
+		RECORDS(RECORD_IDX,RECORD_TAG,RECORD_FILES,RECORD_LIKES,CREATE_AT,MEM_ID)
+		VALUES (#{record_idx}, #{record_tag}, #{record_files}, SYSDATE, #{record_likes},
+		#{record_id})
+	</insert>
+	
 	<update id=""></update>
 
 </mapper>
