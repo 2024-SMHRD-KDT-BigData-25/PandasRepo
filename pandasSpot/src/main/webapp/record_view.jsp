@@ -44,7 +44,7 @@
 		</div>
 			<div class="form-group">
 				<div class="main">
-					<span>자유게시판 글 내용 들어갈 공간</span>
+					<span>나는 오늘 공부를 안 했다 앞으로도 그럴것이다</span>
 				</div>
 			</div>
 			<!-- 댓글 부분 -->

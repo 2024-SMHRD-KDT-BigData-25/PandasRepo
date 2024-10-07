@@ -35,7 +35,7 @@
 		select * from questions
 	</select>
 <!-- Question 글 불러오기 -->
-	<select id="QuestionList" resultType="com.pandas.model.Questions">
+	<select id="getQuestion" resultType="com.pandas.model.Questions">
 		select * from questions where Q_IDX=#{idx}
 	</select>
 
