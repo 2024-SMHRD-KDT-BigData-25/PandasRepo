@@ -1,3 +1,5 @@
+<%@page import="com.pandas.model.Communities"%>
+<%@page import="com.pandas.model.CommunityDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,6 +18,16 @@
 <body>
 
 	<%@ include file="header.jsp"%>
+	
+	<%
+		String idxString = request.getParameter("idx");
+	
+		System.out.println("idx 번호는 " + idxString);	
+
+	 	int idx = Integer.parseInt(idxString);
+		CommunityDAO dao = new CommunityDAO();
+	  	Communities community = dao.getCommunities(idx);
+	%> 
 
 	<!-- 게시글 부분 -->
 	<div data-aos="fade">
@@ -27,9 +39,9 @@
 		<table class="content-list-table" >
 			<thead class="table-content">
 				<tr class="table-header">
-					<th class="cell_padding">날짜</th>
-					<th class="cell_padding">글 제목</th>
-					<th class="cell_padding">작성자 이름</th>
+					<th class="cell_padding"><%=community.getCreated_at() %></th>
+					<th class="cell_padding"><%=community.getComm_title() %></th>
+					<th class="cell_padding"><%=community.getMem_id() %></th>
 				</tr>
 			</thead>
 			<tbody id="list">
@@ -39,11 +51,13 @@
 	</div>
 		<div style="width: 80%; max-width: 800px; display: flex; justify-content: space-between; margin: 0 auto; margin-bottom: 10px; margin-top : -15px">
 			<button class="btn">목록</button>
-				<div style="margin-top: 8px">좋아요(int)</div>	
+				<div style="margin-top: 8px">❤️<%=community.getComm_likes() %></div>	
 			</div>
 				<div class="form-group">
 					<div class="main">
-						<span>자유게시판 글 내용 들어갈 공간</span>
+						<span>자게는 하루 최대 3번만 쓸수 있습니다.
+						<%=community.getComm_content() %>
+						</span>
 					</div>
 				</div>
 			<!-- 댓글 부분 -->

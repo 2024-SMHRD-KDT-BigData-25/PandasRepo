@@ -25,6 +25,10 @@
 	<select id="CommunityList" resultType="com.pandas.model.Communities">
 		select * from communities
 	</select>
+<!-- Community 글 불러오기 -->	
+	<select id="getCommunities" parameterType="int" resultType="com.pandas.model.Communities">
+		select * from communities where COMM_IDX=#{idx}
+	</select>
 
 <!-- Question -->
 	<select id="QuestionList" resultType="com.pandas.model.Questions">

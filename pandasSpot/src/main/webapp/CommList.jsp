@@ -98,7 +98,7 @@
 		
 	      html += "<tr>"
 	      html += "<td class='cell_padding'>"+board.comm_idx+"</td>"
-	      html += "<td class='cell_padding'>"+board.comm_title+"</td>"
+	      html += "<td class='text-black'><a href='community_view.jsp?idx="+board.comm_idx+"'>"+board.comm_title+"</a></td>"
 	      html += "<td class='cell_padding'>"+board.mem_id+"</td>"
 	      html += "<td class='cell_padding'>"+board.created_at+"</td>"
 	      html += "<td class='cell_padding'>"+board.comm_file+"</td>"

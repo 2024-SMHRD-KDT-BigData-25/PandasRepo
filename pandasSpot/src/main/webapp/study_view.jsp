@@ -20,7 +20,7 @@
  <%@ include file="header.jsp"%>
 
 <!-- 게시글 부분 -->
-<body>
+
 	<%
 		String idxString = request.getParameter("idx");
 	
@@ -33,7 +33,7 @@
 	
 	
 		<!-- 게시글 부분 -->
-<body>
+
 	<div data-aos="fade">
 		<h2 class="join-title before-table">STUDY LOG</h2>
 	</div>
