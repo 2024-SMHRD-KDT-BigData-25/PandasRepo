@@ -1,3 +1,5 @@
+<%@page import="com.pandas.model.Questions"%>
+<%@page import="com.pandas.model.QuestionDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,8 +24,8 @@
 		System.out.println("idx 번호는 " + idxString);	
 
 	 	int idx = Integer.parseInt(idxString);
-		questionDAO dao = new CommunityDAO();
-	  	Communities community = dao.getCommunities(idx);
+		QuestionDAO dao = new QuestionDAO();
+	  	Questions question = dao.getQuestion(idx);
 	%> 
 
 	<!-- 게시글 부분 -->
@@ -36,9 +38,9 @@
 		<table class="content-list-table" >
 			<thead class="table-content">
 				<tr class="table-header">
-					<th class="cell_padding">날짜(2024/10/04)</th>
-					<th class="cell_padding">글 제목</th>
-					<th class="cell_padding">작성자 이름</th>
+					<th class="cell_padding"><%=question.getCreated_at() %></th>
+					<th class="cell_padding"><%=question.getQ_title() %></th>
+					<th class="cell_padding"><%=question.getMem_id() %></th>
 				</tr>
 			</thead>
 			<tbody id="list">
@@ -48,12 +50,14 @@
 	</div>
 		<div style="width: 80%; max-width: 800px; display: flex; justify-content: space-between; margin: 0 auto; margin-bottom: 10px; margin-top : -15px">
 			<button class="btn">목록</button>
-			<div style="margin-top: 8px">문제집: 문제집이름</div>
-			<div style="margin-top: 8px">좋아요(int)</div>	
+			<div style="margin-top: 8px">문제집: <%=question.getQ_workbook() %></div>
+			<div></div>
 		</div>
 			<div class="form-group">
 				<div class="main">
-					<span>자유게시판 글 내용 들어갈 공간</span>
+					<span>QnA 글 질문하세요
+					<%=question.getQ_content() %>
+					</span>
 				</div>
 			</div>
 			<!-- 댓글 부분 -->

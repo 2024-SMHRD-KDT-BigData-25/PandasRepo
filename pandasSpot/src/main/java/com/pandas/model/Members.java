@@ -55,4 +55,11 @@ public class Members {
 		this.mem_id = mem_id;
 		this.mem_pw = mem_pw;
 	}
+
+	public Members(String mem_id) {
+		super();
+		this.mem_id = mem_id;
+	}
+	
+	
 }
