@@ -17,4 +17,12 @@ public class QuestionDAO {
 		sqlSession.close();
 		return list;
 	}
+
+// SpotMapper에서 getQuestion 호출
+		public Questions getQuestion(int idx) {
+			SqlSession sqlSession = sqlSessionFactory.openSession(true);
+			Questions res = sqlSession.selectOne("SpotMapper.getQuestion", idx);
+			sqlSession.close();
+			return res;
+	}
 }
