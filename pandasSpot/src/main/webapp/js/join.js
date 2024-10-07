@@ -162,6 +162,8 @@ function idCheck() {
 
 function validateForm() {
 	// 각 입력 필드를 변수에 저장
+	console.log("validateForm 호출");
+	return false;
 	const name = document.getElementById("mem_name").value;
 	const id = document.getElementById("mem_id").value;
 	const nick = document.getElementById("mem_nick").value;

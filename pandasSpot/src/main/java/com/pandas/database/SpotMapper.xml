@@ -1,55 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="SpotMapper">
-<!-- School -->
+	<!-- School -->
 	<select id="SchoolList" resultType="com.pandas.model.Schools">
 		select * from schools
 	</select>
-	<select id="FindSchool" parameterType="String" resultType="com.pandas.model.Schools">
-		select * from schools where SCHOOL_NAME LIKE '%' || #{name} || '%'
+	<select id="FindSchool" parameterType="String"
+		resultType="com.pandas.model.Schools">
+		select * from schools where SCHOOL_NAME LIKE '%' || #{name}
+		|| '%'
 	</select>
-	<select id="FindSchoolNum" parameterType="com.pandas.model.Schools" resultType="Double">
-		select SCHOOL_IDX from SCHOOLS where SCHOOL_NAME = #{school_name} and SCHOOL_REGION = #{school_region}
+	<select id="FindSchoolNum"
+		parameterType="com.pandas.model.Schools" resultType="Double">
+		select SCHOOL_IDX
+		from SCHOOLS where SCHOOL_NAME = #{school_name} and SCHOOL_REGION =
+		#{school_region}
 	</select>
-	
-<!-- Diary -->
+
+	<!-- Diary -->
 	<select id="DiaryList" resultType="com.pandas.model.Diaries">
 		select * from diaries
 	</select>
-<!-- Diary 글 불러오기 -->
-	<select id="getDiary" parameterType="int" resultType="com.pandas.model.Diaries">
+	<!-- Diary 글 불러오기 -->
+	<select id="getDiary" parameterType="int"
+		resultType="com.pandas.model.Diaries">
 		select * from diaries where DIARY_IDX=#{idx}
 	</select>
-	
-<!-- Community -->
-	<select id="CommunityList" resultType="com.pandas.model.Communities">
+
+	<!-- Community -->
+	<select id="CommunityList"
+		resultType="com.pandas.model.Communities">
 		select * from communities
 	</select>
-<!-- Community 글 불러오기 -->	
-	<select id="getCommunities" parameterType="int" resultType="com.pandas.model.Communities">
+	<!-- Community 글 불러오기 -->
+	<select id="getCommunities" parameterType="int"
+		resultType="com.pandas.model.Communities">
 		select * from communities where COMM_IDX=#{idx}
 	</select>
 
-<!-- Question -->
-	<select id="QuestionList" resultType="com.pandas.model.Questions">
+	<!-- Question -->
+	<select id="QuestionList"
+		resultType="com.pandas.model.Questions">
 		select * from questions
 	</select>
-<!-- Question 글 불러오기 -->
-	<select id="QuestionList" resultType="com.pandas.model.Questions">
+	<!-- Question 글 불러오기 -->
+	<select id="QuestionList"
+		resultType="com.pandas.model.Questions">
 		select * from questions where Q_IDX=#{idx}
 	</select>
 
-<!-- Member -->
+	<!-- Member -->
 	<insert id="join" parameterType="com.pandas.model.Members">
-		INSERT INTO MEMBERS(MEM_ID, MEM_PW, MEM_NAME, MEM_NICK, MEM_BIRTHDATE, MEM_SCHOOL, MEM_PROFILE_IMG) VALUES (#{mem_id}, #{mem_pw}, #{mem_name}, #{mem_nick}, #{mem_birthdate}, #{mem_school}, #{mem_profile_img})
+		INSERT INTO MEMBERS(MEM_ID,
+		MEM_PW, MEM_NAME, MEM_NICK, MEM_BIRTHDATE, MEM_SCHOOL,
+		MEM_PROFILE_IMG) VALUES (#{mem_id}, #{mem_pw}, #{mem_name},
+		#{mem_nick}, #{mem_birthdate}, #{mem_school}, #{mem_profile_img})
 	</insert>
-	<select id="login" parameterType="com.pandas.model.Members" resultType="com.pandas.model.Members">
-		SELECT * FROM MEMBERS WHERE MEM_ID = #{mem_id} AND MEM_PW = #{mem_pw}
+	<select id="login" parameterType="com.pandas.model.Members"
+		resultType="com.pandas.model.Members">
+		SELECT * FROM MEMBERS WHERE MEM_ID = #{mem_id} AND MEM_PW =
+		#{mem_pw}
 	</select>
 
-<!-- Community 등록, 수정 -->
+	<!-- Community 등록, 수정 -->
 	<insert id="post" parameterType="com.pandas.model.Communities">
-		INSERT INTO COMMUNITIES(COMM_TITLE,COMM_CONTENT,COMM_FILE,CREATED_AT,COMM_VIEWS,COMM_LIKES,MEM_ID) VALUES (#{comm_title}, #{comm_content}, #{comm_file}, #{ceated_at}, #{comm_views}, #{comm_likes}, #{mem_id})
+		INSERT INTO
+		COMMUNITIES(COMM_TITLE,COMM_CONTENT,COMM_FILE,CREATED_AT,COMM_VIEWS,COMM_LIKES,MEM_ID)
+		VALUES (#{comm_title}, #{comm_content}, #{comm_file}, #{ceated_at},
+		#{comm_views}, #{comm_likes}, #{mem_id})
 	</insert>
 	<update id=""></update>
 
