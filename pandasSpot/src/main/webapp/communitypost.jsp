@@ -61,6 +61,9 @@
 						<div class="row mb-5">
 							<div class="col-12 ">
 								<h2 class="site-section-heading text-center">자유게시판</h2>
+								<div class="author text-right">
+                                   <span><i class="glyphicon glyphicon-user"></i> 작성자 이름</span>
+                                </div>
 							</div>
 						</div>
 					</div>
@@ -69,8 +72,7 @@
 
 				<div class="row justify-content-center">
 					<div class="col-lg-8 mb-5">
-						<form action="#">
-
+						<form action="CommunityPost">
 
 							<div class="row form-group">
 
