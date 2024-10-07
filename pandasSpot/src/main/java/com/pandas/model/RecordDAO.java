@@ -8,9 +8,9 @@ import com.pandas.database.SqlSessionManager;
 public class RecordDAO {
 	SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSessionFactory();
 
-	public int Recording(Record m) {
+	public int Recording(Records m) {
 		SqlSession session = sqlSessionFactory.openSession(true);
-		int res = session.insert("SpotMapper.join", m);		
+		int res = session.insert("SpotMapper.Recording", m);		
 		session.close();
 		return res;
 	}

@@ -93,7 +93,7 @@
         
         <div class="row justify-content-center">
           <div class="col-lg-8 mb-5">
-            <form action="RecordPost">
+            <form action="RecordPost" method="post" enctype="multipart/form-data">
 
               <div class="row form-group">
                 <div class="col-md-12">
