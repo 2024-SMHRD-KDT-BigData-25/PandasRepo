@@ -71,17 +71,6 @@
 </head>
 <body>
 
-  <div class="site-wrap">
-
-    <div class="site-mobile-menu">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
-        </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
-    </div>
-    
 <%@ include file="header.jsp"%>
 
     <div class="site-section"  data-aos="fade" >
@@ -104,7 +93,7 @@
         
         <div class="row justify-content-center">
           <div class="col-lg-8 mb-5">
-            <form action="Record">
+            <form action="RecordPost">
 
               <div class="row form-group">
                 <div class="col-md-12">

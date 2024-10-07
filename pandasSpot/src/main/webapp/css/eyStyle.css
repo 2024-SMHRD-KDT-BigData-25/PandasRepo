@@ -299,6 +299,19 @@ header {
 	font-size: 20px;
 }
 
+.board_btn {
+	background-color: white;
+	color: black;
+}
+#to_write_btn {
+	font-family : 교육새음;
+	text-align: center;
+}
+
+.chat_btn {
+	font-family : 교육새음;
+	text-align: center;
+}
 .message {
 	display: none;
 }
@@ -313,4 +326,3 @@ header {
 	font-size: 20px;
 	height: 40px;
 }
-
