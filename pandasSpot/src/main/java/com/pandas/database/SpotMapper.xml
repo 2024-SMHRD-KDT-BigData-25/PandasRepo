@@ -60,6 +60,10 @@
 		SELECT * FROM MEMBERS WHERE MEM_ID = #{mem_id} AND MEM_PW =
 		#{mem_pw}
 	</select>
+	
+	<select id="FindId" parameterType="String" resultType="com.pandas.model.Members">
+		SELECT * FROM MEMBERS WHERE MEM_ID = #{mem_id}
+	</select>
 
 	<!-- Community 등록, 수정 -->
 	<insert id="post" parameterType="com.pandas.model.Communities">
