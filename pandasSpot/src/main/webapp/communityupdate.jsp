@@ -103,9 +103,9 @@
 						<div class="row form-group" align="center">
 							<div class="col-md-12">
 								<input type="submit" value="수정"
-									class="btn btn-primary py-2 px-4 text-white"> <input
+									class="join-input post-input-btn btn"> <input
 									type="submit" value="취소"
-									class="btn btn-primary py-2 px-4 text-white">
+									class="join-input post-input-btn btn">
 							</div>
 						</div>
 
