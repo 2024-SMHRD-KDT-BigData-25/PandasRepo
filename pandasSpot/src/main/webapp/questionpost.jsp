@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <title>Study SPOT</title>
 <meta charset="utf-8">
 <meta name="viewport"
@@ -12,6 +13,8 @@
 	href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap"
 	rel="stylesheet">
 <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/magnific-popup.css">
@@ -48,23 +51,26 @@
 
 
 
-		<%@ include file="header.jsp"%>
+<%@ include file="header.jsp"%>
 
 
-		<div class="site-section" data-aos="fade">
+		<div class="site-section" data-aos="fade" align="center">
 			<div class="container">
 
 				<div class="row justify-content-center">
 
-					<div class="col-md-7">
-						<div class="row mb-5">
-							<div class="col-12 ">
-								<h2 class="site-section-heading text-center">Q & A</h2>
-							</div>
-						</div>
-					</div>
-
-				</div>
+		          <div class="col-md-7">
+		            <div class="row mb-5">
+		              <div class="col-12 ">
+		                <h2 class="join-title">Q & A</h2>
+		                <div class="author text-right">
+		                  <span><i class="glyphicon glyphicon-user"></i> 작성자 이름</span>
+		                </div>
+		              </div>
+		            </div>
+		          </div>
+		
+		        </div>
 
 				<div class="row justify-content-center">
 					<div class="col-lg-8 mb-5">
@@ -74,7 +80,7 @@
 							<div class="row form-group">
 
 								<div class="col-md-12">
-									<label class="text-white" for="subject">제목</label> <input
+									<label class="image_label" for="subject">제목</label> <input
 										type="subject" id="subject" class="form-control"
 										style="border: none; border-bottom: 1px solid #fff; outline: none;">
 								</div>
