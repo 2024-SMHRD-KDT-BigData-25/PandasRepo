@@ -97,7 +97,7 @@
 		
 	      html += "<tr>"
 	      html += "<td>"+board.q_idx+"</td>"
-	      html += "<td class='text-black'>"+board.q_title+"</td>"
+	      html += "<td class='text-black'><a href='question_view.jsp?idx="+board.q_idx+"'>"+board.q_title+"</a></td>"
 	      html += "<td>"+board.mem_id+"</td>"
 	      html += "<td>"+board.created_at+"</td>"
 	      html += "<td>"+board.q_file+"</td>"

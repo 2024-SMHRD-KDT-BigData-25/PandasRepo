@@ -51,71 +51,61 @@
 
 
 	<%@ include file="header.jsp"%>
-	
-	<div class="site-section" data-aos="fade">
-			<div class="container">
 
-				<div class="row justify-content-center">
-
-					<div class="col-md-7">
-						<div class="row mb-5">
-							<div class="col-12 ">
-								<h2 class="site-section-heading text-center">자유게시판</h2>
-								<div class="author text-right">
-                                   <span><i class="glyphicon glyphicon-user"></i> 작성자 이름</span>
-                                </div>
-							</div>
+	<!-- 게시글 부분 -->
+<body>
+	<div class="container">
+		<div class="panel panel-default">
+			<div class="panel-heading" align="center">
+				<h3>자유 게시판</h3>
+			</div>
+			<div class="panel-body">
+				<div class="form-horizontal">
+					<div class="form-group"
+						style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #000; padding-bottom: 10px; padding-right: 15px;">
+						<span class="date">날짜(2024/10/04)</span> <span class="title">글
+							제목</span> <span class="author"><i
+							class="glyphicon glyphicon-user"></i> 작성자 이름</span>
+					</div>
+					<div
+						style="width: 80%; max-width: 500px; display: flex; justify-content: space-between; margin: 0 auto; margin-bottom: 10px;">
+						<button class="btn btn-secondary">목록</button>
+						<div>좋아요(int)</div>
+					</div>
+					<div class="form-group">
+						<div
+							style="width: 80%; max-width: 500px; min-height: 200px; margin: 0 auto; background-color: lightgrey; padding: 20px;">
+							<span>자유게시판 글 내용 들어갈 공간</span>
 						</div>
 					</div>
+				</div>
+				<!-- 댓글 부분 -->
+				<div class="form-group">
+					<form action="" method="post">
+						<div
+							style="width: 80%; max-width: 500px; min-height: 100px; margin: 0 auto; background-color: white; border: 1px solid #000; display: flex; flex-direction: column; justify-content: space-between; padding: 10px;">
 
+							<!-- 댓글 개수 표시 -->
+							<div style="display: flex; justify-content: flex-start;">
+								<span>댓글수 : 5</span>
+							</div>
+							<span>댓글 내용 공간</span>
+							<div style="display: flex; gap: 10px; align-items: center;">
+								<input type="text" class="form-control" name="dat" id="dat"
+									style="max-width: 80%; height: 20px;"> <input
+									type="submit" value="등록" style="height: 22px;">
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="form-group"
+					style="display: flex; justify-content: center; align-items: center;">
 				</div>
 
-				<div class="row justify-content-center">
-					<div class="col-lg-8 mb-5">
-						<form action="CommunityPost">
-
-							<div class="row form-group">
-
-								<div class="col-md-12">
-									<label class="text-white" for="subject">제목</label> <input
-										type="subject" id="subject" class="form-control"
-										style="border: none; border-bottom: 1px solid #fff; outline: none;">
-								</div>
-							</div>
-
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label class="text-white" for="message">내용</label>
-									<textarea name="message" id="message" cols="30" rows="13"
-										class="form-control" placeholder="오늘의 공부 일기"></textarea>
-								</div>
-							</div>
-
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label class="text-white" for="message">파일 첨부 : </label> <input
-										type="file" id="file-upload" name="file-upload"
-										style="border: none; border-bottom: 1px solid #fff; outline: none;">
-								</div>
-							</div>
-
-							<div class="row form-group" align="center">
-								<div class="col-md-12">
-									<input type="submit" value="등록"
-										class="btn btn-primary py-2 px-4 text-white"> <input
-										type="submit" value="취소"
-										class="btn btn-primary py-2 px-4 text-white">
-								</div>
-							</div>
-
-
-						</form>
-					</div>
-
-
-				</div>
 			</div>
+			<div class="panel-footer">완료</div>
 		</div>
+	</div>
 
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -136,6 +126,11 @@
 
 	<script src="js/main.js"></script>
 
+	<script>
+    $(document).ready(function(){
+      $('#lightgallery').lightGallery();
+    });
+  </script>
 
 </body>
 </html>

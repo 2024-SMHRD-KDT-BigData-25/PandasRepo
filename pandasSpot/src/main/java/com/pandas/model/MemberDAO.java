@@ -20,4 +20,11 @@ public class MemberDAO {
 		session.close();
 		return res;
 	}
+	
+	public Members findMemberById(String id) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		Members res = session.selectOne("SpotMapper.FindId", id);
+		session.close();
+		return res;
+	}
 }

@@ -17,4 +17,12 @@ public class CommunityDAO {
 		sqlSession.close();
 		return list;
 	}
+	
+// SpotMapper에서 getCommunities 호출
+		public Communities getCommunities(int idx) {
+			SqlSession sqlSession = sqlSessionFactory.openSession(true);
+			Communities res = sqlSession.selectOne("SpotMapper.getCommunities", idx);
+			sqlSession.close();
+			return res;
+	}
 }
