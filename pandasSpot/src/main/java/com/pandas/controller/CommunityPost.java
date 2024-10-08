@@ -25,7 +25,8 @@ public class CommunityPost extends HttpServlet {
 		String comm_content = request.getParameter("comm_content");
 		String comm_file = request.getParameter("comm_file");
 		String mem_id = request.getParameter("mem_id");
-		
+	
+		System.out.println(comm_title + comm_content + comm_file + mem_id);
 		Communities postComm = new Communities(comm_title, comm_content, comm_file, mem_id);
 		
 		CommunityDAO dao = new CommunityDAO();

@@ -1,146 +1,103 @@
+<%@page import="com.pandas.model.Communities"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Study SPOT</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Study SPOT</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="fonts/icomoon/style.css">
+<link rel="stylesheet" href="css/aos.css">
 
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/magnific-popup.css">
-  <link rel="stylesheet" href="css/jquery-ui.css">
-  <link rel="stylesheet" href="css/owl.carousel.min.css">
-  <link rel="stylesheet" href="css/owl.theme.default.min.css">
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
 
-  <link rel="stylesheet" href="css/lightgallery.min.css">    
+<link rel="stylesheet" href="css/nystyle.css">
 
-  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="css/eystyle.css">
 
-  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+<style type="text/css">
+.post-display-block {
+	display: block;
+	width: 100%;
+	margin: auto;
+}
 
-  <link rel="stylesheet" href="css/swiper.css">
+.post-title {
+	display: block;
+	font-family: 둥근미소;
+	text-align: center;
+	color: #776B5D;
+	padding-top: 20px;
+}
 
-  <link rel="stylesheet" href="css/aos.css">
+.content_textarea_div {
+	display: flex;
+	justify-content: center; /* 수평 중앙 정렬 */
+	align-items: flex-start; /* 수직 중앙 정렬 */
+}
 
-  <link rel="stylesheet" href="css/style.css">
-
+.post_text_input {
+	margin: 10px;
+	width: 300px;
+	border : none;
+	font-family: 의연체;
+	font-size: 20px;
+	padding: 10px;
+}
+</style>
 </head>
 <body>
+	<%@ include file="header.jsp"%>
 
-  <div class="site-wrap">
+		<div class="content-container" data-aos="fade">
+		<div>
+			<h2 class="post-title">Study Log</h2>
+			<div>
+				<form action="DiaryPost">
+				<div class="post-display-block">
+					<label class="image_label" for="subject">제목</label> 
+					<input class="post_text_input post-input" type="subject" id="subject" name="diary_title">
+				</div>
+				<div class="content_textarea_div">
+					<label class="image_label" for="post_textarea">내용</label>
+					<textarea class="post_text_input" name="diary_content" id="post_textarea" cols="30"
+						rows="13" class="post-input" placeholder="오늘의 공부 일기"></textarea>
+				</div>
+			
+				<div class="post-display-block content_textarea_div" align="center">
+					<input type="submit" value="등록"
+						class="join-input post-input-btn btn"> <input
+						type="submit" value="취소" class="join-input post-input-btn btn">
 
-    <div class="site-mobile-menu">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
-        </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
-    </div>
-    
-
-
-
-  <%@ include file="header.jsp"%>
-
-    <div class="site-section"  data-aos="fade" >
-      <div class="container">
-
-        <div class="row justify-content-center">
-
-		          <div class="col-md-7">
-		            <div class="row mb-5">
-		              <div class="col-12 ">
-		                <h2 class="join-title">Study Log</h2>
-		                <div class="author text-right">
-		                  <span><i class="glyphicon glyphicon-user"></i> 작성자 이름</span>
-		                </div>
-		              </div>
-		            </div>
-		          </div>
-		
-		        </div>
-        
-        <div class="row justify-content-center">
-          <div class="col-lg-8 mb-5">
-            <form action="DiaryPost">
+				</div>
 
 
-              <div class="row form-group">
+				</form>
+			</div>
+		</div>
+	</div>
 
-                <div class="col-md-12">
-                  <label class="text-white" for="subject">제목</label> 
-                  <input type="subject" id="subject" class="form-control" style="border: none; border-bottom:1px solid #fff; outline: none;">
-                </div>
-              </div>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.stellar.min.js"></script>
+	<script src="js/jquery.countdown.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/bootstrap-datepicker.min.js"></script>
+	<script src="js/swiper.min.js"></script>
+	<script src="js/aos.js"></script>
 
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <label class="text-white" for="message">내용</label> 
-                  <textarea name="message" id="message" cols="30" rows="15" class="form-control" placeholder="오늘의 공부 일기"></textarea>
-                </div>
-              </div>
+	<script src="js/picturefill.min.js"></script>
+	<script src="js/lightgallery-all.min.js"></script>
+	<script src="js/jquery.mousewheel.min.js"></script>
 
-              <div class="row form-group" align="center">
-                <div class="col-md-12">
-                  <input type="submit" value="등록" class="join-input post-input-btn btn">
-                  <input type="submit" value="취소" class="join-input post-input-btn btn">
-                </div>
-              </div>
+	<script src="js/main.js"></script>
 
-
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer py-4">
-      <div class="container-fluid text-center">
-        <p>
-          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-          Copyright &copy;<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-        </p>
-      </div>
-    </div>
-
-    
-
-    
-    
-  </div>
-
-  <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/jquery-ui.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/jquery.countdown.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/bootstrap-datepicker.min.js"></script>
-  <script src="js/swiper.min.js"></script>
-  <script src="js/aos.js"></script>
-
-  <script src="js/picturefill.min.js"></script>
-  <script src="js/lightgallery-all.min.js"></script>
-  <script src="js/jquery.mousewheel.min.js"></script>
-
-  <script src="js/main.js"></script>
-  
-  <script>
-    $(document).ready(function(){
-      $('#lightgallery').lightGallery();
-    });
-  </script>
 
 </body>
 </html>

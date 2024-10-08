@@ -54,6 +54,8 @@ public class Communities {
 		this.created_at = created_at;
 		this.mem_id = mem_id;
 	}
+	
+	
     
     
     
