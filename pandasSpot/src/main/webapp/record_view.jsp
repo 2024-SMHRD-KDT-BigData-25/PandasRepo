@@ -53,11 +53,7 @@
 			<div style="margin-top: 8px">#태그1 #태그2</div>
 			<div style="margin-top: 8px">좋아요(int)</div>	
 		</div>
-
-
-
-
-			</div>
+		</div>
 
 	
 

@@ -93,12 +93,12 @@
         
         <div class="row justify-content-center">
           <div class="col-lg-8 mb-5">
-            <form action="RecordPost" method="post" enctype="multipart/form-data">
+            <form action="StudyPost" method="post" enctype="multipart/form-data">
 
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="image_label" for="subject">태그</label> 
-                  <input type="text" id="record_tag" name="record_tag" class="join-input" placeholder="#새 태그 추가">
+                  <input type="text" id="study_content" name="study_content" class="join-input" placeholder="#새 태그 추가">
                   <div id="tagContainer"></div>
                 </div>
               </div>
@@ -108,7 +108,7 @@
                         <div class="image_label">파일 업로드</div>
 						<label>
 						    <img src= "icon/add (1).png" alt="이미지 추가하기" id="input-image"/>
-							<input type="file" id="record_img" name="record_img"  accept="image/*" style="display: none;" onchange="previewImage(event)">
+							<input type="file" id="study_photo" name="study_photo"  accept="image/*" style="display: none;" onchange="previewImage(event)">
                   			<img id="preview" src="" alt="미리보기 이미지" style="display: none;">
 						</label>
                 </div>
@@ -141,7 +141,7 @@
   
    <script>
    
-        const imageInput = document.getElementById('record_img');
+        const imageInput = document.getElementById('study_photo');
         const preview = document.getElementById('preview');
 
         imageInput.addEventListener('change', function() {
@@ -161,7 +161,7 @@
 
     
     <script>
-        const tagInput = document.getElementById('tagInput');
+        const tagInput = document.getElementById('study_content');
         const tagContainer = document.getElementById('tagContainer');
 
         tagInput.addEventListener('keypress', function(event) {
@@ -214,9 +214,6 @@
       $('#lightgallery').lightGallery();
     });
   </script>	
-
-</body>
-</html>
 
 </body>
 </html>

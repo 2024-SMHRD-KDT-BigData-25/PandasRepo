@@ -77,18 +77,17 @@
 		#{comm_views}, #{comm_likes}, #{mem_id})
 	</insert>
 	
-	<!-- Records 등록 -->
-	<insert id="Recording" parameterType="com.pandas.model.Records">
+	<!-- Studies 등록 -->
+	<insert id="Studing" parameterType="com.pandas.model.Studies">
   	 	 INSERT INTO
-   		 RECORDS(RECORD_IDX, RECORD_TAG, RECORD_FILES, RECORD_LIKES, CREATE_AT, MEM_ID)
-  		 VALUES (#{record_idx}, #{record_tag}, #{record_files}, #{record_likes}, SYSDATE, #{mem_id})
+   		 STUDIES( STUDY_CONTENT, STUDY_PHOTO, CREATED_AT, MEM_ID)
+  		 VALUES ( #{study_content}, #{study_photo}, SYSDATE, #{mem_id})
 	</insert>
-	<!-- Records 글 불러오기  -->
-	<select id="getRecords" parameterType="int" resultType="com.pandas.model.Records">
-  	 	 SELECT * FROM RECORDS WHERE RECORD_IDX = #{idx}
+	<!-- Studies 글 불러오기  -->
+	<select id="getStudies" parameterType="int" resultType="com.pandas.model.Studies">
+  	 	 SELECT * FROM STUDIES WHERE STUDY_IDX = #{idx}
 	</select>
-	
-	
+
 	<update id=""></update>
 
-</mapper>
+</mapper> 
