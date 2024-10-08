@@ -107,7 +107,7 @@
 	</insert>
 	
 	<!-- Diary 수정 -->
-	<update id="DiaryUpdate" parameterType="com.smhrd.model.Diaries">
+	<update id="DiaryUpdate" parameterType="com.pandas.model.Diaries">
 		update diaries set diary_title=#{diary_title} , diary_content=#{diary_content} , 
 		created_at=#{SYSDATE || '(수정)'} where id=#{id}
 	</update>
