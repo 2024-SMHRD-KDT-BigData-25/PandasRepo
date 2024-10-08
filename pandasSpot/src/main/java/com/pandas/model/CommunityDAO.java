@@ -25,4 +25,13 @@ public class CommunityDAO {
 			sqlSession.close();
 			return res;
 	}
+		
+		public int CommunityPost (Communities c) {
+			SqlSession sqlSession = sqlSessionFactory.openSession(true);
+			int res = sqlSession.insert("SpotMapper.CommunityPost",c);
+			sqlSession.close();
+			return res;
+		}
+		
+		
 }

@@ -1,24 +1,34 @@
 package com.pandas.model;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.pandas.database.SqlSessionManager;
 
-public class RecordDAO {
+public class StudyDAO {
 	SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSessionFactory();
 
-	public int Recording(Records m) {
+	
+	public List<Studies> getList() {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		List<Studies> list = sqlSession.selectList("SpotMapper.StudyList");
+		sqlSession.close();
+		return list;
+	}
+	
+	public int Studing(Studies m) {
 		SqlSession session = sqlSessionFactory.openSession(true);
-		int res = session.insert("SpotMapper.Recording", m);		
+		int res = session.insert("SpotMapper.Studing", m);		
 		session.close();
 		return res;
 	}
 	
 	// SpotMapper에서 getRecords 호출
-	public Records getRecords(int idx) {
+	public Studies getStudies(int idx) {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		Records res = sqlSession.selectOne("SpotMapper.getRecords", idx);
+		Studies res = sqlSession.selectOne("SpotMapper.getStudies", idx);
 		sqlSession.close();
 		return res;
 	}

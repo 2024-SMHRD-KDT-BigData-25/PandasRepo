@@ -69,26 +69,48 @@
 		SELECT * FROM MEMBERS WHERE MEM_ID = #{mem_id}
 	</select>
 
-	<!-- Community 등록, 수정 -->
-	<insert id="post" parameterType="com.pandas.model.Communities">
+	<!-- Community 등록 -->
+	<insert id="CommunityPost" parameterType="com.pandas.model.Communities">
 		INSERT INTO
-		COMMUNITIES(COMM_TITLE,COMM_CONTENT,COMM_FILE,CREATED_AT,COMM_VIEWS,COMM_LIKES,MEM_ID)
-		VALUES (#{comm_title}, #{comm_content}, #{comm_file}, #{ceated_at},
-		#{comm_views}, #{comm_likes}, #{mem_id})
+		COMMUNITIES(COMM_TITLE,COMM_CONTENT,COMM_FILE,MEM_ID)
+		VALUES (#{comm_title}, #{comm_content}, #{comm_file}, #{mem_id})
+		
 	</insert>
 	
-	<!-- Records 등록 -->
-	<insert id="Recording" parameterType="com.pandas.model.Records">
-  	 	 INSERT INTO
-   		 RECORDS(RECORD_IDX, RECORD_TAG, RECORD_FILES, RECORD_LIKES, CREATE_AT, MEM_ID)
-  		 VALUES (#{record_idx}, #{record_tag}, #{record_files}, #{record_likes}, SYSDATE, #{mem_id})
-	</insert>
-	<!-- Records 글 불러오기  -->
-	<select id="getRecords" parameterType="int" resultType="com.pandas.model.Records">
-  	 	 SELECT * FROM RECORDS WHERE RECORD_IDX = #{idx}
+	<!-- Studies List 불러오기 -->
+	<select id="StudyList" resultType="com.pandas.model.Studies">
+  	 	 SELECT * FROM STUDIES
 	</select>
-	
-	
-	<update id=""></update>
+	<!-- Studies 등록 -->
+	<insert id="Studing" parameterType="com.pandas.model.Studies">
+  	 	 INSERT INTO
+   		 STUDIES( STUDY_CONTENT, STUDY_PHOTO, MEM_ID)
+  		 VALUES ( #{Study_content}, #{Study_photo}, #{Mem_id})
+	</insert>
+	<!-- Studies 글 불러오기  -->
+	<select id="getStudies" parameterType="int" resultType="com.pandas.model.Studies">
+  	 	 SELECT * FROM STUDIES WHERE STUDY_IDX = #{idx}
+	</select>
 
-</mapper>
+	<update id=""></update>
+	
+	<!-- Question 등록 -->
+	<insert id="QuestionPost" parameterType="com.pandas.model.Questions">
+		INSERT INTO QUESTIONS(Q_TITLE,Q_CONTENT,Q_FILE,MEM_ID,Q_WORKBOOK)
+		VALUES (#{q_title}, #{q_content}, #{q_file}, #{mem_id}, #{q_workbook})
+	</insert>
+	
+	<!-- Diary 등록 -->
+	<insert id="DiaryPost" parameterType="com.pandas.model.Diaries">
+			INSERT INTO DIARIES(DIARY_TITLE,DIARY_CONTENT,MEM_ID)
+			VALUES (#{diary_title}, #{diary_content}, #{mem_id} )
+	</insert>
+	
+	<!-- Diary 수정 -->
+	<update id="DiaryUpdate" parameterType="com.pandas.model.Diaries">
+		update diaries set diary_title=#{diary_title} , diary_content=#{diary_content} , 
+		created_at=#{SYSDATE || '(수정)'} where id=#{id}
+	</update>
+
+
+</mapper> 

@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.pandas.model.RecordDAO;
-import com.pandas.model.Records;
+import com.pandas.model.StudyDAO;
+import com.pandas.model.Studies;
 
 
 
-@WebServlet("/RecordPost")
-public class RecordPost extends HttpServlet {
+@WebServlet("/StudyPost")
+public class StudyPost extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
@@ -37,37 +37,28 @@ public class RecordPost extends HttpServlet {
 
         MultipartRequest multi = new MultipartRequest(request, uploadPath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 
-        String tag = multi.getParameter("record_tag");
+        String tag = multi.getParameter("study_content");
         if (tag == null || tag.trim().isEmpty()) {
             tag = "Nottag";
         }
 
-        String img = multi.getFilesystemName("record_img");
+        String img = multi.getFilesystemName("study_photo");
         if (img == null) {
             img = "Normal_image.jpg";
         }
 
-        String likes = "0";
 
         String mem_id = multi.getParameter("mem_id");
-        if (mem_id == null || mem_id.trim().isEmpty()) {
-            mem_id = "guest";
-        }
         
         // 현재 날짜는 SYSDATE로 처리
+        System.out.println(tag + " " + img + " " + mem_id);
 
-
-        Records record = new Records();
-        record.setRecord_tag(tag);
-        record.setRecord_files(img);
-        record.setRecord_likes(likes);
-        record.setMem_id(mem_id);
-
-        RecordDAO rdao = new RecordDAO();
-        int res = rdao.Recording(record);
+        Studies record = new Studies(tag, img, mem_id);
+        StudyDAO rdao = new StudyDAO();
+        int res = rdao.Studing(record);
 
         if (res > 0) {
-            response.sendRedirect("record_view.jsp");
+            response.sendRedirect("RecordList.jsp");
         }
     }
 }

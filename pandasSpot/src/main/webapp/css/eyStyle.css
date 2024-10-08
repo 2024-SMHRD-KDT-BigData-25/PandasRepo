@@ -74,6 +74,13 @@
 	font-style: normal;
 }
 
+@font-face {
+font-family: '마이센체';
+src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeemysen.woff') format('woff');
+font-weight: normal;
+font-style: normal;
+}
+
 body {
 	background-color: #fdfae6;
 	margin: 0;
@@ -328,3 +335,9 @@ header {
 	font-size: 20px;
 	height: 40px;
 }
+
+.find_school_result {
+	color: #776B5D;
+	text-decoration: none;
+}
+

@@ -5,6 +5,13 @@ function findSchool() {
 	// 입력된 학교명을 가져옴
 	var schoolName = document.getElementById("mem_school").value;
 
+
+	if (schoolName == "") {
+		alert("학교 이름을 입력해주세요!");
+		document.getElementById("mem_school").value = "";
+		return;
+	}
+	
 	// AJAX 요청을 보냄
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", "FindSchool", true); // 서블릿 경로 설정
@@ -18,21 +25,14 @@ function findSchool() {
 			var resultContainer = document.getElementById("find_school_result");
 			resultContainer.innerHTML = ""; // 이전 결과 초기화
 
-
-			if (data.length == 0) {
-				alert("학교 이름을 입력해주세요!");
-				document.getElementById("mem_school").value = "";
-				return;
-			}
-			else {
-			}
-
 			data.forEach(function(item) {
 				var schoolLink = document.createElement("a");
 				schoolLink.className = "find_school_result"
+				schoolLink.style.textDecoration = "none";
+				schoolLink.style.color = "#776B5D";
+				schoolLink.style.marginRight = "10px";
 				schoolLink.href = "#"
 				schoolLink.onclick = function(event) {
-					console.log(event.target.innerText); // item.school_name 값을 넘김
 					document.getElementById("mem_school").value = event.target.innerText;
 					return false; // 링크 이동을 막기 위해 false 반환
 				};
@@ -47,10 +47,6 @@ function findSchool() {
 
 	// 서버로 데이터 전송 (school_name을 파라미터로)
 	xhr.send("school_name=" + encodeURIComponent(schoolName));
-}
-
-function select_school(event) {
-	console.log(event.target.value);
 }
 
 
@@ -70,7 +66,6 @@ function changeFontFamily() {
 }
 
 function validatePasswords() {
-	pw_checked = false;
 	const confirmPassword = document.getElementById("pw_confirm");
 	const password = document.getElementById("mem_pw");
 
@@ -266,5 +261,5 @@ function validateForm() {
 	}
 
 	// 모든 검증 통과 시 true를 반환하여 제출 허용
-	return false;
+	return true;
 }
