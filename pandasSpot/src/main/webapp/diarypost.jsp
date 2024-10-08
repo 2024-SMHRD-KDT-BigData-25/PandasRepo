@@ -69,7 +69,7 @@
         
         <div class="row justify-content-center">
           <div class="col-lg-8 mb-5">
-            <form action="#">
+            <form action="DiaryPost">
 
 
               <div class="row form-group">
