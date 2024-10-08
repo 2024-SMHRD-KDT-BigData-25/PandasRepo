@@ -49,19 +49,16 @@ public class StudyPost extends HttpServlet {
 
 
         String mem_id = multi.getParameter("mem_id");
-        if (mem_id == null || mem_id.trim().isEmpty()) {
-            mem_id = "guest";
-        }
         
         // 현재 날짜는 SYSDATE로 처리
-
+        System.out.println(tag + " " + img + " " + mem_id);
 
         Studies record = new Studies(tag, img, mem_id);
         StudyDAO rdao = new StudyDAO();
         int res = rdao.Studing(record);
 
         if (res > 0) {
-            response.sendRedirect("record_view2.jsp");
+            response.sendRedirect("RecordList.jsp");
         }
     }
 }

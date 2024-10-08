@@ -84,8 +84,8 @@
 	<!-- Studies 등록 -->
 	<insert id="Studing" parameterType="com.pandas.model.Studies">
   	 	 INSERT INTO
-   		 STUDIES( STUDY_CONTENT, STUDY_PHOTO, CREATED_AT, MEM_ID)
-  		 VALUES ( #{study_content}, #{study_photo}, SYSDATE, #{mem_id})
+   		 STUDIES( STUDY_CONTENT, STUDY_PHOTO, MEM_ID)
+  		 VALUES ( #{Study_content}, #{Study_photo}, #{Mem_id})
 	</insert>
 	<!-- Studies 글 불러오기  -->
 	<select id="getStudies" parameterType="int" resultType="com.pandas.model.Studies">
