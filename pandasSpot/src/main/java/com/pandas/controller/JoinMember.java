@@ -51,7 +51,14 @@ public class JoinMember extends HttpServlet {
 		
 		MemberDAO dao = new MemberDAO();
 		int res = dao.join(joinMember);
-		System.out.println(res);
+		if (res > 0) {
+			System.out.println(mem_id + " 가입 완료");
+			response.sendRedirect("Login.jsp");
+		}
+		else {
+			System.out.println("가입 실패");
+			response.sendRedirect("join.jsp");
+		}
 	
 	}
 
