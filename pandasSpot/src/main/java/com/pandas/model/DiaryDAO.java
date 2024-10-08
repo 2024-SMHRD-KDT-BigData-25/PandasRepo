@@ -25,4 +25,11 @@ public class DiaryDAO {
 		sqlSession.close();
 		return res;
 	}
+	
+	public int DiaryPost(Diaries d) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int res = sqlSession.insert("SpotMapper.DiaryPost",d);
+		sqlSession.close();
+		return res;
+	}
 }

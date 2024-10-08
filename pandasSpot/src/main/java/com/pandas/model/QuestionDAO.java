@@ -31,7 +31,7 @@ public class QuestionDAO {
 			int res = sqlSession.insert("SpotMapper.QuestionPost",q);
 			sqlSession.close();
 			return res;
-		}
+	}
 		
 		
 }

@@ -32,4 +32,6 @@ public class CommunityDAO {
 			sqlSession.close();
 			return res;
 		}
+		
+		
 }

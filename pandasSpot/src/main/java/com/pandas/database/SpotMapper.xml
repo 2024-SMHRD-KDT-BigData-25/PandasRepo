@@ -93,6 +93,24 @@
 	</select>
 
 	<update id=""></update>
+	
+	<!-- Question 등록 -->
+	<insert id="QuestionPost" parameterType="com.pandas.model.Questions">
+		INSERT INTO QUESTIONS(Q_TITLE,Q_CONTENT,Q_FILE,MEM_ID,Q_WORKBOOK)
+		VALUES (#{q_title}, #{q_content}, #{q_file}, #{mem_id}, #{q_workbook})
+	</insert>
+	
+	<!-- Diary 등록 -->
+	<insert id="DiaryPost" parameterType="com.pandas.model.Diaries">
+			INSERT INTO DIARIES(DIARY_TITLE,DIARY_CONTENT,MEM_ID)
+			VALUES (#{diary_title}, #{diary_content}, #{mem_id} )
+	</insert>
+	
+	<!-- Diary 수정 -->
+	<update id="DiaryUpdate" parameterType="com.smhrd.model.Diaries">
+		update diaries set diary_title=#{diary_title} , diary_content=#{diary_content} , 
+		created_at=#{SYSDATE || '(수정)'} where id=#{id}
+	</update>
 
 
 </mapper> 
