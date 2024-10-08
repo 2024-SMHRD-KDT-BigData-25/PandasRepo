@@ -98,7 +98,7 @@
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="image_label" for="subject">태그</label> 
-                  <input type="text" id="tag" class="join-input" placeholder="#새 태그 추가">
+                  <input type="text" id="record_tag" name="record_tag" class="join-input" placeholder="#새 태그 추가">
                   <div id="tagContainer"></div>
                 </div>
               </div>

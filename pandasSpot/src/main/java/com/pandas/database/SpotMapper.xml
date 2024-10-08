@@ -43,7 +43,7 @@
 		resultType="com.pandas.model.Questions">
 		select * from questions
 	</select>
-<!-- Question 글 불러오기 -->
+	<!-- Question 글 불러오기 -->
 	<select id="getQuestion" resultType="com.pandas.model.Questions">
 		select * from questions where Q_IDX=#{idx}
 	</select>
@@ -79,6 +79,11 @@
    		 RECORDS(RECORD_IDX, RECORD_TAG, RECORD_FILES, RECORD_LIKES, CREATE_AT, MEM_ID)
   		 VALUES (#{record_idx}, #{record_tag}, #{record_files}, #{record_likes}, SYSDATE, #{mem_id})
 	</insert>
+	<!-- Records 글 불러오기  -->
+	<select id="getRecords" parameterType="int" resultType="com.pandas.model.Records">
+  	 	 SELECT * FROM RECORDS WHERE RECORD_IDX = #{idx}
+	</select>
+	
 	
 	<update id=""></update>
 

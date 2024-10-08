@@ -14,11 +14,11 @@ import lombok.Setter;
 
 public class Records {
 	
-	private int record_idx;
-	private String record_tag;
-	private String record_files;
-	private String record_likes;
-	private Date create_at;
-	private String mem_id;
+	private int Record_idx;
+	private String Record_tag;
+	private String Record_files;
+	private String Record_likes;
+	private Date Create_at;
+	private String Mem_id;
 
 }

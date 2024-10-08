@@ -33,12 +33,11 @@ public class RecordPost extends HttpServlet {
         if (!uploadDir.exists()) {
             uploadDir.mkdirs();
         }
+        
 
         MultipartRequest multi = new MultipartRequest(request, uploadPath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 
-
-        // 폼 데이터 가져오기
-        String tag = multi.getParameter("tag");
+        String tag = multi.getParameter("record_tag");
         if (tag == null || tag.trim().isEmpty()) {
             tag = "Nottag";
         }
