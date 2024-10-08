@@ -35,4 +35,28 @@ public class Questions {
     // 출처 문제집 
     private String q_workbook;
 
+	public Questions(String q_title, String q_content, String q_file, Date created_at, String mem_id,
+			String q_workbook) {
+		super();
+		this.q_title = q_title;
+		this.q_content = q_content;
+		this.q_file = q_file;
+		this.created_at = created_at;
+		this.mem_id = mem_id;
+		this.q_workbook = q_workbook;
+	}
+
+	public Questions(String q_title, String q_content, String q_file, String mem_id, String q_workbook) {
+		super();
+		this.q_title = q_title;
+		this.q_content = q_content;
+		this.q_file = q_file;
+		this.mem_id = mem_id;
+		this.q_workbook = q_workbook;
+	}
+    
+    
+    
+    
+
 }
