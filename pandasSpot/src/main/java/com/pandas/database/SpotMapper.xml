@@ -69,12 +69,12 @@
 		SELECT * FROM MEMBERS WHERE MEM_ID = #{mem_id}
 	</select>
 
-	<!-- Community 등록, 수정 -->
-	<insert id="post" parameterType="com.pandas.model.Communities">
+	<!-- Community 등록 -->
+	<insert id="CommunityPost" parameterType="com.pandas.model.Communities">
 		INSERT INTO
-		COMMUNITIES(COMM_TITLE,COMM_CONTENT,COMM_FILE,CREATED_AT,COMM_VIEWS,COMM_LIKES,MEM_ID)
-		VALUES (#{comm_title}, #{comm_content}, #{comm_file}, #{ceated_at},
-		#{comm_views}, #{comm_likes}, #{mem_id})
+		COMMUNITIES(COMM_TITLE,COMM_CONTENT,COMM_FILE,MEM_ID)
+		VALUES (#{comm_title}, #{comm_content}, #{comm_file}, #{mem_id})
+		
 	</insert>
 	
 	<!-- Studies List 불러오기 -->
@@ -93,5 +93,6 @@
 	</select>
 
 	<update id=""></update>
+
 
 </mapper> 

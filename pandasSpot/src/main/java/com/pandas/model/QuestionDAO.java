@@ -25,4 +25,13 @@ public class QuestionDAO {
 			sqlSession.close();
 			return res;
 	}
+		
+		public int QuestionPost(Questions q) {
+			SqlSession sqlSession = sqlSessionFactory.openSession(true);
+			int res = sqlSession.insert("SpotMapper.QuestionPost",q);
+			sqlSession.close();
+			return res;
+		}
+		
+		
 }
