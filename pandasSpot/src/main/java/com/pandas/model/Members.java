@@ -31,6 +31,7 @@ public class Members {
 
     // 학교 인덱스 
     private Double mem_school;
+    private String mem_school_name;
 
     // 프로필사진 
     private String mem_profile_img;
@@ -59,6 +60,19 @@ public class Members {
 	public Members(String mem_id) {
 		super();
 		this.mem_id = mem_id;
+	}
+
+	public Members(String mem_id, String mem_pw, String mem_name, String mem_nick, String mem_birthdate,
+			Double mem_school, String mem_profile_img, Date joined_at) {
+		super();
+		this.mem_id = mem_id;
+		this.mem_pw = mem_pw;
+		this.mem_name = mem_name;
+		this.mem_nick = mem_nick;
+		this.mem_birthdate = mem_birthdate;
+		this.mem_school = mem_school;
+		this.mem_profile_img = mem_profile_img;
+		this.joined_at = joined_at;
 	}
 	
 	
