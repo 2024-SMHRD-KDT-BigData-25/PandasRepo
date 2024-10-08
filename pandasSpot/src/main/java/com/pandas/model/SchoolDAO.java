@@ -30,5 +30,10 @@ public class SchoolDAO {
 		return res;
 	}
 	
-	
+	public String findSchoolName(Double num) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		String res = session.selectOne("SpotMapper.FindSchoolName", num);
+		session.close();
+		return res;
+	}
 }

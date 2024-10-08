@@ -14,4 +14,13 @@ public class RecordDAO {
 		session.close();
 		return res;
 	}
+	
+	// SpotMapper에서 getRecords 호출
+	public Records getRecords(int idx) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		Records res = sqlSession.selectOne("SpotMapper.getRecords", idx);
+		sqlSession.close();
+		return res;
+	}
+	
 }

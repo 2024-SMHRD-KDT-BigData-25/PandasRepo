@@ -16,6 +16,10 @@
 		from SCHOOLS where SCHOOL_NAME = #{school_name} and SCHOOL_REGION =
 		#{school_region}
 	</select>
+	
+	<select id="FindSchoolName" resultType="String" parameterType="Double">
+		SELECT SCHOOL_NAME FROM SCHOOLS WHERE SCHOOL_IDX = #{SCHOOL_IDX}
+	</select>
 
 	<!-- Diary -->
 	<select id="DiaryList" resultType="com.pandas.model.Diaries">
@@ -43,7 +47,7 @@
 		resultType="com.pandas.model.Questions">
 		select * from questions
 	</select>
-<!-- Question 글 불러오기 -->
+	<!-- Question 글 불러오기 -->
 	<select id="getQuestion" resultType="com.pandas.model.Questions">
 		select * from questions where Q_IDX=#{idx}
 	</select>
@@ -77,8 +81,13 @@
 	<insert id="Recording" parameterType="com.pandas.model.Records">
   	 	 INSERT INTO
    		 RECORDS(RECORD_IDX, RECORD_TAG, RECORD_FILES, RECORD_LIKES, CREATE_AT, MEM_ID)
-  		 VALUES (#{record_idx}, #{record_tag,jdbcType=VARCHAR}, #{record_files,jdbcType=VARCHAR}, #{record_likes,jdbcType=VARCHAR}, SYSDATE, #{mem_id,jdbcType=VARCHAR})
-		</insert>
+  		 VALUES (#{record_idx}, #{record_tag}, #{record_files}, #{record_likes}, SYSDATE, #{mem_id})
+	</insert>
+	<!-- Records 글 불러오기  -->
+	<select id="getRecords" parameterType="int" resultType="com.pandas.model.Records">
+  	 	 SELECT * FROM RECORDS WHERE RECORD_IDX = #{idx}
+	</select>
+	
 	
 	<update id=""></update>
 
