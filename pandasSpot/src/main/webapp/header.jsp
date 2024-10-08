@@ -27,7 +27,7 @@
 		<% } else { %>
 			<li><a class="nav-li-a" href="LogoutController">Logout</a></li>
 		<% } %>		
-			<li><a class="nav-li-a" href="RecordView.jsp">공부 기록</a></li>
+			<li><a class="nav-li-a" href="RecordList.jsp">공부 기록</a></li>
 			<li><a class="nav-li-a" href="DiaryList.jsp">Study Log</a></li>
 			<li><a class="nav-li-a" href="CommList.jsp">자유게시판</a></li>
 			<li><a class="nav-li-a" href="QuestionList.jsp">Q&A 게시판</a></li>

@@ -8,25 +8,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="fonts/icomoon/style.css">
-
-  <!-- bootstrap 스타일시트 추가 -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/magnific-popup.css">
-  <link rel="stylesheet" href="css/jquery-ui.css">
-  <link rel="stylesheet" href="css/owl.carousel.min.css">
-  <link rel="stylesheet" href="css/owl.theme.default.min.css">
-
-  <link rel="stylesheet" href="css/lightgallery.min.css">    
-
-  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-
-  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-
-  <link rel="stylesheet" href="css/swiper.css">
 
   <link rel="stylesheet" href="css/aos.css">
 
@@ -93,12 +74,13 @@
         
         <div class="row justify-content-center">
           <div class="col-lg-8 mb-5">
-            <form action="RecordPost" method="post" enctype="multipart/form-data">
+            <form action="StudyPost" method="post" enctype="multipart/form-data">
 
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="image_label" for="subject">태그</label> 
-                  <input type="text" id="tagInput" class="join-input" placeholder="#새 태그 추가">
+                  <input type="text" id="study_content" name="study_content" class="join-input" placeholder="#새 태그 추가">
+                  <input type="hidden" name="mem_id" value="<%= member.getMem_id() %>">
                   <div id="tagContainer"></div>
                 </div>
               </div>
@@ -108,8 +90,7 @@
                         <div class="image_label">파일 업로드</div>
 						<label>
 						    <img src= "icon/add (1).png" alt="이미지 추가하기" id="input-image"/>
-							<input type="file" id="mem_profile_img" name="record_post_img"> 
-							<input type="file" id="mem_profile_img" name="record_post_img"  accept="image/*" style="border: none; border-bottom:1px solid #fff; outline: none;">
+							<input type="file" id="study_photo" name="study_photo"  accept="image/*" style="display: none;" onchange="previewImage(event)">
                   			<img id="preview" src="" alt="미리보기 이미지" style="display: none;">
 						</label>
                 </div>
@@ -138,10 +119,12 @@
       </div>
     </div>
 
-  </div>
+
   
    <script>
-        const imageInput = document.getElementById('mem_profile_img');
+   
+   
+        const imageInput = document.getElementById('study_photo');
         const preview = document.getElementById('preview');
 
         imageInput.addEventListener('change', function() {
@@ -158,9 +141,10 @@
             }
         });
     </script>
+
     
     <script>
-        const tagInput = document.getElementById('tagInput');
+        const tagInput = document.getElementById('study_content');
         const tagContainer = document.getElementById('tagContainer');
 
         tagInput.addEventListener('keypress', function(event) {
@@ -212,10 +196,7 @@
     $(document).ready(function(){
       $('#lightgallery').lightGallery();
     });
-  </script>
-
-</body>
-</html>
+  </script>	
 
 </body>
 </html>

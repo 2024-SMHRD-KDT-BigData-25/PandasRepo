@@ -1,7 +1,6 @@
 package com.pandas.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,34 +8,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.pandas.model.Communities;
-import com.pandas.model.CommunityDAO;
+import com.pandas.model.QuestionDAO;
+import com.pandas.model.Questions;
 
 
-@WebServlet("/CommunityPost")
-public class CommunityPost extends HttpServlet {
+@WebServlet("/QuestionPost")
+public class QuestionPost extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
-		String comm_title = request.getParameter("comm_title");
-		String comm_content = request.getParameter("comm_content");
-		String comm_file = request.getParameter("comm_file");
+		String q_title = request.getParameter("q_title");
+		String q_content = request.getParameter("q_content");
+		String q_file = request.getParameter("q_file");
 		String mem_id = request.getParameter("mem_id");
-	
-		System.out.println(comm_title + comm_content + comm_file + mem_id);
-		Communities postComm = new Communities(comm_title, comm_content, comm_file, mem_id);
+		String q_workbook = request.getParameter("q_workbook");
 		
-		CommunityDAO dao = new CommunityDAO();
-		int res = dao.CommunityPost(postComm);
+		Questions postQues = new Questions(q_title, q_content, q_file, mem_id, q_workbook);
+		
+		QuestionDAO dao = new QuestionDAO();
+		int res = dao.QuestionPost(postQues);
 		
 		if (res != 1) {
-			System.out.println("자유게시판 게시물 등록!");
+			System.out.println("Q & A 게시물 등록!");
 			HttpSession session = request.getSession();
-			session.setAttribute("postComm", res);
-			response.sendRedirect("CommList.jsp");
+			session.setAttribute("postQues", res);
+			response.sendRedirect("QuestionList.jsp");
 		}
 		else {
 			response.setContentType("text/html;charset=UTF-8");

@@ -7,29 +7,30 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.pandas.database.SqlSessionManager;
 
-public class DiaryDAO {
-	
+public class StudyDAO {
 	SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSessionFactory();
+
 	
-	public List<Diaries> getList() {
+	public List<Studies> getList() {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		List<Diaries> list = sqlSession.selectList("SpotMapper.DiaryList");
+		List<Studies> list = sqlSession.selectList("SpotMapper.StudyList");
 		sqlSession.close();
 		return list;
 	}
-
-// SpotMapper에서 getDiary 호출
-	public Diaries getDiary(int idx) {
+	
+	public int Studing(Studies m) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		int res = session.insert("SpotMapper.Studing", m);		
+		session.close();
+		return res;
+	}
+	
+	// SpotMapper에서 getRecords 호출
+	public Studies getStudies(int idx) {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		Diaries res = sqlSession.selectOne("SpotMapper.getDiary", idx);
+		Studies res = sqlSession.selectOne("SpotMapper.getStudies", idx);
 		sqlSession.close();
 		return res;
 	}
 	
-	public int DiaryPost(Diaries d) {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int res = sqlSession.insert("SpotMapper.DiaryPost",d);
-		sqlSession.close();
-		return res;
-	}
 }

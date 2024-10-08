@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+.control {
+	height: 43px;
+	border-radius: 0;
+	background: transparent;
+	border-color: #777;
+	color: #fff !important;
+}
+
+.post-input {
+	width: 300px;
+	height: 300px;
+	padding: 10px;
+	margin-top: 15px;
+	font-family: 교육새음;
+	font-size: 30px;
+	border: 1px solid transparent;
+}
+
+.input-post {
+	max-width: 300px;
+	width: 30px;
+}
+
+#comm_img {
+	display: none;
+}
+
+.display-block {
+	display: block;
+}
+
+#post_textarea {
+	font-family: 교육새음;
+	font-size: 20px;
+	width : 100%;
+}
+
+.post-display-block {
+	display: block;
+	width: 100%;
+	margin: auto;
+}
+
+.post-title {
+	display: block;
+	font-family: 둥근미소;
+	text-align: center;
+	color: #776B5D;
+	padding-top: 20px;
+}
+
+.content_textarea_div {
+	display: flex;
+	justify-content: center; /* 수평 중앙 정렬 */
+	align-items: flex-start; /* 수직 중앙 정렬 */
+}
+
+.post_text_input {
+	margin: 10px;
+	width: 300px;
+	border : none;
+	font-family: 의연체;
+	font-size: 20px;
+	padding: 10px;
+}

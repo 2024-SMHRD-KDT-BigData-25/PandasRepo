@@ -28,4 +28,25 @@ public class Diaries {
 
     // 글 작성자 
     private String mem_id;
+
+	public Diaries(String diary_title, String diary_content, String mem_id) {
+		super();
+		this.diary_title = diary_title;
+		this.diary_content = diary_content;
+		this.mem_id = mem_id;
+	}
+
+	public Diaries(String diary_title, String diary_content, Date created_at, String mem_id) {
+		super();
+		this.diary_title = diary_title;
+		this.diary_content = diary_content;
+		this.created_at = created_at;
+		this.mem_id = mem_id;
+	}
+    
+    
+    
+    
+    
+    
 }

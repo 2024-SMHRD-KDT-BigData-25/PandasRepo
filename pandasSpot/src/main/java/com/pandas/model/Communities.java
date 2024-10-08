@@ -37,6 +37,28 @@ public class Communities {
 
     // 글 작성자 
     private String mem_id;
+
+	public Communities(String comm_title, String comm_content, String comm_file, String mem_id) {
+		super();
+		this.comm_title = comm_title;
+		this.comm_content = comm_content;
+		this.comm_file = comm_file;
+		this.mem_id = mem_id;
+	}
+
+	public Communities(String comm_title, String comm_content, String comm_file, Date created_at, String mem_id) {
+		super();
+		this.comm_title = comm_title;
+		this.comm_content = comm_content;
+		this.comm_file = comm_file;
+		this.created_at = created_at;
+		this.mem_id = mem_id;
+	}
+	
+	
+    
+    
+    
     
     
 }
