@@ -11,7 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-
 public class Studies {
 	
 	private int Study_idx;
@@ -20,5 +19,11 @@ public class Studies {
 	private int Study_likes;
 	private Date Created_at;
 	private String Mem_id;
-
+	
+	public Studies(String study_content, String study_photo, String mem_id) {
+		super();
+		Study_content = study_content;
+		Study_photo = study_photo;
+		Mem_id = mem_id;
+	}
 }
