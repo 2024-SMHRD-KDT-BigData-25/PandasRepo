@@ -9,7 +9,10 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="css/aos.css">
 <link rel="stylesheet" href="css/eyStyle.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
 <style type="text/css">
+
 #main_my_info {
 	margin-top: 30px;
 }
@@ -88,7 +91,7 @@
 
 /* 모달 창 스타일 */
 .modal-content {
-	background-color: white;
+	background-color: #FBF9F1;
 	padding: 20px;
 	border-radius: 10px;
 	width: 400px;
@@ -98,17 +101,34 @@
 	flex-direction: column;
 }
 
+/* 모달 헤더 */
+.modal-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 5px 5px 20px 5px;
+}
+
+/* 제목 스타일 */
+.open_chat_title {
+	color: #776B5D;
+	font-family: 둥근미소;
+	display: inline-block;
+	margin: 0;
+	width: fit-content;
+	font-size: 24px;
+}
+
 /* 닫기 버튼 */
 .close {
 	color: #aaa;
-	float: right;
 	font-size: 28px;
 	font-weight: bold;
 	cursor: pointer;
 }
 
 .close:hover, .close:focus {
-	color: black;
+	color: #603F26;
 	text-decoration: none;
 	cursor: pointer;
 }
@@ -131,12 +151,20 @@
 
 /* 채팅창 스타일 */
 .chat-box {
-	width: 100%;
+	background-color: white;
+	width: 95%;
 	height: 400px;
-	border: 1px solid #ccc;
+	border: none;
 	overflow-y: scroll;
 	margin-bottom: 10px;
 	padding: 10px;
+	/* 스크롤바 숨기기 */
+    scrollbar-width: none; /* 파이어폭스 */
+    -ms-overflow-style: none; /* IE */
+}
+
+.chat-box::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리 */
 }
 
 .input-box {
@@ -145,6 +173,34 @@
 	box-sizing: border-box;
 }
 
+#chat_send_btn {
+	display: inline-block;
+	width : fit-content;
+}
+#chatInput {
+	display: inline-block;
+	width: 80%;
+}
+
+.message_send_div {
+	display: flex;
+	justify-content: center;
+	align-items: baseline; /* 수직 중앙 정렬 */
+}
+
+.chat_messages_send {
+	color: #3C3D37;
+	font-size:20px;
+	font-family: 교육새음;
+	text-align: center;
+}
+
+.chat_messages_recieve {
+	color: #3C3D37;
+	font-size:20px;
+	font-family: 교육새음;
+	text-align: center;
+}
 </style>
 </head>
 <body>
@@ -186,21 +242,23 @@
 		</div>
 	</section>
 	
-	 <div id="chatModal" class="modal">
+	<div id="chatModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span> <!-- 닫기 버튼 -->
-            <h2>Chat</h2>
+            <div class="modal-header">
+                <h2 class="open_chat_title">오픈 채팅</h2>
+                <span class="close" onclick="closeModal()">&times;</span> <!-- 닫기 버튼 -->
+            </div>
             <div class="chat-box" id="chatBox">
                 <!-- 채팅 메시지 표시 영역 -->
             </div>
-            <input type="text" class="inline_block join-input" id="chatInput" placeholder="Type your message here...">
-        	<button onclick="send()" class="join-input inline_block btn join-input-btn" type="button" id="">전송</button>
+            <div class="message_send_div">
+                <input type="text" class="join-input" id="chatInput" placeholder="메세지를 입력해주세요 ;)">
+                <button onclick="send()" class="join-input btn join-input-btn" type="button" id="chat_send_btn">전송</button>
+            </div>
         </div>
     </div>
 
-
 	<script>
- 
 		function mypageButtonClick() {
 			alert('Image button clicked!');
 			// 버튼 클릭 시 실행할 함수
@@ -224,8 +282,62 @@
 				modal.style.display = "none";
 			}
 		};
+		
+		//소켓 서버에 연결(WebSocket)
+    	const webSocket = new WebSocket("ws://172.30.1.44:8081/pandasSpot/chat")
+    	
+    	webSocket.onopen = onOpen
+    	webSocket.onclose = onClose
+    	webSocket.onmessage = onMessage
+    	
+    	function onOpen() {	//현재 클라이언트가 서버로 접속 시도할 때 호출
+			//클라이언트가 할일
+			// 현재 로그인한 사용자의 닉네임값을 서버에 보내고 싶음
+			// 서버 -> 닉네임님이 접속했습니다!
+			//webSocket.send(JSON.Stringify({"nick" : "라라핑"}))		//보내고 싶은 값을 json 형식으로 바꿔서 넣기 -> 무조건 문자열로보내기!
+			//서버 => String(json) => Java Object (GSON 라이브러리 활용)
+		}
+    	function onClose() {
+    		//webSocket.send(JSON.Stringify({"nick" : "라라핑"}))		//보내고 싶은 값을 json 형식으로 바꿔서 넣기 -> 무조건 문자열로보내기!
+		}
+    	//(서버->클라이언트) 메세지를 받앗을때 호출
+    	
+    	
+    	function onMessage(msg) {
+			// 받은 메세지를 화면에 출력!
+			var msgData = msg['data'];
+			
+			var str = "<div class='chat_messages_recieve'>";
+	        str += "<div>";
+	        str += "<p>"+msgData+"</p>";
+	        str += "</div></div>";
+			
+	        $("#chatBox").append(str)
+	        
+	        let area = document.getElementById('chatInput')
+	        area.scrollTop = area.scrollHeight
+		}
+
+		function send() {
+			//id가 msg로 설정되어있는 input 태그 가져와서 socket 서버로 전송
+			var newMsg = document.createElement("div");
+			newMsg.className = "chat_messages_send"
+			newMsg.style.color = "#3C3D37";
+			newMsg.style.fontFamily = "교육새음";
+			newMsg.style.fontSize = "20px";
+			newMsg.style.textAlign = "right";
+			
+			newMsg.textContent = $("#chatInput").val();
+
+			var resultContainer = document.getElementById("chatBox");
+			resultContainer.appendChild(newMsg);
+
+			let area = document.getElementById('chatBox')
+			area.scrollTop = area.scrollHeight
+			$("#chatInput").val("")
+			webSocket.send(msg)
+		}
 	</script>
 </body>
 
 </html>
-
