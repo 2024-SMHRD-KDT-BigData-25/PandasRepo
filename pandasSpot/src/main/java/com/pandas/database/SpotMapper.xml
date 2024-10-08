@@ -84,6 +84,6 @@
   		 VALUES (#{record_idx}, #{record_tag,jdbcType=VARCHAR}, #{record_files,jdbcType=VARCHAR}, #{record_likes,jdbcType=VARCHAR}, SYSDATE, #{mem_id,jdbcType=VARCHAR})
 		</insert>
 	
-	<update id=""></update>
+	<!-- -->
 
 </mapper>
