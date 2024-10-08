@@ -65,7 +65,7 @@
 		SELECT * FROM MEMBERS WHERE MEM_ID = #{mem_id}
 	</select>
 
-	<!-- Community 등록, 수정 -->
+	<!-- Community 등록 -->
 	<insert id="CommunityPost" parameterType="com.pandas.model.Communities">
 		INSERT INTO
 		COMMUNITIES(COMM_TITLE,COMM_CONTENT,COMM_FILE,MEM_ID)

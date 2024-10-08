@@ -60,7 +60,7 @@
 					<div class="col-md-7">
 						<div class="row mb-5">
 							<div class="col-12 ">
-								<h2 class="site-section-heading text-center">자유게시판</h2>
+								<h2 class="join-title">자유게시판</h2>
 								<div class="author text-right">
                                    <span><i class="glyphicon glyphicon-user"></i> 작성자 이름</span>
                                 </div>
@@ -77,27 +77,27 @@
 							<div class="row form-group">
 
 								<div class="col-md-12">
-									<label class="text-white" for="subject">제목</label> <input
+									<label class="image_label" for="subject">제목</label> <input
 										type="subject" id="subject" class="form-control"
-										style="border: none; border-bottom: 1px solid #fff; outline: none;">
+										style="border: none; border-bottom: 1px solid; outline: none;">
 								</div>
 							</div>
 
 							<div class="row form-group">
 								<div class="col-md-12">
-									<label class="text-white" for="message">내용</label>
+									<label class="image_label" for="message">내용</label>
 									<textarea name="message" id="message" cols="30" rows="13"
 										class="form-control" placeholder="오늘의 공부 일기"></textarea>
 								</div>
 							</div>
 
 							<div class="row form-group">
-								<div class="col-md-12">
-									<label class="text-white" for="message">파일 첨부 : </label> <input
-										type="file" id="file-upload" name="file-upload"
-										style="border: none; border-bottom: 1px solid #fff; outline: none;">
+								<div class="image_label">프로필 사진</div>
+									<label>
+									    <img src= "icon/add (1).png" alt="이미지 추가하기" id="input-image"/>
+										<input type="file" id="mem_profile_img" name="mem_profile_img"> 
+									</label>
 								</div>
-							</div>
 
 							<div class="row form-group" align="center">
 								<div class="col-md-12">
