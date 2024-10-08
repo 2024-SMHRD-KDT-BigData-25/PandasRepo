@@ -9,13 +9,13 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <link rel="stylesheet" href="css/aos.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css">	
 </head>
 <body>
 
 	<%@ include file="header.jsp"%>
 	<div class="content-container" data-aos="fade">
-		<h2 class="join-title before-table">QnA 게시판</h2>
+		<h2 class="join-title before-table">공부 기록</h2>
 	</div>
 	<div class="content-container" data-aos="fade">
 
@@ -23,11 +23,9 @@
 			<thead class="table-content">
 				<tr class="table-header">
 					<th class="cell_padding">번호</th>
-					<th class="cell_padding">제목</th>
 					<th class="cell_padding">작성자</th>
 					<th class="cell_padding">작성일</th>
 					<th class="cell_padding">첨부파일</th>
-					<th class="cell_padding">문제집</th>
 				</tr>
 			</thead>
 			<tbody id="list">
@@ -81,9 +79,10 @@
 	//비동기 통신 시 사용하는 데이터 형식 : json {key:value,key:value} / xml
 		function getList(){
 			$.ajax({
-			url : "recordList", //요청경로
+			url : "StudyList", //요청경로
 			type : "get", //요청방식(http 요청 메서드)
 			success : printList,
+			 	console.log(data);  // 데이터가 제대로 전송되었는지 확인
 			error : function(){
 				alert("통신 실패!")
 			}
@@ -100,7 +99,7 @@
 		
 	      html += "<tr>"
 	      html += "<td>"+board.record_idx+"</td>"
-	      html += "<td class='text-black'><a href='question_view.jsp?idx="+board.record_idx+"'>"+board.q_title+"</a></td>"
+	      html += "<td class='text-black'><a href='record_view2.jsp?idx="+board.record_idx+"'>"+board.record_idx+"</a></td>"
 	      html += "<td>"+board.created_at+"</td>"
 	      html += "<td>"+board.record_file+"</td>"
 	      //html += "<td><button class='btn btn-primary py-2 px-4 text-white' onclick='deleteBoard("+board.q_idx+")'>삭제</button></td>"

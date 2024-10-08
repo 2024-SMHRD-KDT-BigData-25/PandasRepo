@@ -19,16 +19,16 @@
 <%@ include file="header.jsp" %>
 <!-- String idxString = request.getParameter("idx"); -->
 	<%
-	String idxString = "0";
-		System.out.println("idx 번호는 " + idxString);	
+			String idxString = request.getParameter("idx");
+			System.out.println("idx 번호는 " + idxString);	
 
 			int idx = Integer.parseInt(idxString);
 			StudyDAO dao = new StudyDAO();
 			Studies study = dao.getStudies(idx);
 			  	
-			String tags = study.getStudy_content();
+			String tag = study.getStudy_content();
 			    
-			String[] tagArray = tags.split(", ");
+			String[] tagArray = tag.split(", ");
 	%>
 
 
@@ -66,8 +66,8 @@
 				<div style="width: 80%; max-width: 800px; display: flex; justify-content: space-between; margin: 0 auto; margin-bottom: 10px; margin-top : 10px">
 
 			<div style="margin-top: 8px">
-			<% for (String tag : tagArray) { %>
-			<span><%=tag %></span>
+			<% for (String tags : tagArray) { %>
+			<span><%=tags %></span>
 			<%} %>	</div>
 			<div style="margin-top: 8px"><%=study.getStudy_likes() %></div>	
 		</div>

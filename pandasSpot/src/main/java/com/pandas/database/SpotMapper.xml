@@ -77,6 +77,10 @@
 		#{comm_views}, #{comm_likes}, #{mem_id})
 	</insert>
 	
+	<!-- Studies List 불러오기 -->
+	<select id="StudyList" resultType="com.pandas.model.Studies">
+  	 	 SELECT * FROM STUDIES
+	</select>
 	<!-- Studies 등록 -->
 	<insert id="Studing" parameterType="com.pandas.model.Studies">
   	 	 INSERT INTO
