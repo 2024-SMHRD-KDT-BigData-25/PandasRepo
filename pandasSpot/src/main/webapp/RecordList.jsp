@@ -79,7 +79,7 @@
 	//비동기 통신 시 사용하는 데이터 형식 : json {key:value,key:value} / xml
 		function getList(){
 			$.ajax({
-			url : "StudyList", //요청경로
+			url : "studyList", //요청경로
 			type : "get", //요청방식(http 요청 메서드)
 			success : printList,
 			 	console.log(data);  // 데이터가 제대로 전송되었는지 확인
@@ -98,10 +98,9 @@
 		for(var board of data){
 		
 	      html += "<tr>"
-	      html += "<td>"+board.record_idx+"</td>"
-	      html += "<td class='text-black'><a href='record_view2.jsp?idx="+board.record_idx+"'>"+board.record_idx+"</a></td>"
-	      html += "<td>"+board.created_at+"</td>"
-	      html += "<td>"+board.record_file+"</td>"
+	      html += "<td class='text-black'><a href='record_view2.jsp?idx="+board.Study_idx+"'>"+board.Study_idx+"</a></td>"
+	      html += "<td>"+board.Created_at+"</td>"
+	      html += "<td>"+board.Study_photo+"</td>"
 	      //html += "<td><button class='btn btn-primary py-2 px-4 text-white' onclick='deleteBoard("+board.q_idx+")'>삭제</button></td>"
 	      html += "</tr>"
 	    }
