@@ -77,8 +77,8 @@
 	<insert id="Recording" parameterType="com.pandas.model.Records">
   	 	 INSERT INTO
    		 RECORDS(RECORD_IDX, RECORD_TAG, RECORD_FILES, RECORD_LIKES, CREATE_AT, MEM_ID)
-  		 VALUES (#{record_idx}, #{record_tag,jdbcType=VARCHAR}, #{record_files,jdbcType=VARCHAR}, #{record_likes,jdbcType=VARCHAR}, SYSDATE, #{mem_id,jdbcType=VARCHAR})
-		</insert>
+  		 VALUES (#{record_idx}, #{record_tag}, #{record_files}, #{record_likes}, SYSDATE, #{mem_id})
+	</insert>
 	
 	<update id=""></update>
 

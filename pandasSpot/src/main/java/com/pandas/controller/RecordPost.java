@@ -31,10 +31,9 @@ public class RecordPost extends HttpServlet {
         // 디렉토리가 없으면 생성
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) {
-            uploadDir.mkdirs();  // 폴더가 없으면 생성
+            uploadDir.mkdirs();
         }
 
-        // MultipartRequest를 사용해 파일 업로드 및 폼 데이터 처리
         MultipartRequest multi = new MultipartRequest(request, uploadPath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 
 
@@ -65,11 +64,9 @@ public class RecordPost extends HttpServlet {
         record.setRecord_likes(likes);
         record.setMem_id(mem_id);
 
-        // RecordDAO를 통해 데이터베이스에 전송
         RecordDAO rdao = new RecordDAO();
         int res = rdao.Recording(record);
 
-        // 처리 결과에 따라 리다이렉트
         if (res > 0) {
             response.sendRedirect("record_view.jsp");
         }
