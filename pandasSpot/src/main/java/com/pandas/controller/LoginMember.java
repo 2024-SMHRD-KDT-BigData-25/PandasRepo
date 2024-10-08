@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.pandas.model.MemberDAO;
 import com.pandas.model.Members;
+import com.pandas.model.SchoolDAO;
 
 /**
  * Servlet implementation class LoginMember
@@ -28,6 +29,8 @@ public class LoginMember extends HttpServlet {
 		MemberDAO dao = new MemberDAO();
 		Members res = dao.login(loginMember);
 		if (res != null) {
+			SchoolDAO sDao = new SchoolDAO();
+			res.setMem_school_name(sDao.findSchoolName(res.getMem_school()));
 			System.out.println("로그인 성공!");
 			HttpSession session = request.getSession();
 			session.setAttribute("member", res);

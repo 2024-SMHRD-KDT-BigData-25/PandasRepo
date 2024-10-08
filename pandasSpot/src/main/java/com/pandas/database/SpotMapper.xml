@@ -16,6 +16,10 @@
 		from SCHOOLS where SCHOOL_NAME = #{school_name} and SCHOOL_REGION =
 		#{school_region}
 	</select>
+	
+	<select id="FindSchoolName" resultType="String" parameterType="Double">
+		SELECT SCHOOL_NAME FROM SCHOOLS WHERE SCHOOL_IDX = #{SCHOOL_IDX}
+	</select>
 
 	<!-- Diary -->
 	<select id="DiaryList" resultType="com.pandas.model.Diaries">
