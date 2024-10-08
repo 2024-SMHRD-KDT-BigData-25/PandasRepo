@@ -8,25 +8,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="fonts/icomoon/style.css">
-
-  <!-- bootstrap 스타일시트 추가 -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/magnific-popup.css">
-  <link rel="stylesheet" href="css/jquery-ui.css">
-  <link rel="stylesheet" href="css/owl.carousel.min.css">
-  <link rel="stylesheet" href="css/owl.theme.default.min.css">
-
-  <link rel="stylesheet" href="css/lightgallery.min.css">    
-
-  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-
-  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-
-  <link rel="stylesheet" href="css/swiper.css">
 
   <link rel="stylesheet" href="css/aos.css">
 
@@ -99,6 +80,7 @@
                 <div class="col-md-12">
                   <label class="image_label" for="subject">태그</label> 
                   <input type="text" id="study_content" name="study_content" class="join-input" placeholder="#새 태그 추가">
+                  <input type="hidden" name="mem_id" value="<%= member.getMem_id() %>">
                   <div id="tagContainer"></div>
                 </div>
               </div>
@@ -140,6 +122,7 @@
 
   
    <script>
+   
    
         const imageInput = document.getElementById('study_photo');
         const preview = document.getElementById('preview');
