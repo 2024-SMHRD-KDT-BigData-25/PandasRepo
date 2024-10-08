@@ -31,10 +31,10 @@ public class QuestionPost extends HttpServlet {
 		int res = dao.QuestionPost(postQues);
 		
 		if (res != 1) {
-			System.out.println("자유게시판 게시물 등록!");
+			System.out.println("Q & A 게시물 등록!");
 			HttpSession session = request.getSession();
-			session.setAttribute("postComm", res);
-			response.sendRedirect("CommList.jsp");
+			session.setAttribute("postQues", res);
+			response.sendRedirect("QuestionList.jsp");
 		}
 		else {
 			response.setContentType("text/html;charset=UTF-8");
