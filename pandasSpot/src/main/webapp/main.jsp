@@ -213,7 +213,7 @@
 					src="upload/<%=member.getMem_profile_img()%>">
 			</div>
 			<div class="info_content">
-				<h3 class="info_content_single inline_block"><%=member.getMem_name()%>
+				<h3 class="info_content_single inline_block" id="member_nick"><%=member.getMem_nick()%>
 				</h3>
 				<button id="edit_btn" class="img-button"
 					onclick="mypageButtonClick()">
@@ -257,87 +257,7 @@
             </div>
         </div>
     </div>
-
-	<script>
-		function mypageButtonClick() {
-			alert('Image button clicked!');
-			// 버튼 클릭 시 실행할 함수
-		}
-		// 모달 열기 함수
-		function chatButtonClick() {
-			var modal = document.getElementById("chatModal");
-			modal.style.display = "flex"; // 모달을 화면에 표시
-		}
-
-		// 모달 닫기 함수
-		function closeModal() {
-			var modal = document.getElementById("chatModal");
-			modal.style.display = "none"; // 모달을 숨김
-		}
-
-		// 모달 외부를 클릭하면 닫기
-		window.onclick = function(event) {
-			var modal = document.getElementById("chatModal");
-			if (event.target === modal) {
-				modal.style.display = "none";
-			}
-		};
-		
-		//소켓 서버에 연결(WebSocket)
-    	const webSocket = new WebSocket("ws://172.30.1.44:8081/pandasSpot/chat")
-    	
-    	webSocket.onopen = onOpen
-    	webSocket.onclose = onClose
-    	webSocket.onmessage = onMessage
-    	
-    	function onOpen() {	//현재 클라이언트가 서버로 접속 시도할 때 호출
-			//클라이언트가 할일
-			// 현재 로그인한 사용자의 닉네임값을 서버에 보내고 싶음
-			// 서버 -> 닉네임님이 접속했습니다!
-			//webSocket.send(JSON.Stringify({"nick" : "라라핑"}))		//보내고 싶은 값을 json 형식으로 바꿔서 넣기 -> 무조건 문자열로보내기!
-			//서버 => String(json) => Java Object (GSON 라이브러리 활용)
-		}
-    	function onClose() {
-    		//webSocket.send(JSON.Stringify({"nick" : "라라핑"}))		//보내고 싶은 값을 json 형식으로 바꿔서 넣기 -> 무조건 문자열로보내기!
-		}
-    	//(서버->클라이언트) 메세지를 받앗을때 호출
-    	
-    	
-    	function onMessage(msg) {
-			// 받은 메세지를 화면에 출력!
-			var msgData = msg['data'];
-			
-			var str = "<div class='chat_messages_recieve'>";
-	        str += "<div>";
-	        str += "<p>"+msgData+"</p>";
-	        str += "</div></div>";
-			
-	        $("#chatBox").append(str)
-	        
-	        let area = document.getElementById('chatInput')
-	        area.scrollTop = area.scrollHeight
-		}
-
-		function send() {
-			//id가 msg로 설정되어있는 input 태그 가져와서 socket 서버로 전송
-			var newMsg = document.createElement("div");
-			newMsg.className = "chat_messages_send"
-			newMsg.style.color = "#3C3D37";
-			newMsg.style.fontFamily = "교육새음";
-			newMsg.style.fontSize = "20px";
-			newMsg.style.textAlign = "right";
-			
-			newMsg.textContent = $("#chatInput").val();
-
-			var resultContainer = document.getElementById("chatBox");
-			resultContainer.appendChild(newMsg);
-
-			let area = document.getElementById('chatBox')
-			area.scrollTop = area.scrollHeight
-			$("#chatInput").val("")
-			webSocket.send(msg)
-		}
-	</script>
+	<script src="js/mainpage.js"></script>
 </body>
 
 </html>
