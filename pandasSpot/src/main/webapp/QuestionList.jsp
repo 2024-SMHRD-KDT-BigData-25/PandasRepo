@@ -31,13 +31,16 @@
 				</tr>
 			</thead>
 			<tbody id="list">
+			  
+			</tbody>
+			<tfoot>
 			  <tr>
 		      	<td colspan="4">
 		      		<button class="btn board_btn" id="to_write_btn" onclick="location.href='questionpost.jsp'">글작성</button>
 		      		<button class="btn chat_btn board_btn" onclick="window.open('chat.jsp','채팅방','width=500, height=700, top=50, left=500')'">채팅하기</button>
 		      	</td>
 		      </tr>
-			</tbody>
+			</tfoot>
 		</table>
 	</div>
 	<script src="js/jquery-3.3.1.min.js"></script>
@@ -102,7 +105,7 @@
 	      html += "<td>"+board.created_at+"</td>"
 	      html += "<td>"+board.q_file+"</td>"
 	      html += "<td>"+board.q_workbook+"</td>"
-	      html += "<td><button class='btn btn-primary py-2 px-4 text-white' onclick='deleteBoard("+board.q_idx+")'>삭제</button></td>"
+	      //html += "<td><button class='btn btn-primary py-2 px-4 text-white' onclick='deleteBoard("+board.q_idx+")'>삭제</button></td>"
 	      html += "</tr>"
 	    }
 		//html() : 특정 태그 사이에 html 코드를 바꾸고 싶을때
