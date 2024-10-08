@@ -12,13 +12,13 @@ import lombok.Setter;
 @Getter
 @Setter
 
-public class Records {
+public class Studies {
 	
-	private int record_idx;
-	private String record_tag;
-	private String record_files;
-	private String record_likes;
-	private Date create_at;
-	private String mem_id;
+	private int Study_idx;
+	private String Study_content;
+	private String Study_photo;
+	private int Study_likes;
+	private Date Created_at;
+	private String Mem_id;
 
 }
