@@ -80,7 +80,7 @@
                 <div class="col-md-12">
                   <label class="image_label" for="subject">태그</label> 
                   <input type="text" id="study_content" name="study_content" class="join-input" placeholder="#새 태그 추가">
-                  <input type="hidden" name="mem_id" value="<%= member.getMem_id() %>">
+                  <input type="hidden" name="mem_id" value="<%=member.getMem_id() %>">
                   <div id="tagContainer"></div>
                 </div>
               </div>
