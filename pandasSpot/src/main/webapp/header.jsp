@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="css/eyStyle.css">
 <header role="banner">
 	<% 
+		
 		Members member = (Members)session.getAttribute("member");  
 		String homeHref = "";
 		if (member == null) {
