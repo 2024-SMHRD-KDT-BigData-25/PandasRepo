@@ -1,4 +1,4 @@
-package com.pandas.controller;
+package com.pandas.chat;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;

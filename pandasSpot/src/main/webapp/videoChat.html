@@ -1,97 +1,14 @@
-<!DOCTYPE html>
 <html>
 <head>
-    <title>WebRTC Video Chat</title>
-    <style type="text/css">
-    #remoteVideo {
-    	width: 500px;
-    	background-color: black;
-    }
-    </style>
+    <meta charset="utf-8" />
+    <title>WebRtc tutorial</title>
 </head>
+
 <body>
-    <video id="localVideo" autoplay playsinline></video>
-    <video id="remoteVideo" autoplay playsinline></video>
-
-    <script>
-        let localStream;
-        let localPeerConnection;
-        let remotePeerConnection;
-        const signalingServerUrl = "ws://localhost:8081/pandasSpot/signaling";
-        const signalingSocket = new WebSocket(signalingServerUrl);
-
-        signalingSocket.onmessage = (message) => {
-            const data = JSON.parse(message.data);
-
-            if (data.type === 'offer') {
-                handleOffer(data);
-            } else if (data.type === 'answer') {
-                handleAnswer(data);
-            } else if (data.type === 'candidate') {
-                handleCandidate(data);
-            }
-        };
-
-        async function startVideoChat() {
-            // Get local video stream
-            localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-            document.getElementById('localVideo').srcObject = localStream;
-
-            // Create peer connection
-            localPeerConnection = new RTCPeerConnection();
-            localPeerConnection.addStream(localStream);
-
-            localPeerConnection.onicecandidate = (event) => {
-                if (event.candidate) {
-                    signalingSocket.send(JSON.stringify({
-                        type: 'candidate',
-                        candidate: event.candidate,
-                    }));
-                }
-            };
-
-            localPeerConnection.ontrack = (event) => {
-                document.getElementById('remoteVideo').srcObject = event.streams[0];
-            };
-
-            const offer = await localPeerConnection.createOffer();
-            await localPeerConnection.setLocalDescription(offer);
-
-            signalingSocket.send(JSON.stringify({ type: 'offer', offer: offer }));
-        }
-
-        function handleOffer(data) {
-            // Handling offer on the receiving peer
-            remotePeerConnection = new RTCPeerConnection();
-            remotePeerConnection.setRemoteDescription(new RTCSessionDescription(data.offer));
-            remotePeerConnection.onicecandidate = (event) => {
-                if (event.candidate) {
-                    signalingSocket.send(JSON.stringify({
-                        type: 'candidate',
-                        candidate: event.candidate,
-                    }));
-                }
-            };
-
-            remotePeerConnection.ontrack = (event) => {
-                document.getElementById('remoteVideo').srcObject = event.streams[0];
-            };
-
-            localStream.getTracks().forEach(track => remotePeerConnection.addTrack(track, localStream));
-        }
-
-        function handleAnswer(data) {
-            // Handling answer on the offer creator
-            localPeerConnection.setRemoteDescription(new RTCSessionDescription(data.answer));
-        }
-
-        function handleCandidate(data) {
-            // Handle new ICE candidate
-            const candidate = new RTCIceCandidate(data.candidate);
-            localPeerConnection.addIceCandidate(candidate);
-        }
-
-        startVideoChat();
-    </script>
+    <div>
+        <video id="localVideo" autoplay width="480px"></video>
+        <video id="remoteVideo" width="480px" autoplay></video>
+    </div>
 </body>
+
 </html>
