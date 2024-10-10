@@ -23,7 +23,7 @@
 
 	<!-- Diary -->
 	<select id="DiaryList" resultType="com.pandas.model.Diaries">
-		select * from diaries
+		select * from diaries order by diary_idx
 	</select>
 	<!-- Diary 글 불러오기 -->
 	<select id="getDiary" parameterType="int"
@@ -34,7 +34,7 @@
 	<!-- Community -->
 	<select id="CommunityList"
 		resultType="com.pandas.model.Communities">
-		select * from communities
+		select * from communities order by comm_idx
 	</select>
 	<!-- Community 글 불러오기 -->
 	<select id="getCommunities" parameterType="int"
@@ -45,7 +45,7 @@
 	<!-- Question -->
 	<select id="QuestionList"
 		resultType="com.pandas.model.Questions">
-		select * from questions
+		select * from questions order by q_idx
 	</select>
 	<!-- Question 글 불러오기 -->
 	<select id="getQuestion" resultType="com.pandas.model.Questions">
