@@ -325,16 +325,7 @@ header {
 	font-size: 20px;
 }
 
-/* 나영 */
-.post-input-btn {
-	background: #C0C78C;
-	width: 100px;
-	color: white;
-	display: flex;
-	margin: 10px auto 10px auto;
-	font-size: 20px;
-	height: 40px;
-}
+
 
 .find_school_result {
 	color: #776B5D;

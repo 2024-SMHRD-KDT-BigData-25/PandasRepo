@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.pandas.model.Members;
 import com.pandas.model.QuestionDAO;
 import com.pandas.model.Questions;
 
@@ -22,18 +23,19 @@ public class QuestionPost extends HttpServlet {
 		String q_title = request.getParameter("q_title");
 		String q_content = request.getParameter("q_content");
 		String q_file = request.getParameter("q_file");
-		String mem_id = request.getParameter("mem_id");
 		String q_workbook = request.getParameter("q_workbook");
+		
+		HttpSession session = request.getSession();
+		Members member = (Members)session.getAttribute("member");
+		String mem_id = member.getMem_id();
 		
 		Questions postQues = new Questions(q_title, q_content, q_file, mem_id, q_workbook);
 		
 		QuestionDAO dao = new QuestionDAO();
 		int res = dao.QuestionPost(postQues);
 		
-		if (res != 1) {
+		if (res > 0) {
 			System.out.println("Q & A 게시물 등록!");
-			HttpSession session = request.getSession();
-			session.setAttribute("postQues", res);
 			response.sendRedirect("QuestionList.jsp");
 		}
 		else {
