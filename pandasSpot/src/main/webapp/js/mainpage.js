@@ -7,7 +7,8 @@ function mypageButtonClick() {
 }
 // 모달 열기 함수
 function chatButtonClick() {
-	webSocket = new WebSocket("ws://172.30.1.44:8081/pandasSpot/chat?nickname="+userNickname)
+	webSocket = new WebSocket("ws://localhost:8081/pandasSpot/chat?nickname="+userNickname)
+	console.log(webSocket)
 
 	webSocket.onopen = onOpen
 	webSocket.onclose = onClose
@@ -35,7 +36,6 @@ window.onclick = function(event) {
 
 
 function onOpen() {	//현재 클라이언트가 서버로 접속 시도할 때 호출
-
 }
 function onClose() {
 	//webSocket.send(JSON.Stringify({"nick" : "라라핑"}))		//보내고 싶은 값을 json 형식으로 바꿔서 넣기 -> 무조건 문자열로보내기!
@@ -51,6 +51,7 @@ function onClose() {
 
 function onMessage(msg) {
 	// 받은 메세지를 화면에 출력!
+	console.log("onMessage 호출")
 	const msgData = JSON.parse(msg.data);
 	var resultContainer = document.getElementById("chatBox");
 	console.log(msgData.type);
