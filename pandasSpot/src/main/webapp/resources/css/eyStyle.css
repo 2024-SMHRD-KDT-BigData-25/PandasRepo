@@ -328,3 +328,18 @@ header {
 	text-decoration: none;
 }
 
+.login_join_message {
+	margin : 0 auto 0 auto;
+	text-align: center;
+	font-family: 교육새음;
+	font-size: 20px;
+	color: #3C3D37;
+}
+.login_join_message h4 a {
+	text-decoration: none;
+	color: #3C3D37;
+}
+
+.login_join_message h4 a:hover{
+	color: #EE4E4E;
+}
