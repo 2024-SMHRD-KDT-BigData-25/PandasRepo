@@ -20,7 +20,8 @@ public class DiaryList extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DiaryDAO dao = new DiaryDAO();
-		List<Diaries> list = dao.getList();
+		int page = Integer.parseInt(request.getParameter("page"));
+		List<Diaries> list = dao.getList(page);
 		//JavaObject => JSONObject(json 형식의 객체구조) => GSON
 		Gson gson = new Gson();
 		String json = gson.toJson(list);

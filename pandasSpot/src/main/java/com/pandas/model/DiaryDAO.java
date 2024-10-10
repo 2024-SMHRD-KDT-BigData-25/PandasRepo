@@ -17,6 +17,13 @@ public class DiaryDAO {
 		sqlSession.close();
 		return list;
 	}
+	
+	public List<Diaries> getList(int page) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		List<Diaries> list = sqlSession.selectList("ecMapper.pageDiary", page);
+		sqlSession.close();
+		return list;
+	}
 
 // SpotMapper에서 getDiary 호출
 	public Diaries getDiary(int idx) {
