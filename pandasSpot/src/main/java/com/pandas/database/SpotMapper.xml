@@ -23,7 +23,7 @@
 
 	<!-- Diary -->
 	<select id="DiaryList" resultType="com.pandas.model.Diaries">
-		select * from diaries
+		select * from diaries order by diary_idx
 	</select>
 	<!-- Diary 글 불러오기 -->
 	<select id="getDiary" parameterType="int"
@@ -34,7 +34,7 @@
 	<!-- Community -->
 	<select id="CommunityList"
 		resultType="com.pandas.model.Communities">
-		select * from communities
+		select * from communities order by comm_idx
 	</select>
 	<!-- Community 글 불러오기 -->
 	<select id="getCommunities" parameterType="int"
@@ -45,7 +45,7 @@
 	<!-- Question -->
 	<select id="QuestionList"
 		resultType="com.pandas.model.Questions">
-		select * from questions
+		select * from questions order by q_idx
 	</select>
 	<!-- Question 글 불러오기 -->
 	<select id="getQuestion" resultType="com.pandas.model.Questions">
@@ -79,7 +79,7 @@
 	
 	<!-- Studies List 불러오기 -->
 	<select id="StudyList" resultType="com.pandas.model.Studies">
-  	 	 SELECT * FROM STUDIES
+  	 	 SELECT * FROM STUDIES ORDER BY STUDY_IDX ASC
 	</select>
 	<!-- Studies 등록 -->
 	<insert id="Studing" parameterType="com.pandas.model.Studies">
@@ -109,7 +109,7 @@
 	<!-- Diary 수정 -->
 	<update id="DiaryUpdate" parameterType="com.pandas.model.Diaries">
 		update diaries set diary_title=#{diary_title} , diary_content=#{diary_content} , 
-		created_at=#{SYSDATE || '(수정)'} where id=#{id}
+		created_at=SYSDATE || '(수정)' where id=#{id}
 	</update>
 
 

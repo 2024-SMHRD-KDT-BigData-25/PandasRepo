@@ -32,4 +32,11 @@ public class DiaryDAO {
 		sqlSession.close();
 		return res;
 	}
+	
+	public int DiaryUpdate(Diaries d) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int res = sqlSession.update("nyMapper.DiaryUpdate",d);
+		sqlSession.close();
+		return res;
+	}
 }

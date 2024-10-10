@@ -19,7 +19,6 @@ public class DiaryList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("diaryList 호출");
 		DiaryDAO dao = new DiaryDAO();
 		List<Diaries> list = dao.getList();
 		//JavaObject => JSONObject(json 형식의 객체구조) => GSON
