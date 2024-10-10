@@ -11,6 +11,8 @@
 
 <link rel="stylesheet" href="css/aos.css">
 <link rel="stylesheet" href="css/eyStyle.css">
+<link rel="stylesheet" href="css/jwStyle.css">
+
 </head>
 <body>
 
@@ -20,29 +22,16 @@
 	</div>
 	<div class="content-container" data-aos="fade">
 
-		<table class="content-list-table">
-			<thead class="table-content">
-				<tr class="table-header">
-					<th class="cell_padding">번호</th>
-					<th class="cell_padding">작성자</th>
-					<th class="cell_padding">작성일</th>
-					<th class="cell_padding">첨부파일</th>
-				</tr>
-			</thead>
+		<table class="content-list-table" style="width: 90%; text-align: center;" >
 			<tbody id="list">
-
 			</tbody>
-			<tfoot>
-				<tr>
-					<td colspan="4">
-						<button class="btn board_btn" id="to_write_btn"
-							onclick="location.href='questionpost.jsp'">글작성</button>
-						<button class="btn chat_btn board_btn"
-							onclick="window.open('chat.jsp','채팅방','width=500, height=700, top=50, left=500')'">채팅하기</button>
-					</td>
-				</tr>
-			</tfoot>
 		</table>
+	</div>
+	<div style="padding-bottom: 100px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+		<button class="btn board_btn" id="to_write_btn"
+			onclick="location.href='recordpost.jsp'">글작성</button>
+		<button class="btn chat_btn board_btn"
+			onclick="window.open('chat.jsp','채팅방','width=500, height=700, top=50, left=500')'">채팅하기</button>
 	</div>
 
 
@@ -100,13 +89,14 @@
 		var html = "" //id=>list 곳에 추가가 될 html 코드
 		
 		for(var board of data){
-		
-	      html += "<tr>"
-	      html += "<td class='text-black'><a href='record_view2.jsp?idx="+board.Study_idx+"'>"+board.Study_idx+"</a></td>"
-	      html += "<td>"+board.Created_at+"</td>"
-	      html += "<td>"+board.Study_photo+"</td>"
+		  html += "<a href='record_view2.jsp?idx="+board.Study_idx+"'>"
+		  html += "<div style= 'display: inline-block; width: 350px; height:350px; margin: 10px; text-align: center; border: 1px solid black; padding: 10px; flex-direction: column; justify-content: center; align-items: center;'>"
+	      html += "<p>"+board.Mem_id+"</p>"
+	   	  // 이미지 경로를 img 태그로 출력
+	      html += "<img src='upload/" + board.Study_photo + "' alt='Uploaded Image' style='width: 250px; height: 250px;'>";
 	      //html += "<td><button class='btn btn-primary py-2 px-4 text-white' onclick='deleteBoard("+board.q_idx+")'>삭제</button></td>"
-	      html += "</tr>"
+	      html += "</div>"
+	      html += "</a>"
 	    }
 		$("#list").html(html)
 	}
