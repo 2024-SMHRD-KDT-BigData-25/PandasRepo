@@ -28,7 +28,7 @@
 			  	
 			String tag = study.getStudy_content();
 			    
-			String[] tagArray = tag.split(", ");
+			String[] tagArray = tag.split(",");
 	%>
 
 
@@ -52,7 +52,7 @@
 		</table>
 	</div>
 		<div style="width: 80%; max-width: 800px; display: flex; justify-content: space-between; margin: 0 auto; margin-bottom: 10px; margin-top : -15px">
-			<button class="btn">목록</button>
+			<button class="btn" onclick="location.href='RecordList.jsp'">목록</button>
 			<div></div>
 			<div></div>	
 		</div>
