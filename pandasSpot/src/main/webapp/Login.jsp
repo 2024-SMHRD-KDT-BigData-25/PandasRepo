@@ -15,10 +15,8 @@
 </head>
 <body>
 	<jsp:include page="header.jsp" />
-	<div class="content-container" data-aos="fade"
-		onsubmit="return loginFromVal()">
-		<form action="Login" method="post">
-			<h2 class="join-title">Login</h2>
+	<div class="content-container" data-aos="fade" >
+		<h2 class="join-title">Login</h2>
 
 			<!-- login : 은유 -->
 			<input type="text" id="login_id" name="mem_id" class="join-input"
@@ -32,9 +30,7 @@
 					<a class="" href="join.jsp">SPOT 가입하기</a>
 				</h4>
 			</div>
-			<input type="submit" value="Login"
-				class="join-input join-input-btn btn">
-		</form>
+			<button type="button" class="loginBtn join-input join-input-btn btn">Login</button>
 	</div>
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -55,7 +51,60 @@
 
 	<script src="js/main.js"></script>
 	<script src="js/login.js"></script>
+	<script type="text/javascript">
+		var errorMsg = "${errorMsg }",
+			state = "${state }";
+		
+		if( errorMsg != "" ) {
+			alert( errorMsg );  
+			return false;
+		} else {
+			if( state == 1 ) {
+				alert( "로그인 성공!" );
+				location.href = "${ctx }/main";
+			} 
+		}
+		
+		function changeFontFamily() {
+			const password = document.getElementById("login_pw");
+			password.style.fontFamily = "arial";
 
+			if (password.value == "") {
+				password.style.fontFamily = "교육새음";
+			}
+		}
+		
+		$( document ).keydown( function( event ) {
+			if( event.keycode == 13 ) {
+				$(".loginBtn").click();
+			}
+		});
+		
+		$(".loginBtn").on( "click", function( event ) {
+			var text = "",
+				state = 0;
+			
+			if (  $("#login_id").val() == "") {
+				text = "아이디를 입력해주세요!";
+			} else if ( $("#login_pw").val() == "") {
+				text = "비밀번호를 입력해주세요!";
+			} else {
+				state = 1;
+			}
+			
+			if( state == 1 ) {
+				return true;
+			} else {
+				var $target = $("#login_message");
+				
+				$target.css("display", "block" );
+				$target.css("color", "red" );
+				$target.css("margin-top", "10px" );
+				$target.text( text );
+				return false;
+			} 
+		});
+	</script>
 
 </body>
 </html>
