@@ -1,0 +1,11 @@
+@charset "UTF-8";
+.board_btn {
+	background-color: #C0C78C;
+	width: fit-contents;
+	color: white;
+	display: flex;
+	padding : 5px;
+	margin: 10px auto 10px auto;
+	font-size: 20px;
+	height: 40px;
+}
