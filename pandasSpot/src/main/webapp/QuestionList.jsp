@@ -117,26 +117,23 @@ width: 80%;
 	}
 	
 		function printList(data){
-			var data = JSON.parse(data)
-			
-			var html = "" //id=>list 곳에 추가가 될 html 코드
+			var data = JSON.parse(data),
+				html = "", //id=>list 곳에 추가가 될 html 코드
+				dlength = data.length;
+				
 			const itemsPerPage = 15;
-			var dlength = data.length;
 			const pages = Math.floor(dlength / itemsPerPage) + (dlength % itemsPerPage != 0 ? 1 : 0); 
 			console.log(pages);
 			
 			let paginatedData = [];
 
-			// 페이지 나누기
-			for (let i = 0; i < pages; i++) {
-			    // 각 페이지에 해당하는 데이터를 슬라이싱하여 배열에 추가
-			    const pageData = data.slice(i * itemsPerPage, (i + 1) * itemsPerPage);
-			    paginatedData.push(pageData); // 각 페이지 데이터를 배열에 저장
-			}
-
 			var a_tags = document.createElement('div');
 			// 페이지 링크 생성 및 콘솔 출력
 			for (let i = 0; i < pages; i++) {
+				
+			    // 각 페이지에 해당하는 데이터를 슬라이싱하여 배열에 추가
+			    const pageData = data.slice(i * itemsPerPage, (i + 1) * itemsPerPage);
+			    paginatedData.push(pageData); // 각 페이지 데이터를 배열에 저장
 			    // 각 페이지에 해당하는 링크(a 태그)를 생성
 			    const a = document.createElement('a');
 			    a.innerText = i+1;
