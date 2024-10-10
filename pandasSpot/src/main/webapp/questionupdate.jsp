@@ -1,6 +1,9 @@
 <%@page import="com.pandas.model.Communities"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,114 +11,79 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link rel="stylesheet" href="css/aos.css">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/nystyle.css">
-<link rel="stylesheet" href="css/eystyle.css">
-
-<style>
-	.post_text_input {
-        margin: 10px;
-        width: 300px;
-        border: none;
-        font-family: 의연체;
-        font-size: 20px;
-        padding: 10px;
-    }
-    
-    .post-input-btn {
- 	border: none;
- 	border-radius: 5px;
- 	width: fit-contents;
- 	height: fit-contents;
-	background: #C0C78C;
-	color: white;
-	display: flex;
-	padding: 8px 20px 8px 20px;
-	margin-left: 140px;
-	font-family: 교육새음;
-	font-size: 20px;
-}
-
- .post-input-btnn {
- 	border: none;
- 	border-radius: 5px;
- 	width: fit-contents;
- 	height: fit-contents;
-	background: #C0C78C;
-	color: white;
-	display: flex;
-	padding: 8px 20px 8px 20px;
-	margin-left: 10px;
-	font-family: 교육새음;
-	font-size: 20px;
-}
-</style>
 </head>
 <body>
-
-	<%@ include file="header.jsp"%>
+	<jsp:include page="header.jsp" />
 
 	<div class="content-container" data-aos="fade">
-
-		<div>
-			<h2 class="post-title">Q & A</h2>
+		<div class="post-container">
+			
 			<div>
 				<form action="QuestionUpdate">
-					<table>
+					<table class="post_table">
+					<tr><td colspan="2" id="post_title_td"><h2 class="post-title">Q & A</h2></td></tr>
 						<tr>
-							<td><label class="image_label" for="subject">제목</label></td>
-							<td><input class="post_text_input post-input" type="text"
-								id="subject" name="q_title" required></td>
+							<td class="td_left">
+							<label class="image_label" for="subject">제목</label> </td>
+							<td class="td_right"><input class="post_text_input" type="text" id="subject" name="q_title" required></td>
+							<!-- 원본 제목 삽입 -->
 						</tr>
 						<tr>
-							<td><label class="image_label" for="workbook">문제집</label></td>
-							<td><input type="text" id="workbook"
-								class="post_text_input post-input" name="q_workbook" required></td>
+							<td class="td_left">
+							<label class="image_label" for="workbook">문제집</label> </td>
+							<td class="td_right"><input type="text" id="workbook" class="post_text_input" name="q_workbook" required></td>
+							<!-- 원본 문제집 삽입 -->
 						</tr>
 						<tr>
-							<td><label class="image_label" for="post_textarea">내용</label></td>
-							<td><textarea class="post_text_input" name="q_content"
-									id="post_textarea" cols="30" rows="13" class="post-input"
-									placeholder="질문할 내용 입력" required></textarea></td>
+							<td class="td_left">
+							<label class="image_label" for="post_textarea">내용</label></td>
+							<td class="td_right"><textarea class="post_text_input" name="q_content" id="post_textarea" cols="15" rows="13" class="post-input" placeholder="질문할 내용 입력" required></textarea></td>
+							<!-- 원본 내용 삽입 -->
 						</tr>
 						<tr>
-							<td>
-								<div class="post-display-block image_label">사진 첨부</div>
+							<td class="td_left">
+							<div class="post-display-block image_label">사진 첨부</div></td>
+							<td class="td_right">
+							<label> 
+								<img src="${contextPath}/resources/icon/add (1).png" alt="이미지 추가하기" id="input-image" />
+								<input type="file" id="mem_profile_img" name="q_file">
+							</label>
+							<!-- 원본 파일 삽입 -->
 							</td>
-							<td><label> <img src="icon/add (1).png"
-									alt="이미지 추가하기" id="input-image" /> <input type="file"
-									id="mem_profile_img" name="q_file">
-							</label></td>
+						</tr>
+						<tr>
+						<td colspan='2' class="btns_td">
+						<input type="submit" value="수정" class="post-input-btn" > 
+						<input type="button" value="취소" class="post-input-btn" onclick="history.back();">
+						</td>
 						</tr>
 					</table>
+						
 					<div class="post-display-block content_textarea_div" align="center">
-
-						<input type="submit" value="등록" class="post-input-btn"> 
-						<input type="button" value="취소" class="post-input-btnn" onclick="history.back();">
+							
+						
 					</div>
-
 				</form>
 			</div>
 		</div>
 	</div>
 
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="js/jquery-migrate-3.0.1.min.js"></script>
-	<script src="js/jquery-ui.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.stellar.min.js"></script>
-	<script src="js/jquery.countdown.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/bootstrap-datepicker.min.js"></script>
-	<script src="js/swiper.min.js"></script>
-	<script src="js/aos.js"></script>
-	<script src="js/picturefill.min.js"></script>
-	<script src="js/lightgallery-all.min.js"></script>
-	<script src="js/jquery.mousewheel.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="${contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery-ui.js"></script>
+	<script src="${contextPath}/resources/js/popper.min.js"></script>
+	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+	<script src="${contextPath}/resources/js/owl.carousel.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.stellar.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.countdown.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="${contextPath}/resources/js/bootstrap-datepicker.min.js"></script>
+	<script src="${contextPath}/resources/js/swiper.min.js"></script>
+	<script src="${contextPath}/resources/js/aos.js"></script>
+	<script src="${contextPath}/resources/js/picturefill.min.js"></script>
+	<script src="${contextPath}/resources/js/lightgallery-all.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.mousewheel.min.js"></script>
+	<script src="${contextPath}/resources/js/main.js"></script>
 
 	<script> 
 		document.getElementById('mem_profile_img').addEventListener('change', handleImageChange);
@@ -141,6 +109,5 @@
 		   }
 		}
 	</script>
-
 </body>
 </html>
