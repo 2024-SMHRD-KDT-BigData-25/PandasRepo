@@ -1,36 +1,20 @@
-<%@page import="java.io.Console"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>Study SPOT</title>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="css/aos.css">
-<link rel="stylesheet" href="css/eyStyle.css">
-<style type="text/css">
-.login_join_message {
-	margin : 0 auto 0 auto;
-	text-align: center;
-	font-family: 교육새음;
-	font-size: 20px;
-	color: #3C3D37;
-}
-.login_join_message h4 a {
-	text-decoration: none;
-	color: #3C3D37;
-}
 
-.login_join_message h4 a:hover{
-	color: #EE4E4E;
-}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="${contextPath}/resources/css/aos.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/eyStyle.css">
 </head>
 <body>
-	<%@ include file="header.jsp"%>
-
+	<jsp:include page="header.jsp" />
 	<div class="content-container" data-aos="fade"
 		onsubmit="return loginFromVal()">
 		<form action="Login" method="post">

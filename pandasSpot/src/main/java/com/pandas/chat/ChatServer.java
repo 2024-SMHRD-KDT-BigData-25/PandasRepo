@@ -36,7 +36,6 @@ public class ChatServer {
 		Map<String, String> params = parseQuery(query);
 		String nickname = decodeURIComponent(params.get("nickname"));
 
-		System.out.println("Nickname: " + nickname);
 		// 닉네임이 입장한 공지 메시지 생성
 		JsonObject jsonResponse = new JsonObject();
 		jsonResponse.addProperty("type", "enter");

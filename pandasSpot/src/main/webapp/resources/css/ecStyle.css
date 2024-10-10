@@ -1,0 +1,29 @@
+@charset "UTF-8";
+.board_btn {
+	background-color: #C0C78C;
+	width: fit-contents;
+	color: white;
+	display: flex;
+	padding : 5px;
+	margin: 10px auto 10px auto;
+	font-size: 20px;
+	height: 40px;
+}
+
+.board_container {
+width: 80%;
+}
+
+#table_footer {
+	text-align:center;
+}
+
+.text-black {
+	font-family:"받아쓰기";
+	text-align: center;
+}
+
+.table_a_tags {
+	text-decoration: none;
+	color: black;
+}

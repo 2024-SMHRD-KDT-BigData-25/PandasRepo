@@ -1,5 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,204 +10,12 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="css/aos.css">
-<link rel="stylesheet" href="css/eyStyle.css">
+<link rel="stylesheet" href="${contextPath}/resouces/css/aos.css">
+<link rel="stylesheet" href="${contextPath}/resouces/css/eyStyle.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
-<style type="text/css">
-
-#main_my_info {
-	margin-top: 30px;
-}
-
-.cropping {
-	width: 200px; /* 원하는 크기로 설정 */
-	height: 200px; /* 원하는 크기로 설정 */
-	overflow: hidden; /* div 영역을 넘는 부분은 숨김 */
-	border-radius: 50%; /* 원형으로 잘라내기 */
-	display: flex; /* 이미지를 중앙 정렬하기 위해 flex 사용 */
-	justify-content: center;
-	align-items: center;
-}
-
-.cropping img {
-	width: 100%; /* 부모의 너비에 맞춤 */
-	height: 100%; /* 부모의 높이에 맞춤 */
-	object-fit: cover; /* 비율을 유지하면서 잘라서 채우기 */
-}
-
-.info_container {
-	display: flex; /* Flexbox로 컨테이너 설정 */
-	height: auto;
-	align-items: center; /* 수직 중앙 정렬 */
-}
-
-.info_content {
-	margin-left: 30px;
-}
-
-.img-button {
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
-	outline: none;
-}
-
-/* 이미지를 버튼처럼 보여주는 스타일 */
-.img-button img {
-	width: 15px; /* 원하는 크기 */
-	height: auto;
-	transition: transform 0.2s ease; /* 버튼 효과 추가 */
-}
-
-/* 버튼에 마우스를 올렸을 때 효과 */
-.img-button img:hover {
-	transform: scale(1.1); /* 살짝 확대 */
-}
-
-.info_content_single {
-	font-family: 받아쓰기;
-	font-size: 20px;
-}
-
-.inline_block {
-	display: inline-block;
-}
-
-#chat_img {
-	width: 50px;
-}
-
-/* 모달 배경 (반투명) */
-.modal {
-	display: none; /* 기본적으로 숨김 */
-	position: fixed;
-	z-index: 1;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5); /* 배경 어둡게 처리 */
-	justify-content: center;
-	align-items: center;
-}
-
-/* 모달 창 스타일 */
-.modal-content {
-	background-color: #FBF9F1;
-	padding: 20px;
-	border-radius: 10px;
-	width: 400px;
-	max-height: 600px;
-	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-	display: flex;
-	flex-direction: column;
-}
-
-/* 모달 헤더 */
-.modal-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin: 5px 5px 20px 5px;
-}
-
-/* 제목 스타일 */
-.open_chat_title {
-	color: #776B5D;
-	font-family: 둥근미소;
-	display: inline-block;
-	margin: 0;
-	width: fit-content;
-	font-size: 24px;
-}
-
-/* 닫기 버튼 */
-.close {
-	color: #aaa;
-	font-size: 28px;
-	font-weight: bold;
-	cursor: pointer;
-}
-
-.close:hover, .close:focus {
-	color: #603F26;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-/* 버튼 스타일 */
-.chat-button {
-	background-color: #4CAF50;
-	color: white;
-	border: none;
-	padding: 10px 20px;
-	text-align: center;
-	font-size: 16px;
-	cursor: pointer;
-	border-radius: 5px;
-}
-
-.chat-button:hover {
-	background-color: #45a049;
-}
-
-/* 채팅창 스타일 */
-.chat-box {
-	background-color: white;
-	width: 95%;
-	height: 400px;
-	border: none;
-	overflow-y: scroll;
-	margin-bottom: 10px;
-	padding: 10px;
-	/* 스크롤바 숨기기 */
-    scrollbar-width: none; /* 파이어폭스 */
-    -ms-overflow-style: none; /* IE */
-}
-
-.chat-box::-webkit-scrollbar {
-    display: none; /* 크롬, 사파리 */
-}
-
-.input-box {
-	width: 100%;
-	padding: 10px;
-	box-sizing: border-box;
-}
-
-#chat_send_btn {
-	display: inline-block;
-	width : fit-content;
-}
-#chatInput {
-	display: inline-block;
-	width: 80%;
-}
-
-.message_send_div {
-	display: flex;
-	justify-content: center;
-	align-items: baseline; /* 수직 중앙 정렬 */
-}
-
-.chat_messages_send {
-	color: #3C3D37;
-	font-size:20px;
-	font-family: 교육새음;
-	text-align: center;
-}
-
-.chat_messages_recieve {
-	color: #3C3D37;
-	font-size:20px;
-	font-family: 교육새음;
-	text-align: center;
-}
-</style>
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+	<jsp:include page="header.jsp" />
 
 	<section id="main_my_info">
 		<div class="info_container">
@@ -252,12 +63,141 @@
                 <!-- 채팅 메시지 표시 영역 -->
             </div>
             <div class="message_send_div">
-                <input type="text" class="join-input" id="chatInput" placeholder="메세지를 입력해주세요 ;)">
+                <input type="text" class="join-input" id="chatInput" placeholder="메세지를 입력해주세요 ;)" onkeydown="checkEnter(event)">
                 <button onclick="send()" class="join-input btn join-input-btn" type="button" id="chat_send_btn">전송</button>
             </div>
         </div>
     </div>
-	<script src="js/mainpage.js"></script>
+	
+	<script>
+	const temp = document.getElementById("member_nick").innerText;
+	const userNickname = encodeURIComponent(temp);
+
+	function mypageButtonClick() {
+		alert('Image button clicked!');
+		// 버튼 클릭 시 실행할 함수
+	}
+	// 모달 열기 함수
+	function chatButtonClick() {
+		webSocket = new WebSocket("ws://localhost:8081/pandasSpot/chat?nickname="+userNickname)
+
+		webSocket.onopen = onOpen
+		webSocket.onclose = onClose
+		webSocket.onmessage = onMessage
+
+		var modal = document.getElementById("chatModal");
+		modal.style.display = "flex"; // 모달을 화면에 표시
+	}
+
+	// 모달 닫기 함수
+	function closeModal() {
+		var modal = document.getElementById("chatModal");
+		modal.style.display = "none"; // 모달을 숨김
+	}
+
+	// 모달 외부를 클릭하면 닫기
+	window.onclick = function(event) {
+		var modal = document.getElementById("chatModal");
+		if (event.target === modal) {
+			modal.style.display = "none";
+		}
+	};
+
+	//소켓 서버에 연결(WebSocket)
+
+
+	function onOpen() {	//현재 클라이언트가 서버로 접속 시도할 때 호출
+	}
+	function onClose() {
+		//webSocket.send(JSON.Stringify({"nick" : "라라핑"}))		//보내고 싶은 값을 json 형식으로 바꿔서 넣기 -> 무조건 문자열로보내기!
+		const message = {
+		    type: "quit", // 메시지 유형을 명확히 구분
+		    nickname: userNickname,
+		};
+
+		webSocket.send(JSON.stringify(message)); // JSON 형식으로 전송
+	}
+	//(서버->클라이언트) 메세지를 받앗을때 호출
+
+
+	function onMessage(msg) {
+		// 받은 메세지를 화면에 출력!
+		console.log("onMessage 호출")
+		const msgData = JSON.parse(msg.data);
+		var resultContainer = document.getElementById("chatBox");
+		console.log(msgData.type);
+		if (msgData.type == "message") {
+			var nickName = document.createElement("div");
+			nickName.style.color = "#3C3D37";
+			nickName.style.fontFamily = "교육새음";
+			nickName.style.fontSize = "20px";
+			nickName.style.textAlign = "left";
+			nickName.style.paddingBottom = "2px";
+			nickName.textContent = msgData.nickname;
+			resultContainer.appendChild(nickName);
+		}
+
+		var newMsg = document.createElement("div");
+		newMsg.style.color = "#3C3D37";
+		newMsg.style.fontFamily = "교육새음";
+		newMsg.style.padding = "2px";
+		newMsg.style.borderRadius = "3px";
+		newMsg.style.fontSize = "20px";
+
+		newMsg.textContent = msgData.message;
+		
+		if (msgData.type == "message") {
+			newMsg.style.textAlign = "left";
+			newMsg.style.backgroundColor = "#D9EDBF";
+		}
+		else {
+			newMsg.style.textAlign = "center";
+		}
+
+		resultContainer.appendChild(newMsg);
+
+		let area = document.getElementById('chatInput')
+		area.scrollTop = area.scrollHeight
+	}
+
+	function send() {
+		//id가 msg로 설정되어있는 input 태그 가져와서 socket 서버로 전송
+		var msg = $("#chatInput").val();
+		$("#chatInput").val("");
+		
+		// 서버로 보낼 메시지에 닉네임과 메시지 내용 포함
+		const message = {
+		    type: "message", // 메시지 유형을 명확히 구분
+		    nickname: userNickname, // 사용자의 닉네임
+		    message: msg // 사용자가 입력한 메시지
+		};
+		
+		var newMsg = document.createElement("div");
+		newMsg.style.color = "#3C3D37";
+		newMsg.style.fontFamily = "교육새음";
+		newMsg.style.fontSize = "20px";
+		newMsg.style.textAlign = "right";
+		newMsg.style.backgroundColor = "#F6F7C4";
+		newMsg.style.padding = "2px";
+		newMsg.style.borderRadius = "3px";
+		newMsg.style.width = "auto";
+
+
+		newMsg.textContent = msg;
+
+		var resultContainer = document.getElementById("chatBox");
+		resultContainer.appendChild(newMsg);
+		
+		resultContainer.scrollTop = resultContainer.scrollHeight
+
+		webSocket.send(JSON.stringify(message));
+	}
+	  function checkEnter(event) {
+		    if (event.key === "Enter") {
+		      send(); // 엔터를 누르면 send() 함수 호출
+		    }
+		  }
+	</script>
 </body>
 
 </html>

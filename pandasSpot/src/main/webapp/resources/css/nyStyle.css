@@ -1,0 +1,169 @@
+@charset "UTF-8";
+
+/* 은유 */
+/* 제목 */
+@font-face {
+	font-family: '둥근미소';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimDunggeunmisoTTF-B.woff2')
+		format('woff2');
+	font-weight: 700;
+	font-style: normal;
+}
+/* 본문 */
+@font-face {
+	font-family: '받아쓰기';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimBadasseugiTTF-L.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+/* 태그 */
+@font-face {
+	font-family: '교육새음';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+/* 채팅 */
+@font-face {
+	font-family: '의연체';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105@1.1/Uiyeun.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+/* 타이틀 */
+@font-face {
+	font-family: '다예쁨';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: '순천체';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/SuncheonR.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: '레페리포인트';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-WhiteObliqueA.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: '레페리포인트_bold';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-BlackObliqueA.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+font-family: '마이센체';
+src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeemysen.woff') format('woff');
+font-weight: normal;
+font-style: normal;
+}
+
+.control {
+	height: 43px;
+	border-radius: 0;
+	background: transparent;
+	border-color: #777;
+	color: #fff !important;
+}
+
+.post-input {
+	width: 300px;
+	height: 300px;
+	padding: 10px;
+	margin-top: 15px;
+	font-family: 교육새음;
+	font-size: 30px;
+	border: 1px solid transparent;
+}
+
+.input-post {
+	max-width: 300px;
+	width: 30px;
+}
+
+#comm_img {
+	display: none;
+}
+
+.display-block {
+	display: block;
+}
+
+#post_textarea {
+	font-family: 교육새음;
+	font-size: 20px;
+	width : 100%;
+}
+
+.post-display-block {
+	display: block;
+	width: 100%;
+	margin: auto;
+}
+
+.post-title {
+	display: block;
+	font-family: 둥근미소;
+	text-align: center;
+	color: #776B5D;
+	padding-top: 20px;
+}
+
+.content_textarea_div {
+	display: flex;
+	justify-content: center; /* 수평 중앙 정렬 */
+	align-items: flex-start; /* 수직 중앙 정렬 */
+}
+
+.post_text_input {
+	margin: 10px;
+	width: 300px;
+	border : none;
+	font-family: 의연체;
+	font-size: 20px;
+	padding: 10px;
+}
+
+.post-input-btn {
+	background: #C0C78C;
+	width: 100px;
+	color: white;
+	display: flex;
+	margin: 10px auto 10px auto;
+	font-size: 20px;
+	height: 40px;
+}
+
+.post-input {
+	display: block;
+	width: 300px;
+	height: 20px;
+	padding: 10px;
+	margin-top: 15px;
+	font-family: 교육새음;
+	font-size: 20px;
+	border: 1px solid transparent;
+}
