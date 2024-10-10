@@ -167,3 +167,71 @@ font-style: normal;
 	font-size: 20px;
 	border: 1px solid transparent;
 }
+
+.post-display-block {
+        display: block;
+        width: 100%;
+        margin: auto;
+    }
+
+    .post-title {
+        display: block;
+        font-family: 둥근미소;
+        text-align: center;
+        color: #776B5D;
+        padding-top: 20px;
+    }
+
+    .content_textarea_div {
+        display: flex;
+        justify-content: flex-start; /* 왼쪽 정렬 */
+        align-items: flex-start; /* 상단 정렬 */
+    }
+
+    .post_text_input {
+        margin: 10px;
+        width: 300px;
+        border: none;
+        font-family: 의연체;
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column; /* 세로 방향 정렬 */
+        align-items: flex-start; /* 왼쪽 정렬 */
+        margin-bottom: 15px; /* 요소 간 간격 */
+    }
+
+    .image_label {
+        margin-bottom: 5px; /* 레이블과 입력 필드 간 간격 */
+    }
+    
+ .post-input-btn {
+ 	border: none;
+ 	border-radius: 5px;
+ 	width: fit-contents;
+ 	height: fit-contents;
+	background: #C0C78C;
+	color: white;
+	display: flex;
+	padding: 8px 20px 8px 20px;
+	margin-left: 150px;
+	font-family: 교육새음;
+	font-size: 20px;
+}
+
+ .post-input-btnn {
+ 	border: none;
+ 	border-radius: 5px;
+ 	width: fit-contents;
+ 	height: fit-contents;
+	background: #C0C78C;
+	color: white;
+	display: flex;
+	padding: 8px 20px 8px 20px;
+	margin-left: 10px;
+	font-family: 교육새음;
+	font-size: 20px;
+}

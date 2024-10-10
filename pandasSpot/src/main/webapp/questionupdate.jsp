@@ -1,3 +1,4 @@
+<%@page import="com.pandas.model.Communities"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,148 +6,98 @@
 <head>
 <title>Study SPOT</title>
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<link
-	href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet" href="fonts/icomoon/style.css">
-
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/magnific-popup.css">
-<link rel="stylesheet" href="css/jquery-ui.css">
-<link rel="stylesheet" href="css/owl.carousel.min.css">
-<link rel="stylesheet" href="css/owl.theme.default.min.css">
-
-<link rel="stylesheet" href="css/lightgallery.min.css">
-
-<link rel="stylesheet" href="css/bootstrap-datepicker.css">
-
-<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-
-<link rel="stylesheet" href="css/swiper.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <link rel="stylesheet" href="css/aos.css">
-
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/nystyle.css">
+<link rel="stylesheet" href="css/eystyle.css">
 
+<style>
+	.post_text_input {
+        margin: 10px;
+        width: 300px;
+        border: none;
+        font-family: 의연체;
+        font-size: 20px;
+        padding: 10px;
+    }
+    
+    .post-input-btn {
+ 	border: none;
+ 	border-radius: 5px;
+ 	width: fit-contents;
+ 	height: fit-contents;
+	background: #C0C78C;
+	color: white;
+	display: flex;
+	padding: 8px 20px 8px 20px;
+	margin-left: 140px;
+	font-family: 교육새음;
+	font-size: 20px;
+}
+
+ .post-input-btnn {
+ 	border: none;
+ 	border-radius: 5px;
+ 	width: fit-contents;
+ 	height: fit-contents;
+	background: #C0C78C;
+	color: white;
+	display: flex;
+	padding: 8px 20px 8px 20px;
+	margin-left: 10px;
+	font-family: 교육새음;
+	font-size: 20px;
+}
+</style>
 </head>
 <body>
 
-	<div class="site-wrap">
+	<%@ include file="header.jsp"%>
 
-		<div class="site-mobile-menu">
-			<div class="site-mobile-menu-header">
-				<div class="site-mobile-menu-close mt-3">
-					<span class="icon-close2 js-menu-toggle"></span>
-				</div>
-			</div>
-			<div class="site-mobile-menu-body"></div>
-		</div>
+	<div class="content-container" data-aos="fade">
 
+		<div>
+			<h2 class="post-title">Q & A</h2>
+			<div>
+				<form action="QuestionUpdate">
+					<table>
+						<tr>
+							<td><label class="image_label" for="subject">제목</label></td>
+							<td><input class="post_text_input post-input" type="text"
+								id="subject" name="q_title" required></td>
+						</tr>
+						<tr>
+							<td><label class="image_label" for="workbook">문제집</label></td>
+							<td><input type="text" id="workbook"
+								class="post_text_input post-input" name="q_workbook" required></td>
+						</tr>
+						<tr>
+							<td><label class="image_label" for="post_textarea">내용</label></td>
+							<td><textarea class="post_text_input" name="q_content"
+									id="post_textarea" cols="30" rows="13" class="post-input"
+									placeholder="질문할 내용 입력" required></textarea></td>
+						</tr>
+						<tr>
+							<td>
+								<div class="post-display-block image_label">사진 첨부</div>
+							</td>
+							<td><label> <img src="icon/add (1).png"
+									alt="이미지 추가하기" id="input-image" /> <input type="file"
+									id="mem_profile_img" name="q_file">
+							</label></td>
+						</tr>
+					</table>
+					<div class="post-display-block content_textarea_div" align="center">
 
-
-
-		<%@ include file="header.jsp"%>
-
-
-
-		<div class="site-section" data-aos="fade">
-			<div class="container">
-
-				<div class="row justify-content-center">
-
-					<div class="col-md-7">
-						<div class="row mb-5">
-							<div class="col-12 ">
-								<h2 class="site-section-heading text-center">Q & A</h2>
-							</div>
-						</div>
+						<input type="submit" value="등록" class="post-input-btn"> 
+						<input type="button" value="취소" class="post-input-btnn" onclick="history.back();">
 					</div>
 
-				</div>
-
-				<div class="row justify-content-center">
-					<div class="col-lg-8 mb-5">
-						<form action="#">
-
-
-							<div class="row form-group">
-
-								<div class="col-md-12">
-									<label class="text-white" for="subject">제목</label> <input
-										type="subject" id="subject" class="form-control"
-										style="border: none; border-bottom: 1px solid #fff; outline: none;">
-									<!-- 데이터베이스에서 제목 가져오기 -->
-								</div>
-							</div>
-
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label class="text-white" for="subject">문제집</label> <input
-										type="subject" id="subject" class="form-control"
-										style="border: none; border-bottom: 1px solid #fff; outline: none;">
-									<!-- 데이터베이스에서 문제집 가져오기 -->
-								</div>
-							</div>
-
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label class="text-white" for="message">내용</label>
-									<textarea name="message" id="message" cols="30" rows="13"
-										class="form-control" placeholder="오늘의 공부 일기"></textarea>
-									<!-- 데이터베이스에서 내용 가져오기 -->
-								</div>
-							</div>
-
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label class="text-white" for="message">파일 첨부 : </label> <input
-										type="file" id="file-upload" name="file-upload"
-										style="border: none; border-bottom: 1px solid #fff; outline: none;">
-									<!-- 데이터베이스에서 첨부파일 가져오기 -->
-								</div>
-							</div>
-
-							<div class="row form-group" align="center">
-								<div class="col-md-12">
-									<input type="submit" value="수정"
-										class="btn btn-primary py-2 px-4 text-white"> <input
-										type="submit" value="취소"
-										class="btn btn-primary py-2 px-4 text-white">
-								</div>
-							</div>
-
-
-						</form>
-					</div>
-
-
-				</div>
+				</form>
 			</div>
 		</div>
-
-		<div class="footer py-4">
-			<div class="container-fluid text-center">
-				<p>
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					Copyright &copy;
-					<script data-cfasync="false"
-						src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-					<script>document.write(new Date().getFullYear());</script>
-					All rights reserved | This template is made with <i
-						class="icon-heart-o" aria-hidden="true"></i> by <a
-						href="https://colorlib.com" target="_blank">Colorlib</a>
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-				</p>
-			</div>
-		</div>
-
-
-
-
-
 	</div>
 
 	<script src="js/jquery-3.3.1.min.js"></script>
@@ -161,18 +112,35 @@
 	<script src="js/bootstrap-datepicker.min.js"></script>
 	<script src="js/swiper.min.js"></script>
 	<script src="js/aos.js"></script>
-
 	<script src="js/picturefill.min.js"></script>
 	<script src="js/lightgallery-all.min.js"></script>
 	<script src="js/jquery.mousewheel.min.js"></script>
-
 	<script src="js/main.js"></script>
 
-	<script>
-    $(document).ready(function(){
-      $('#lightgallery').lightGallery();
-    });
-  </script>
+	<script> 
+		document.getElementById('mem_profile_img').addEventListener('change', handleImageChange);
+	
+		function handleImageChange(event) {
+		   const file = event.target.files[0]; // 파일 선택
+	
+		   if (file) {
+		      const reader = new FileReader(); // FileReader 생성
+	
+		      // 파일을 읽은 후 호출되는 함수
+		      reader.onload = function(e) {
+		         const imageUrl = e.target.result; // Base64로 인코딩된 이미지 데이터
+		         const image_preview = document.getElementById('input-image');
+		         image_preview.src = imageUrl; // 이미지의 src 속성 변경
+		         image_preview.style.width = 'auto';
+		      };
+	
+		      reader.readAsDataURL(file); // 파일을 Base64 데이터 URL로 읽음
+		   } else {
+		      document.getElementById('input-image').src = "icon/add (1).png"; // 파일이 없으면 이미지 초기화
+		      document.getElementById('input-image').style.width = '30px'; // 파일이 없으면 이미지 초기화
+		   }
+		}
+	</script>
 
 </body>
 </html>

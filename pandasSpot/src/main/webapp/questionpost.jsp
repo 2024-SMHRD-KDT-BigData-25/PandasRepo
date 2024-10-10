@@ -1,6 +1,7 @@
 <%@page import="com.pandas.model.Communities"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,6 +64,20 @@
 	color: white;
 	display: flex;
 	padding: 8px 20px 8px 20px;
+	margin-left: 140px;
+	font-family: 교육새음;
+	font-size: 20px;
+}
+
+ .post-input-btnn {
+ 	border: none;
+ 	border-radius: 5px;
+ 	width: fit-contents;
+ 	height: fit-contents;
+	background: #C0C78C;
+	color: white;
+	display: flex;
+	padding: 8px 20px 8px 20px;
 	margin-left: 10px;
 	font-family: 교육새음;
 	font-size: 20px;
@@ -104,15 +119,14 @@
 								<input type="file" id="mem_profile_img" name="q_file">
 							</label>
 							</td>
-						<div class="join-input" id="join_confirm"></div>
 						</tr>
 					</table>
 						
 					<div class="post-display-block content_textarea_div" align="center">
 							
-						<input type="submit" value="등록" class="post-input-btn"> 
-						<input type="button" value="취소" class="post-input-btn" onclick="history.back();">
-						</div>
+						<input type="submit" value="등록" class="post-input-btn" > 
+						<input type="button" value="취소" class="post-input-btnn" onclick="history.back();">
+					</div>
 				</form>
 			</div>
 		</div>
