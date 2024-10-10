@@ -33,5 +33,10 @@ public class CommunityDAO {
 			return res;
 		}
 		
-		
+		public int CommunityUpdate(Communities d) {
+			SqlSession sqlSession = sqlSessionFactory.openSession(true);
+			int res = sqlSession.update("nyMapper.CommunityUpdate",d);
+			sqlSession.close();
+			return res;
+		}
 }

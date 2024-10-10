@@ -32,6 +32,12 @@ public class QuestionDAO {
 			sqlSession.close();
 			return res;
 	}
-		
+	
+		public int QuestionUpdate(Questions d) {
+			SqlSession sqlSession = sqlSessionFactory.openSession(true);
+			int res = sqlSession.update("nyMapper.QuestionUpdate",d);
+			sqlSession.close();
+			return res;
+		}
 		
 }

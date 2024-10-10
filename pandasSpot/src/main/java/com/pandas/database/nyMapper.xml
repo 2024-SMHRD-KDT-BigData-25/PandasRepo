@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="nyMapper">
+	
+	<!-- community 수정 -->
+	<update id="CommunityUpdate" parameterType="com.pandas.model.Communities">
+		update communities set comm_title=#{comm_title} , comm_content=#{comm_content} ,
+		comm_file=#{comm_file} ,created_at=SYSDATE || '(수정)' where id=#{id}
+	</update>
+	
+	<!-- question 수정 -->
+	<update id="QuestionUpdate" parameterType="com.pandas.model.Questions">
+		update questions set q_title=#{q_title} , q_content=#{q_content} ,
+		q_file=#{q_file} , q_workbook=#{q_workbook} , created_at=SYSDATE || '(수정)' where id=#{id}
+	</update>
+
+</mapper>

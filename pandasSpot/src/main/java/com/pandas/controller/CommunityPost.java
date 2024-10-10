@@ -8,9 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import com.pandas.model.Communities;
 import com.pandas.model.CommunityDAO;
+import com.pandas.model.Members;
 
 
 @WebServlet("/CommunityPost")
@@ -24,7 +26,10 @@ public class CommunityPost extends HttpServlet {
 		String comm_title = request.getParameter("comm_title");
 		String comm_content = request.getParameter("comm_content");
 		String comm_file = request.getParameter("comm_file");
-		String mem_id = request.getParameter("mem_id");
+		
+		HttpSession session = request.getSession();
+		Members member = (Members)session.getAttribute("member");
+		String mem_id = member.getMem_id();
 	
 		System.out.println(comm_title + comm_content + comm_file + mem_id);
 		Communities postComm = new Communities(comm_title, comm_content, comm_file, mem_id);
@@ -32,10 +37,8 @@ public class CommunityPost extends HttpServlet {
 		CommunityDAO dao = new CommunityDAO();
 		int res = dao.CommunityPost(postComm);
 		
-		if (res != 1) {
+		if (res > 0) {
 			System.out.println("자유게시판 게시물 등록!");
-			HttpSession session = request.getSession();
-			session.setAttribute("postComm", res);
 			response.sendRedirect("CommList.jsp");
 		}
 		else {

@@ -17,5 +17,6 @@
   </environments>
   <mappers>
     <mapper resource="com/pandas/database/SpotMapper.xml"/>
+    <mapper resource="com/pandas/database/nyMapper.xml"/>
   </mappers>
 </configuration>
