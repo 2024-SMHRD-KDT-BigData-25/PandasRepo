@@ -11,6 +11,13 @@ public class DiaryDAO {
 	
 	SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSessionFactory();
 	
+	public int getDiaryLength() {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int res = sqlSession.selectOne("ecMapper.getDiaryLength");
+		sqlSession.close();
+		return res;
+	}
+	
 	public List<Diaries> getList() {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		List<Diaries> list = sqlSession.selectList("SpotMapper.DiaryList");

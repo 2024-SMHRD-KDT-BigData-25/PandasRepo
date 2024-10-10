@@ -71,11 +71,8 @@
 	<script>
 	const temp = document.getElementById("member_nick").innerText;
 	const userNickname = encodeURIComponent(temp);
-
-	function mypageButtonClick() {
-		alert('Image button clicked!');
-		// 버튼 클릭 시 실행할 함수
-	}
+	var Member = "${errorMsg }"
+	
 	// 모달 열기 함수
 	function chatButtonClick() {
 		webSocket = new WebSocket("ws://localhost:8081/pandasSpot/chat?nickname="+userNickname)
