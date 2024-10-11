@@ -11,9 +11,23 @@ public class CommunityDAO {
 	
 	SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSessionFactory();
 	
+	public int getCommLength() {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int res = sqlSession.selectOne("ecMapper.getCommLength");
+		sqlSession.close();
+		return res;
+	}
+	
 	public List<Communities> getList() {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		List<Communities> list = sqlSession.selectList("SpotMapper.CommunityList");
+		sqlSession.close();
+		return list;
+	}
+	
+	public List<Communities> getList(int page) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		List<Communities> list = sqlSession.selectList("ecMapper.pageComm", page);
 		sqlSession.close();
 		return list;
 	}

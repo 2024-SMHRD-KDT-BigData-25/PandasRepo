@@ -1,3 +1,4 @@
+<%@page import="com.pandas.model.QuestionDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -10,13 +11,14 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link rel="stylesheet" href="${contextPath}/resources/css/aos.css">
-<link rel="stylesheet" href="${contextPath}/resources/css/eyStyle.css">
-<link rel="stylesheet" href="${contextPath}/resources/css/ecStyle.css">
 </head>
 <body>
-
-	<%@ include file="header.jsp"%>
+	<jsp:include page="header.jsp" />
+<% 
+	QuestionDAO dao = new QuestionDAO();
+	int length = dao.getQuestionLength();
+%>
+		<div class="pages_info" id="pages_info"><%= length %></div>
 	<div class="content-container" data-aos="fade">
 		<h2 class="join-title before-table">QnA 게시판</h2>
 	</div>
@@ -28,9 +30,9 @@
 					<th class="cell_padding">번호</th>
 					<th class="cell_padding">제목</th>
 					<th class="cell_padding">작성자</th>
-					<th class="cell_padding">작성일</th>
-					<th class="cell_padding">첨부파일</th>
 					<th class="cell_padding">문제집</th>
+					<th class="cell_padding">작성일</th>
+					
 				</tr>
 			</thead>
 			<tbody id="list">
@@ -38,7 +40,7 @@
 			</tbody>
 			
 		</table>
-	<div id="table_footer"><button class="btn board_btn" id="to_write_btn" onclick="location.href='questionpost.jsp'">글작성</button></div>
+	<div id="table_footer"><div id="page_list"></div><button class="btn board_btn" id="to_write_btn" onclick="location.href='questionpost.jsp'">글작성</button></div>
 	</div>
 </div>
 	
@@ -74,14 +76,42 @@
 	
 	//현재 html 문서가 브라우저 상에서 로드가 완료되고 나면 getList() 호출
 	$(document).ready(function(){
-		getList()
+		var total_length = document.getElementById("pages_info").innerText;
+		const itemsPerPage = 15;
+		const pages = Math.floor(total_length / itemsPerPage) + (total_length % itemsPerPage != 0 ? 1 : 0); 
+		getList(1);
+		// 페이지 링크 생성 및 콘솔 출력
+		for (let i = 1; i <= pages; i++) {
+			
+		    // 각 페이지에 해당하는 링크(a 태그)를 생성
+		    const a = document.createElement('a');
+		    a.innerText = i;
+		    a.href = '#'; // 클릭 시 페이지 이동 방지
+		    a.style.marginRight = '10px'; // 링크 간 간격 추가
+		    a.style.textDecoration = 'none';
+		    a.style.color = '#776B5D';
+		    a.style.fontFamily = '받아쓰기';
+		    a.style.fontSize = '20px';
+		    
+		    // 클릭 시 콘솔에 해당 페이지 데이터 출력
+		    a.addEventListener('click', (e) => {
+		        e.preventDefault(); // 링크 기본 동작 방지
+		        getList(e.target.innerText);
+		    });
+
+		    // 링크를 HTML 문서의 body에 추가
+
+		    $("#page_list").append(a);
+		}
+	    
 	})
-	
+
 	//비동기 통신 시 사용하는 데이터 형식 : json {key:value,key:value} / xml
-		function getList(){
+		function getList(data){
 			$.ajax({
 			url : "questionList", //요청경로
 			type : "get", //요청방식(http 요청 메서드)
+			data : {"page" : data},
 			success : printList,
 			error : function(){
 				alert("통신 실패!")
@@ -94,51 +124,17 @@
 			var data = JSON.parse(data),
 				html = "", //id=>list 곳에 추가가 될 html 코드
 				dlength = data.length;
-				
-			const itemsPerPage = 15;
-			const pages = Math.floor(dlength / itemsPerPage) + (dlength % itemsPerPage != 0 ? 1 : 0); 
-			console.log(pages);
 			
-			let paginatedData = [];
-
-			var a_tags = document.createElement('div');
-			// 페이지 링크 생성 및 콘솔 출력
-			for (let i = 0; i < pages; i++) {
 				
-			    // 각 페이지에 해당하는 데이터를 슬라이싱하여 배열에 추가
-			    const pageData = data.slice(i * itemsPerPage, (i + 1) * itemsPerPage);
-			    paginatedData.push(pageData); // 각 페이지 데이터를 배열에 저장
-			    // 각 페이지에 해당하는 링크(a 태그)를 생성
-			    const a = document.createElement('a');
-			    a.innerText = i+1;
-			    a.href = '#'; // 클릭 시 페이지 이동 방지
-			    a.style.marginRight = '10px'; // 링크 간 간격 추가
-			    a.style.textDecoration = 'none';
-			    a.style.color = '#776B5D';
-			    a.style.fontFamily = '받아쓰기';
-			    a.style.fontSize = '20px';
-			    
-			    // 클릭 시 콘솔에 해당 페이지 데이터 출력
-			    a.addEventListener('click', (e) => {
-			        e.preventDefault(); // 링크 기본 동작 방지
-			        console.log(i+1, paginatedData[i]);
-			    });
-
-			    // 링크를 HTML 문서의 body에 추가
-
-			    a_tags.appendChild(a);
-			}
-		    document.getElementById('table_footer').prepend(a_tags);
-			
 		for(var board of data){
 		
 	      html += "<tr class='board_line'>"
 	      html += "<td class='text-black'>"+board.q_idx+"</td>"
 	      html += "<td class='text-black'><a class='table_a_tags' href='question_view.jsp?idx="+board.q_idx+"'>"+board.q_title+"</a></td>"
 	      html += "<td class='text-black'><a>"+board.mem_id+"</a></td>"
-	      html += "<td class='text-black'>"+board.created_at+"</td>"
-	      html += "<td class='text-black'>"+board.q_file+"</td>"
 	      html += "<td class='text-black'>"+board.q_workbook+"</td>"
+	      html += "<td class='text-black'>"+board.created_at+"</td>"
+	      
 	      //html += "<td><button class='btn btn-primary py-2 px-4 text-white' onclick='deleteBoard("+board.q_idx+")'>삭제</button></td>"
 	      html += "</tr>"
 	    }
