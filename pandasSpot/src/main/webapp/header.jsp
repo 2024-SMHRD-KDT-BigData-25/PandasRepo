@@ -7,7 +7,6 @@
 <!DOCTYPE html>
 
 <link rel="stylesheet" href="${contextPath}/resources/css/nyStyle.css">
-<link rel="stylesheet" href="${contextPath}/resources/css/style.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/aos.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/ecStyle.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/eyStyle.css">

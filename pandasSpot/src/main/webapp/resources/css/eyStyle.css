@@ -240,7 +240,9 @@ body {
 	display: felx;
 }
 
-
+.display_inline {
+	display: inline;	
+}
 
 #mem_id {
 	width: 220px;
