@@ -17,7 +17,7 @@ public class Studies {
 	private String Study_content;
 	private String Study_photo;
 	private int Study_likes;
-	private Date Created_at;
+	private String Created_at;
 	private String Mem_id;
 	
 	public Studies(String study_content, String study_photo, String mem_id) {

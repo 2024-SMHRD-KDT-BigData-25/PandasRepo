@@ -56,6 +56,7 @@
 	<script src="${contextPath}/resources/js/bootstrap-datepicker.min.js"></script>
 	<script src="${contextPath}/resources/js/swiper.min.js"></script>
 	<script src="${contextPath}/resources/js/aos.js"></script>
+	<script src="${contextPath}/resources/js/moment.js"></script>
 
 	<script src="${contextPath}/resources/js/picturefill.min.js"></script>
 	<script src="${contextPath}/resources/js/lightgallery-all.min.js"></script>
