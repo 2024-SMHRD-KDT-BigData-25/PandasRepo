@@ -57,7 +57,9 @@
 			<%if (member.getMem_id().equals(community.getMem_id())) {%>
 				<button class="btn" id="to_update_btn">수정</button>
 			<% } %>
-				<div style="margin-top: 8px">❤️<%=community.getComm_likes() %></div>	
+				<button id="like-button" style="margin-top: 8px; background: transparent; border: none; cursor: pointer;">
+    			❤️ <span id="like-count"><%=community.getComm_likes() %>
+    			</span></button>	
 			</div>
 				<div class="form-group">
 					<div class="main">
@@ -105,6 +107,31 @@
 
 
 	<script>
+	
+	function updateLikes(data){
+		$.ajax({
+		url : "CommLikes", //요청경로
+		type : "get", //요청방식(http 요청 메서드)
+		data : {"comm_idx" : data},
+		success : changeLikes,
+		error : function(){
+			alert("통신 실패!")
+		}
+		
+	})
+}
+    // 좋아요 버튼 클릭 시 AJAX 요청을 통해 서버로 데이터 전송
+    $("#like-button").on("click", function () {
+    	var c_idx = document.getElementById("q_idx").innerText;
+    	updateLikes(c_idx);
+    });
+    
+    function changeLikes(data) {
+    	var likes = document.getElementById("like-count");
+    	likes.innerText = data;
+    }
+	// 좋아요 기능 끝
+	
     $(document).ready(function(){
       $('#lightgallery').lightGallery();
     });

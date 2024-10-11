@@ -3,25 +3,21 @@ package com.pandas.model;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import com.pandas.database.SqlSessionManager;
-
 public class CommLikesDAO {
 
-	
-	SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSessionFactory();
+    private SqlSessionFactory sqlSessionFactory;
 
-    public int upCommLikes(int comm_idx) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            int Likes = session.update("jwMapper.upCommLikes", comm_idx);
-            session.commit();
-            return Likes;
-        }
+    // SqlSessionFactory를 받는 생성자
+    public CommLikesDAO(SqlSessionFactory sqlSessionFactory) {
+        this.sqlSessionFactory = sqlSessionFactory;
     }
 
-    public int getCommLikes(int comm_idx) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            int result = session.selectOne("jwMapper.getCommLikes", comm_idx);
-        	return result;
+    public int upCommLikes(int comm_idx) {
+        try (SqlSession session = sqlSessionFactory.openSession(true)) {
+            session.update("jwMapper.upCommLikes", comm_idx);
+            int likes = session.selectOne("jwMapper.getCommLikes", comm_idx);
+            session.close();
+            return likes;
         }
     }
 }
