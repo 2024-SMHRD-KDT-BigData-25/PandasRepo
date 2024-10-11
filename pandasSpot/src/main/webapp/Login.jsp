@@ -28,7 +28,7 @@
 				</tr>
 				<tr>
 					<td colspan="2"><input type="password" id="login_pw"
-						name="mem_pw" class="join-input" placeholder="비밀번호를 입력하세요" /></td>
+						name="mem_pw" class="join-input" placeholder="비밀번호를 입력하세요" oninput="changeFontFamily()" /></td>
 				</tr>
 				<tr>
 					<td colspan="2">
@@ -81,21 +81,14 @@
 			alert( errorMsg );  
 		}
 		
+		function changeFontFamily() {
+			const password = document.getElementById("mem_pw");
+			password.style.fontFamily = "arial";
 
-		$("#login_pw").keyup(function() {
-			const password = document.getElementById("login_pw");
 			if (password.value == "") {
 				password.style.fontFamily = "교육새음";
-			}else {
-				password.style.fontFamily = "arial";
 			}
-		})
-		
-		$(document).keydown(function(event) {
-			if (event.keycode == 13) {
-				loginCheck();
-			}
-		});
+		}
 		
 		$("#loginSubmitBtn").on( "click", function( event ) {
 			loginCheck();

@@ -565,3 +565,7 @@ header {
 	font-family: 교육새음;
 	text-align: center;
 }
+
+.input_disable {
+	color: lightgray;
+}

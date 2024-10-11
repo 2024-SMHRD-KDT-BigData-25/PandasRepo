@@ -18,20 +18,18 @@
 			<!-- join : 은유 -->
 			<div>
 				<div>
-					<form action="Join" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+					<form action="Update" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
 						<input class="join-input" type="text" id="mem_name" name="mem_name" placeholder="이름을 입력하세요" value="<%= member.getMem_name() %>">
 						<div class="message" id="name_message"></div> 
-						<input class="join-input" type="text" id="mem_id" name="mem_id" placeholder="아이디를 입력하세요" value="<%= member.getMem_id() %>"> 
-						<input class="join-input join-input-btn btn" id="id_check_btn" type="button" value="중복 체크" onclick="idCheck()">
-						<div class="message" id="id_check_message"></div>
-						<input class="join-input" type="password" id="mem_pw" name="mem_pw" placeholder="비밀번호를 입력하세요" oninput="changeFontFamily()"> 
-						<input class="join-input" type="password" id="pw_confirm" name="pw_confirm" placeholder="비밀번호 확인" oninput="validatePasswords()">
+						<input class="join-input input_disable" type="text" name="mem_id" placeholder="아이디를 입력하세요" value="<%= member.getMem_id() %>" readonly> 
+						<input class="join-input" type="password" id="mem_pw" name="mem_pw" placeholder="비밀번호를 입력하세요" oninput="changeFontFamily()" value="<%= member.getMem_pw() %>"> 
+						<input class="join-input" type="password" id="pw_confirm" name="pw_confirm" placeholder="비밀번호 확인" oninput="validatePasswords()" value="<%= member.getMem_pw() %>">
 						<div class="join-input message" id="pw_message"></div>
-						<input class="join-input" type="text" id="mem_nick" name="mem_nick" placeholder="닉네임을 입력하세요"> 
+						<input class="join-input" type="text" id="mem_nick" name="mem_nick" placeholder="닉네임을 입력하세요" value="<%= member.getMem_nick() %>"> 
 						<div class="message" id="nick_message"></div>
-						<input class="join-input" type="date" id="mem_birthdate" name="mem_birthdate"> 
+						<input class="join-input" type="date" id="mem_birthdate" name="mem_birthdate" value="<%= member.getMem_birthdate() %>"> 
 						<div class="message" id="birth_message"></div>
-						<input class="join-input" type="text" id="mem_school" name="mem_school" placeholder="학교명을 입력하세요(예: 한국고등학교 -> 한국)"> 
+						<input class="join-input" type="text" id="mem_school" name="mem_school" placeholder="학교명을 입력하세요(예: 한국고등학교 -> 한국)" value="<%= member.getMem_school_name() %>"> 
 						<input class="join-input join-input-btn search_btn btn" id="school_search_btn" type="button" value="학교 검색" onclick="findSchool()">
 						<div id="find_school_result"></div>
 						<div class="message" id="school_message"></div>
@@ -67,6 +65,9 @@
 
 	<script src="${contextPath}/resources/js/main.js"></script>
 	<script>
+	$(document).ready(function(){
+		findSchool();
+	});
 	var id_checked = false;
 
 	function findSchool() {
