@@ -5,7 +5,7 @@
 	
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-	
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,22 +18,21 @@
 <link rel="stylesheet" href="${contextPath}/resources/css/eyStyle.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/jwStyle.css">
 
+
 </head>
 <body>
 
 	<%@ include file="header.jsp"%>
 	
 	<%
-		String idxString = request.getParameter("idx");
-	
-		System.out.println("idx 번호는 " + idxString);	
-
-	 	int idx = Integer.parseInt(idxString);
+		int idx = Integer.parseInt(request.getParameter("idx"));
+	 	System.out.println("뷰 idx 번호는 " + idx);
 		CommunityDAO dao = new CommunityDAO();
 	  	Communities community = dao.getCommunities(idx);
 	%> 
 
 	<!-- 게시글 부분 -->
+	<div class="hidden" id="q_idx"><%= idx %></div>
 	<div data-aos="fade">
 		<h2 class="join-title before-table">자유게시판</h2>
 	</div>
@@ -54,10 +53,11 @@
 		</table>
 	</div>
 		<div style="width: 80%; max-width: 800px; display: flex; justify-content: space-between; margin: 0 auto; margin-bottom: 10px; margin-top : -15px">
-			<button class="btn" onclick="location.href='CommList.jsp'">목록</button>
-				<button id="like-button" style="margin-top: 8px; background: transparent; border: none; cursor: pointer;">
-    			❤️ <span id="like-count"><%=community.getComm_likes() %></span>
-				</button>
+			<button class="btn" id="to_list_btn">목록</button>
+			<%if (member.getMem_id().equals(community.getMem_id())) {%>
+				<button class="btn" id="to_update_btn">수정</button>
+			<% } %>
+				<div style="margin-top: 8px">❤️<%=community.getComm_likes() %></div>	
 			</div>
 				<div class="form-group">
 					<div class="main">
@@ -84,32 +84,39 @@
 				</form>
 			</div>
 
+	<script src="${contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery-ui.js"></script>
+	<script src="${contextPath}/resources/js/popper.min.js"></script>
+	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+	<script src="${contextPath}/resources/js/owl.carousel.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.stellar.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.countdown.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="${contextPath}/resources/js/bootstrap-datepicker.min.js"></script>
+	<script src="${contextPath}/resources/js/swiper.min.js"></script>
+	<script src="${contextPath}/resources/js/aos.js"></script>
+
+	<script src="${contextPath}/resources/js/picturefill.min.js"></script>
+	<script src="${contextPath}/resources/js/lightgallery-all.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.mousewheel.min.js"></script>
+
+	<script src="${contextPath}/resources/js/main.js"></script>
+
 
 	<script>
     $(document).ready(function(){
       $('#lightgallery').lightGallery();
     });
     
-    <script>
-    function Likes(communityId) {
-        // AJAX 요청을 보내서 숫자를 증가시킴
-        fetch('increaseLikes', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ id: communityId }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            // 성공적으로 처리된 후, 화면에 갱신된 좋아요 수를 표시
-            document.getElementById('like-count').textContent = data.likes;
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
-    
+    $("#to_list_btn").on( "click", function( event ) {
+		location.href = "${contextPath}/QuestionList.jsp";
+	});
+
+    $("#to_update_btn").on( "click", function( event ) {
+    	var diary_idx = document.getElementById("q_idx").innerText;
+		location.href = "${contextPath}/questionupdate.jsp?idx="+diary_idx;
+	});
   </script>
 
 </body>
