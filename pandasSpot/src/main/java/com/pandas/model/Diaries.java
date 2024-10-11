@@ -15,7 +15,7 @@ import lombok.Setter;
 public class Diaries {
 
     // 일기 인덱스 
-    private Double diary_idx;
+    private int diary_idx;
 
     // 글 제목 
     private String diary_title;
@@ -43,6 +43,15 @@ public class Diaries {
 		this.created_at = created_at;
 		this.mem_id = mem_id;
 	}
+
+	public Diaries(int diary_idx, String diary_title, String diary_content) {
+		super();
+		this.diary_idx = diary_idx;
+		this.diary_title = diary_title;
+		this.diary_content = diary_content;
+	}
+
+	
     
     
     

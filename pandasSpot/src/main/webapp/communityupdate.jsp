@@ -1,3 +1,4 @@
+<%@page import="com.pandas.model.CommunityDAO"%>
 <%@page import="com.pandas.model.Communities"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -44,6 +45,13 @@
 </head>
 <body>
 	<jsp:include page="header.jsp" />
+	<% 
+	
+	int idx = Integer.parseInt( request.getParameter("idx") );
+	System.out.println("인덱스 번호는 " + idx);
+	CommunityDAO dao = new CommunityDAO();
+	Communities comm = dao.getCommunities(idx);
+	%>
 
 	<div class="content-container" data-aos="fade">
 		<div class="post-container">
@@ -52,16 +60,18 @@
 				<form action="CommunityUpdate">
 					<table class="post_table">
 					<tr><td colspan="2" id="post_title_td"><h2 class="post-title">자유게시판</h2></td></tr>
+					<tr><td><input class="hidden post_text_input" type="text" id="subject" name="diary_idx"  value="<%=comm.getComm_idx() %>" required></td></tr>
+						
 						<tr>
 							<td class="td_left">
 							<label class="image_label" for="subject">제목</label> </td>
-							<td class="td_right"><input class="post_text_input" type="text" id="subject" name="comm_title" required></td>
+							<td class="td_right"><input class="post_text_input" type="text" id="subject" name="comm_title" value="<%=comm.getComm_title() %>" required></td>
 							<!-- 원본 제목 삽입 -->
 						</tr>
 						<tr>
 							<td class="td_left">
 							<label class="image_label" for="post_textarea">내용</label></td>
-							<td class="td_right"><textarea class="post_text_input" name="comm_content" id="post_textarea" cols="15" rows="13" class="post-input" placeholder="질문할 내용 입력" required></textarea>
+							<td class="td_right"><textarea class="post_text_input" name="comm_content" id="post_textarea" cols="15" rows="13" class="post-input" placeholder="질문할 내용 입력" required><%=comm.getComm_content()%></textarea>
 							<!-- 원본 내용 삽입 -->
 							</td>
 						</tr>
@@ -71,7 +81,7 @@
 							<td class="td_right">
 							<label> 
 								<img src="${contextPath}/resources/icon/add (1).png" alt="이미지 추가하기" id="input-image" />
-								<input type="file" id="mem_profile_img" name="comm_file">
+								<input type="file" id="mem_profile_img" name="comm_file" value=<%=comm.getComm_file() %>>
 							</label>
 							<!-- 원본 파일 삽입 -->
 							</td>

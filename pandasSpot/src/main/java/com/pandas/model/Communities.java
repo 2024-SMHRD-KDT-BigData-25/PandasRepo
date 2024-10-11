@@ -15,7 +15,7 @@ import lombok.Setter;
 public class Communities {
 
     // 글 인덱스 
-    private Double comm_idx;
+    private int comm_idx;
 
     // 글 제목 
     private String comm_title;
@@ -38,12 +38,12 @@ public class Communities {
     // 글 작성자 
     private String mem_id;
 
-	public Communities(String comm_title, String comm_content, String comm_file, String mem_id) {
+	public Communities(String comm_title, String comm_content, String comm_file, int comm_idx) {
 		super();
 		this.comm_title = comm_title;
 		this.comm_content = comm_content;
 		this.comm_file = comm_file;
-		this.mem_id = mem_id;
+		this.comm_idx = comm_idx;
 	}
 
 	public Communities(String comm_title, String comm_content, String comm_file, String created_at, String mem_id) {

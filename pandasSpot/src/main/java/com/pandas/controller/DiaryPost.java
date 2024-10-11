@@ -33,7 +33,7 @@ public class DiaryPost extends HttpServlet {
 		DiaryDAO dao = new DiaryDAO();
 		int res = dao.DiaryPost(postDiary);
 		
-		if (res != 1) {
+		if (res >0) {
 			System.out.println("Study Log 게시물 등록!");
 			response.sendRedirect("DiaryList.jsp");
 		}
