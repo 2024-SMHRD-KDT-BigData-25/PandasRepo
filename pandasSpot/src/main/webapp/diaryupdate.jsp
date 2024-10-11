@@ -50,7 +50,7 @@
 		<div class="post-container">
 			
 			<div>
-				<form action="${ctx }/diaryupdate" >
+				<form action="${contextPath }/diaryupdate" >
 					<input type="hidden" id="state" name="state" value="1" />
 					<table class="post_table">
 					<tr><td colspan="2" id="post_title_td"><h2 class="post-title">Study Log</h2></td></tr>
@@ -132,9 +132,6 @@
 		$(".cancelBtn").on( "click", function( event ) {
 			history.back();
 		});
-		
-		
-		
 	</script>
 </body>
 </html>
