@@ -8,15 +8,31 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import com.pandas.database.SqlSessionManager;
 
 public class StudyDAO {
+	
 	SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSessionFactory();
 
-	
 	public List<Studies> getList() {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		List<Studies> list = sqlSession.selectList("SpotMapper.StudyList");
 		sqlSession.close();
 		return list;
 	}
+	
+	// 페이징 부분
+	public List<Studies> getList(int page) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		List<Studies> list = sqlSession.selectList("jwMapper.pageStudy", page);
+		sqlSession.close();
+		return list;
+	}
+
+	public int getStudyLength() {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int res = sqlSession.selectOne("jwMapper.getStudyLength");
+		sqlSession.close();
+		return res;
+}
+	//
 	
 	public int Studing(Studies m) {
 		SqlSession session = sqlSessionFactory.openSession(true);
