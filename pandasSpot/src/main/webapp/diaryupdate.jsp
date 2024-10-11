@@ -1,3 +1,5 @@
+<%@page import="com.pandas.model.Diaries"%>
+<%@page import="com.pandas.model.DiaryDAO"%>
 <%@page import="com.pandas.model.Communities"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -45,25 +47,32 @@
 <body>
 	<jsp:include page="header.jsp" />
 
-
+	<% 
+	
+		int idx = Integer.parseInt( request.getParameter("idx") );
+		System.out.println("인덱스 번호는 " + idx);
+		DiaryDAO dao = new DiaryDAO();
+	  	Diaries diary = dao.getDiary(idx);
+	%>
 	<div class="content-container" data-aos="fade">
 		<div class="post-container">
 			
 			<div>
-				<form action="${ctx }/diaryupdate" >
+				<form action="${contextPath }/diaryupdate" method="post">
 					<input type="hidden" id="state" name="state" value="1" />
 					<table class="post_table">
 					<tr><td colspan="2" id="post_title_td"><h2 class="post-title">Study Log</h2></td></tr>
+					<tr><td><input class="hidden post_text_input" type="text" id="subject" name="diary_idx"  value="<%=diary.getDiary_idx() %>" required></td></tr>
 						<tr>
 							<td class="td_left">
 							<label class="image_label" for="subject">제목</label> </td>
-							<td class="td_right"><input class="post_text_input" type="text" id="subject" name="diary_title"  value="${diaries.title }" required></td>
+							<td class="td_right"><input class="post_text_input" type="text" id="subject" name="diary_title"  value="<%=diary.getDiary_title() %>" required></td>
 							<!-- 원본 제목 삽입 -->
 						</tr>
 						<tr>
 							<td class="td_left">
 							<label class="image_label" for="post_textarea">내용</label></td>
-							<td class="td_right"><textarea class="post_text_input" name="diary_content" id="post_textarea" cols="15" rows="13" class="post-input" placeholder="오늘의 일기" required>${diaries.content }</textarea>
+							<td class="td_right"><textarea class="post_text_input" name="diary_content" id="post_textarea" cols="15" rows="13" class="post-input" placeholder="오늘의 일기" required><%=diary.getDiary_content() %></textarea>
 							<!-- 원본 내용 삽입 -->
 							</td>
 						</tr>
@@ -100,28 +109,6 @@
 	<script src="${contextPath}/resources/js/main.js"></script>
 
 	<script> 
-		document.getElementById('mem_profile_img').addEventListener('change', handleImageChange);
-	
-		function handleImageChange(event) {
-		   const file = event.target.files[0]; // 파일 선택
-	
-		   if (file) {
-		      const reader = new FileReader(); // FileReader 생성
-	
-		      // 파일을 읽은 후 호출되는 함수
-		      reader.onload = function(e) {
-		         const imageUrl = e.target.result; // Base64로 인코딩된 이미지 데이터
-		         const image_preview = document.getElementById('input-image');
-		         image_preview.src = imageUrl; // 이미지의 src 속성 변경
-		         image_preview.style.width = 'auto';
-		      };
-	
-		      reader.readAsDataURL(file); // 파일을 Base64 데이터 URL로 읽음
-		   } else {
-		      document.getElementById('input-image').src = "icon/add (1).png"; // 파일이 없으면 이미지 초기화
-		      document.getElementById('input-image').style.width = '30px'; // 파일이 없으면 이미지 초기화
-		   }
-		}
 		
 		var result = "${result }";
 		
@@ -132,9 +119,6 @@
 		$(".cancelBtn").on( "click", function( event ) {
 			history.back();
 		});
-		
-		
-		
 	</script>
 </body>
 </html>

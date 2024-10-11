@@ -240,7 +240,9 @@ body {
 	display: felx;
 }
 
-
+.display_inline {
+	display: inline;	
+}
 
 #mem_id {
 	width: 220px;
@@ -288,11 +290,11 @@ body {
 }
 
 .table-header {
-	border-bottom: 1px solid #966f47;
+	border-bottom: 3px solid #966f47;
 }
 
 .cell_padding {
-	padding: 1em 0 1em 0;
+	padding: 1em 0 20px 0;
 }
 
 header {
@@ -373,6 +375,7 @@ header {
     display: none;
 }
 
+<<<<<<< HEAD
 
 #main_my_info {
 	margin-top: 30px;
@@ -568,4 +571,8 @@ header {
 
 .input_disable {
 	color: lightgray;
+}
+
+.hidden {
+	display: none;
 }

@@ -1,6 +1,8 @@
 package com.pandas.controller;
 
 import java.io.IOException;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,9 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.pandas.model.Members;
 import com.pandas.model.QuestionDAO;
 import com.pandas.model.Questions;
+
 
 
 @WebServlet("/QuestionPost")
@@ -18,19 +23,24 @@ public class QuestionPost extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setCharacterEncoding("UTF-8");
-		String q_title = request.getParameter("q_title");
-		String q_content = request.getParameter("q_content");
-		String q_file = request.getParameter("q_file");
-		String q_workbook = request.getParameter("q_workbook");
-		
+		ServletContext context = request.getServletContext();
+		String uploadPath = context.getRealPath("upload");
+		int maxSize = 500 * 1024 * 1024; // 5MB
+
 		HttpSession session = request.getSession();
 		Members member = (Members)session.getAttribute("member");
 		String mem_id = member.getMem_id();
+		// (request, 파일 저장 경로, 최대 파일 크기(용량), 인코딩 타입 지정, 파일 이름 생성 규칙)
+		MultipartRequest multi = new MultipartRequest(request, uploadPath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
+
+		// 이미지는 이미 저정이 되어있음
+		String q_file = multi.getFilesystemName("q_file");
+		
+		String q_title = multi.getParameter("q_title");
+		String q_content = multi.getParameter("q_content");
+		String q_workbook = multi.getParameter("q_workbook");
 		
 		Questions postQues = new Questions(q_title, q_content, q_file, mem_id, q_workbook);
-		
 		QuestionDAO dao = new QuestionDAO();
 		int res = dao.QuestionPost(postQues);
 		

@@ -37,7 +37,7 @@
 		</table>
 		<div id="page_list"></div>
 		<div>
-		<button class="btn board_btn" id="to_write_btn" onclick="location.href='diarypost.jsp'">글작성</button>
+		<button class="btn board_btn" id="to_write_btn" onclick="location.href='recordpost.jsp'">글작성</button>
 		<button class="btn chat_btn board_btn"
 			onclick="window.open('chat.jsp','채팅방','width=500, height=700, top=50, left=500')'">채팅하기</button>
 		</div>

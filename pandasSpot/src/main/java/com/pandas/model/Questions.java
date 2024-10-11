@@ -15,7 +15,7 @@ import lombok.Setter;
 public class Questions {
 
     // 질의 인덱스 
-    private Double q_idx;
+    private int q_idx;
 
     // 질의 제목 
     private String q_title;
@@ -27,7 +27,7 @@ public class Questions {
     private String q_file;
 
     // 작성 일자 
-    private Date created_at;
+    private String created_at;
 
     // 질의 작성자 
     private String mem_id;
@@ -35,7 +35,7 @@ public class Questions {
     // 출처 문제집 
     private String q_workbook;
 
-	public Questions(String q_title, String q_content, String q_file, Date created_at, String mem_id,
+	public Questions(String q_title, String q_content, String q_file, String created_at, String mem_id,
 			String q_workbook) {
 		super();
 		this.q_title = q_title;
@@ -54,6 +54,17 @@ public class Questions {
 		this.mem_id = mem_id;
 		this.q_workbook = q_workbook;
 	}
+
+	public Questions(int q_idx, String q_title, String q_content, String q_file, String q_workbook) {
+		super();
+		this.q_idx = q_idx;
+		this.q_title = q_title;
+		this.q_content = q_content;
+		this.q_file = q_file;
+		this.q_workbook = q_workbook;
+	}
+	
+	
     
     
     

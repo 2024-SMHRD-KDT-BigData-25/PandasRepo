@@ -37,8 +37,7 @@
 				<h3 class="info_content_single inline_block" id="member_nick"><%=member.getMem_nick()%>
 				</h3>
 				<button id="info_edit_btn" class="img-button">
-					<img src="${contextPath}/resources/icon/edit.png"
-						alt="Image Button">
+					<img src="${contextPath}/resources/icon/edit.png" alt="Image Button">
 				</button>
 				<h3 class="info_content_single"><%=member.getMem_school_name()%>
 				</h3>

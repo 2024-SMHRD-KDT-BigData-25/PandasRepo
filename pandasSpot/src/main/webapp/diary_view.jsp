@@ -1,17 +1,17 @@
 <%@page import="com.pandas.model.Diaries"%>
 <%@page import="com.pandas.model.DiaryDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <title>Study SPOT</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<link rel="stylesheet" href="css/aos.css">
-<link rel="stylesheet" href="css/jwStyle.css">
-<link rel="stylesheet" href="css/eyStyle.css">
 
 </head>
 <body>
@@ -22,15 +22,12 @@
 <!-- 게시글 부분 -->
 
 	<%
-		String idxString = request.getParameter("idx");
 	
-		System.out.println("idx 번호는 " + idxString);	
-
-	 	int idx = Integer.parseInt(idxString);
+	 	int idx = Integer.parseInt(request.getParameter("idx"));
+		System.out.println("뷰 idx 번호는 " + idx);	
 		DiaryDAO dao = new DiaryDAO();
 	  	Diaries diary = dao.getDiary(idx);
 	%> 
-	
 	
 		<!-- 게시글 부분 -->
 
@@ -46,6 +43,7 @@
 					<th class="cell_padding"><%=diary.getCreated_at() %></th>
 					<th class="cell_padding"><%=diary.getDiary_title() %></th>
 					<th class="cell_padding"><%=diary.getMem_id() %></th>
+					<th class="hidden" id="diary_idx"><%=diary.getDiary_idx() %></th>
 				</tr>
 			</thead>
 			<tbody id="list">
@@ -54,12 +52,16 @@
 		</table>
 	</div>
 		<div style="width: 80%; max-width: 800px; display: flex; justify-content: space-between; margin: 0 auto; margin-bottom: 10px; margin-top : -15px">
-			<button class="btn">목록</button>
+			<button class="btn" id="to_list_btn">목록</button>
+			<%if (member.getMem_id().equals(diary.getMem_id())) {%>
+				<button class="btn" id="to_update_btn">수정</button>
+			<% } %>
+
 				<div style="margin-top: 8px">좋아요(int)</div>	
 			</div>
 				<div class="form-group">
 					<div class="main">
-						<span>스터디로그는 사진 따윈 없어 공부나 하렴
+						<span>
  						<%=diary.getDiary_content() %></span>
 					</div>
 				</div>
@@ -82,29 +84,39 @@
 			</div>
 
 
-  <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/jquery-ui.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/jquery.countdown.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/bootstrap-datepicker.min.js"></script>
-  <script src="js/swiper.min.js"></script>
-  <script src="js/aos.js"></script>
+  <script src="${contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+  <script src="${contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="${contextPath}/resources/js/jquery-ui.js"></script>
+  <script src="${contextPath}/resources/js/popper.min.js"></script>
+  <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+  <script src="${contextPath}/resources/js/owl.carousel.min.js"></script>
+  <script src="${contextPath}/resources/js/jquery.stellar.min.js"></script>
+  <script src="${contextPath}/resources/js/jquery.countdown.min.js"></script>
+  <script src="${contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
+  <script src="${contextPath}/resources/js/bootstrap-datepicker.min.js"></script>
+  <script src="${contextPath}/resources/js/swiper.min.js"></script>
+  <script src="${contextPath}/resources/js/aos.js"></script>
 
-  <script src="js/picturefill.min.js"></script>
-  <script src="js/lightgallery-all.min.js"></script>
-  <script src="js/jquery.mousewheel.min.js"></script>
+  <script src="${contextPath}/resources/js/picturefill.min.js"></script>
+  <script src="${contextPath}/resources/js/lightgallery-all.min.js"></script>
+  <script src="${contextPath}/resources/js/jquery.mousewheel.min.js"></script>
 
-  <script src="js/main.js"></script>
+  <script src="${contextPath}/resources/js/main.js"></script>
   
   <script>
     $(document).ready(function(){
       $('#lightgallery').lightGallery();
     });
+    
+    $("#to_list_btn").on( "click", function( event ) {
+		location.href = "${contextPath}/DiaryList.jsp";
+	});
+
+    $("#to_update_btn").on( "click", function( event ) {
+    	var diary_idx = document.getElementById("diary_idx").innerText;
+		location.href = "${contextPath}/diaryupdate.jsp?idx="+diary_idx;
+	});
+		
   </script>
 
 </body>

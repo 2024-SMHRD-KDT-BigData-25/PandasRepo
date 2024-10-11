@@ -27,12 +27,12 @@
 		<table class="content-list-table">
 			<thead class="table-content">
 				<tr class="table-header">
-					<th class="cell_padding">번호</th>
-					<th class="cell_padding">제목</th>
-					<th class="cell_padding">작성자</th>
-					<th class="cell_padding">작성일</th>
-					<th class="red-color cell_padding">♥</th>
-					<th class="cell_padding">조회수</th>
+					<th class="cell_padding table_idx">번호</th>
+					<th class="cell_padding table_idx">제목</th>
+					<th class="cell_padding table_writer">작성자</th>
+					<th class="cell_padding table_date">작성일</th>
+					<th class="red-color cell_padding table_likes">♥</th>
+					<th class="cell_padding table_views">조회수</th>
 				</tr>
 			</thead>
 			<tbody id="list">
@@ -40,7 +40,7 @@
 			</tbody>
 			
 		</table>
-	<div id="table_footer"><div id="page_list"></div><button class="btn board_btn" id="to_write_btn" onclick="location.href='communitypost.jsp'">글작성</button></div>
+	<div id="table_footer"><div id="page_list"></div><button class="btn board_btn" id="to_write_btn" onclick="location.href='communitypost.jsp'" style="float: right">글작성</button></div>
 	</div>
 </div>
 
@@ -56,6 +56,7 @@
 	<script src="${contextPath}/resources/js/bootstrap-datepicker.min.js"></script>
 	<script src="${contextPath}/resources/js/swiper.min.js"></script>
 	<script src="${contextPath}/resources/js/aos.js"></script>
+	<script src="${contextPath}/resources/js/moment.js"></script>
 
 	<script src="${contextPath}/resources/js/picturefill.min.js"></script>
 	<script src="${contextPath}/resources/js/lightgallery-all.min.js"></script>
@@ -130,12 +131,12 @@
 		for(var board of data){
 		
 		  html += "<tr class='board_line'>"
-	      html += "<td class='text-black'>"+board.comm_idx+"</td>"
-	      html += "<td class='text-black'><a class='table_a_tags' href='community_view.jsp?idx="+board.comm_idx+"'>"+board.comm_title+"</a></td>"
-	      html += "<td class='text-black'><a>"+board.mem_id+"</a></td>"
-	      html += "<td class='text-black'>"+board.created_at+"</td>"
-	      html += "<td class='text-black'>"+board.comm_likes+"</td>"
-	      html += "<td class='text-black'>"+board.comm_views+"</td>"
+	      html += "<td class='text-black board_content_line'>"+board.comm_idx+"</td>"
+	      html += "<td class='text-black board_content_line td_title'><a class='table_a_tags' href='community_view.jsp?idx="+board.comm_idx+"'>"+board.comm_title+"</a></td>"
+	      html += "<td class='text-black board_content_line'><a>"+board.mem_id+"</a></td>"
+	      html += "<td class='text-black board_content_line'>"+board.created_at+"</td>"
+	      html += "<td class='text-black board_content_line'>"+board.comm_likes+"</td>"
+	      html += "<td class='text-black board_content_line'>"+board.comm_views+"</td>"
 	      //html += "<td><button class='btn btn-primary py-2 px-4 text-white' onclick='deleteBoard("+board.comm_idx+")'>삭제</button></td>"
 	      html += "</tr>"
 	    }
