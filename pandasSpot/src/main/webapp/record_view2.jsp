@@ -2,6 +2,10 @@
 <%@page import="com.pandas.model.StudyDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +13,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <link rel="stylesheet" href="css/aos.css">
-  <link rel="stylesheet" href="css/jwStyle.css">
-  <link rel="stylesheet" href="css/eyStyle.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/aos.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/eyStyle.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/jwStyle.css">
 
 </head>
 <body>
@@ -33,12 +37,10 @@
 
 
 	<!-- 게시글 부분 -->
-	<div data-aos="fade">
+	<div class="content-container" data-aos="fade">
+			<div data-aos="fade">
 		<h2 class="join-title before-table">공부 기록</h2>
 	</div>
-	
-	<div class="content-container" data-aos="fade">
-		
 		<table class="content-list-table" >
 			<thead class="table-content">
 				<tr class="table-header">

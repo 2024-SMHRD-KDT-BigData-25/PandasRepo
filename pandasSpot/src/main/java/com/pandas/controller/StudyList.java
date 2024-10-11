@@ -21,11 +21,9 @@ public class StudyList extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("StudyList 호출");
-		StudyDAO dao = new StudyDAO();
-		List<Studies> list = dao.getList();
-		for (Studies c : list) {
-			System.out.println(c.getStudy_photo());
-		}
+		StudyDAO dao = new StudyDAO();	
+		int page = Integer.parseInt(request.getParameter("page"));
+		List<Studies> list = dao.getList(page);
 		//JavaObject => JSONObject(json 형식의 객체구조) => GSON
 		Gson gson = new Gson();
 		String json = gson.toJson(list);
