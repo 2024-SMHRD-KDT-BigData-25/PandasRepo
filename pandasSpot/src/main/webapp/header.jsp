@@ -5,14 +5,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
-
+<head>
 <link rel="stylesheet" href="${contextPath}/resources/css/nyStyle.css">
-<link rel="stylesheet" href="${contextPath}/resources/css/style.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/aos.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/ecStyle.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/eyStyle.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/nyStyle.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/jwStyle.css">
+</head>
 <header role="banner">
 	<% 
 		
