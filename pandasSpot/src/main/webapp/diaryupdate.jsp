@@ -49,10 +49,10 @@
 
 	<% 
 	
-	int idx = Integer.parseInt( request.getParameter("idx") );
-	System.out.println("인덱스 번호는 " + idx);
-	DiaryDAO dao = new DiaryDAO();
-  	Diaries diary = dao.getDiary(idx);
+		int idx = Integer.parseInt( request.getParameter("idx") );
+		System.out.println("인덱스 번호는 " + idx);
+		DiaryDAO dao = new DiaryDAO();
+	  	Diaries diary = dao.getDiary(idx);
 	%>
 	<div class="content-container" data-aos="fade">
 		<div class="post-container">

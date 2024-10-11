@@ -2,6 +2,9 @@
 <%@page import="com.pandas.model.QuestionDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +12,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<link rel="stylesheet" href="css/aos.css">
-	<link rel="stylesheet" href="css/jwStyle.css">
-	<link rel="stylesheet" href="css/eyStyle.css">
 
 </head>
 <body>
@@ -19,16 +19,14 @@
 <%@ include file="header.jsp" %>
 
 	<%
-		String idxString = request.getParameter("idx");
-	
-		System.out.println("idx 번호는 " + idxString);	
-
-	 	int idx = Integer.parseInt(idxString);
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		System.out.println("뷰 idx 번호는 " + idx);
 		QuestionDAO dao = new QuestionDAO();
 	  	Questions question = dao.getQuestion(idx);
 	%> 
 
 	<!-- 게시글 부분 -->
+	<div class="hidden" id="q_idx"><%= idx %></div>
 	<div data-aos="fade">
 		<h2 class="join-title before-table">Q & A</h2>
 	</div>
@@ -49,7 +47,10 @@
 		</table>
 	</div>
 		<div style="width: 80%; max-width: 800px; display: flex; justify-content: space-between; margin: 0 auto; margin-bottom: 10px; margin-top : -15px">
-			<button class="btn">목록</button>
+			<button class="btn" id="to_list_btn">목록</button>
+			<%if (member.getMem_id().equals(question.getMem_id())) {%>
+				<button class="btn" id="to_update_btn">수정</button>
+			<% } %>
 			<div style="margin-top: 8px">문제집: <%=question.getQ_workbook() %></div>
 			<div></div>
 		</div>
@@ -79,29 +80,38 @@
 			</div>
 
 
-  <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/jquery-ui.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/jquery.countdown.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/bootstrap-datepicker.min.js"></script>
-  <script src="js/swiper.min.js"></script>
-  <script src="js/aos.js"></script>
+ <script src="${contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery-ui.js"></script>
+	<script src="${contextPath}/resources/js/popper.min.js"></script>
+	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+	<script src="${contextPath}/resources/js/owl.carousel.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.stellar.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.countdown.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="${contextPath}/resources/js/bootstrap-datepicker.min.js"></script>
+	<script src="${contextPath}/resources/js/swiper.min.js"></script>
+	<script src="${contextPath}/resources/js/aos.js"></script>
 
-  <script src="js/picturefill.min.js"></script>
-  <script src="js/lightgallery-all.min.js"></script>
-  <script src="js/jquery.mousewheel.min.js"></script>
+	<script src="${contextPath}/resources/js/picturefill.min.js"></script>
+	<script src="${contextPath}/resources/js/lightgallery-all.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.mousewheel.min.js"></script>
 
-  <script src="js/main.js"></script>
+	<script src="${contextPath}/resources/js/main.js"></script>
   
   <script>
     $(document).ready(function(){
       $('#lightgallery').lightGallery();
     });
+    
+    $("#to_list_btn").on( "click", function( event ) {
+		location.href = "${contextPath}/QuestionList.jsp";
+	});
+
+    $("#to_update_btn").on( "click", function( event ) {
+    	var diary_idx = document.getElementById("q_idx").innerText;
+		location.href = "${contextPath}/questionupdate.jsp?idx="+diary_idx;
+	});
   </script>
 
 </body>

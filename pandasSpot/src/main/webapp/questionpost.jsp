@@ -19,7 +19,7 @@
 		<div class="post-container">
 			
 			<div>
-				<form action="QuestionPost">
+				<form action="QuestionPost"  enctype="multipart/form-data" method="post">
 					<table class="post_table">
 					<tr><td colspan="2" id="post_title_td"><h2 class="post-title">Q & A</h2></td></tr>
 						<tr>
