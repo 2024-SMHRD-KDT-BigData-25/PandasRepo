@@ -50,32 +50,31 @@
 		<div class="post-container">
 			
 			<div>
-				<form action="DiaryUpdate">
+				<form action="${ctx }/diaryupdate" >
+					<input type="hidden" id="state" name="state" value="1" />
 					<table class="post_table">
 					<tr><td colspan="2" id="post_title_td"><h2 class="post-title">Study Log</h2></td></tr>
 						<tr>
 							<td class="td_left">
 							<label class="image_label" for="subject">제목</label> </td>
-							<td class="td_right"><input class="post_text_input" type="text" id="subject" name="diary_title" required></td>
+							<td class="td_right"><input class="post_text_input" type="text" id="subject" name="diary_title"  value="${diaries.title }" required></td>
 							<!-- 원본 제목 삽입 -->
 						</tr>
 						<tr>
 							<td class="td_left">
 							<label class="image_label" for="post_textarea">내용</label></td>
-							<td class="td_right"><textarea class="post_text_input" name="diary_content" id="post_textarea" cols="15" rows="13" class="post-input" placeholder="오늘의 일기" required></textarea>
+							<td class="td_right"><textarea class="post_text_input" name="diary_content" id="post_textarea" cols="15" rows="13" class="post-input" placeholder="오늘의 일기" required>${diaries.content }</textarea>
 							<!-- 원본 내용 삽입 -->
 							</td>
 						</tr>
 						<tr>
 						<td colspan='2' class="btns_td">
-						<input type="submit" value="수정" class="post-input-btn" > 
-						<input type="button" value="취소" class="post-input-btn" onclick="history.back();">
+						<button type="submit" class="post-input-btn" >수정</button> 
+						<button type="button" class="post-input-btn cancelBtn" >취소</button>
 						</td>
 						</tr>
 					</table>
-						
 					<div class="post-display-block content_textarea_div" align="center">
-							
 						
 					</div>
 				</form>
@@ -123,6 +122,19 @@
 		      document.getElementById('input-image').style.width = '30px'; // 파일이 없으면 이미지 초기화
 		   }
 		}
+		
+		var result = "${result }";
+		
+		if( result != "" ) {
+			alert( result );
+		}
+		
+		$(".cancelBtn").on( "click", function( event ) {
+			history.back();
+		});
+		
+		
+		
 	</script>
 </body>
 </html>
