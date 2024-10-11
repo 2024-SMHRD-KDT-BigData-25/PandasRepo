@@ -19,12 +19,9 @@ public class QuestionList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("QuestionList 호출");
 		QuestionDAO dao = new QuestionDAO();
-		List<Questions> list = dao.getList();
-		for (Questions c : list) {
-			System.out.println(c.getQ_title());
-		}
+		int page = Integer.parseInt(request.getParameter("page"));
+		List<Questions> list = dao.getList(page);
 		//JavaObject => JSONObject(json 형식의 객체구조) => GSON
 		Gson gson = new Gson();
 		String json = gson.toJson(list);
