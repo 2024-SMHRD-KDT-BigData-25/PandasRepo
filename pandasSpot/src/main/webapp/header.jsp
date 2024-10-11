@@ -7,6 +7,8 @@
 
 <link rel="stylesheet" href="${contextPath}/resources/css/ecStyle.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/eyStyle.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/nyStyle.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/jwStyle.css">
 <header role="banner">
 	<% 
 		
