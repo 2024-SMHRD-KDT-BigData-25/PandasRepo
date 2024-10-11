@@ -1,3 +1,4 @@
+<%@page import="com.pandas.model.Members"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
@@ -7,27 +8,26 @@
 <head>
 <title>Study SPOT</title>
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="${contextPath}/resources/css/aos.css">
-<link rel="stylesheet" href="${contextPath}/resources/css/eyStyle.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 </head>
 <body>
 	<jsp:include page="header.jsp" />
-
+<%
+	Members member = (Members)session.getAttribute("member");
+%>
 	<section id="main_my_info">
 		<div class="info_container">
 			<div class="cropping info_content">
 				<img id="profile_img" alt="프로필 사진"
-					src="upload/<%=member.getMem_profile_img()%>">
+					src="${contextPath}/upload/<%= member.getMem_profile_img()%>">
 			</div>
 			<div class="info_content">
 				<h3 class="info_content_single inline_block" id="member_nick"><%=member.getMem_nick()%>
 				</h3>
 				<button id="edit_btn" class="img-button"
 					onclick="mypageButtonClick()">
-					<img src="icon/edit.png" alt="Image Button">
+					<img src="${contextPath}/resources/icon/edit.png" alt="Image Button">
 				</button>
 			</div>
 			<div class="info_content">
@@ -47,7 +47,7 @@
 		</div>
 		<div class="info_content">
 			<button id="chat_btn" class="img-button" onclick="chatButtonClick()">
-				<img id="chat_img" src="icon/chat.png" alt="Image Button">
+				<img id="chat_img" src="${contextPath}/resources/icon/chat.png" alt="Image Button">
 			</button>
 		</div>
 	</section>
