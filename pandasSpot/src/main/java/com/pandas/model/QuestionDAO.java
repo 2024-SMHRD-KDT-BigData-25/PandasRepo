@@ -11,6 +11,13 @@ public class QuestionDAO {
 	
 	SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSessionFactory();
 	
+	public int getQuestionLength() {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int res = sqlSession.selectOne("ecMapper.getQuestionLength");
+		sqlSession.close();
+		return res;
+	}
+	
 	public List<Questions> getList() {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		List<Questions> list = sqlSession.selectList("SpotMapper.QuestionList");
@@ -18,6 +25,13 @@ public class QuestionDAO {
 		return list;
 	}
 
+	public List<Questions> getList(int page) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		List<Questions> list = sqlSession.selectList("ecMapper.pageQuestion", page);
+		sqlSession.close();
+		return list;
+	}
+	
 // SpotMapper에서 getQuestion 호출
 		public Questions getQuestion(int idx) {
 			SqlSession sqlSession = sqlSessionFactory.openSession(true);

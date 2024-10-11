@@ -17,4 +17,36 @@
 	<select id="getDiaryLength" resultType="int">
 		select count(*) from diaries
 	</select>
+	
+	<select id="pageComm" parameterType="int"
+		resultType="com.pandas.model.Communities">
+		SELECT * FROM (
+		SELECT A.*, ROWNUM AS RNUM
+		FROM (
+		SELECT *
+		FROM communities
+		ORDER BY COMM_IDX ASC
+		) A
+		)
+		WHERE RNUM between ((#{pages} - 1)*15+1) and #{pages}*15
+	</select>
+	<select id="getCommLength" resultType="int">
+		select count(*) from communities
+	</select>
+	
+	<select id="pageQuestion" parameterType="int"
+		resultType="com.pandas.model.Questions">
+		SELECT * FROM (
+		SELECT A.*, ROWNUM AS RNUM
+		FROM (
+		SELECT *
+		FROM questions
+		ORDER BY Q_IDX ASC
+		) A
+		)
+		WHERE RNUM between ((#{pages} - 1)*15+1) and #{pages}*15
+	</select>
+	<select id="getQuestionLength" resultType="int">
+		select count(*) from questions
+	</select>
 </mapper>

@@ -19,12 +19,9 @@ public class CommunityList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("CommunityList 호출");
 		CommunityDAO dao = new CommunityDAO();
-		List<Communities> list = dao.getList();
-		for (Communities c : list) {
-			System.out.println(c.getComm_title());
-		}
+		int page = Integer.parseInt(request.getParameter("page"));
+		List<Communities> list = dao.getList(page);
 		//JavaObject => JSONObject(json 형식의 객체구조) => GSON
 		Gson gson = new Gson();
 		String json = gson.toJson(list);

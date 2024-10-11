@@ -14,41 +14,44 @@
 <body>
 	<jsp:include page="header.jsp" />
 	<div class="content-container" data-aos="fade">
-		<table>
-			<tr>
-				<td colspan="2">
-					<h2 class="join-title">Login</h2>
-				</td>
-			</tr>
-			<!-- login : 은유 -->
-			<tr>
-				<td colspan="2"><input type="text" id="login_id" name="mem_id"
-					class="join-input" placeholder="아이디를 입력하세요" /></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="password" id="login_pw"
-					name="mem_pw" class="join-input" placeholder="비밀번호를 입력하세요" /></td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<div class="message" id="login_message"></div>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<div class="login_join_message">
-						<h4>
-							가입이 필요하신가요? <a class="" href="join.jsp">SPOT 가입하기</a>
-						</h4>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<button type="button" id="loginSubmitBtn" class="loginBtn">Login</button>
-				</td>
-			</tr>
-		</table>
+		<form action="${contextPath }/Login" id="loginForm" method="post">
+			<table>
+				<tr>
+					<td colspan="2">
+						<h2 class="join-title">Login</h2>
+					</td>
+				</tr>
+				<!-- login : 은유 -->
+				<tr>
+					<td colspan="2"><input type="text" id="login_id" name="mem_id"
+						class="join-input" placeholder="아이디를 입력하세요" /></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="password" id="login_pw"
+						name="mem_pw" class="join-input" placeholder="비밀번호를 입력하세요" /></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div class="message" id="login_message"></div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div class="login_join_message">
+							<h4>
+								가입이 필요하신가요? <a class="" href="join.jsp">SPOT 가입하기</a>
+							</h4>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<button type="button" id="loginSubmitBtn" class="loginBtn">Login</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+		
 
 	</div>
 
@@ -76,11 +79,6 @@
 		
 		if( errorMsg != "" ) {
 			alert( errorMsg );  
-		} else {
-			if( state == 1 ) {
-				alert( "로그인 성공!" );
-				location.href = "${contextPath }/main";
-			} 
 		}
 		
 
@@ -95,11 +93,16 @@
 		
 		$(document).keydown(function(event) {
 			if (event.keycode == 13) {
-				$(".loginBtn").click();
+				loginCheck();
 			}
 		});
-
-		$("#loginSubmitBtn").on("click", function(event) {
+		
+		$("#loginSubmitBtn").on( "click", function( event ) {
+			loginCheck();
+		});
+		
+		
+		function loginCheck() {
 			var text = "", state = 0;
 
 			if ($("#login_id").val() == "") {
@@ -111,8 +114,7 @@
 			}
 
 			if (state == 1) {
-				
-				return true;
+				$("#loginForm").submit();
 			} else {
 				var $target = $("#login_message");
 
@@ -122,7 +124,10 @@
 				$target.text(text);
 				return false;
 			}
-		});
+			
+		}
+		
+		
 	</script>
 
 </body>
