@@ -39,12 +39,12 @@ public class StudyPost extends HttpServlet {
 
         String tag = multi.getParameter("study_content");
         if (tag == null || tag.trim().isEmpty()) {
-            tag = "Nottag";
+            tag = " ";
         }
 
         String img = multi.getFilesystemName("study_photo");
         if (img == null) {
-            img = "Normal_image.jpg";
+            img = " ";
         }
 
 

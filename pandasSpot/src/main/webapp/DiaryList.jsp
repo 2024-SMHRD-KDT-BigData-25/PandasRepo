@@ -1,8 +1,10 @@
 <%@page import="com.pandas.model.DiaryDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -128,7 +130,7 @@
 		
 	      html += "<tr class='board_line'>"
 	      html += "<td class='text-black'>"+board.diary_idx+"</td>"
-	      html += "<td class='text-black'><a class='table_a_tags' href='study_view.jsp?idx="+board.diary_idx+"'>"+board.diary_title+"</a></td>"
+	      html += "<td class='text-black'><a class='table_a_tags' href='diary_view.jsp?idx="+board.diary_idx+"'>"+board.diary_title+"</a></td>"
 	      html += "<td class='text-black'><a>"+board.mem_id+"</a></td>"
 	      html += "<td class='text-black'>"+board.created_at+"</td>"
 	      //html += "<td><button class='btn btn-primary py-2 px-4 text-white' onclick='deleteBoard("+board.diary_idx+")'>삭제</button></td>"

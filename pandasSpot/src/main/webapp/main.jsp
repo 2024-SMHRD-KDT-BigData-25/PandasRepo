@@ -27,7 +27,7 @@
 				</h3>
 				<button id="edit_btn" class="img-button"
 					onclick="mypageButtonClick()">
-					<img src="${contextPath}/resources/icon/edit.png" alt="Image Button">
+					<img style ="height: 50px ; weight: 50px;" src="${contextPath}/resources/icon/edit.png" alt="Image Button">
 				</button>
 			</div>
 			<div class="info_content">

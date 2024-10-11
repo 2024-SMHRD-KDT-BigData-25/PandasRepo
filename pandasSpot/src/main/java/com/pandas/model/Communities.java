@@ -55,6 +55,13 @@ public class Communities {
 		this.mem_id = mem_id;
 	}
 	
+	public Communities(double comm_idx, Integer comm_likes) {
+		super();
+		this.comm_idx = comm_idx;
+		this.comm_likes = comm_likes;
+
+	}
+	
 	
     
     

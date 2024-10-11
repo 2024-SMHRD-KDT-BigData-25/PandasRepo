@@ -46,7 +46,7 @@
      }
      .author {
             text-align: right;
-            margin-top: 10px; /* Optional: add some space above the author name */
+            margin-top: 10px;
      }
    </style>
 </head>

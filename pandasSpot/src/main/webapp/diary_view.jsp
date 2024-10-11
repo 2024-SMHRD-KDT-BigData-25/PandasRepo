@@ -54,7 +54,7 @@
 		</table>
 	</div>
 		<div style="width: 80%; max-width: 800px; display: flex; justify-content: space-between; margin: 0 auto; margin-bottom: 10px; margin-top : -15px">
-			<button class="btn">목록</button>
+			<button class="jwbutton">목록</button>
 				<div style="margin-top: 8px">좋아요(int)</div>	
 			</div>
 				<div class="form-group">

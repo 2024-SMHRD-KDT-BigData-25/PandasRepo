@@ -54,7 +54,7 @@
 		</table>
 	</div>
 		<div style="width: 80%; max-width: 800px; display: flex; justify-content: space-between; margin: 0 auto; margin-bottom: 10px; margin-top : -15px">
-			<button class="btn" onclick="location.href='RecordList.jsp'">목록</button>
+			<button class="jwbtn" onclick="location.href='RecordList.jsp'">목록</button>
 			<div></div>
 			<div></div>	
 		</div>

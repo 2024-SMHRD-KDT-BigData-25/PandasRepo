@@ -2,7 +2,6 @@ package com.pandas.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.pandas.model.Communities;
-import com.pandas.model.CommunityDAO;
 import com.pandas.model.Diaries;
 import com.pandas.model.DiaryDAO;
 import com.pandas.model.Members;
@@ -53,7 +50,6 @@ public class DiaryUpdate extends HttpServlet {
 			}
 		}
 		request.setCharacterEncoding("UTF-8");
-		
 		
 		mav.addObject("state", state );
 		mav.addObject("result",resultStr );

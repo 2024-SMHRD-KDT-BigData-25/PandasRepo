@@ -11,4 +11,15 @@
 	<select id="getStudyLength" resultType="int">
 		select count(*) from STUDIES
 	</select>
+	
+
+    <update id="upCommLikes" parameterType="int">
+        UPDATE communities
+        SET comm_likes = comm_likes + 1
+        WHERE comm_idx = #{comm_idx}
+    </update>
+
+    <select id="getCommLikes" parameterType="int" resultType="int">
+        SELECT comm_likes FROM communities WHERE comm_idx = #{comm_idx}
+    </select>
 </mapper>
