@@ -12,37 +12,10 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link rel="stylesheet" href="${contextPath}/resouces/css/aos.css">
-<link rel="stylesheet" href="${contextPath}/resouces/css/eyStyle.css">
-<link rel="stylesheet" href="${contextPath}/resouces/css/ecStyle.css">
-<style type="text/css">
-.board_btn {
-	background-color: #C0C78C;
-	color: black;
-	display: flex;
-	padding : 5px;
-	margin: 10px auto 10px auto;
-	font-size: 100px;
-	height: 40px;
-}
-.board_container {
-width: 80%;
-}
+<link rel="stylesheet" href="${contextPath}/resources/css/aos.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/eyStyle.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/ecStyle.css">
 
-#table_footer {
-	text-align:center;
-}
-
-.text-black {
-	font-family:"받아쓰기";
-	text-align: center;
-}
-
-.table_a_tags {
-	text-decoration: none;
-	color: black;
-}
-</style>
 </head>
 <body>
 
@@ -74,24 +47,24 @@ width: 80%;
 	</div>
 </div>
 
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="js/jquery-migrate-3.0.1.min.js"></script>
-	<script src="js/jquery-ui.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.stellar.min.js"></script>
-	<script src="js/jquery.countdown.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/bootstrap-datepicker.min.js"></script>
-	<script src="js/swiper.min.js"></script>
-	<script src="js/aos.js"></script>
+	<script src="${contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery-ui.js"></script>
+	<script src="${contextPath}/resources/js/popper.min.js"></script>
+	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+	<script src="${contextPath}/resources/js/owl.carousel.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.stellar.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.countdown.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="${contextPath}/resources/js/bootstrap-datepicker.min.js"></script>
+	<script src="${contextPath}/resources/js/swiper.min.js"></script>
+	<script src="${contextPath}/resources/js/aos.js"></script>
 
-	<script src="js/picturefill.min.js"></script>
-	<script src="js/lightgallery-all.min.js"></script>
-	<script src="js/jquery.mousewheel.min.js"></script>
+	<script src="${contextPath}/resources/js/picturefill.min.js"></script>
+	<script src="${contextPath}/resources/js/lightgallery-all.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.mousewheel.min.js"></script>
 
-	<script src="js/main.js"></script>
+	<script src="${contextPath}/resources/js/main.js"></script>
 
 	<script>
     $(document).ready(function(){

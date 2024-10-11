@@ -18,11 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * Servlet implementation class LoginMember
  */
+@WebServlet("/Login")
 public class LoginMember extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	
-	@RequestMapping("/Login")
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
@@ -43,13 +42,13 @@ public class LoginMember extends HttpServlet {
 			SchoolDAO sDao = new SchoolDAO();
 			res.setMem_school_name(sDao.findSchoolName(res.getMem_school()));
 			HttpSession session = request.getSession();
-			session.setAttribute("member", res);
-			
+			mav.addObject("member", res);
 			successState = 1;
 		}
 		else {
 			errorMsg = "아이디 비밀번호를 확인해주세요!";
 		}
+		mav.addObject("member", res);
 		mav.addObject("errorMsg", errorMsg );
 		mav.addObject("state", successState );
 		return mav;

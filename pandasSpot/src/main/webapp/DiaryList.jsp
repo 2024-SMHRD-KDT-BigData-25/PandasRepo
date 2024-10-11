@@ -1,3 +1,4 @@
+<%@page import="com.pandas.model.DiaryDAO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
@@ -12,40 +13,14 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link rel="stylesheet" href="${contextPath}/resouces/css/aos.css">
-<link rel="stylesheet" href="${contextPath}/resouces/css/eyStyle.css">
-<link rel="stylesheet" href="${contextPath}/resouces/css/ecStyle.css">
-<style type="text/css">
-.board_btn {
-	background-color: #C0C78C;
-	color: black;
-	display: flex;
-	padding : 5px;
-	margin: 10px auto 10px auto;
-	font-size: 100px;
-	height: 40px;
-}
-.board_container {
-width: 80%;
-}
-
-#table_footer {
-	text-align:center;
-}
-
-.text-black {
-	font-family:"받아쓰기";
-	text-align: center;
-}
-
-.table_a_tags {
-	text-decoration: none;
-	color: black;
-}
-</style>
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+	<jsp:include page="header.jsp" />
+<% 
+	DiaryDAO dao = new DiaryDAO();
+	int length = dao.getDiaryLength();
+%>
+		<div class="pages_info" id="pages_info"><%= length %></div>
 	<div class="content-container" data-aos="fade">
 		<h2 class="join-title before-table">Study Log</h2>
 	</div>
@@ -64,29 +39,29 @@ width: 80%;
 			  
 			</tbody>
 		</table>
-		<div id="table_footer"><button class="btn board_btn" id="to_write_btn" onclick="location.href='diarypost.jsp'">글작성</button></div>
+		<div id="table_footer"><div id="page_list"></div><button class="btn board_btn" id="to_write_btn" onclick="location.href='diarypost.jsp'">글작성</button></div>
 		</div>
 
 	</div>
 	
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="js/jquery-migrate-3.0.1.min.js"></script>
-	<script src="js/jquery-ui.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.stellar.min.js"></script>
-	<script src="js/jquery.countdown.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/bootstrap-datepicker.min.js"></script>
-	<script src="js/swiper.min.js"></script>
-	<script src="js/aos.js"></script>
+	<script src="${contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery-ui.js"></script>
+	<script src="${contextPath}/resources/js/popper.min.js"></script>
+	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+	<script src="${contextPath}/resources/js/owl.carousel.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.stellar.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.countdown.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="${contextPath}/resources/js/bootstrap-datepicker.min.js"></script>
+	<script src="${contextPath}/resources/js/swiper.min.js"></script>
+	<script src="${contextPath}/resources/js/aos.js"></script>
 
-	<script src="js/picturefill.min.js"></script>
-	<script src="js/lightgallery-all.min.js"></script>
-	<script src="js/jquery.mousewheel.min.js"></script>
+	<script src="${contextPath}/resources/js/picturefill.min.js"></script>
+	<script src="${contextPath}/resources/js/lightgallery-all.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.mousewheel.min.js"></script>
 
-	<script src="js/main.js"></script>
+	<script src="${contextPath}/resources/js/main.js"></script>
 
 	<script>
     $(document).ready(function(){
@@ -101,40 +76,14 @@ width: 80%;
 	
 	//현재 html 문서가 브라우저 상에서 로드가 완료되고 나면 getList() 호출
 	$(document).ready(function(){
-		getList()
-	})
-	
-	//비동기 통신 시 사용하는 데이터 형식 : json {key:value,key:value} / xml
-		function getList(){
-			$.ajax({
-			url : "diaryList", //요청경로
-			type : "get", //요청방식(http 요청 메서드)
-			success : printList,
-			error : function(){
-				alert("통신 실패!")
-			}
-			
-		})
-	}
-	
-	function printList(data){
-		var data = JSON.parse(data),
-			html = "", //id=>list 곳에 추가가 될 html 코드
-			dlength = data.length;
-			
+		var total_length = document.getElementById("pages_info").innerText;
+		 
 		const itemsPerPage = 15;
-		const pages = Math.floor(dlength / itemsPerPage) + (dlength % itemsPerPage != 0 ? 1 : 0); 
-		console.log(pages);
-		
-		let paginatedData = [];
-		
-		var a_tags = document.createElement('div');
+		const pages = Math.floor(total_length / itemsPerPage) + (total_length % itemsPerPage != 0 ? 1 : 0); 
+		getList(1);
 		// 페이지 링크 생성 및 콘솔 출력
 		for (let i = 0; i < pages; i++) {
 			
-			// 각 페이지에 해당하는 데이터를 슬라이싱하여 배열에 추가
-		    const pageData = data.slice(i * itemsPerPage, (i + 1) * itemsPerPage);
-		    paginatedData.push(pageData); // 각 페이지 데이터를 배열에 저장
 		    // 각 페이지에 해당하는 링크(a 태그)를 생성
 		    const a = document.createElement('a');
 		    a.innerText = i+1;
@@ -148,15 +97,34 @@ width: 80%;
 		    // 클릭 시 콘솔에 해당 페이지 데이터 출력
 		    a.addEventListener('click', (e) => {
 		        e.preventDefault(); // 링크 기본 동작 방지
-		        console.log(i+1, paginatedData[i]);
-		        pageDisplay.innerHTML = `<h2>Page ${i + 1}</h2><p>${pageData.join(', ')}</p>`; // 페이지 데이터를 화면에 출력
+		        getList(e.target.innerText);
 		    });
 
 		    // 링크를 HTML 문서의 body에 추가
 
-		    a_tags.appendChild(a);
+		    $("#page_list").append(a);
 		}
-	    document.getElementById('table_footer').prepend(a_tags);
+	    
+	})
+
+	//비동기 통신 시 사용하는 데이터 형식 : json {key:value,key:value} / xml
+		function getList(data){
+			$.ajax({
+			url : "diaryList", //요청경로
+			type : "get", //요청방식(http 요청 메서드)
+			data : {"page" : data},
+			success : printList,
+			error : function(){
+				alert("통신 실패!")
+			}
+			
+		})
+	}
+	function printList(data){
+		var data = JSON.parse(data),
+			html = "", //id=>list 곳에 추가가 될 html 코드
+			dlength = data.length;
+	
 		
 		for(var board of data){
 		

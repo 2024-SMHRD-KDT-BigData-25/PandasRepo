@@ -343,3 +343,32 @@ header {
 .login_join_message h4 a:hover{
 	color: #EE4E4E;
 }
+
+#find_school_result {
+	color: #776B5D;
+	font-size: 20px;
+	margin-right: 20px;
+	text-decoration: none;
+	font-family: 교육새음;
+	font-size: 20px;
+}
+
+.loginBtn {
+	display: block;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    font-family: 교육새음;
+    font-size: 21px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background: #C0C78C;
+    color: white;
+    padding: 10px 15px 10px 15px;
+    margin: auto;
+}
+
+
+.pages_info {
+    display: none;
+}

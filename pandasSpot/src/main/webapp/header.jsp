@@ -1,14 +1,15 @@
 <%@page import="com.pandas.model.Members"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 
 <link rel="stylesheet" href="${contextPath}/resources/css/nyStyle.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/style.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/aos.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/ecStyle.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/eyStyle.css">
 <header role="banner">
 	<% 

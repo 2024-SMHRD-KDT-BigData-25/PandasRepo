@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ecMapper">
+	<select id="pageDiary" parameterType="int"
+		resultType="com.pandas.model.Diaries">
+		SELECT * FROM (
+		SELECT A.*, ROWNUM AS RNUM
+		FROM (
+		SELECT *
+		FROM diaries
+		ORDER BY DIARY_IDX ASC
+		) A
+		)
+		WHERE RNUM between ((#{pages} -
+		1)*15+1) and #{pages}*15
+	</select>
+	<select id="getDiaryLength" resultType="int">
+		select count(*) from diaries
+	</select>
+</mapper>
