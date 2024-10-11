@@ -49,7 +49,7 @@ public class DiaryDAO {
 	
 	public int DiaryUpdate(Diaries d) {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int res = sqlSession.update("nyMapper.DiaryUpdate",d);
+		int res = sqlSession.update("SpotMapper.DiaryUpdate",d);
 		sqlSession.close();
 		return res;
 	}

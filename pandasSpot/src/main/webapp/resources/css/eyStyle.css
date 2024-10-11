@@ -372,3 +372,7 @@ header {
 .pages_info {
     display: none;
 }
+
+.hidden {
+	display: none;
+}
