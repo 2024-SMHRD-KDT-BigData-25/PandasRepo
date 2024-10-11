@@ -130,7 +130,7 @@
 		
 	      html += "<tr class='board_line'>"
 	      html += "<td class='text-black'>"+board.q_idx+"</td>"
-	      html += "<td class='text-black'><a class='table_a_tags' href='question_view.jsp?idx="+board.q_idx+"'>"+board.q_title+"</a></td>"
+	      html += "<td class='text-black td_title'><a class='table_a_tags' href='question_view.jsp?idx="+board.q_idx+"'>"+board.q_title+"</a></td>"
 	      html += "<td class='text-black'><a>"+board.mem_id+"</a></td>"
 	      html += "<td class='text-black'>"+board.q_workbook+"</td>"
 	      html += "<td class='text-black'>"+board.created_at+"</td>"

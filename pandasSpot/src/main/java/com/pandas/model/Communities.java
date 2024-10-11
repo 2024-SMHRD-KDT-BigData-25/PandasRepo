@@ -27,7 +27,7 @@ public class Communities {
     private String comm_file;
 
     // 글 작성일자 
-    private Date created_at;
+    private String created_at;
 
     // 글 조회수 
     private Integer comm_views;
@@ -46,7 +46,7 @@ public class Communities {
 		this.comm_idx = comm_idx;
 	}
 
-	public Communities(String comm_title, String comm_content, String comm_file, Date created_at, String mem_id) {
+	public Communities(String comm_title, String comm_content, String comm_file, String created_at, String mem_id) {
 		super();
 		this.comm_title = comm_title;
 		this.comm_content = comm_content;

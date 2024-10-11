@@ -27,7 +27,7 @@ public class Questions {
     private String q_file;
 
     // 작성 일자 
-    private Date created_at;
+    private String created_at;
 
     // 질의 작성자 
     private String mem_id;
@@ -35,7 +35,7 @@ public class Questions {
     // 출처 문제집 
     private String q_workbook;
 
-	public Questions(String q_title, String q_content, String q_file, Date created_at, String mem_id,
+	public Questions(String q_title, String q_content, String q_file, String created_at, String mem_id,
 			String q_workbook) {
 		super();
 		this.q_title = q_title;
