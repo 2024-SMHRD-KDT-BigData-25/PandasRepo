@@ -25,43 +25,83 @@
 	<jsp:include page="header.jsp" />
 	<%
 	Members member = (Members) session.getAttribute("member");
+	String temp = member.getMem_birthdate();
+	String birth = temp.substring(0, 4) + "-" + temp.substring(4, 6) + "-" + temp.substring(6);
 	%>
-	<div class="content-container">
-	<section id="main_my_info">
-		<div class="info_container">
-			<div class="cropping info_content">
-				<img id="profile_img" alt="프로필 사진"
-					src="${contextPath}/upload/<%= member.getMem_profile_img()%>">
-			</div>
-			<div class="my_name_container info_content">
-				<h3 class="info_content_single inline_block" id="member_nick"><%=member.getMem_nick()%>
-				</h3>
-				<button id="info_edit_btn" class="img-button">
-					<img src="${contextPath}/resources/icon/edit.png" alt="Image Button">
-				</button>
-				<h3 class="info_content_single"><%=member.getMem_school_name()%>
-				</h3>
-				<h3 class="info_content_single"><%=member.getMem_birthdate()%>
-				</h3>
-			</div>
-		</div>
-	</section>
-	<section>
-		<div>일정</div>
-	</section>
-	<section>
-		<div class="info_content">
-			<h3 class="info_content_single inline_block">채팅방 입장하기</h3>
-		</div>
-		<div class="info_content">
-			<button id="chat_btn" class="img-button" onclick="chatButtonClick()">
-				<img id="chat_img" src="${contextPath}/resources/icon/chat.png"
-					alt="Image Button">
-			</button>
-		</div>
-	</section>
-	</div>
+	<div class="content-container" data-aos="fade">
+		
+			<table class="info_table">
+				<tr>
+					<th colspan="4">
+						<h2 class="join-title"><span id="member_nick"><%=member.getMem_nick()%></span>'s Page
+						<button id="info_edit_btn" class="img-button">
+						<img src="${contextPath}/resources/icon/edit.png"
+							alt="Image Button">
+					</button>
+						</h2>
+						
+					</th>
+				</tr>
+				<tr>
+				<td class="info_content_single">
+					<div class="cropping">
+						<img id="profile_img" alt="프로필 사진"
+							src="${contextPath}/upload/<%= member.getMem_profile_img()%>">
+					</div>
+				</td>
 
+				<td class="info_content_single">
+					<p class="main_info"><img class="info_icon" src="${contextPath}/resources/icon/tag.png" /><%=member.getMem_name()%></p>
+					<p class="main_info"><img class="info_icon" src="${contextPath}/resources/icon/campus.png" /><%=member.getMem_school_name()%></p>
+					<p class="main_info"><img class="info_icon" src="${contextPath}/resources/icon/cake.png" /><%=birth%></p>
+				</td>
+				<td class="function_td">
+					<button id="chat_btn" class="img-button"
+						onclick="chatButtonClick()">
+						<img id="chat_img" src="${contextPath}/resources/icon/chat.png"
+							alt="Image Button">
+					</button>
+				</td>
+				<td class="function_td">
+					<button id="chat_btn" class="img-button" onclick="$">
+						<img id="chat_img" src="${contextPath}/resources/icon/clock.png"
+							alt="Image Button">
+					</button>
+				</td>
+			</tr>
+				<tr>
+					<td colspan="4" class="follow_td">
+					<table class="follow_table">
+						<tr>
+							<td>팔로우 목록
+								<div class="follow_info" id="following"></div>
+							</td>
+							<td>팔로워 목록
+								<div class="follow_info" id="follower"></div>
+							</td>
+						</tr>
+					</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" class="follow_td">
+					<table class="follow_table">
+						<tr>
+							<td>일정 관리
+								<div class="follow_info" id="calendar"></div>
+							</td>
+							<td>내 게시글
+								<div class="follow_info" id="mypost"></div>
+							</td>
+						</tr>
+					</table>
+					</td>
+				</tr>
+		</table>
+		
+
+	</div>
+	
 	<div id="chatModal" class="modal">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -152,77 +192,99 @@
 		}
 		//(서버->클라이언트) 메세지를 받앗을때 호출
 
-		function onMessage(msg) {
-			// 받은 메세지를 화면에 출력!
-			console.log("onMessage 호출")
-			const msgData = JSON.parse(msg.data);
-			var resultContainer = document.getElementById("chatBox");
-			console.log(msgData.type);
-			if (msgData.type == "message") {
-				var nickName = document.createElement("div");
-				nickName.style.color = "#3C3D37";
-				nickName.style.fontFamily = "교육새음";
-				nickName.style.fontSize = "20px";
-				nickName.style.textAlign = "left";
-				nickName.style.paddingBottom = "2px";
-				nickName.textContent = msgData.nickname;
-				resultContainer.appendChild(nickName);
-			}
+function onMessage(msg) {
+    // 받은 메시지를 화면에 출력
+    const msgData = JSON.parse(msg.data);
+    var resultContainer = document.getElementById("chatBox");
 
-			var newMsg = document.createElement("div");
-			newMsg.style.color = "#3C3D37";
-			newMsg.style.fontFamily = "교육새음";
-			newMsg.style.padding = "2px";
-			newMsg.style.borderRadius = "3px";
-			newMsg.style.fontSize = "20px";
+    // 닉네임과 메시지를 함께 담을 div 생성
+    var messageContainer = document.createElement("div");
+    messageContainer.style.width = "100%";  
+    messageContainer.style.display = "flex";  // 닉네임과 메시지를 나란히 배치
+    messageContainer.style.flexDirection = "column";  // 수직으로 닉네임과 메시지를 배치
+    messageContainer.style.alignItems = "flex-start";  // 왼쪽 정렬
+    messageContainer.style.marginBottom = "10px";  // 메시지 간 간격 추가
 
-			newMsg.textContent = msgData.message;
+    // 닉네임 표시
+    if (msgData.type === "message") {
+        var nickName = document.createElement("p");
+        nickName.style.fontFamily = "교육새음";
+        nickName.style.fontSize = "16px";
+        nickName.style.color = "#3C3D37";
+        nickName.style.marginBottom = "1px";  // 닉네임과 메시지 간 간격 추가
+        nickName.textContent = msgData.nickname;
+        messageContainer.appendChild(nickName);
+    }
 
-			if (msgData.type == "message") {
-				newMsg.style.textAlign = "left";
-				newMsg.style.backgroundColor = "#D9EDBF";
-			} else {
-				newMsg.style.textAlign = "center";
-			}
+    // 상대방 메시지 표시
+    var newMsg = document.createElement("p");
+    newMsg.style.color = "#3C3D37";
+    newMsg.style.fontFamily = "교육새음";
+    newMsg.style.fontSize = "20px";
+    newMsg.style.backgroundColor = "#D9EDBF";  // 수신 메시지 배경색
+    newMsg.style.padding = "10px";
+    newMsg.style.borderRadius = "5px";
+    newMsg.style.margin = "0 0 3px 0";  // 위아래 간격
+    newMsg.style.width = "fit-content";  // 메시지 길이에 맞는 너비
+    newMsg.style.maxWidth = "60%";  
+    newMsg.style.float = "left";  // 왼쪽 정렬
+    newMsg.style.clear = "both";  // 한 줄씩 표시
+    newMsg.textContent = msgData.message;
+    
+	if (msgData.type != "message") {
+		newMsg.style.backgroundColor = "white";
+		newMsg.style.textAlign = "center";
+		newMsg.style.maxWidth = "100%"; 
+		newMsg.style.width = "100%";
+	} 
 
-			resultContainer.appendChild(newMsg);
+    messageContainer.appendChild(newMsg);  // messageContainer에 메시지 추가
+    resultContainer.appendChild(messageContainer);  // 결과 영역에 추가
 
-			let area = document.getElementById('chatInput')
-			area.scrollTop = area.scrollHeight
-		}
+    // 자동 스크롤을 아래로 이동
+    resultContainer.scrollTop = resultContainer.scrollHeight;
+}
 
-		function send() {
-			//id가 msg로 설정되어있는 input 태그 가져와서 socket 서버로 전송
-			var msg = $("#chatInput").val();
-			$("#chatInput").val("");
 
-			// 서버로 보낼 메시지에 닉네임과 메시지 내용 포함
-			const message = {
-				type : "message", // 메시지 유형을 명확히 구분
-				nickname : userNickname, // 사용자의 닉네임
-				message : msg
-			// 사용자가 입력한 메시지
-			};
 
-			var newMsg = document.createElement("div");
-			newMsg.style.color = "#3C3D37";
-			newMsg.style.fontFamily = "교육새음";
-			newMsg.style.fontSize = "20px";
-			newMsg.style.textAlign = "right";
-			newMsg.style.backgroundColor = "#F6F7C4";
-			newMsg.style.padding = "2px";
-			newMsg.style.borderRadius = "3px";
-			newMsg.style.width = "auto";
+function send() {
+    // id가 msg로 설정된 input 태그에서 값 가져오기
+    var msg = $("#chatInput").val();
+    $("#chatInput").val("");
 
-			newMsg.textContent = msg;
+    // 서버로 보낼 메시지 구조
+    const message = {
+        type: "message",  // 메시지 유형
+        nickname: userNickname,  // 사용자의 닉네임
+        message: msg  // 사용자가 입력한 메시지
+    };
 
-			var resultContainer = document.getElementById("chatBox");
-			resultContainer.appendChild(newMsg);
+    // 사용자 메시지를 오른쪽에 표시할 p 태그 생성
+    var newMsg = document.createElement("p");
+    newMsg.style.color = "#3C3D37";
+    newMsg.style.fontFamily = "교육새음";
+    newMsg.style.fontSize = "20px";
+    newMsg.style.backgroundColor = "#F6F7C4";  // 사용자 메시지 배경색
+    newMsg.style.padding = "10px";
+    newMsg.style.borderRadius = "5px";
+    newMsg.style.margin = "0 0 3px 0";
+    newMsg.style.width = "fit-content";  // 메시지 길이에 맞는 너비
+    newMsg.style.maxWidth = "60%";  // 최대 너비 제한
+    newMsg.style.float = "right";  // 오른쪽 정렬
+    newMsg.style.clear = "both";  // 한 줄씩 표시
+    newMsg.textContent = msg;
 
-			resultContainer.scrollTop = resultContainer.scrollHeight
+    // 메시지를 chatBox에 추가
+    var resultContainer = document.getElementById("chatBox");
+    resultContainer.appendChild(newMsg);
 
-			webSocket.send(JSON.stringify(message));
-		}
+    // 자동 스크롤을 아래로 이동
+    resultContainer.scrollTop = resultContainer.scrollHeight;
+
+    // 서버로 메시지 전송
+    webSocket.send(JSON.stringify(message));
+}
+
 		function checkEnter(event) {
 			if (event.key === "Enter") {
 				send(); // 엔터를 누르면 send() 함수 호출
