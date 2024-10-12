@@ -82,7 +82,7 @@
 		}
 		
 		function changeFontFamily() {
-			const password = document.getElementById("mem_pw");
+			const password = document.getElementById("login_pw");
 			password.style.fontFamily = "arial";
 
 			if (password.value == "") {

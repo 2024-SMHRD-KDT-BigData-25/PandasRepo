@@ -102,7 +102,7 @@
 	
 	<script>
 	$("#info_edit_btn").on("click", function(event) {
-		
+		location.href = "${contextPath}/infoUpdate.jsp";
 	})
 	
 		const temp = document.getElementById("member_nick").innerText;

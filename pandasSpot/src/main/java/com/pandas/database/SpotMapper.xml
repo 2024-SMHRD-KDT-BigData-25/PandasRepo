@@ -20,6 +20,10 @@
 	<select id="FindSchoolName" resultType="String" parameterType="Double">
 		SELECT SCHOOL_NAME FROM SCHOOLS WHERE SCHOOL_IDX = #{SCHOOL_IDX}
 	</select>
+	
+	<select id="FindSchoolInfo"	resultType="com.pandas.model.Schools">
+		SELECT * FROM SCHOOLS WHERE SCHOOL_IDX = #{SCHOOL_IDX}
+	</select>
 
 	<!-- Diary -->
 	<select id="DiaryList" resultType="com.pandas.model.Diaries">
@@ -68,6 +72,11 @@
 	<select id="FindId" parameterType="String" resultType="com.pandas.model.Members">
 		SELECT * FROM MEMBERS WHERE MEM_ID = #{mem_id}
 	</select>
+	
+	<insert id="update" parameterType="com.pandas.model.Members">
+		UPDATE MEMBERS SET MEM_PW = #{mem_pw}, MEM_NAME = #{mem_name}, MEM_NICK = #{mem_nick}, MEM_BIRTHDATE = #{mem_birthdate}, MEM_SCHOOL = #{mem_school},
+		MEM_PROFILE_IMG = #{mem_profile_img} WHERE MEM_ID = #{mem_id}
+	</insert>
 
 	<!-- Community 등록 -->
 	<insert id="CommunityPost" parameterType="com.pandas.model.Communities">

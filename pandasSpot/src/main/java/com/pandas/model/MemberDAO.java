@@ -21,6 +21,15 @@ public class MemberDAO {
 		return res;
 	}
 	
+	public int update(Members m) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		int res = session.update("SpotMapper.update", m);
+		session.close();
+		return res;
+	}
+	
+	
+	
 	public Members findMemberById(String id) {
 		SqlSession session = sqlSessionFactory.openSession(true);
 		Members res = session.selectOne("SpotMapper.FindId", id);

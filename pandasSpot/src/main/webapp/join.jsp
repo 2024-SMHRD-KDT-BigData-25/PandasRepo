@@ -185,7 +185,7 @@
 
 			reader.readAsDataURL(file); // 파일을 Base64 데이터 URL로 읽음
 		} else {
-			document.getElementById('input-image').src = "icon/add (1).png"; // 파일이 없으면 이미지 초기화
+			document.getElementById('input-image').src = "${contextPath}/resources/icon/add (1).png"; // 파일이 없으면 이미지 초기화
 			document.getElementById('input-image').style.width = '30px'; // 파일이 없으면 이미지 초기화
 		}
 	}

@@ -36,4 +36,11 @@ public class SchoolDAO {
 		session.close();
 		return res;
 	}
+	
+	public Schools getSchoolInfo(double num) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		Schools res = session.selectOne("SpotMapper.FindSchoolInfo", num);
+		session.close();
+		return res;
+	}
 }
