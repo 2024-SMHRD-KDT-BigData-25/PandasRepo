@@ -31,6 +31,13 @@ public class DiaryDAO {
 		sqlSession.close();
 		return list;
 	}
+	
+	public List<Diaries> getMyPostList(String id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		List<Diaries> list = sqlSession.selectList("SpotMapper.MyPostList", id);
+		sqlSession.close();
+		return list;
+	}
 
 // SpotMapper에서 getDiary 호출
 	public Diaries getDiary(int idx) {

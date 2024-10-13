@@ -28,6 +28,7 @@
 	String temp = member.getMem_birthdate();
 	String birth = temp.substring(0, 4) + "-" + temp.substring(4, 6) + "-" + temp.substring(6);
 	%>
+	<div class="pages_info" id="main_mem_id"><%= member.getMem_id() %></div>
 	<div class="content-container" data-aos="fade">
 		
 			<table class="info_table">
@@ -51,33 +52,40 @@
 				</td>
 
 				<td class="info_content_single">
-					<p class="main_info"><img class="info_icon" src="${contextPath}/resources/icon/tag.png" /><%=member.getMem_name()%></p>
-					<p class="main_info"><img class="info_icon" src="${contextPath}/resources/icon/campus.png" /><%=member.getMem_school_name()%></p>
-					<p class="main_info"><img class="info_icon" src="${contextPath}/resources/icon/cake.png" /><%=birth%></p>
+					<p class="main_info"><img class="info_icon" src="${contextPath}/resources/icon/tag.png" /><span><%=member.getMem_name()%></span></p>
+					<p class="main_info"><img class="info_icon" src="${contextPath}/resources/icon/campus.png" /><span><%=member.getMem_school_name()%></span></p>
+					<p class="main_info"><img class="info_icon" src="${contextPath}/resources/icon/cake.png" /><span><%=birth%></span></p>
 				</td>
 				<td class="function_td">
-					<button id="chat_btn" class="img-button"
-						onclick="chatButtonClick()">
-						<img id="chat_img" src="${contextPath}/resources/icon/chat.png"
-							alt="Image Button">
-					</button>
+					
 				</td>
 				<td class="function_td">
-					<button id="chat_btn" class="img-button" onclick="$">
-						<img id="chat_img" src="${contextPath}/resources/icon/clock.png"
-							alt="Image Button">
-					</button>
+					
 				</td>
 			</tr>
 				<tr>
 					<td colspan="4" class="follow_td">
 					<table class="follow_table">
 						<tr>
-							<td>팔로우 목록
-								<div class="follow_info" id="following"></div>
+							<td class="info_td_title">팔로우 목록
 							</td>
-							<td>팔로워 목록
-								<div class="follow_info" id="follower"></div>
+							<td class="info_td_title">팔로워 목록
+							</td>
+						</tr>
+						<tr>
+							<td class="info_content_single">
+								<div class="follow_info" id="following">
+									<div id="following_list">
+										팔로우 목록이 없습니다.
+									</div>
+								</div>
+							</td>
+							<td class="info_content_single">
+								<div class="follow_info" id="follower">
+									<div id="following_list">
+										팔로워 목록이 없습니다.
+									</div>
+								</div>
 							</td>
 						</tr>
 					</table>
@@ -87,10 +95,17 @@
 					<td colspan="4" class="follow_td">
 					<table class="follow_table">
 						<tr>
-							<td>일정 관리
+							<td class="info_td_title">일정 관리
+							</td>
+							<td class="info_td_title">Study Log
+							<button id="more_post">&plus;</button>
+							</td>
+						</tr>
+						<tr>
+							<td class="info_content_single">
 								<div class="follow_info" id="calendar"></div>
 							</td>
-							<td>내 게시글
+							<td class="info_content_single">
 								<div class="follow_info" id="mypost"></div>
 							</td>
 						</tr>
@@ -102,193 +117,106 @@
 
 	</div>
 	
-	<div id="chatModal" class="modal">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h2 class="open_chat_title">오픈 채팅</h2>
-				<span class="close" onclick="closeModal()">&times;</span>
-				<!-- 닫기 버튼 -->
-			</div>
-			<div class="chat-box" id="chatBox">
-				<!-- 채팅 메시지 표시 영역 -->
-			</div>
-			<div class="message_send_div">
-				<input type="text" class="join-input" id="chatInput"
-					placeholder="메세지를 입력해주세요 ;)" onkeydown="checkEnter(event)">
-				<button onclick="send()" class="join-input btn join-input-btn"
-					type="button" id="chat_send_btn">전송</button>
-			</div>
-		</div>
-	</div>
-	
-	<script src="${contextPath}/resources/js/jquery-3.3.1.min.js"></script>
-	<script src="${contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
-	<script src="${contextPath}/resources/js/jquery-ui.js"></script>
-	<script src="${contextPath}/resources/js/popper.min.js"></script>
-	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
-	<script src="${contextPath}/resources/js/owl.carousel.min.js"></script>
-	<script src="${contextPath}/resources/js/jquery.stellar.min.js"></script>
-	<script src="${contextPath}/resources/js/jquery.countdown.min.js"></script>
-	<script src="${contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
-	<script src="${contextPath}/resources/js/bootstrap-datepicker.min.js"></script>
-	<script src="${contextPath}/resources/js/swiper.min.js"></script>
-	<script src="${contextPath}/resources/js/aos.js"></script>
-
-	<script src="${contextPath}/resources/js/picturefill.min.js"></script>
-	<script src="${contextPath}/resources/js/lightgallery-all.min.js"></script>
-	<script src="${contextPath}/resources/js/jquery.mousewheel.min.js"></script>
-
-	<script src="${contextPath}/resources/js/main.js"></script>
-	
 	<script>
 	$("#info_edit_btn").on("click", function(event) {
 		location.href = "${contextPath}/infoUpdate.jsp";
 	})
+	var mem_id = document.getElementById("main_mem_id").innerText;
+	$(document).ready(function(){
+
+		$.ajax({
+			url : "MemberListLoad", //요청경로
+			type : "post", //요청방식(http 요청 메서드)
+			data : {"mem_id" : mem_id},
+		    success: function(response) {
+		    	console.log(response);
+		        // response는 JSON 형식의 응답
+		        const diaries = response.diaries;       // 다이어리 목록
+		        const followers = response.followers;   // 팔로워 목록
+		        const followees = response.followees;   // 팔로위 목록
+
+		        printPostList(diaries);
+		        printFollowerList(followers);
+		        printFolloweeList(followees);
+		    },
+			error : function(){
+				alert("통신 실패!")
+			}
+    	})
+	})
 	
-		const temp = document.getElementById("member_nick").innerText;
-		const userNickname = encodeURIComponent(temp);
-		var Member = "${errorMsg }"
-
-		// 모달 열기 함수
-		function chatButtonClick() {
-			webSocket = new WebSocket(
-					"ws://localhost:8081/pandasSpot/chat?nickname="
-							+ userNickname)
-
-			webSocket.onopen = onOpen
-			webSocket.onclose = onClose
-			webSocket.onmessage = onMessage
-
-			var modal = document.getElementById("chatModal");
-			modal.style.display = "flex"; // 모달을 화면에 표시
-		}
-
-		// 모달 닫기 함수
-		function closeModal() {
-			var modal = document.getElementById("chatModal");
-			modal.style.display = "none"; // 모달을 숨김
-		}
-
-		// 모달 외부를 클릭하면 닫기
-		window.onclick = function(event) {
-			var modal = document.getElementById("chatModal");
-			if (event.target === modal) {
-				modal.style.display = "none";
+	function printList(data){
+/* 		var data = JSON.parse(data),
+			html = "", //id=>list 곳에 추가가 될 html 코드
+			dlength = data.length; */
+		console.log(data);
+	}
+	
+	
+		function printPostList(data) {
+			var html = "", //id=>list 곳에 추가가 될 html 코드
+			dlength = data.length;
+			var len = data.length >= 5 ? 5 : data.length;
+			for (var i = 0; i < len; i++) {
+				var date = data[i].created_at.substr(2, 8);
+				html += "<div>"
+				html += "<div class='my_post_list'>" + (i + 1) + "</div>"
+				html += "<div class='my_post_list my_post_title'><a class='table_a_tags' href='study_view.jsp?idx="
+						+ data[i].diary_idx
+						+ "'>"
+						+ data[i].diary_title
+						+ "</a></div>"
+				html += "<div class='my_post_list'>" + date + "</div>"
+				//html += "<td><button class='btn btn-primary py-2 px-4 text-white' onclick='deleteBoard("+board.diary_idx+")'>삭제</button></td>"
+				html += "</div>"
 			}
-		};
-
-		//소켓 서버에 연결(WebSocket)
-
-		function onOpen() { //현재 클라이언트가 서버로 접속 시도할 때 호출
+			//html() : 특정 태그 사이에 html 코드를 바꾸고 싶을때
+			//text() : text바꾸고 싶을때
+			//append() : 특정 태그 사이에 값을 추가 (뒤쪽에) => 누적
+			//prepend() : 앞쪽에 추가 => 누적
+			$("#mypost").html(html)
 		}
-		function onClose() {
-			//webSocket.send(JSON.Stringify({"nick" : "라라핑"}))		//보내고 싶은 값을 json 형식으로 바꿔서 넣기 -> 무조건 문자열로보내기!
-			const message = {
-				type : "quit", // 메시지 유형을 명확히 구분
-				nickname : userNickname,
-			};
+		function printFollowerList(data) {
+			var html = "", //id=>list 곳에 추가가 될 html 코드
+			dlength = data.length;
+			var len = data.length >= 5 ? 5 : data.length;
+			for (var i = 0; i < len; i++) {
 
-			webSocket.send(JSON.stringify(message)); // JSON 형식으로 전송
-		}
-		//(서버->클라이언트) 메세지를 받앗을때 호출
-
-function onMessage(msg) {
-    // 받은 메시지를 화면에 출력
-    const msgData = JSON.parse(msg.data);
-    var resultContainer = document.getElementById("chatBox");
-
-    // 닉네임과 메시지를 함께 담을 div 생성
-    var messageContainer = document.createElement("div");
-    messageContainer.style.width = "100%";  
-    messageContainer.style.display = "flex";  // 닉네임과 메시지를 나란히 배치
-    messageContainer.style.flexDirection = "column";  // 수직으로 닉네임과 메시지를 배치
-    messageContainer.style.alignItems = "flex-start";  // 왼쪽 정렬
-    messageContainer.style.marginBottom = "10px";  // 메시지 간 간격 추가
-
-    // 닉네임 표시
-    if (msgData.type === "message") {
-        var nickName = document.createElement("p");
-        nickName.style.fontFamily = "교육새음";
-        nickName.style.fontSize = "16px";
-        nickName.style.color = "#3C3D37";
-        nickName.style.marginBottom = "1px";  // 닉네임과 메시지 간 간격 추가
-        nickName.textContent = msgData.nickname;
-        messageContainer.appendChild(nickName);
-    }
-
-    // 상대방 메시지 표시
-    var newMsg = document.createElement("p");
-    newMsg.style.color = "#3C3D37";
-    newMsg.style.fontFamily = "교육새음";
-    newMsg.style.fontSize = "20px";
-    newMsg.style.backgroundColor = "#D9EDBF";  // 수신 메시지 배경색
-    newMsg.style.padding = "10px";
-    newMsg.style.borderRadius = "5px";
-    newMsg.style.margin = "0 0 3px 0";  // 위아래 간격
-    newMsg.style.width = "fit-content";  // 메시지 길이에 맞는 너비
-    newMsg.style.maxWidth = "60%";  
-    newMsg.style.float = "left";  // 왼쪽 정렬
-    newMsg.style.clear = "both";  // 한 줄씩 표시
-    newMsg.textContent = msgData.message;
-    
-	if (msgData.type != "message") {
-		newMsg.style.backgroundColor = "white";
-		newMsg.style.textAlign = "center";
-		newMsg.style.maxWidth = "100%"; 
-		newMsg.style.width = "100%";
-	} 
-
-    messageContainer.appendChild(newMsg);  // messageContainer에 메시지 추가
-    resultContainer.appendChild(messageContainer);  // 결과 영역에 추가
-
-    // 자동 스크롤을 아래로 이동
-    resultContainer.scrollTop = resultContainer.scrollHeight;
-}
-
-
-
-function send() {
-    // id가 msg로 설정된 input 태그에서 값 가져오기
-    var msg = $("#chatInput").val();
-    $("#chatInput").val("");
-
-    // 서버로 보낼 메시지 구조
-    const message = {
-        type: "message",  // 메시지 유형
-        nickname: userNickname,  // 사용자의 닉네임
-        message: msg  // 사용자가 입력한 메시지
-    };
-
-    // 사용자 메시지를 오른쪽에 표시할 p 태그 생성
-    var newMsg = document.createElement("p");
-    newMsg.style.color = "#3C3D37";
-    newMsg.style.fontFamily = "교육새음";
-    newMsg.style.fontSize = "20px";
-    newMsg.style.backgroundColor = "#F6F7C4";  // 사용자 메시지 배경색
-    newMsg.style.padding = "10px";
-    newMsg.style.borderRadius = "5px";
-    newMsg.style.margin = "0 0 3px 0";
-    newMsg.style.width = "fit-content";  // 메시지 길이에 맞는 너비
-    newMsg.style.maxWidth = "60%";  // 최대 너비 제한
-    newMsg.style.float = "right";  // 오른쪽 정렬
-    newMsg.style.clear = "both";  // 한 줄씩 표시
-    newMsg.textContent = msg;
-
-    // 메시지를 chatBox에 추가
-    var resultContainer = document.getElementById("chatBox");
-    resultContainer.appendChild(newMsg);
-
-    // 자동 스크롤을 아래로 이동
-    resultContainer.scrollTop = resultContainer.scrollHeight;
-
-    // 서버로 메시지 전송
-    webSocket.send(JSON.stringify(message));
-}
-
-		function checkEnter(event) {
-			if (event.key === "Enter") {
-				send(); // 엔터를 누르면 send() 함수 호출
+				html += "<div>"
+				html += "<div class='my_post_list my_post_title'><a class='table_a_tags' href='memberPage.jsp?mem_id="
+						+ data[i].follower_id
+						+ "'>"
+						+ data[i].follower_id
+						+ "</a></div>"
+				//html += "<td><button class='btn btn-primary py-2 px-4 text-white' onclick='deleteBoard("+board.diary_idx+")'>삭제</button></td>"
+				html += "</div>"
 			}
+			//html() : 특정 태그 사이에 html 코드를 바꾸고 싶을때
+			//text() : text바꾸고 싶을때
+			//append() : 특정 태그 사이에 값을 추가 (뒤쪽에) => 누적
+			//prepend() : 앞쪽에 추가 => 누적
+			$("#following").html(html)
+		}
+		function printFolloweeList(data) {
+			var html = "", //id=>list 곳에 추가가 될 html 코드
+			dlength = data.length;
+			var len = data.length >= 5 ? 5 : data.length;
+			for (var i = 0; i < len; i++) {
+
+				html += "<div>"
+				html += "<div class='my_post_list my_post_title'><a class='table_a_tags' href='memberPage.jsp?mem_id="
+						+ data[i].followee_id
+						+ "'>"
+						+ data[i].followee_id
+						+ "</a></div>"
+				//html += "<td><button class='btn btn-primary py-2 px-4 text-white' onclick='deleteBoard("+board.diary_idx+")'>삭제</button></td>"
+				html += "</div>"
+			}
+			//html() : 특정 태그 사이에 html 코드를 바꾸고 싶을때
+			//text() : text바꾸고 싶을때
+			//append() : 특정 태그 사이에 값을 추가 (뒤쪽에) => 누적
+			//prepend() : 앞쪽에 추가 => 누적
+			$("#follower").html(html)
 		}
 	</script>
 

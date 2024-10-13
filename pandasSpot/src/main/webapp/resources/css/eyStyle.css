@@ -81,6 +81,12 @@ font-weight: normal;
 font-style: normal;
 }
 
+@font-face {
+    font-family: '김콩해체';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408@1.0/Ownglyph_kimkonghae.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 body {
 	background-color: #fdfae6;
 	margin: 0;
@@ -249,6 +255,11 @@ body {
 	display: inline-block;
 }
 
+#friend_id {
+	width: 70%;
+	display: inline-block;
+}
+
 #id_check_message {
 	color: #776B5D;
 	font-size: 20px;
@@ -258,7 +269,7 @@ body {
 	font-size: 20px;
 }
 
-#id_check_btn {
+#id_check_btn, #friend_find_btn {
 	width: 80px;
 	display: inline-block;
 }
@@ -422,8 +433,8 @@ header {
 
 /* 이미지를 버튼처럼 보여주는 스타일 */
 .img-button img {
-	width: 15px; /* 원하는 크기 */
-	height: auto;
+	width: 25px; /* 원하는 크기 */
+	height: 25px;
 	transition: transform 0.2s ease; /* 버튼 효과 추가 */
 }
 
@@ -433,7 +444,9 @@ header {
 }
 
 .info_content_single {
+	width: 50%;
 	padding: 3% 0 3%;
+	height: fit-content;
 }
 
 .inline_block {
@@ -441,7 +454,7 @@ header {
 }
 
 #chat_img {
-	width: 50px;
+	
 }
 
 /* 모달 배경 (반투명) */
@@ -571,6 +584,32 @@ header {
 	text-align: center;
 }
 
+/* 검색 입력창 스타일 */
+.search-bar {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* 친구 목록 스타일 */
+.friend-list {
+    margin-top: 20px;
+    max-height: 200px;
+    overflow-y: auto; /* 친구 목록이 많을 때 스크롤 추가 */
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+.add-friend-btn:hover {
+    background-color: #45a049;
+}
+
+
 .input_disable {
 	color: lightgray;
 }
@@ -595,7 +634,7 @@ header {
 .info_table {
 	width: 60%;
 	font-size:20px;
-	font-family: 의연체;
+	font-family: 김콩해체;
 	color: #3C3D37;
 	background-color: ivory;
     border-radius: 5%;
@@ -612,14 +651,15 @@ header {
 	width: 50%;
 }
 .main_info {
+	display: flex;
+	align-items: baseline;
 	margin: 0 0 5px 0;
-	font-size: 25px;
 }
 
 .info_icon {
-	width: 20px;
-	height: 20px;
-	margin-right: 5px;
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
 }
 
 .follow_td {
@@ -637,9 +677,115 @@ header {
 .follow_info {
 	margin: 3% 0 3% 0;
 	width : 100%;
-	height: 200px;
-	background-color: black;
+	height: fit-content;
 }
 .function_td {
 	padding: 5%;
 }
+
+.floating-menu {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background-color: #FBF9F1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 10px 10px 0 10px;
+    z-index: 1000;
+    animation: slideIn 0.5s ease-out;
+}
+
+.floating-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.floating-menu li {
+    margin-bottom: 10px;
+}
+
+.floating-menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    display: block;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.floating-menu a:hover {
+    background-color: #f1f1f1;
+}
+
+.floating-menu a:active {
+    background-color: #ddd;
+}
+
+@keyframes slideIn {
+    from {
+        right: -100px;
+        opacity: 0;
+    }
+    to {
+        right: 20px;
+        opacity: 1;
+    }
+}
+
+.info_td_title {
+	border-bottom: 2px #966f47 solid;
+	width: 50%;
+	padding-bottom: 5px;
+}
+#more_post {
+	margin-right: 8px;
+	float: right;
+	font: arial;
+	font-size: 20px;
+	font-weight: bold;
+	border: none;
+	background: transparent;
+	color: #776B5D;
+}
+
+#more_post:hover {
+	transform: scale(1.1); /* 살짝 확대 */
+}
+
+.my_post_list {
+	font: "의연체";
+	font-size: 15px;
+	padding-right: 5px;
+	display: inline-block;
+}
+
+.my_post_title {
+	width: 70%;
+}
+
+#find_modal_close {
+	float: right;
+}
+
+
+.friend_search {
+	text-align: center;
+}
+
+.friendList {
+	background-color: white;
+	width: 92%;
+	height: fit-content;
+	border: none;
+	overflow-y: scroll;
+	margin: 2% auto 2% auto;
+	padding: 10px;
+	font-family: 교육새음;
+	font-size: 15px;
+	/* 스크롤바 숨기기 */
+    scrollbar-width: none; /* 파이어폭스 */
+    -ms-overflow-style: none; /* IE */
+}
+

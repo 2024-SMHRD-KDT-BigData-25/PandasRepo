@@ -34,6 +34,11 @@
 		resultType="com.pandas.model.Diaries">
 		select * from diaries where DIARY_IDX=#{idx}
 	</select>
+	
+	<select id="MyPostList" parameterType="String" resultType="com.pandas.model.Diaries">
+		select * from diaries where mem_id = #{mem_id}
+		
+	</select>
 
 	<!-- Community -->
 	<select id="CommunityList"
@@ -77,6 +82,10 @@
 		UPDATE MEMBERS SET MEM_PW = #{mem_pw}, MEM_NAME = #{mem_name}, MEM_NICK = #{mem_nick}, MEM_BIRTHDATE = #{mem_birthdate}, MEM_SCHOOL = #{mem_school},
 		MEM_PROFILE_IMG = #{mem_profile_img} WHERE MEM_ID = #{mem_id}
 	</insert>
+	
+	<select id="FindMembersById" parameterType="String" resultType="com.pandas.model.Members">
+		select * from MEMBERS where mem_id like '%' || #{mem_id} || '%'
+	</select>
 
 	<!-- Community 등록 -->
 	<insert id="CommunityPost" parameterType="com.pandas.model.Communities">
@@ -119,6 +128,15 @@
 	<update id="DiaryUpdate" parameterType="com.pandas.model.Diaries">
 		update diaries set diary_title=#{diary_title} , diary_content=#{diary_content} where diary_idx=#{diary_idx}
 	</update>
-
+	
+	
+	<!-- followings -->
+	<select id="getFollowers" parameterType="String" resultType="com.pandas.model.Followings" >
+		select * from followings where followee_id = #{mem_id}
+	</select>
+	
+	<select id="getFollowees" parameterType="String" resultType="com.pandas.model.Followings" >
+		select * from followings where follower_id = #{mem_id}
+	</select>
 
 </mapper> 
