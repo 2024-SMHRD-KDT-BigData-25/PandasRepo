@@ -52,7 +52,9 @@ public class StudyPost extends HttpServlet {
         
         // 현재 날짜는 SYSDATE로 처리
         System.out.println(tag + " " + img + " " + mem_id);
-
+        
+        
+        
         Studies record = new Studies(tag, img, mem_id);
         StudyDAO rdao = new StudyDAO();
         int res = rdao.Studing(record);
