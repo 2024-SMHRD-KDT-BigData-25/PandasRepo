@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -105,7 +108,7 @@
         
         <div class="row justify-content-center">
           <div class="col-lg-8 mb-5">
-            <form action="#">
+            <form action="StudyUpdate">
 
               <div class="row form-group">
                 <div class="col-md-12">
@@ -126,8 +129,8 @@
               <br>
               <div class="row form-group" align="center">
                 <div class="col-md-12">
-                  <input type="submit" value="수정" class="join-input post-input-btn btn">
-                  <input type="submit" value="취소" class="join-input post-input-btn btn">
+                  <input type="submit" value="수정" class="post-input-btn">
+                  <input type="submit" value="취소" class="post-input-btn" onclick="history.back();">
                 </div>
               </div>
 
@@ -197,24 +200,24 @@
         });
     </script>
 
-  <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/jquery-ui.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/jquery.countdown.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/bootstrap-datepicker.min.js"></script>
-  <script src="js/swiper.min.js"></script>
-  <script src="js/aos.js"></script>
+  <script src="${contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+  <script src="${contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="${contextPath}/resources/js/jquery-ui.js"></script>
+  <script src="${contextPath}/resources/js/popper.min.js"></script>
+  <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+  <script src="${contextPath}/resources/js/owl.carousel.min.js"></script>
+  <script src="${contextPath}/resources/js/jquery.stellar.min.js"></script>
+  <script src="${contextPath}/resources/js/jquery.countdown.min.js"></script>
+  <script src="${contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
+  <script src="${contextPath}/resources/js/bootstrap-datepicker.min.js"></script>
+  <script src="${contextPath}/resources/js/swiper.min.js"></script>
+  <script src="${contextPath}/resources/js/aos.js"></script>
 
-  <script src="js/picturefill.min.js"></script>
-  <script src="js/lightgallery-all.min.js"></script>
-  <script src="js/jquery.mousewheel.min.js"></script>
+  <script src="${contextPath}/resources/js/picturefill.min.js"></script>
+  <script src="${contextPath}/resources/js/lightgallery-all.min.js"></script>
+  <script src="${contextPath}/resources/js/jquery.mousewheel.min.js"></script>
 
-  <script src="js/main.js"></script>
+  <script src="${contextPath}/resources/js/main.js"></script>
   
   <script>
     $(document).ready(function(){

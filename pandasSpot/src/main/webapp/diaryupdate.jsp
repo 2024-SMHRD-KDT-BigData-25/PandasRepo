@@ -58,7 +58,7 @@
 		<div class="post-container">
 			
 			<div>
-				<form action="${contextPath }/diaryupdate" method="post">
+				<form action="${contextPath }/diaryupdate" method="post" enctype="multipart/form-data">
 					<input type="hidden" id="state" name="state" value="1" />
 					<table class="post_table">
 					<tr><td colspan="2" id="post_title_td"><h2 class="post-title">Study Log</h2></td></tr>

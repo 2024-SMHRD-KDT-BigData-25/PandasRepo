@@ -54,4 +54,11 @@ public class QuestionDAO {
 			return res;
 		}
 		
+	public int QuestionDelete(int q_idx) {
+			SqlSession sqlSession = sqlSessionFactory.openSession(true);
+			int res = sqlSession.delete("nyMapper.QuestionDelete",q_idx);
+			sqlSession.close();
+			return res;
+		}
+		
 }

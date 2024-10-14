@@ -47,9 +47,16 @@ public class CommunityDAO {
 			return res;
 		}
 		
-		public int CommunityUpdate(Communities d) {
+		public int CommunityUpdate(Communities c) {
 			SqlSession sqlSession = sqlSessionFactory.openSession(true);
-			int res = sqlSession.update("nyMapper.CommunityUpdate",d);
+			int res = sqlSession.update("nyMapper.CommunityUpdate",c);
+			sqlSession.close();
+			return res;
+		}
+		
+		public int CommunityDelete(int comm_idx) {
+			SqlSession sqlSession = sqlSessionFactory.openSession(true);
+			int res = sqlSession.delete("nyMapper.CommunityDelete",comm_idx);
 			sqlSession.close();
 			return res;
 		}

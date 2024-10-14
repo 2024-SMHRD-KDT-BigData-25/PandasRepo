@@ -60,4 +60,11 @@ public class DiaryDAO {
 		sqlSession.close();
 		return res;
 	}
+	
+	public int DiaryDelete(int diary_idx) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int res = sqlSession.delete("nyMapper.DiaryDelete",diary_idx);
+		sqlSession.close();
+		return res;
+	}
 }
