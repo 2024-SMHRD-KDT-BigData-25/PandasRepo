@@ -5,13 +5,38 @@
 	<!-- community 수정 -->
 	<update id="CommunityUpdate" parameterType="com.pandas.model.Communities">
 		update communities set comm_title=#{comm_title} , comm_content=#{comm_content} ,
-		comm_file=#{comm_file} ,created_at=SYSDATE || '(수정)' where id=#{id}
+		comm_file=#{comm_file} ,created_at=SYSDATE || '(수정)' where comm_idx=#{comm_idx}
 	</update>
 	
 	<!-- question 수정 -->
 	<update id="QuestionUpdate" parameterType="com.pandas.model.Questions">
 		update questions set q_title=#{q_title} , q_content=#{q_content} ,
-		q_file=#{q_file} , q_workbook=#{q_workbook} , created_at=SYSDATE || '(수정)' where id=#{id}
+		q_file=#{q_file} , q_workbook=#{q_workbook} , created_at=SYSDATE || '(수정)' where q_idx=#{q_idx}
+	</update>
+	
+	<!-- community 삭제 -->
+	<delete id="CommunityDelete" parameterType="com.pandas.model.Communities">
+		delete from communities where comm_idx=#{comm_idx}
+	</delete>
+	
+	<!-- diary 삭제 -->
+	<delete id="DiaryDelete" parameterType="com.pandas.model.Diaries">
+		delete from diaries where diary_idx=#{diary_idx}
+	</delete>
+	
+	<!-- question 삭제 -->
+	<delete id="QuestionDelete" parameterType="com.pandas.model.Questions">
+		delete from questions where q_idx=#{q_idx}
+	</delete>
+	
+	<!-- study 삭제 -->
+	<delete id="StudyDelete" parameterType="com.pandas.model.Studies">
+		delete from studies where study_idx=#{study_idx}
+	</delete>
+	
+	<!-- study 수정 -->
+	<update id="StudyUpdate" parameterType="com.pandas.model.Studies">
+		update studies set study_photo = #{study_photo} , study_content=#{study_content} where study_idx=#{study_idx}
 	</update>
 
 </mapper>

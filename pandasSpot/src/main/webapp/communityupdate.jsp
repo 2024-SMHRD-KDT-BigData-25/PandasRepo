@@ -57,7 +57,7 @@
 		<div class="post-container">
 			
 			<div>
-				<form action="CommunityUpdate">
+				<form action="CommunityUpdate" method="post" enctype="multipart/form-data">
 					<table class="post_table">
 					<tr><td colspan="2" id="post_title_td"><h2 class="post-title">자유게시판</h2></td></tr>
 					<tr><td><input class="hidden post_text_input" type="text" id="subject" name="diary_idx"  value="<%=comm.getComm_idx() %>" required></td></tr>

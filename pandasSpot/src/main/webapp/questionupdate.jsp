@@ -1,6 +1,5 @@
 	<%@page import="com.pandas.model.Questions"%>
 <%@page import="com.pandas.model.QuestionDAO"%>
-<%@page import="com.pandas.model.Communities"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -28,7 +27,7 @@
 		<div class="post-container">
 			
 			<div>
-				<form action="QuestionUpdate">
+				<form action="QuestionUpdate" method="post" enctype="multipart/form-data">
 					<table class="post_table">
 					<tr><td colspan="2" id="post_title_td"><h2 class="post-title">Q & A</h2></td></tr>
 					<tr><td><input class="hidden post_text_input" type="text" id="subject" name="diary_idx"  value="<%=q.getQ_idx() %>" required></td></tr>

@@ -32,4 +32,11 @@ public class Studies {
 		this.Study_photo = study_photo;
 		this.Mem_id = mem_id;
 	}
+	public Studies(int study_idx, String study_content, String study_photo) {
+		super();
+		Study_idx = study_idx;
+		Study_content = study_content;
+		Study_photo = study_photo;
+	}
+	
 }
