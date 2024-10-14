@@ -49,5 +49,19 @@ public class StudyDAO {
 		return res;
 	}
 	
+	public int StudyUpdate(Studies s) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int res = sqlSession.update("nyMapper.StudyUpdate",s);
+		sqlSession.close();
+		return res;
+	}
+	
+	public int StudyDelete(int study_idx) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int res = sqlSession.delete("nyMapper.StudyDelete",study_idx);
+		sqlSession.close();
+		return res;
+	}
+	
 }
 

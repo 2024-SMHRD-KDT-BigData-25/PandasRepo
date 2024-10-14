@@ -125,9 +125,9 @@
 		var html = "" //id=>list 곳에 추가가 될 html 코드
 		
 		for(var board of data){
-		  html += "<a href='record_view2.jsp?idx="+board.Study_idx+"'>"
+		  html += "<a href='record_view.jsp?idx="+board.Study_idx+"'>"
 		  html += "<div style= 'display: inline-block; width: 350px; height:350px; margin: 10px; text-align: center; border: 1px solid black; padding: 10px; flex-direction: column; justify-content: center; align-items: center;'>"
-	      html += "<p>"+board.Mem_id+"</p>"
+	      html += "<p style= 'font-family: 교육새음; font-size: 20px; font-weight: 400; color: #333;'>"+board.Mem_id+"</p>"
 	   	  // 이미지 경로를 img 태그로 출력
 	      html += "<img src='upload/" + board.Study_photo + "' alt='Uploaded Image' style='width: 250px; height: 250px;'>";
 	      //html += "<td><button class='btn btn-primary py-2 px-4 text-white' onclick='deleteBoard("+board.q_idx+")'>삭제</button></td>"

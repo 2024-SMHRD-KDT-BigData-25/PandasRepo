@@ -49,7 +49,7 @@
 		<div class="post-container">
 			
 			<div>
-				<form action="DiaryPost">
+				<form action="DiaryPost" method="post" enctype="multipart/form-data">
 					<table class="post_table">
 					<tr><td colspan="2" id="post_title_td"><h2 class="post-title">Study Log</h2></td></tr>
 						<tr>
