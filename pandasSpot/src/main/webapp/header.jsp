@@ -55,14 +55,14 @@
 							alt="Image Button">
 					</button></a></li>
 			<li><a href="#section2">
-				<button id="study_time_btn" class="img-button" onclick="$">
-						<img id="chat_img" src="${contextPath}/resources/icon/clock.png"
+				<button id="study_time_btn" class="img-button">
+						<img src="${contextPath}/resources/icon/clock.png"
 							alt="Image Button">
 				</button>
 			</a></li>
 			<li><a href="#section3">
-				<button id="search_btn" class="img-button" onclick="$">
-						<img id="chat_img" src="${contextPath}/resources/icon/magnifying-glass.png"
+				<button id="search_btn" class="img-button">
+						<img src="${contextPath}/resources/icon/magnifying-glass.png"
 							alt="Image Button">
 				</button>
 			</a></li>
@@ -103,10 +103,19 @@
         <div style="display:none;" id="friendList" class="friendList">
         	
         </div>
-
-        <!-- 친구 추가 버튼 -->
-        
     </div>
+    
+    <!-- 모달 창 -->
+    <div id="studyTimeModal" class="modal">
+        <div class="modal-content">
+		<div class="modal-header">
+    		<h2 class="open_chat_title">공부 시간 측정</h2>
+	        <span class="close" id="time_modal_close">&times;</span>
+        </div>
+            <video id="webcamVideo" autoplay playsinline></video>
+        </div>
+    </div>
+    
 </div>
 </header>
 
@@ -130,6 +139,50 @@
 	<script src="${contextPath}/resources/js/main.js"></script>
 
 <script>
+	var studyTimeModal = document.getElementById("studyTimeModal");
+	var videoElement = document.getElementById("webcamVideo");
+
+	$("#study_time_btn").on("click", function() {
+		studyTimeModal.style.display = "flex";
+        startWebcam();  // 웹캠 시작
+	});
+	
+	$("#time_modal_close").on("click", function() {
+		studyTimeModal.style.display = "none";
+        stopWebcam();  // 웹캠 종료
+	});
+	
+    // 모달 밖을 클릭했을 때도 닫기
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            stopWebcam();  // 웹캠 종료
+        }
+    }
+    
+    // 웹캠 스트림 시작
+    function startWebcam() {
+        navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function(stream) {
+            videoElement.srcObject = stream;
+        })
+        .catch(function(err) {
+            console.log("Error accessing webcam: " + err);
+        });
+    }
+
+    // 웹캠 스트림 종료
+    function stopWebcam() {
+        let stream = videoElement.srcObject;
+        if (stream) {
+            let tracks = stream.getTracks();
+            tracks.forEach(function(track) {
+                track.stop();
+            });
+            videoElement.srcObject = null;
+        }
+    }
+
 	
 	$("#friend_find_btn").on("click", function() {
 		var mem_id = $("#friend_id").val();

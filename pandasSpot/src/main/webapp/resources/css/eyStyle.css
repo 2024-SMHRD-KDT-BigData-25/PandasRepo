@@ -789,3 +789,8 @@ header {
     -ms-overflow-style: none; /* IE */
 }
 
+/* 비디오 스타일 */
+video {
+	width: 100%;
+	height: auto;
+}
