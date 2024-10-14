@@ -27,6 +27,7 @@
 
 			int idx = Integer.parseInt(idxString);
 			StudyDAO dao = new StudyDAO();
+				
 			Studies study = dao.getStudies(idx);
 			  	
 			String tag = study.getStudy_content();
@@ -91,26 +92,53 @@
 
 
 			
-  <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/jquery-ui.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/jquery.countdown.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/bootstrap-datepicker.min.js"></script>
-  <script src="js/swiper.min.js"></script>
-  <script src="js/aos.js"></script>
+	<script src="${contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery-ui.js"></script>
+	<script src="${contextPath}/resources/js/popper.min.js"></script>
+	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+	<script src="${contextPath}/resources/js/owl.carousel.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.stellar.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.countdown.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="${contextPath}/resources/js/bootstrap-datepicker.min.js"></script>
+	<script src="${contextPath}/resources/js/swiper.min.js"></script>
+	<script src="${contextPath}/resources/js/aos.js"></script>
 
-  <script src="js/picturefill.min.js"></script>
-  <script src="js/lightgallery-all.min.js"></script>
-  <script src="js/jquery.mousewheel.min.js"></script>
+	<script src="${contextPath}/resources/js/picturefill.min.js"></script>
+	<script src="${contextPath}/resources/js/lightgallery-all.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.mousewheel.min.js"></script>
 
-  <script src="js/main.js"></script>
+	<script src="${contextPath}/resources/js/main.js"></script>
   
   <script>
+  
+	function updateLikes(data){
+		$.ajax({
+		url : "StudyLikes", //요청경로
+		type : "get", //요청방식(http 요청 메서드)
+		data : {"study_idx" : data},
+		success : changeLikes,
+		error : function(){
+			alert("통신 실패!")
+		}
+		
+	})
+}
+    // 좋아요 버튼 클릭 시 AJAX 요청을 통해 서버로 데이터 전송
+    $("#like-button").on("click", function () {
+    	var r_idx = document.getElementById("r_idx").innerText;
+    	updateLikes(r_idx);
+    });
+    
+    function changeLikes(data) {
+    	var likes = document.getElementById("like-count");
+    	likes.innerText = data;
+    }
+	// 좋아요 기능 끝
+  
+  
+  
     $(document).ready(function(){
       $('#lightgallery').lightGallery();
     });

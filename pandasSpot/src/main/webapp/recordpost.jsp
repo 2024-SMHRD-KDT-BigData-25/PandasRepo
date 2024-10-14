@@ -64,7 +64,7 @@
               <div class="col-12 ">
                 <h2 class="join-title">공부 기록</h2>
                 <div class="author text-right">
-                  <span><i class="glyphicon glyphicon-user"></i> 작성자 이름</span>
+                  <!-- <span><i class="glyphicon glyphicon-user"></i> 작성자 이름</span> 뭔지 몰라서 주석처리 -->
                 </div>
               </div>
             </div>
