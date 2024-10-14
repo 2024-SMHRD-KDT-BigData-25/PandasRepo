@@ -18,12 +18,6 @@
 <link rel="stylesheet" href="${contextPath}/resources/css/eyStyle.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/jwStyle.css">
 
-<style>
-.like {
-	font-family: 둥근미소;
-	color: #000000;
-	
-</style>
 </head>
 <body>
 
@@ -60,7 +54,7 @@
 				<tr>
 					<td class="post_th_1"><button class="jwbutton" id="to_list_btn">목록</button>
 					<%if (member.getMem_id().equals(community.getMem_id())) {%>
-					<button class="btn" id="to_update_btn">수정</button>
+					<button class="jwbutton" id="to_update_btn">수정</button>
 					<% } %>
 					</td>
 					<td class="post_th_2"></td>

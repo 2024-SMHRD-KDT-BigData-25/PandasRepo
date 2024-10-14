@@ -12,6 +12,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+<link rel="stylesheet" href="${contextPath}/resources/css/aos.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/eyStyle.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/jwStyle.css">
 
 </head>
 <body>
@@ -30,75 +33,66 @@
 	<div data-aos="fade">
 		<h2 class="join-title before-table">Q & A</h2>
 	</div>
-
-	<div class="content-container" data-aos="fade">
-
-		<table class="table-content">
-			<thead>
+	
+	<div class="content-container">
+		<div class="board_container">
+		<table class="content-list-table">
+			<thead class="table-content">
 				<tr class="table-header">
-					<th class="cell_padding post_th_1"><%=question.getCreated_at()%></th>
-					<th class="cell_padding post_th_2"><%=question.getQ_title()%></th>
-					<th class="cell_padding post_th_3"><%=question.getMem_id()%></th>
+					<th class="cell_padding post_th_1" style="white-space: nowrap; width: 20%;"><%=question.getCreated_at()%></th>
+					<th class="cell_padding post_th_2" style="width: 60%; text-align: center;"><%=question.getQ_title()%></th>
+					<th class="cell_padding post_th_3" style="width: 20%; text-align: center;"><%=question.getMem_id()%></th>
 				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td class="post_th_1">
-						<button class="btn display_inline" id="to_list_btn">목록</button>
-					</td>
-					<td class="post_th_2">
-							문제집: <%=question.getQ_workbook()%>
-					</td>
-					<td class="post_th_3">
-						<%
-						if (member.getMem_id().equals(question.getMem_id())) {
-						%>
-						<button class="btn display_inline" id="to_update_btn">수정</button>
-						<%
-						}
-						%>
-					</td>
-
-				</tr>
-				<tr>
-					<td colspan="3">
-						<div class="post_content display_flex">
-							<div class="board_text_content">
-								<%=question.getQ_content()%>
-							</div>
-
-							<img class="board_img_content" alt="게시물 이미지"
-								src="${contextPath}/upload/<%=question.getQ_file() %>">
-
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="3">
-						<!-- 댓글 부분 -->
-						<div class="form-group">
-							<form action="" method="post">
-								<div class="dat">
-
-									<!-- 댓글 개수 표시 -->
-									<div style="display: flex; justify-content: flex-start;">
-										<span>댓글수 : 5</span>
-									</div>
-									<span>댓글 내용 공간</span>
-									<div style="display: flex; gap: 10px; align-items: center;">
-										<input type="text" name="dat" id="dat" class="join-input-dat">
-										<input class="join-input-btn-min" type="submit" value="등록"
-											style="margin-bottom: -15px;">
-									</div>
-								</div>
-							</form>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+			</table>
+		</div>
 	</div>
+	
+	<div class="content-container">
+		<div class="board_container">
+			<table class="content-list-table">
+				<tr>
+					<td class="post_th_1"><button class="jwbutton" id="to_list_btn">목록</button>
+					<%if (member.getMem_id().equals(question.getMem_id())) {%>
+					<button class="jwbutton" id="to_update_btn">수정</button>
+					<% } %>
+					</td>
+					<td class="post_th_2"><span class="like"><%=question.getQ_workbook()%></span></td>
+					<td class="post_th_3"></td>
+    			</tr>
+   			 </table>
+   		</div>
+   	</div>
+	<div class="form-group">
+					<div class="main">
+						<span>질문하세요
+						<%=question.getQ_content() %>
+						</span>
+					<div><img class="board_img_content" alt="게시물 이미지"
+								src="${contextPath}/upload/<%=question.getQ_file() %>">
+					</div>
+					</div>
+				</div>
+			<!-- 댓글 부분 -->
+			<div class="form-group">
+				<form action="" method="post" enctype="multipart/form-data">
+					<div class="dat" >
 
+					<!-- 댓글 개수 표시 -->
+					<div style="display: flex; justify-content: flex-start;">
+						<span>댓글수 : 5</span>
+					</div>
+					<span>댓글 내용 공간</span>
+					<div style="display: flex; gap: 10px; align-items: center;">
+						<input type="text" name="dat" id="dat" class="join-input-dat"> 
+								<input class="join-input-btn-min" type="submit" value="등록" style="margin-bottom:-15px;">
+					</div>
+					</div>
+				</form>
+			</div>
+	
+	
+
+	
 	<script src="${contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 	<script src="${contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
 	<script src="${contextPath}/resources/js/jquery-ui.js"></script>
