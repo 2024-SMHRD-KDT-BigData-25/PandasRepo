@@ -10,15 +10,30 @@ import com.pandas.database.SqlSessionManager;
 public class FollowingsDAO {
 	SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSessionFactory();
 	
-	public List<Followings> getMyfollowers(String mem_id) {
+	public List<String> getMyfollowers(String mem_id) {
 		SqlSession session = sqlSessionFactory.openSession(true);
-		List<Followings> res = session.selectList("SpotMapper.getFollowers", mem_id);
+		List<String> res = session.selectList("SpotMapper.getFollowers", mem_id);
 		session.close();
 		return res;
 	}
-	public List<Followings> getMyfollowees(String mem_id) {
+	public List<String> getMyfollowings(String mem_id) {
 		SqlSession session = sqlSessionFactory.openSession(true);
-		List<Followings> res = session.selectList("SpotMapper.getFollowees", mem_id);
+		List<String> res = session.selectList("SpotMapper.getFollowings", mem_id);
+		session.close();
+		return res;
+	}
+	
+	public List<String> friendFollow(Followings f) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		session.insert("SpotMapper.Follow", f);
+		List<String> res = session.selectList("SpotMapper.getFollowers", f.getFollowing_id());
+		session.close();
+		return res;
+	}
+	public List<String> friendUnfollow(Followings f) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		session.insert("SpotMapper.unFollow", f);
+		List<String> res = session.selectList("SpotMapper.getFollowers", f.getFollowing_id());
 		session.close();
 		return res;
 	}

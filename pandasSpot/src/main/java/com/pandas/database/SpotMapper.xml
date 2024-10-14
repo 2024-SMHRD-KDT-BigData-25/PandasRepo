@@ -131,12 +131,19 @@
 	
 	
 	<!-- followings -->
-	<select id="getFollowers" parameterType="String" resultType="com.pandas.model.Followings" >
-		select * from followings where followee_id = #{mem_id}
+	<select id="getFollowers" parameterType="String" resultType="String" >
+		select follower_id from followings where FOLLOWING_ID = #{mem_id}
 	</select>
 	
-	<select id="getFollowees" parameterType="String" resultType="com.pandas.model.Followings" >
-		select * from followings where follower_id = #{mem_id}
+	<select id="getFollowings" parameterType="String" resultType="String" >
+		select FOLLOWING_ID from followings where follower_id = #{mem_id}
 	</select>
+	
+	<insert id="Follow" parameterType="com.pandas.model.Followings">
+		insert into followings(following_id, follower_id) values (#{following_id}, #{follower_id})
+	</insert>
+	<delete id="unFollow" parameterType="com.pandas.model.Followings">
+		delete from followings where following_id = #{following_id} and follower_id = #{follower_id}
+	</delete>
 
 </mapper> 

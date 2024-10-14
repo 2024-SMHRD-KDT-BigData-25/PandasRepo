@@ -32,14 +32,14 @@ public class MemberListLoad extends HttpServlet {
 
         List<Diaries> list = dao.getMyPostList(mem_id);
         FollowingsDAO fDAO = new FollowingsDAO();
-        List<Followings> followerList = fDAO.getMyfollowers(mem_id);
-        List<Followings> followeeList = fDAO.getMyfollowees(mem_id);
+        List<String> followerList = fDAO.getMyfollowers(mem_id);
+        List<String> followingList = fDAO.getMyfollowings(mem_id);
 
         // 데이터를 담을 Map 생성
         Map<String, Object> dataMap = new HashMap<>();
         dataMap.put("diaries", list);
         dataMap.put("followers", followerList);
-        dataMap.put("followees", followeeList);
+        dataMap.put("followings", followingList);
 
         // GSON으로 Map을 JSON으로 변환
         Gson gson = new Gson();

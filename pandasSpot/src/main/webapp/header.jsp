@@ -12,6 +12,8 @@
 <link rel="stylesheet" href="${contextPath}/resources/css/eyStyle.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/nyStyle.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/jwStyle.css">
+
+<script src="https://kit.fontawesome.com/30d3b7fa39.js" crossorigin="anonymous"></script>
 </head>
 <header role="banner">
 	<% 
@@ -249,6 +251,20 @@ window.onclick = function(event) {
     $("#find_modal_close").on("click", function() {
         friendModal.style.display = "none";
     });
+    
+    $("#friend_find_btn").on("click", function() {
+		var mem_id = $("#friend_id").val();
+ 		$.ajax({
+			url : "findMembersById", //요청경로
+			type : "post", //요청방식(http 요청 메서드)
+			data : {"mem_id" : mem_id},
+			success : printFriendList,
+			error : function(){
+				alert("통신 실패!")
+			}
+		}) 
+
+	});
 	
 	function printFriendList(data) {
 		var data = JSON.parse(data), dlength = data.length;
@@ -260,7 +276,7 @@ window.onclick = function(event) {
 			$target.css("color", "red");
 			$target.css("font-size", "20px");
 			$target.css("margin-top", "10px");
-			$target.text("그런 친구는 없어요.");
+			$target.text("친구 이름을 확인해주세요.");
 			return;
 		}
 		
@@ -276,7 +292,7 @@ window.onclick = function(event) {
 			friendlink.style.margin = "10px 10px 0 0";
 			friendlink.style.fontSize = "20px";
 			friendlink.style.fontFamily = "교육새음";
-			friendlink.href = "#"
+			friendlink.href = "${contextPath}/memberMain.jsp?mem_id="+item.mem_id;
 
 			friendlink.textContent = item.mem_id + "(" + item.mem_school_name + ")"; // 예시 필드
 			resultContainer.appendChild(friendlink); // 결과 요소에 추가
