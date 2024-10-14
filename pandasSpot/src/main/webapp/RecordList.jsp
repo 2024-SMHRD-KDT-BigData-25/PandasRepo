@@ -125,7 +125,7 @@
 		var html = "" //id=>list 곳에 추가가 될 html 코드
 		
 		for(var board of data){
-		  html += "<a href='record_view2.jsp?idx="+board.Study_idx+"'>"
+		  html += "<a href='record_view.jsp?idx="+board.Study_idx+"'>"
 		  html += "<div style= 'display: inline-block; width: 350px; height:350px; margin: 10px; text-align: center; border: 1px solid black; padding: 10px; flex-direction: column; justify-content: center; align-items: center;'>"
 	      html += "<p>"+board.Mem_id+"</p>"
 	   	  // 이미지 경로를 img 태그로 출력
