@@ -58,15 +58,14 @@
 		<div class="post-container">
 			
 			<div>
-				<form action="${contextPath }/diaryupdate" method="post" enctype="multipart/form-data">
-					<input type="hidden" id="state" name="state" value="1" />
+				<form action="${contextPath }/diaryupdate" method="post">
 					<table class="post_table">
 					<tr><td colspan="2" id="post_title_td"><h2 class="post-title">Study Log</h2></td></tr>
-					<tr><td><input class="hidden post_text_input" type="text" id="subject" name="diary_idx"  value="<%=diary.getDiary_idx() %>" required></td></tr>
+					<tr><td><input type="hidden" name="diary_idx"  value="<%=diary.getDiary_idx() %>" required></td></tr>
 						<tr>
 							<td class="td_left">
 							<label class="image_label" for="subject">제목</label> </td>
-							<td class="td_right"><input class="post_text_input" type="text" id="subject" name="diary_title"  value="<%=diary.getDiary_title() %>" required></td>
+							<td class="td_right"><input class="post_text_input" type="text" name="diary_title"  value="<%=diary.getDiary_title() %>" required></td>
 							<!-- 원본 제목 삽입 -->
 						</tr>
 						<tr>
