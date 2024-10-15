@@ -152,7 +152,7 @@
 
 	<!-- comments -->
 	<select id="CommCommentList" resultType="com.pandas.model.CommComments">
-		select * from community_comments
+		select * from community_comments where comm_idx = #{comm_idx}
 	</select>
 	<insert id="CommNewComment" parameterType="com.pandas.model.CommComments">
 		INSERT INTO community_comments (comm_idx, cmt_content, mem_id) VALUES (#{comm_idx}, #{cmt_content}, #{mem_id})
@@ -167,10 +167,18 @@
 	</update>
 	
 	<select id="StudyCommentList" resultType="com.pandas.model.StudyComments">
-		select * from STUDY_COMMENTS
+		select * from STUDY_COMMENTS where STUDY_IDX = #{study_idx}
 	</select>
 	
 	<insert id="StudyNewComment" parameterType="com.pandas.model.StudyComments">
 		INSERT INTO STUDY_COMMENTS (STUDY_IDX, cmt_content, mem_id) VALUES (#{study_idx}, #{cmt_content}, #{mem_id})
+	</insert>
+	
+	<select id="QnACommentList" resultType="com.pandas.model.QuestionComments">
+		select * from QUESTION_COMMENTS where q_idx = #{q_idx}
+	</select>
+	
+	<insert id="QnAyNewComment" parameterType="com.pandas.model.QuestionComments">
+		INSERT INTO QUESTION_COMMENTS (q_idx, cmt_content, mem_id) VALUES (#{q_idx}, #{cmt_content}, #{mem_id})
 	</insert>
 </mapper> 
