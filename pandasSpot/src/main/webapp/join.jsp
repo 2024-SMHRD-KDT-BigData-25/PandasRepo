@@ -39,7 +39,7 @@
 						<div class="image_label">프로필 사진</div>
 						<label>
 						    <img src= "${contextPath}/resources/icon/add (1).png" alt="이미지 추가하기" id="input-image"/>
-							<input type="file" id="mem_profile_img" name="mem_profile_img"> 
+							<input type="file"  accept="image/*" id="mem_profile_img" name="mem_profile_img"> 
 						</label>
 						<div class="join-input" id="join_confirm"></div>
 						<input class="join-input join-input-btn btn" type="submit" value="Join to SPOT!">
