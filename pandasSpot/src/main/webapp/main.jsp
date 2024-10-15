@@ -41,7 +41,7 @@
 				<td rowspan='2' class="member_info_td_1">
 					<div class="cropping">
 						<img id="profile_img" alt="프로필 사진"
-							src="${contextPath}/upload/<%= member.getMem_profile_img()%>">
+							src="${contextPath}/uploads/<%= member.getMem_profile_img()%>">
 					</div>
 				</td>
 

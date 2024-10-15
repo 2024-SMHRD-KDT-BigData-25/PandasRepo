@@ -57,13 +57,26 @@
 		</div>
 	</div>
 	<div style="width: 80%; max-width: 800px; display: flex; justify-content: space-between; margin: 0 auto; margin-bottom: 10px; margin-top : -15px">
-		<button class="jwbutton" id="to_list_btn">목록</button>
-			<div></div>
-			<div></div>	
+		<table>
+					<tr>
+					<td>
+					<button class="jwbutton" id="to_list_btn">목록</button>
+					</td>
+					<%if (member.getMem_id().equals(study.getMem_id()) || member.getMem_id().equals("admin")) {%>
+					<td>
+					<button class="jwbutton" id="to_update_btn">수정</button>
+					</td>
+					<td>
+					<button class="jwbutton" id="to_delete_btn">삭제</button>
+					</td>
+					<% } %>
+					</tr>
+					</table>
+
 		</div>
 			<div class="form-group" style = "display: flex; justify-content: center; align-items: center;">
 				<div class="sub">
-					<img src="${contextPath}/<%= study.getStudy_photo() %>" alt="Uploaded Image">
+					<img src="${contextPath}/uploads/<%= study.getStudy_photo() %>" alt="Uploaded Image">
 				</div>
 			</div>
 			<!-- 태그 부분 -->
@@ -77,9 +90,6 @@
 					<span><%=tags %></span>
 					<%} %></div>
 					</div>
-					<%if (member.getMem_id().equals(study.getMem_id())) {%>
-					<button class="jwbutton" id="to_update_btn">수정</button>
-					<% } %>
 					</td>
 					<td class="post_th_2"></td>
 					<td class="post_th_3" style="white-space: nowrap;"><button id="like-button" style=" background: transparent; border: none; cursor: pointer;">
@@ -223,6 +233,20 @@
     }
 	// 좋아요 기능 끝
   
+	$("#to_delete_btn").on("click", function() {
+		$.ajax({
+			url : "StudyDelete", //요청경로
+			type : "get", //요청방식(http 요청 메서드)
+			data : {"study_idx" : study_idx},
+			success : function(){
+				location.href = "${contextPath}/RecordList.jsp";
+			},
+			error : function(){
+				alert("통신 실패!")
+			}
+			
+		})
+	});
   
   
     $(document).ready(function(){

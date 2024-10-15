@@ -54,10 +54,23 @@
 		<div class="board_container">
 			<table class="content-list-table">
 				<tr>
-					<td class="post_th_1"><button class="jwbutton" id="to_list_btn">목록</button>
-					<%if (member.getMem_id().equals(community.getMem_id())) {%>
+					<td class="post_th_1">
+					<table>
+					<tr>
+					<td>
+					<button class="jwbutton" id="to_list_btn">목록</button>
+					</td>
+					<%if (member.getMem_id().equals(community.getMem_id()) || member.getMem_id().equals("admin")) {%>
+					<td>
 					<button class="jwbutton" id="to_update_btn">수정</button>
+					</td>
+					<td>
+					<button class="jwbutton" id="to_delete_btn">삭제</button>
+					</td>
 					<% } %>
+					</tr>
+					</table>
+					
 					</td>
 					<td class="post_th_2"></td>
 					<td class="post_th_3" style="white-space: nowrap;">
@@ -79,7 +92,7 @@
 						<%=community.getComm_content() %>
 						</span>
 					<div><img class="board_img_content" alt="게시물 이미지"
-								src="${contextPath}/upload/<%=community.getComm_file() %>">
+								src="${contextPath}/uploads/<%=community.getComm_file() %>">
 					</div>
 					</div>
 				</div>

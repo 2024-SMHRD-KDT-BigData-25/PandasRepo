@@ -20,8 +20,6 @@ public class DiaryDelete extends HttpServlet {
 		
 		DiaryDAO dao = new DiaryDAO();
 		int res = dao.DiaryDelete(diary_idx);
-		
-		response.sendRedirect("DiaryList.jsp");
 	}
 
 }

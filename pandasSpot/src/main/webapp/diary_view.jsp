@@ -55,11 +55,23 @@
 			<div class="board_container">
 				<table class="content-list-table">
 					<tr>
-						<td class="post_th_1"><button class="jwbutton" id="to_list_btn">목록</button>
-						<%if (member.getMem_id().equals(diary.getMem_id())) {%>
-						<button class="jwbutton" id="to_update_btn">수정</button>
-						<% } %>
-						</td>
+					<td>
+					<table>
+					<tr>
+					<td>
+					<button class="jwbutton" id="to_list_btn">목록</button>
+					</td>
+					<%if (member.getMem_id().equals(diary.getMem_id()) || member.getMem_id().equals("admin")) {%>
+					<td>
+					<button class="jwbutton" id="to_update_btn">수정</button>
+					</td>
+					<td>
+					<button class="jwbutton" id="to_delete_btn">삭제</button>
+					</td>
+					<% } %>
+					</tr>
+					</table>
+					</td>
 						<td class="post_th_2"></td>
 						<td class="post_th_3"></td>
     				</tr>
@@ -94,12 +106,29 @@
   <script src="${contextPath}/resources/js/main.js"></script>
   
   <script>
+  var diary_idx = $("#diary_idx").text();
     $(document).ready(function(){
       $('#lightgallery').lightGallery();
     });
     
     $("#to_list_btn").on( "click", function( event ) {
 		location.href = "${contextPath}/DiaryList.jsp";
+	});
+    
+    
+	$("#to_delete_btn").on("click", function() {
+		$.ajax({
+			url : "DiaryDelete", //요청경로
+			type : "get", //요청방식(http 요청 메서드)
+			data : {"diary_idx" : diary_idx},
+			success : function(){
+				location.href = "${contextPath}/DiaryList.jsp";
+			},
+			error : function(){
+				alert("통신 실패!")
+			}
+			
+		})
 	});
 
     $("#to_update_btn").on( "click", function( event ) {

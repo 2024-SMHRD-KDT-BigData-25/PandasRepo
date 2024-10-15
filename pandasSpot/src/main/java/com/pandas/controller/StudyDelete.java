@@ -21,8 +21,7 @@ public class StudyDelete extends HttpServlet {
 		
 		StudyDAO dao = new StudyDAO();
 		int res = dao.StudyDelete(study_idx);
-		
-		response.sendRedirect("StudyList.jsp");
+		System.out.println("삭제 완료!");
 	}
 
 }

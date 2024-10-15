@@ -19,9 +19,7 @@ public class QuestionDelete extends HttpServlet {
 		int q_idx = Integer.parseInt(request.getParameter("q_idx"));
 		
 		QuestionDAO dao = new QuestionDAO();
-		int res = dao.QuestionDelete(q_idx);
-		
-		response.sendRedirect("QuestionList.jsp");
+		int res = dao.QuestionDelete(q_idx);	
 	}
 
 }

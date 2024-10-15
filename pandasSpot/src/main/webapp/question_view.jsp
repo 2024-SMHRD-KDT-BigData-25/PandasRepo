@@ -52,10 +52,22 @@
 		<div class="board_container">
 			<table class="content-list-table">
 				<tr>
-					<td class="post_th_1"><button class="jwbutton" id="to_list_btn">목록</button>
-					<%if (member.getMem_id().equals(question.getMem_id())) {%>
+					<td>
+					<table>
+					<tr>
+					<td>
+					<button class="jwbutton" id="to_list_btn">목록</button>
+					</td>
+					<%if (member.getMem_id().equals(question.getMem_id()) || member.getMem_id().equals("admin")) {%>
+					<td>
 					<button class="jwbutton" id="to_update_btn">수정</button>
+					</td>
+					<td>
+					<button class="jwbutton" id="to_delete_btn">삭제</button>
+					</td>
 					<% } %>
+					</tr>
+					</table>
 					</td>
 					<td class="post_th_2"><span class="like"><%=question.getQ_workbook()%></span></td>
 					<td class="post_th_3"></td>
@@ -69,7 +81,7 @@
 						<%=question.getQ_content() %>
 						</span>
 					<div><img class="board_img_content" alt="게시물 이미지"
-								src="${contextPath}/upload/<%=question.getQ_file() %>">
+								src="${contextPath}/uploads/<%=question.getQ_file() %>">
 					</div>
 					</div>
 				</div>
@@ -176,6 +188,22 @@
 
 		$("#to_list_btn").on("click", function(event) {
 			location.href = "${contextPath}/QuestionList.jsp";
+		});
+		
+		  
+		$("#to_delete_btn").on("click", function() {
+			$.ajax({
+				url : "QuestionDelete", //요청경로
+				type : "get", //요청방식(http 요청 메서드)
+				data : {"q_idx" : q_idx},
+				success : function(){
+					location.href = "${contextPath}/QuestionList.jsp";
+				},
+				error : function(){
+					alert("통신 실패!");
+				}
+				
+			})
 		});
 
 		$("#to_update_btn").on(
