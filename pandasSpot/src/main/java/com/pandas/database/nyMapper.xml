@@ -5,7 +5,7 @@
 	<!-- community 수정 -->
 	<update id="CommunityUpdate" parameterType="com.pandas.model.Communities">
 		update communities set comm_title=#{comm_title} , comm_content=#{comm_content} ,
-		comm_file=#{comm_file} ,created_at=SYSDATE || '(수정)' where comm_idx=#{comm_idx}
+		comm_file=#{comm_file} where comm_idx=#{comm_idx}
 	</update>
 	
 	<!-- question 수정 -->
