@@ -12,6 +12,8 @@
 <link rel="stylesheet" href="${contextPath}/resources/css/eyStyle.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/nyStyle.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/jwStyle.css">
+
+<script src="https://kit.fontawesome.com/30d3b7fa39.js" crossorigin="anonymous"></script>
 </head>
 <header role="banner">
 	<% 
@@ -48,24 +50,24 @@
 	
 	<div class="floating-menu">
 		<ul>
-			<li><a href="#section1">
+			<li>
 					<button id="chat_btn" class="img-button"
 						onclick="chatButtonClick()">
 						<img id="chat_img" src="${contextPath}/resources/icon/chat.png"
 							alt="Image Button">
-					</button></a></li>
-			<li><a href="#section2">
-				<button id="study_time_btn" class="img-button" onclick="$">
-						<img id="chat_img" src="${contextPath}/resources/icon/clock.png"
+					</button></li>
+			<li>
+				<button id="study_time_btn" class="img-button">
+						<img src="${contextPath}/resources/icon/clock.png"
 							alt="Image Button">
 				</button>
-			</a></li>
-			<li><a href="#section3">
-				<button id="search_btn" class="img-button" onclick="$">
-						<img id="chat_img" src="${contextPath}/resources/icon/magnifying-glass.png"
+			</li>
+			<li>
+				<button id="search_btn" class="img-button">
+						<img src="${contextPath}/resources/icon/magnifying-glass.png"
 							alt="Image Button">
 				</button>
-			</a></li>
+			</li>
 		</ul>
 	</div>
 	
@@ -87,27 +89,35 @@
 			</div>
 		</div>
 	</div>
-	
-	<div id="friendModal" class="modal">
-    <div class="modal-content">
-    	<div class="modal-header">
-    		<h2 class="open_chat_title">친구 찾기</h2>
-	        <span class="close" id="find_modal_close">&times;</span>
-        </div>
-        <!-- 검색 입력창 -->
-        <div class="friend_search">
-        <input class="join-input" type="text" id="friend_id" name="mem_id" placeholder="아이디를 입력하세요"> 
-		<input class="join-input join-input-btn btn" id="friend_find_btn" type="button" value="친구 검색">
-        </div>
-        <!-- 친구 목록 (여기에 검색 결과가 표시됨) -->
-        <div style="display:none;" id="friendList" class="friendList">
-        	
-        </div>
 
-        <!-- 친구 추가 버튼 -->
-        
-    </div>
-</div>
+	<div id="friendModal" class="modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2 class="open_chat_title">친구 찾기</h2>
+				<span class="close" id="find_modal_close">&times;</span>
+			</div>
+			<!-- 검색 입력창 -->
+			<div class="friend_search">
+				<input class="join-input" type="text" id="friend_id" name="mem_id"
+					placeholder="아이디를 입력하세요"> <input
+					class="join-input join-input-btn btn" id="friend_find_btn"
+					type="button" value="친구 검색">
+			</div>
+			<!-- 친구 목록 (여기에 검색 결과가 표시됨) -->
+			<div style="display: none;" id="friendList" class="friendList">
+
+			</div>
+		</div>
+	</div>
+	<div id="studyTimeModal" class="modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2 class="open_chat_title">공부 시간 측정</h2>
+				<span class="close" id="time_modal_close">&times;</span>
+			</div>
+			<video id="webcamVideo" autoplay playsinline></video>
+		</div>
+	</div>
 </header>
 
 	<script src="${contextPath}/resources/js/jquery-3.3.1.min.js"></script>
@@ -128,10 +138,121 @@
 	<script src="${contextPath}/resources/js/jquery.mousewheel.min.js"></script>
 
 	<script src="${contextPath}/resources/js/main.js"></script>
+	<script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
+	
 
 <script>
+var studyTimeModal = document.getElementById("studyTimeModal");
+var videoElement = document.getElementById("webcamVideo");
+var friendModal = document.getElementById("friendModal");
+var chatModal = document.getElementById("chatModal");
+
+// 공부 시간 측정 버튼 클릭 시 모달 열기
+$("#study_time_btn").on("click", function() {
+	console.log(studyTimeModal)
+	var study = $("#studyTimeModal");
+	study.css("display", "flex");
+    startWebcam();  // 웹캠 시작
+});
+
+// 공부 시간 측정 모달 닫기
+$("#time_modal_close").on("click", function() {
+    studyTimeModal.style.display = "none";
+    stopWebcam();  // 웹캠 종료
+});
 	
-	$("#friend_find_btn").on("click", function() {
+// 모달 바깥 클릭 시 닫기
+window.onclick = function(event) {
+    if (event.target == studyTimeModal) {
+        studyTimeModal.style.display = "none";
+        stopWebcam();  // 웹캠 종료
+    } else if (event.target == friendModal) {
+        friendModal.style.display = "none";
+    }
+    else if (event.target == chatModal) {
+        friendModal.style.display = "none";
+    }
+}
+    
+    // 웹캠 스트림 시작
+    function startWebcam() {
+        navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function(stream) {
+            videoElement.srcObject = stream;
+            sendFaceDetectionData(10, 50);
+        })
+        .catch(function(err) {
+            console.log("Error accessing webcam: " + err);
+        });
+    }
+    
+ // AJAX 요청으로 서블릿에 데이터 전송
+    function sendFaceDetectionData(timeSpent, totalTime) {
+        var data = {
+            timeSpent: timeSpent,     // 예: 이번 세션 동안 감지된 시간 (초)
+            totalTime: totalTime      // 예: 전체 감지된 시간 (초)
+        };
+
+        $.ajax({
+            url: "FaceDetectionServlet", // 서블릿 URL
+            type: "POST",
+            contentType: "application/json", // JSON 형식으로 보냄
+            data: JSON.stringify(data),      // 데이터를 JSON 문자열로 변환
+            success: function(response) {
+                console.log("서버로부터 받은 응답: ", response);
+                // 서버에서 받은 데이터를 처리하는 부분
+                // response.totalTimeSpent 등의 값 사용 가능
+            },
+            error: function(xhr, status, error) {
+                console.error("서블릿 호출 중 오류 발생: ", error);
+            }
+        });
+    }
+
+ 	// 웹캠 스트림 종료
+    function stopWebcam() {
+        if (videoElement.srcObject) {
+            let stream = videoElement.srcObject;
+            let tracks = stream.getTracks();
+
+            tracks.forEach(function(track) {
+                track.stop(); // 모든 트랙(즉, 비디오 트랙)을 중단
+            });
+
+            videoElement.srcObject = null;
+
+            // 서블릿에 종료 요청을 보냄
+            sendStopRequest();
+        }
+    }
+
+ 	// AJAX 요청으로 서블릿에 종료 명령 전송
+    function sendStopRequest() {
+        $.ajax({
+            url: "FaceDetectionServlet", // 종료를 처리할 서블릿 URL
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({ action: "stop" }), // 종료 명령을 포함한 데이터 전송
+            success: function(response) {
+                console.log("서버로부터 종료 응답: ", response);
+            },
+            error: function(xhr, status, error) {
+                console.error("서블릿 호출 중 오류 발생: ", error);
+            }
+        });
+    }
+
+    // 친구 찾기 버튼 클릭 시 모달 열기
+    $("#search_btn").on("click", function() {
+        friendModal.style.display = "flex";
+    });
+
+    // 친구 찾기 모달 닫기
+    $("#find_modal_close").on("click", function() {
+        friendModal.style.display = "none";
+    });
+    
+    $("#friend_find_btn").on("click", function() {
 		var mem_id = $("#friend_id").val();
  		$.ajax({
 			url : "findMembersById", //요청경로
@@ -143,7 +264,7 @@
 			}
 		}) 
 
-	})
+	});
 	
 	function printFriendList(data) {
 		var data = JSON.parse(data), dlength = data.length;
@@ -155,7 +276,7 @@
 			$target.css("color", "red");
 			$target.css("font-size", "20px");
 			$target.css("margin-top", "10px");
-			$target.text("그런 친구는 없어요.");
+			$target.text("친구 이름을 확인해주세요.");
 			return;
 		}
 		
@@ -171,7 +292,7 @@
 			friendlink.style.margin = "10px 10px 0 0";
 			friendlink.style.fontSize = "20px";
 			friendlink.style.fontFamily = "교육새음";
-			friendlink.href = "#"
+			friendlink.href = "${contextPath}/memberMain.jsp?mem_id="+item.mem_id;
 
 			friendlink.textContent = item.mem_id + "(" + item.mem_school_name + ")"; // 예시 필드
 			resultContainer.appendChild(friendlink); // 결과 요소에 추가
@@ -202,14 +323,6 @@
 		var modal = document.getElementById("chatModal");
 		modal.style.display = "none"; // 모달을 숨김
 	}
-	
-	// 모달 외부를 클릭하면 닫기
-	window.onclick = function(event) {
-		var modal = document.getElementById("chatModal");
-		if (event.target === modal) {
-			modal.style.display = "none";
-		}
-	};
 	
 	//소켓 서버에 연결(WebSocket)
 	
@@ -323,28 +436,6 @@
 		if (event.key === "Enter") {
 			send(); // 엔터를 누르면 send() 함수 호출
 		}
-	}
-	
-	// 모달창 열고 닫는 기능
-	var modal = document.getElementById("friendModal");
-	var openModalBtn = document.getElementById("search_btn");
-	var closeModalBtn = document.getElementById("find_modal_close");
-
-	// 친구 찾기 버튼 클릭 시 모달창 열기
-	openModalBtn.onclick = function() {
-	    modal.style.display = "flex";
-	}
-
-	// 닫기 버튼 클릭 시 모달창 닫기
-	closeModalBtn.onclick = function() {
-	    modal.style.display = "none";
-	}
-
-	// 모달창 바깥 클릭 시 닫기
-	window.onclick = function(event) {
-	    if (event.target == modal) {
-	        modal.style.display = "none";
-	    }
 	}
 
 </script>

@@ -31,7 +31,8 @@
 	%> 
 
 	<!-- 게시글 부분 -->
-	<div class="hidden" id="q_idx"><%= idx %></div>
+	<div class="hidden" id="comm_idx"><%= idx %></div>
+	
 	<div data-aos="fade">
 		<h2 class="join-title before-table">자유게시판</h2>
 	</div>
@@ -68,7 +69,7 @@
 			
 				<div class="form-group">
 					<div class="main">
-						<span>자게는 하루 최대 3번만 쓸수 있습니다.
+						<span>
 						<%=community.getComm_content() %>
 						</span>
 					<div><img class="board_img_content" alt="게시물 이미지"
@@ -130,7 +131,7 @@
 }
     // 좋아요 버튼 클릭 시 AJAX 요청을 통해 서버로 데이터 전송
     $("#like-button").on("click", function () {
-    	var c_idx = document.getElementById("q_idx").innerText;
+    	var c_idx = document.getElementById("comm_idx").innerText;
     	updateLikes(c_idx);
     });
     
@@ -149,8 +150,8 @@
 	});
 
     $("#to_update_btn").on( "click", function( event ) {
-    	var diary_idx = document.getElementById("q_idx").innerText;
-		location.href = "${contextPath}/communityupdate.jsp?idx="+diary_idx;
+    	var comm_idx = document.getElementById("comm_idx").innerText;
+		location.href = "${contextPath}/communityupdate.jsp?idx="+comm_idx;
 	});
   </script>
 
