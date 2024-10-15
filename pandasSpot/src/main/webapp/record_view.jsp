@@ -62,7 +62,7 @@
 		</div>
 			<div class="form-group" style = "display: flex; justify-content: center; align-items: center;">
 				<div class="sub">
-					<img src="upload/<%=study.getStudy_photo()%>" alt="Uploaded Image">
+					<img src="${contextPath}/<%= study.getStudy_photo() %>" alt="Uploaded Image">
 				</div>
 			</div>
 			<!-- 태그 부분 -->
