@@ -48,8 +48,13 @@
 	<!-- Community 글 불러오기 -->
 	<select id="getCommunities" parameterType="int"
 		resultType="com.pandas.model.Communities">
-		select * from communities where COMM_IDX=#{idx}
+		select * from communities where COMM_IDX=#{comm_idx}
 	</select>
+	
+	<update id="CommViewsUP">
+		update communities set COMM_VIEWS = COMM_VIEWS + 1 where COMM_IDX = #{comm_idx}
+	</update>
+
 
 	<!-- Question -->
 	<select id="QuestionList"

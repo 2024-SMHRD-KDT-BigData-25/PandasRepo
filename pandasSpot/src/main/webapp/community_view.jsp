@@ -64,10 +64,8 @@
 					<button id="like-button" style=" background: transparent; border: none; cursor: pointer;">
     				❤️ <span id="like-count" class="like" ><%=community.getComm_likes() %>
     				</span></button>
-    				<button id="like-button" style=" background: transparent; border: none; cursor: pointer;">
     				<i class="fa-solid fa-eye view_icons"></i>
-    				<span id="view-count" class="like" ><%=community.getComm_likes() %>
-    				</span></button>
+    				<span id="view-count" class="like" ></span>
     				</td>
     				
     			</tr>
@@ -130,7 +128,21 @@
     // 문서가 준비되면 실행
     $(document).ready(function () {
     	getCommentList();
+    	 $.ajax({
+             url: "CommViews", // 요청 경로
+             type: "post", // 요청 방식
+             data: { "comm_idx": c_idx },
+             success: setViews,
+             error: function () {
+                 alert("통신 실패!");
+             }
+         });
     });
+    
+    function setViews(data) {
+    	console.log(data);
+    	$("#view-count").text(data);
+    }
         // 댓글 리스트 가져오기
  
        function getCommentList() {
