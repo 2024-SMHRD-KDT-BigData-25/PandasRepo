@@ -45,6 +45,7 @@ public class CommunityDAO {
 			int res = sqlSession.insert("SpotMapper.CommunityPost",c);
 			sqlSession.close();
 			return res;
+			
 		}
 		
 		public int CommunityUpdate(Communities c) {

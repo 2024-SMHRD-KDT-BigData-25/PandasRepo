@@ -34,16 +34,13 @@ public class CommunityPost extends HttpServlet {
 		// (request, 파일 저장 경로, 최대 파일 크기(용량), 인코딩 타입 지정, 파일 이름 생성 규칙)
 		MultipartRequest multi = new MultipartRequest(request, uploadPath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 
-		String comm_file = multi.getParameter("comm_file");
+		String comm_file = multi.getFile("comm_file").getName();
 
 		String comm_title = multi.getParameter("comm_title");
 		String comm_content = multi.getParameter("comm_content");
-		int comm_idx = Integer.parseInt(multi.getParameter("comm_idx"));
-		
-		
 	
-		System.out.println(comm_title + comm_content + comm_file + comm_idx);
-		Communities postComm = new Communities(comm_title, comm_content, comm_file, comm_idx);
+		System.out.println(comm_title + comm_content + comm_file + mem_id);
+		Communities postComm = new Communities(comm_title, comm_content, comm_file, mem_id);
 		
 		CommunityDAO dao = new CommunityDAO();
 		int res = dao.CommunityPost(postComm);

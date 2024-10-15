@@ -21,13 +21,14 @@ public class DiaryPost extends HttpServlet {
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String q_title = request.getParameter("diary_title");
-		String q_content = request.getParameter("diary_content");
+		String diary_title = request.getParameter("diary_title");
+		String diary_content = request.getParameter("diary_content");
 
 		HttpSession session = request.getSession();
 		Members member = (Members)session.getAttribute("member");
 		String mem_id = member.getMem_id();
-		Diaries postDiary = new Diaries(q_title, q_content, mem_id);
+		
+		Diaries postDiary = new Diaries(diary_title, diary_content, mem_id);
 		
 		DiaryDAO dao = new DiaryDAO();
 		int res = dao.DiaryPost(postDiary);

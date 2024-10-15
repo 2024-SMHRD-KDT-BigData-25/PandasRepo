@@ -826,3 +826,8 @@ video {
 .main_follow_btn:hover {
 	transform: scale(1.1); /* 살짝 확대 */
 }
+
+.view_icons {
+	color: #92C7CF;
+	margin-right: 3px; 
+}

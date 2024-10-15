@@ -61,5 +61,14 @@ public class Communities {
 		this.comm_likes = comm_likes;
 
 	}
+
+	public Communities(String comm_title, String comm_content, String comm_file, String mem_id) {
+		super();
+		this.comm_title = comm_title;
+		this.comm_content = comm_content;
+		this.comm_file = comm_file;
+		this.mem_id = mem_id;
+	}
+
 	
 }

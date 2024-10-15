@@ -31,7 +31,9 @@
 	%> 
 
 	<!-- 게시글 부분 -->
-	<div class="hidden" id="q_idx"><%= idx %></div>
+	<div class="hidden" id="comm_idx"><%= idx %></div>
+	<div class="hidden" id="login_member_id"><%= member.getMem_id() %></div>
+	
 	<div data-aos="fade">
 		<h2 class="join-title before-table">자유게시판</h2>
 	</div>
@@ -58,9 +60,16 @@
 					<% } %>
 					</td>
 					<td class="post_th_2"></td>
-					<td class="post_th_3" style="white-space: nowrap;"><button id="like-button" style=" background: transparent; border: none; cursor: pointer;">
+					<td class="post_th_3" style="white-space: nowrap;">
+					<button id="like-button" style=" background: transparent; border: none; cursor: pointer;">
     				❤️ <span id="like-count" class="like" ><%=community.getComm_likes() %>
-    				</span></button></td>
+    				</span></button>
+    				<button id="like-button" style=" background: transparent; border: none; cursor: pointer;">
+    				<i class="fa-solid fa-eye view_icons"></i>
+    				<span id="view-count" class="like" ><%=community.getComm_likes() %>
+    				</span></button>
+    				</td>
+    				
     			</tr>
    			 </table>
    		</div>
@@ -68,7 +77,7 @@
 			
 				<div class="form-group">
 					<div class="main">
-						<span>자게는 하루 최대 3번만 쓸수 있습니다.
+						<span>
 						<%=community.getComm_content() %>
 						</span>
 					<div><img class="board_img_content" alt="게시물 이미지"
@@ -78,17 +87,17 @@
 				</div>
 			<!-- 댓글 부분 -->
 			<div class="form-group">
-				<form action="" method="post" enctype="multipart/form-data">
+				<form method="post">
 					<div class="dat" >
 
 					<!-- 댓글 개수 표시 -->
 					<div style="display: flex; justify-content: flex-start;">
-						<span>댓글수 : 5</span>
+						<span>댓글수 :<span id="comm_cnt"></span></span>
 					</div>
-					<span>댓글 내용 공간</span>
+					<table id="dat_content"></table>
 					<div style="display: flex; gap: 10px; align-items: center;">
 						<input type="text" name="dat" id="dat" class="join-input-dat"> 
-								<input class="join-input-btn-min" type="submit" value="등록" style="margin-bottom:-15px;">
+						<input id="comment_add" class="join-input-btn-min" type="button" value="등록" style="margin-bottom:-15px;">
 					</div>
 					</div>
 				</form>
@@ -115,44 +124,101 @@
 
 
 	<script>
-	
-	function updateLikes(data){
-		$.ajax({
-		url : "CommLikes", //요청경로
-		type : "get", //요청방식(http 요청 메서드)
-		data : {"comm_idx" : data},
-		success : changeLikes,
-		error : function(){
-			alert("통신 실패!")
-		}
-		
-	})
-}
-    // 좋아요 버튼 클릭 시 AJAX 요청을 통해 서버로 데이터 전송
-    $("#like-button").on("click", function () {
-    	var c_idx = document.getElementById("q_idx").innerText;
-    	updateLikes(c_idx);
-    });
-    
-    function changeLikes(data) {
-    	var likes = document.getElementById("like-count");
-    	likes.innerText = data;
-    }
-	// 좋아요 기능 끝
-	
-    $(document).ready(function(){
-      $('#lightgallery').lightGallery();
-    });
-    
-    $("#to_list_btn").on( "click", function( event ) {
-		location.href = "${contextPath}/CommList.jsp";
-	});
+    var login_member_id = $("#login_member_id").text();
+    var c_idx = document.getElementById("comm_idx").innerText;
 
-    $("#to_update_btn").on( "click", function( event ) {
-    	var diary_idx = document.getElementById("q_idx").innerText;
-		location.href = "${contextPath}/communityupdate.jsp?idx="+diary_idx;
-	});
-  </script>
+    // 문서가 준비되면 실행
+    $(document).ready(function () {
+    	getCommentList();
+    });
+        // 댓글 리스트 가져오기
+ 
+       function getCommentList() {
+            $.ajax({
+                url: "CommCommentLIst", // 요청 경로
+                type: "post", // 요청 방식
+                data: { "comm_idx": c_idx },
+                success: printComments,
+                error: function () {
+                    alert("통신 실패!");
+                }
+            });
+        }; 
+        
+        // 좋아요 버튼 클릭 이벤트
+        $("#like-button").on("click", function () {
+            updateLikes(c_idx);
+        });
+
+        // 댓글 추가 버튼 클릭 이벤트
+        $("#comment_add").on("click", function () {
+            var cmt_content = $("#dat").val(); // 'val()' 메서드 사용
+            $.ajax({
+                url: "CommCommentAdd", // 요청 경로
+                type: "post", // 요청 방식
+                data: {
+                    "comm_idx": c_idx,
+                    "cmt_content": cmt_content,
+                    "mem_id": login_member_id
+                },
+                success: getCommentList,
+                error: function () {
+                    alert("통신 실패!");
+                }
+            });
+        });
+
+
+        // 목록으로 돌아가기 버튼
+        $("#to_list_btn").on("click", function (event) {
+            location.href = "${contextPath}/CommList.jsp";
+        });
+
+        // 게시글 수정 버튼
+        $("#to_update_btn").on("click", function (event) {
+            location.href = "${contextPath}/communityupdate.jsp?idx=" + c_idx;
+        });
+
+
+    // 댓글 리스트 출력 함수
+    function printComments(data) {
+        var data = JSON.parse(data),
+            html = "",
+            dlength = data.length;
+
+        $("#comm_cnt").text(dlength);
+
+        for (var comment of data) {
+            html += "<tr class='board_comment'>";
+            html += "<td class='comment_writer'><a>" + comment.mem_id + "</a></td>";
+            html += "<td class='comment_content'>" + comment.cmt_content + "</td>";
+            html += "<td class='comment_date'>" + comment.created_at.substr(2,9) + "</td>";
+            html += "</tr>";
+        }
+
+        $("#dat_content").html(html);
+    }
+
+    // 좋아요 업데이트 함수
+    function updateLikes(data) {
+        $.ajax({
+            url: "CommLikes", // 요청 경로
+            type: "get", // 요청 방식
+            data: { "comm_idx": data },
+            success: changeLikes,
+            error: function () {
+                alert("통신 실패!");
+            }
+        });
+    }
+
+    // 좋아요 수 변경 함수
+    function changeLikes(data) {
+        var likes = document.getElementById("like-count");
+        likes.innerText = data;
+    }
+</script>
+
 
 </body>
 </html>
