@@ -63,7 +63,7 @@
 			</div>
 				<div class="form-group">
 					<div class="main">
-						<span>자게는 하루 최대 3번만 쓸수 있습니다.
+						<span>
 						<%=community.getComm_content() %>
 						</span>
 					</div>
