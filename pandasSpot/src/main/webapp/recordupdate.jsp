@@ -1,3 +1,5 @@
+<%@page import="com.pandas.model.Studies"%>
+<%@page import="com.pandas.model.StudyDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -87,6 +89,13 @@
     
 
  <%@ include file="header.jsp"%>
+ <% 
+	
+	int idx = Integer.parseInt( request.getParameter("idx") );
+	System.out.println("인덱스 번호는 " + idx);
+	StudyDAO dao = new StudyDAO();
+	Studies study = dao.getStudies(idx);
+	%>
 
     <div class="site-section"  data-aos="fade">
       <div class="container">
@@ -98,7 +107,7 @@
               <div class="col-12 ">
                 <h2 class="site-section-heading text-center">공부 기록</h2>
                 <div class="author text-right">
-                  <span><i class="glyphicon glyphicon-user"></i> 작성자 이름</span>
+                  <span><i class="glyphicon glyphicon-user"></i> <%=study.getMem_id()%></span>
                 </div>
               </div>
             </div>
@@ -106,14 +115,14 @@
 
         </div>
         
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" >
           <div class="col-lg-8 mb-5">
-            <form action="StudyUpdate">
+            <form action="StudyUpdate" method="post" enctype="multipart/form-data">
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-white" for="subject">Tag</label> 
-                  <input type="text" id="tagInput" class="form-control" placeholder="#새 태그 추가">
+                  <label class="text-white" for="tagInput">Tag</label> 
+                  <input type="text" id="tagInput" class="form-control" name="study_content"  value="<%=study.getStudy_content() %>" required>
                   <div id="tagContainer"></div>
                 </div>
               </div>
@@ -121,7 +130,7 @@
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-white" for="message">파일 첨부 : </label> 
-                  <input type="file" id="file-upload" name="file-upload"  accept="image/*" style="border: none; border-bottom:1px solid #fff; outline: none;">
+                  <input type="file" id="file-upload" name="study_photo" value=<%=study.getStudy_photo() %> accept="image/*" style="border: none; border-bottom:1px solid #fff; outline: none;">
                   <img id="preview" src="" alt="미리보기 이미지" style="display: none;">
                 </div>
               </div>

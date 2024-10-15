@@ -44,7 +44,7 @@ public class QuestionUpdate extends HttpServlet {
 		QuestionDAO dao = new QuestionDAO();
 		int res = dao.QuestionUpdate(postQues);
 		
-		if (res != 1) {
+		if (res > 0) {
 			System.out.println("Q & A 게시물 수정 완료!");
 			response.sendRedirect("QuestionList.jsp");
 		}

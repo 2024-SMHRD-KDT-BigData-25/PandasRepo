@@ -56,7 +56,7 @@
 		</div>
 	</div>
 	<div style="width: 80%; max-width: 800px; display: flex; justify-content: space-between; margin: 0 auto; margin-bottom: 10px; margin-top : -15px">
-		<button class="jwbutton" onclick="location.href='RecordList.jsp'">목록</button>
+		<button class="jwbutton" id="to_list_btn">목록</button>
 			<div></div>
 			<div></div>	
 		</div>
@@ -142,6 +142,15 @@
     $(document).ready(function(){
       $('#lightgallery').lightGallery();
     });
+	
+    $("#to_list_btn").on( "click", function( event ) {
+		location.href = "${contextPath}/RecordList.jsp";
+	});
+
+    $("#to_update_btn").on( "click", function( event ) {
+    	var study_idx = document.getElementById("r_idx").innerText;
+		location.href = "${contextPath}/recordupdate.jsp?idx="+study_idx;
+	});
   </script>
 
 </body>

@@ -45,7 +45,7 @@ public class CommunityUpdate extends HttpServlet {
 		CommunityDAO dao = new CommunityDAO();
 		int res = dao.CommunityUpdate(updateComm);
 		
-		if (res != 1) {
+		if (res > 0) {
 			System.out.println("자유게시판 게시물 수정 완료");
 			response.sendRedirect("CommList.jsp");
 		}
