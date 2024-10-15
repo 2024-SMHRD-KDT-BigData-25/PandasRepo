@@ -831,3 +831,13 @@ video {
 	color: #92C7CF;
 	margin-right: 3px; 
 }
+
+.info_edit_btn {
+	color: #776B5D;
+	font-size: 15px;
+	vertical-align: text-bottom;
+}
+
+#info_edit_btn :hover {
+	transform: scale(1.1);
+}

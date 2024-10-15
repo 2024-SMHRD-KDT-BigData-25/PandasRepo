@@ -35,6 +35,9 @@
 			<tr>
 				<th colspan="5">
 					<h2 id="main_member_nick" class="join-title"><%=member.getMem_nick()%></h2>
+					<button id="info_edit_btn" class="img-button">
+					<i class="fa-solid fa-pen info_edit_btn"></i>
+				</button>
 				</th>
 			</tr>
 			<tr>
