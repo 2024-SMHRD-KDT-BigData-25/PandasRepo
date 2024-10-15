@@ -647,6 +647,10 @@ header {
 	border-bottom: #A0937D 3px solid;
 }
 
+#main_member_nick {
+	display: inline-block;
+}
+
 .profile_td {
 	width: 50%;
 }
@@ -657,9 +661,9 @@ header {
 }
 
 .info_icon {
-    width: 15px;
-    height: 15px;
     margin-right: 5px;
+    font-size: 15px;
+    color : #966f47;
 }
 
 .follow_td {
@@ -789,3 +793,36 @@ header {
     -ms-overflow-style: none; /* IE */
 }
 
+/* 비디오 스타일 */
+video {
+	width: 100%;
+	height: auto;
+}
+
+.main_info_table_td {
+	text-align: center;
+}
+
+
+.member_info_td_1 {
+	width: 20%;
+	text-align: center;
+}
+
+#follower_cnt, #following_cnt, #study_time_cnt {
+	vertical-align: top;
+}
+
+.member_page_icon {
+	font-size: 15px;
+}
+
+.main_follow_btn {
+	color: #776B5D;
+	font-size: 16px;
+    vertical-align: text-bottom;
+}
+
+.main_follow_btn:hover {
+	transform: scale(1.1); /* 살짝 확대 */
+}

@@ -21,4 +21,15 @@
     <select id="getCommLikes" resultType="int" parameterType="int">
     	select COMM_LIKES from communities WHERE comm_idx = #{comm_idx}
     </select>
+    
+    
+    <update id="upStudyLikes" parameterType="int">
+        UPDATE studies
+        SET study_likes = study_likes + 1
+        WHERE study_idx = #{study_idx}
+    </update>
+    
+    <select id="getStudyLikes" resultType="int" parameterType="int">
+    	select STUDY_LIKES from studies WHERE study_idx = #{study_idx}
+    </select>
 </mapper>

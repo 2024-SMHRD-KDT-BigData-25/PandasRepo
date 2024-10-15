@@ -12,6 +12,10 @@
   <title>Study SPOT</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+<link rel="stylesheet" href="${contextPath}/resources/css/aos.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/eyStyle.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/jwStyle.css">
 
 </head>
 <body>
@@ -19,7 +23,7 @@
 
  <%@ include file="header.jsp"%>
 
-<!-- 게시글 부분 -->
+
 
 	<%
 	
@@ -30,35 +34,38 @@
 	%> 
 	
 		<!-- 게시글 부분 -->
-
+	<div class="hidden" id="q_idx"><%= idx %></div>
 	<div data-aos="fade">
-		<h2 class="join-title before-table">STUDY LOG</h2>
+		<h2 class="join-title before-table">Study Log</h2>
 	</div>
 	
-	<div class="content-container" data-aos="fade">
-		
-		<table class="content-list-table" >
+	<div class="content-container">
+		<div class="board_container">
+		<table class="content-list-table">
 			<thead class="table-content">
 				<tr class="table-header">
-					<th class="cell_padding"><%=diary.getCreated_at() %></th>
-					<th class="cell_padding"><%=diary.getDiary_title() %></th>
-					<th class="cell_padding"><%=diary.getMem_id() %></th>
-					<th class="hidden" id="diary_idx"><%=diary.getDiary_idx() %></th>
+					<th class="cell_padding post_th_1" style="white-space: nowrap; width: 20%;"><%=diary.getCreated_at() %></th>
+					<th class="cell_padding post_th_2" style="width: 60%; text-align: center;"><%=diary.getDiary_title() %></th>
+					<th class="cell_padding post_th_3" style="width: 20%; text-align: center;"><%=diary.getMem_id() %></th>
 				</tr>
-			</thead>
-			<tbody id="list">
-
-			</tbody>
-		</table>
+			</table>
+		</div>
 	</div>
-		<div style="width: 80%; max-width: 800px; display: flex; justify-content: space-between; margin: 0 auto; margin-bottom: 10px; margin-top : -15px">
-			<button class="btn" id="to_list_btn">목록</button>
-			<%if (member.getMem_id().equals(diary.getMem_id())) {%>
-				<button class="btn" id="to_update_btn">수정</button>
-			<% } %>
-
-				<div style="margin-top: 8px">좋아요(int)</div>	
-			</div>
+		<div class="content-container">
+			<div class="board_container">
+				<table class="content-list-table">
+					<tr>
+						<td class="post_th_1"><button class="jwbutton" id="to_list_btn">목록</button>
+						<%if (member.getMem_id().equals(diary.getMem_id())) {%>
+						<button class="jwbutton" id="to_update_btn">수정</button>
+						<% } %>
+						</td>
+						<td class="post_th_2"></td>
+						<td class="post_th_3"></td>
+    				</tr>
+   				 </table>
+   			</div>
+   		</div>
 				<div class="form-group">
 					<div class="main">
 						<span>

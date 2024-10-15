@@ -18,7 +18,6 @@
 <link rel="stylesheet" href="${contextPath}/resources/css/eyStyle.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/jwStyle.css">
 
-
 </head>
 <body>
 
@@ -38,40 +37,49 @@
 	</div>
 	
 	<div class="content-container">
-		
-		<table class="content-list-table" >
+		<div class="board_container">
+		<table class="content-list-table">
 			<thead class="table-content">
 				<tr class="table-header">
-					<th class="cell_padding"><%=community.getCreated_at() %></th>
-					<th class="cell_padding"><%=community.getComm_title() %></th>
-					<th class="cell_padding"><%=community.getMem_id() %></th>
+					<th class="cell_padding post_th_1" style="white-space: nowrap; width: 20%;"><%=community.getCreated_at() %></th>
+					<th class="cell_padding post_th_2" style="width: 60%; text-align: center;"><%=community.getComm_title() %></th>
+					<th class="cell_padding post_th_3" style="width: 20%; text-align: center;"><%=community.getMem_id() %></th>
 				</tr>
-			</thead>
-			<tbody id="list">
-
-			</tbody>
-		</table>
+			</table>
+		</div>
 	</div>
-		<div style="width: 80%; max-width: 800px; display: flex; justify-content: space-between; margin: 0 auto; margin-bottom: 10px; margin-top : -15px">
-			<button class="btn" id="to_list_btn">목록</button>
-			<%if (member.getMem_id().equals(community.getMem_id())) {%>
-				<button class="btn" id="to_update_btn">수정</button>
-			<% } %>
-				<button id="like-button" style="margin-top: 8px; background: transparent; border: none; cursor: pointer;">
-    			❤️ <span id="like-count"><%=community.getComm_likes() %>
-    			</span></button>	
-			</div>
+	<div class="content-container">
+		<div class="board_container">
+			<table class="content-list-table">
+				<tr>
+					<td class="post_th_1"><button class="jwbutton" id="to_list_btn">목록</button>
+					<%if (member.getMem_id().equals(community.getMem_id())) {%>
+					<button class="jwbutton" id="to_update_btn">수정</button>
+					<% } %>
+					</td>
+					<td class="post_th_2"></td>
+					<td class="post_th_3" style="white-space: nowrap;"><button id="like-button" style=" background: transparent; border: none; cursor: pointer;">
+    				❤️ <span id="like-count" class="like" ><%=community.getComm_likes() %>
+    				</span></button></td>
+    			</tr>
+   			 </table>
+   		</div>
+   	</div>
+			
 				<div class="form-group">
 					<div class="main">
 						<span>
 						<%=community.getComm_content() %>
 						</span>
+					<div><img class="board_img_content" alt="게시물 이미지"
+								src="${contextPath}/upload/<%=community.getComm_file() %>">
+					</div>
 					</div>
 				</div>
 			<!-- 댓글 부분 -->
 			<div class="form-group">
-				<form action="" method="post">
-					<div class="dat">
+				<form action="" method="post" enctype="multipart/form-data">
+					<div class="dat" >
 
 					<!-- 댓글 개수 표시 -->
 					<div style="display: flex; justify-content: flex-start;">
@@ -137,12 +145,12 @@
     });
     
     $("#to_list_btn").on( "click", function( event ) {
-		location.href = "${contextPath}/QuestionList.jsp";
+		location.href = "${contextPath}/CommList.jsp";
 	});
 
     $("#to_update_btn").on( "click", function( event ) {
     	var diary_idx = document.getElementById("q_idx").innerText;
-		location.href = "${contextPath}/questionupdate.jsp?idx="+diary_idx;
+		location.href = "${contextPath}/communityupdate.jsp?idx="+diary_idx;
 	});
   </script>
 

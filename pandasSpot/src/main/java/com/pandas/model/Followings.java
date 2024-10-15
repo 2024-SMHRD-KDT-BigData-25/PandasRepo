@@ -19,9 +19,15 @@ public class Followings {
  private String follower_id;
 
  // 팔로위 
- private String followee_id;
+ private String following_id;
 
  // 팔로우 날짜 
  private String followed_at;
+
+public Followings(String follower_id, String following_id) {
+	super();
+	this.follower_id = follower_id;
+	this.following_id = following_id;
+}
 
 }

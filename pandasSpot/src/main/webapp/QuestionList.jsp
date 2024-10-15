@@ -18,7 +18,7 @@
 	QuestionDAO dao = new QuestionDAO();
 	int length = dao.getQuestionLength();
 %>
-		<div class="pages_info" id="pages_info"><%= length %></div>
+<div class="pages_info" id="pages_info"><%= length %></div>
 	<div class="content-container" data-aos="fade">
 		<h2 class="join-title before-table">QnA 게시판</h2>
 	</div>
