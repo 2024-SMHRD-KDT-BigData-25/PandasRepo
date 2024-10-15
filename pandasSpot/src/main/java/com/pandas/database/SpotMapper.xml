@@ -115,7 +115,6 @@
   	 	 SELECT * FROM STUDIES WHERE STUDY_IDX = #{idx}
 	</select>
 
-	<update id=""></update>
 	
 	<!-- Question 등록 -->
 	<insert id="QuestionPost" parameterType="com.pandas.model.Questions">
@@ -166,4 +165,12 @@
 	<update id="CommCommentUnlikes">
 		update community_comments set cmt_likes-1 where CMT_IDX = #{cmt_idx}
 	</update>
+	
+	<select id="StudyCommentList" resultType="com.pandas.model.StudyComments">
+		select * from STUDY_COMMENTS
+	</select>
+	
+	<insert id="StudyNewComment" parameterType="com.pandas.model.StudyComments">
+		INSERT INTO STUDY_COMMENTS (STUDY_IDX, cmt_content, mem_id) VALUES (#{study_idx}, #{cmt_content}, #{mem_id})
+	</insert>
 </mapper> 

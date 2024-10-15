@@ -72,23 +72,6 @@
  						<%=diary.getDiary_content() %></span>
 					</div>
 				</div>
-			<!-- 댓글 부분 -->
-			<div class="form-group">
-				<form action="" method="post">
-					<div class="dat">
-
-					<!-- 댓글 개수 표시 -->
-					<div style="display: flex; justify-content: flex-start;">
-						<span>댓글수 : 5</span>
-					</div>
-					<span>댓글 내용 공간</span>
-					<div style="display: flex; gap: 10px; align-items: center;">
-						<input type="text" name="dat" id="dat" class="join-input-dat"> 
-								<input class="join-input-btn-min" type="submit" value="등록" style="margin-bottom:-15px;">
-					</div>
-					</div>
-				</form>
-			</div>
 
 
   <script src="${contextPath}/resources/js/jquery-3.3.1.min.js"></script>

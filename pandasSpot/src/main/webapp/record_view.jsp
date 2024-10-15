@@ -38,6 +38,7 @@
 
 	<!-- 게시글 부분 -->
 	<div class="hidden" id="r_idx"><%= idx %></div>
+	<div class="hidden" id="login_member_id"><%= member.getMem_id() %></div>
 	<div data-aos="fade">
 		<h2 class="join-title before-table">공부 기록</h2>
 	</div>
@@ -87,7 +88,26 @@
     			</tr>
    			 </table>
    		</div>
+   		
    		</div>
+   		
+   		<!-- 댓글 부분 -->
+			<div class="form-group">
+				<form method="post">
+					<div class="dat" >
+
+					<!-- 댓글 개수 표시 -->
+					<div style="display: flex; justify-content: flex-start;">
+						<span>댓글수 :<span id="comm_cnt"></span></span>
+					</div>
+					<table id="dat_content"></table>
+					<div style="display: flex; gap: 10px; align-items: center;">
+						<input type="text" name="dat" id="dat" class="join-input-dat"> 
+						<input id="comment_add" class="join-input-btn-min" type="button" value="등록" style="margin-bottom:-15px;">
+					</div>
+					</div>
+				</form>
+			</div>
 
 
 
@@ -112,6 +132,72 @@
 	<script src="${contextPath}/resources/js/main.js"></script>
   
   <script>
+  var study_idx = $("#r_idx").text();
+  var login_mem_id = $("#login_member_id").text();
+  
+  console.log(study_idx, login_mem_id);
+  // 문서가 준비되면 실행
+  $(document).ready(function () {
+  	getCommentList();
+  });
+  
+  function getCommentList() {
+      $.ajax({
+          url: "StudyCommentList", // 요청 경로
+          type: "post", // 요청 방식
+          data: { "study_idx": study_idx },
+          success: printComments,
+          error: function () {
+              alert("통신 실패!");
+          }
+      });
+  }; 
+  
+//댓글 추가 버튼 클릭 이벤트
+ $("#comment_add").on("click", function () {
+        var cmt_content = $("#dat").val(); // 'val()' 메서드로 값만 가져옴
+
+        // 댓글 내용이 비어있지 않다면 AJAX 요청
+        if (cmt_content && cmt_content.trim()) {
+        	$("#dat").val("");
+            $.ajax({
+                url: "StudyCommentAdd", // 요청 경로
+                type: "post", // 요청 방식
+                data: {
+                    "study_idx": study_idx,
+                    "cmt_content": cmt_content,
+                    "mem_id": login_mem_id
+                },
+                success: getCommentList,
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error("AJAX Error:", textStatus, errorThrown);
+                    alert("통신 실패!");
+                }
+            });
+        } else {
+            alert("댓글 내용을 입력해주세요.");
+        }
+   });
+  
+  
+//댓글 리스트 출력 함수
+  function printComments(data) {
+      var data = JSON.parse(data),
+          html = "",
+          dlength = data.length;
+
+      $("#comm_cnt").text(dlength);
+
+      for (var comment of data) {
+          html += "<tr class='board_comment'>";
+          html += "<td class='comment_writer'><a>" + comment.mem_id + "</a></td>";
+          html += "<td class='comment_content'>" + comment.cmt_content + "</td>";
+          html += "<td class='comment_date'>" + comment.created_at.substr(2,9) + "</td>";
+          html += "</tr>";
+      }
+
+      $("#dat_content").html(html);
+  }
   
 	function updateLikes(data){
 		$.ajax({
