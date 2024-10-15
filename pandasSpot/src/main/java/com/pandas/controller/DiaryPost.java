@@ -27,7 +27,6 @@ public class DiaryPost extends HttpServlet {
 		HttpSession session = request.getSession();
 		Members member = (Members)session.getAttribute("member");
 		String mem_id = member.getMem_id();
-		
 		Diaries postDiary = new Diaries(q_title, q_content, mem_id);
 		
 		DiaryDAO dao = new DiaryDAO();
