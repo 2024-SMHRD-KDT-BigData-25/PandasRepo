@@ -112,10 +112,15 @@
 	<div id="studyTimeModal" class="modal">
 		<div class="modal-content">
 			<div class="modal-header">
+			<table><tr>
+			<td>
 				<h2 class="open_chat_title">공부 시간 측정</h2>
 				<span class="close" id="time_modal_close">&times;</span>
+				 <p>경과 시간: <span id="timer">0</span> 초</p>
+				 
+				 </td></tr>
 			</div>
-			<video id="webcamVideo" autoplay playsinline></video>
+			</table>
 		</div>
 	</div>
 </header>
@@ -158,7 +163,6 @@ $("#study_time_btn").on("click", function() {
 // 공부 시간 측정 모달 닫기
 $("#time_modal_close").on("click", function() {
     studyTimeModal.style.display = "none";
-    stopWebcam();  // 웹캠 종료
 });
 	
 // 모달 바깥 클릭 시 닫기
@@ -173,74 +177,7 @@ window.onclick = function(event) {
         friendModal.style.display = "none";
     }
 }
-    
-    // 웹캠 스트림 시작
-    function startWebcam() {
-        navigator.mediaDevices.getUserMedia({ video: true })
-        .then(function(stream) {
-            videoElement.srcObject = stream;
-            sendFaceDetectionData(10, 50);
-        })
-        .catch(function(err) {
-            console.log("Error accessing webcam: " + err);
-        });
-    }
-    
- // AJAX 요청으로 서블릿에 데이터 전송
-    function sendFaceDetectionData(timeSpent, totalTime) {
-        var data = {
-            timeSpent: timeSpent,     // 예: 이번 세션 동안 감지된 시간 (초)
-            totalTime: totalTime      // 예: 전체 감지된 시간 (초)
-        };
 
-        $.ajax({
-            url: "FaceDetectionServlet", // 서블릿 URL
-            type: "POST",
-            contentType: "application/json", // JSON 형식으로 보냄
-            data: JSON.stringify(data),      // 데이터를 JSON 문자열로 변환
-            success: function(response) {
-                console.log("서버로부터 받은 응답: ", response);
-                // 서버에서 받은 데이터를 처리하는 부분
-                // response.totalTimeSpent 등의 값 사용 가능
-            },
-            error: function(xhr, status, error) {
-                console.error("서블릿 호출 중 오류 발생: ", error);
-            }
-        });
-    }
-
- 	// 웹캠 스트림 종료
-    function stopWebcam() {
-        if (videoElement.srcObject) {
-            let stream = videoElement.srcObject;
-            let tracks = stream.getTracks();
-
-            tracks.forEach(function(track) {
-                track.stop(); // 모든 트랙(즉, 비디오 트랙)을 중단
-            });
-
-            videoElement.srcObject = null;
-
-            // 서블릿에 종료 요청을 보냄
-            sendStopRequest();
-        }
-    }
-
- 	// AJAX 요청으로 서블릿에 종료 명령 전송
-    function sendStopRequest() {
-        $.ajax({
-            url: "FaceDetectionServlet", // 종료를 처리할 서블릿 URL
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({ action: "stop" }), // 종료 명령을 포함한 데이터 전송
-            success: function(response) {
-                console.log("서버로부터 종료 응답: ", response);
-            },
-            error: function(xhr, status, error) {
-                console.error("서블릿 호출 중 오류 발생: ", error);
-            }
-        });
-    }
 
     // 친구 찾기 버튼 클릭 시 모달 열기
     $("#search_btn").on("click", function() {

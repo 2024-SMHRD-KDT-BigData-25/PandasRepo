@@ -57,63 +57,42 @@
 <body>
 
 <%@ include file="header.jsp"%>
+ 
 
     <div class="site-section"  data-aos="fade" >
       <div class="container">
-
-        <div class="row justify-content-center">
-
-          <div class="col-md-7">
-            <div class="row mb-5">
-              <div class="col-12 ">
-                <h2 class="join-title">공부 기록</h2>
-                <div class="author text-right">
-                  <!-- <span><i class="glyphicon glyphicon-user"></i> 작성자 이름</span> 뭔지 몰라서 주석처리 -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        
-        <div class="row justify-content-center">
-          <div class="col-lg-8 mb-5">
+            
+            
             <form action="StudyPost" method="post" enctype="multipart/form-data">
-
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <label class="image_label" for="subject">태그</label> 
-                  <input type="text" id="study_content" name="study_content" class="join-input" placeholder="#새 태그 추가">
-                  <input type="hidden" name="mem_id" value="<%=member.getMem_id() %>">
-                  <div id="tagContainer"></div>
-                </div>
-              </div>
-
-              <div class="row form-group">
-                <div class="col-md-12">
-                        <div class="image_label">파일 업로드</div>
-						<label>
-						    <img src= "icon/add (1).png" alt="이미지 추가하기" id="input-image"/>
-							<input type="file" id="study_photo" name="study_photo"  accept="image/*" style="display: none;" onchange="previewImage(event)">
-                  			<img id="preview" src="" alt="미리보기 이미지" style="display: none;">
-						</label>
-                </div>
-              </div>
-              
-              <br>
-              <div class="row form-group" align="center">
-                <div class="col-md-12">
-                  <input type="submit" value="등록" class="join-input post-input-btn btn">
-                  <input type="submit" value="취소" class="join-input post-input-btn btn">
-                </div>
-              </div>
-
-            </form>
+					<table class="study_post_table">
+					<tr><td colspan="2" id="post_title_td"><h2 class="post-title">공부 기록</h2></td></tr>
+						<tr>
+							<td class="study_td"><label class="image_label" for="subject">태그</label></td>
+							<td class="study_td">
+							<input type="hidden" name="mem_id" value="<%=member.getMem_id() %>">
+							<input type="text" id="study_content" name="study_content" class="join-input" placeholder="#새 태그 추가"></td>
+						</tr>
+						<tr>
+							<td class="study_td">
+							<div class="post-display-block image_label">사진 첨부</div></td>
+							<td class="study_td">
+							<label> 
+								<img src="${contextPath}/resources/icon/add (1).png" alt="이미지 추가하기" id="input-image" />
+								<input type="file" id="study_photo" name="study_photo"  accept="image/*" style="display: none;">
+							</label>
+							</td>
+						</tr>
+						<tr>
+						<td colspan='2' class="btns_td">
+						<input type="submit" id="study_submit" value="등록" class="post-input-btn" > 
+						<input type="button" value="취소" class="post-input-btn" onclick="history.back();">
+						</td>
+						</tr>
+					</table>
+				</form>
           </div>
 
         </div>
-      </div>
-    </div>
 
 
   
@@ -122,20 +101,30 @@
    
         const imageInput = document.getElementById('study_photo');
         const preview = document.getElementById('preview');
+        var mem_id = document.getElementById('mem_id');
+        
+        document.getElementById('study_photo').addEventListener('change', handleImageChange);
 
-        imageInput.addEventListener('change', function() {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    preview.src = event.target.result;
-                    preview.style.display = 'block';
-                }
-                reader.readAsDataURL(file);
-            } else {
-                preview.style.display = 'none';
-            }
-        });
+    	function handleImageChange(event) {
+    		const file = event.target.files[0]; // 파일 선택
+
+    		if (file) {
+    			const reader = new FileReader(); // FileReader 생성
+
+    			// 파일을 읽은 후 호출되는 함수
+    			reader.onload = function(e) {
+    				const imageUrl = e.target.result; // Base64로 인코딩된 이미지 데이터
+    				const image_preview = document.getElementById('input-image');
+    				image_preview.src = imageUrl; // 이미지의 src 속성 변경
+    				image_preview.style.width = 'auto';
+    			};
+
+    			reader.readAsDataURL(file); // 파일을 Base64 데이터 URL로 읽음
+    		} else {
+    			document.getElementById('input-image').src = "${contextPath}/resources/icon/add (1).png"; // 파일이 없으면 이미지 초기화
+    			document.getElementById('input-image').style.width = '30px'; // 파일이 없으면 이미지 초기화
+    		}
+    	}
     </script>
 
     
@@ -168,12 +157,6 @@
             }
         });
     </script>
-    
-    <script>
-    $(document).ready(function(){
-      $('#lightgallery').lightGallery();
-    });
-  	</script>
 
 	<script src="${contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 	<script src="${contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>

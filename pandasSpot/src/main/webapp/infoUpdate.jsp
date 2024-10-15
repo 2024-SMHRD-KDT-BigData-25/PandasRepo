@@ -44,7 +44,7 @@
 						<div class="message" id="school_message"></div>
 						<div class="image_label">프로필 사진</div>
 						<label>
-						    <img src= "${contextPath}/upload/<%= member.getMem_profile_img() %>" alt="이미지 추가하기" id="input-image"/>
+						    <img src= "${contextPath}/uploads/<%= member.getMem_profile_img() %>" alt="이미지 추가하기" id="input-image"/>
 							<input type="file" id="mem_profile_img" name="mem_profile_img">
 						</label>
 						<div class="join-input" id="join_confirm"></div>

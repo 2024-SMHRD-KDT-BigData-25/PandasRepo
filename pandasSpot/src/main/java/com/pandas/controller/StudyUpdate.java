@@ -1,5 +1,6 @@
 package com.pandas.controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletContext;
@@ -21,30 +22,62 @@ public class StudyUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ServletContext context = request.getServletContext();
-		String uploadPath = context.getRealPath("upload");
-		int maxSize = 500 * 1024 * 1024; // 5MB
-		
-		HttpSession session = request.getSession();
-		Members member = (Members)session.getAttribute("member");
-		String mem_id = member.getMem_id();
-		
-		// (request, 파일 저장 경로, 최대 파일 크기(용량), 인코딩 타입 지정, 파일 이름 생성 규칙)
-		MultipartRequest multi = new MultipartRequest(request, uploadPath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
+		String uploadPath = "C:\\Users\\smhrd\\git\\repository\\pandasSpot\\src\\main\\webapp\\uploads";
 
-		String study_file = multi.getParameter("study_photo");
-		
+        int maxSize = 5 * 1024 * 1024; // 최대 파일 크기: 5MB
+
+        // 파일 업로드 객체 생성
+        MultipartRequest multi = new MultipartRequest(request, uploadPath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
+
+        // 파일명 추출 (이미 저장된 상태)
+        String img = multi.getFilesystemName("study_photo");
+
+        // 이미지 파일 MIME 타입 검사
+        if (img != null) {
+            String filePath = uploadPath + File.separator + img;
+            File file = new File(filePath);
+
+            // 파일 확장자 체크 (JPG, PNG, GIF 등 허용)
+            String[] allowedExtensions = { ".jpg", ".jpeg", ".png", ".gif" };
+            String fileExtension = getFileExtension(img);
+
+            boolean isValidExtension = false;
+            for (String ext : allowedExtensions) {
+                if (fileExtension.equalsIgnoreCase(ext)) {
+                    isValidExtension = true;
+                    break;
+                }
+            }
+
+            if (!isValidExtension) {
+                file.delete(); // 이미지 형식이 아닌 경우 파일 삭제
+                response.getWriter().println("허용되지 않은 파일 형식입니다.");
+                return;
+            }
+
+            // MIME 타입 확인 (이미지 타입만 허용)
+            String mimeType = getServletContext().getMimeType(file.getAbsolutePath());
+            if (mimeType == null || !mimeType.startsWith("image")) {
+                file.delete(); // 이미지가 아닌 파일이면 삭제
+                response.getWriter().println("이미지 파일만 업로드 가능합니다.");
+                return;
+            }
+        } else {
+            response.getWriter().println("파일을 선택하지 않았습니다.");
+            return;
+        }
+        
 		int study_idx = Integer.parseInt(multi.getParameter("study_idx"));
 		String study_content = multi.getParameter("study_content");
 		
-		System.out.println(study_idx + study_content + study_file);
-		Studies updateStudy = new Studies(study_idx, study_content, study_file);
+		System.out.println(study_idx + "," + study_content + "," +  img);
+		Studies updateStudy = new Studies(study_idx, study_content, img);
 		
 		StudyDAO dao = new StudyDAO();
 		int res = dao.StudyUpdate(updateStudy);	
 		if (res > 0 ) {
-			System.out.println("Q & A 게시물 수정 완료!");
-			response.sendRedirect("StudyList.jsp");
+			System.out.println("공부기록 게시물 수정 완료!");
+			response.sendRedirect("RecordList.jsp");
 		}
 		else {
 			response.setContentType("text/html;charset=UTF-8");
@@ -55,5 +88,12 @@ public class StudyUpdate extends HttpServlet {
             response.getWriter().println("</script></head><body></body></html>");
 		}
 	}
+	  private String getFileExtension(String fileName) {
+	        int dotIndex = fileName.lastIndexOf(".");
+	        if (dotIndex > 0 && dotIndex < fileName.length() - 1) {
+	            return fileName.substring(dotIndex).toLowerCase();
+	        }
+	        return "";
+	    }
 
 }

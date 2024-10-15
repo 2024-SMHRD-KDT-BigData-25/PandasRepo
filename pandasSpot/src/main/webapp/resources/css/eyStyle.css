@@ -841,3 +841,53 @@ video {
 #info_edit_btn :hover {
 	transform: scale(1.1);
 }
+
+.calendar_td {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#calendar {
+	width: fit-content;
+	background: white;
+	border-radius: 8px;
+	padding: 10px;
+}
+
+.cal_header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.cal_days {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	gap: 5px;
+}
+
+.day {
+	padding: 10px;
+	text-align: center;
+	border: 1px solid #eee;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.day:hover {
+	background-color: #f0f0f0;
+}
+
+.empty {
+	background-color: #f9f9f9;
+}
+
+.study_td {
+	padding: 10px;
+}
+
+.study_post_table {
+	margin : auto;
+}

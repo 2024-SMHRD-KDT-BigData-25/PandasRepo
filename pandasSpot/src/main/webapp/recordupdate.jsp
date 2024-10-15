@@ -13,29 +13,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="fonts/icomoon/style.css">
-
-  <!-- bootstrap 스타일시트 추가 -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/magnific-popup.css">
-  <link rel="stylesheet" href="css/jquery-ui.css">
-  <link rel="stylesheet" href="css/owl.carousel.min.css">
-  <link rel="stylesheet" href="css/owl.theme.default.min.css">
-
-  <link rel="stylesheet" href="css/lightgallery.min.css">    
-
-  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-
-  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-
-  <link rel="stylesheet" href="css/swiper.css">
-
-  <link rel="stylesheet" href="css/aos.css">
-
-  <link rel="stylesheet" href="css/style.css">
   
   <style>
   
@@ -76,107 +53,77 @@
 </head>
 <body>
 
-  <div class="site-wrap">
-
-    <div class="site-mobile-menu">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
-        </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
-    </div>
-    
-
  <%@ include file="header.jsp"%>
  <% 
 	
 	int idx = Integer.parseInt( request.getParameter("idx") );
-	System.out.println("인덱스 번호는 " + idx);
 	StudyDAO dao = new StudyDAO();
 	Studies study = dao.getStudies(idx);
 	%>
 
-    <div class="site-section"  data-aos="fade">
+    <div class="site-section"  data-aos="fade" >
       <div class="container">
-
-        <div class="row justify-content-center">
-
-          <div class="col-md-7">
-            <div class="row mb-5">
-              <div class="col-12 ">
-                <h2 class="site-section-heading text-center">공부 기록</h2>
-                <div class="author text-right">
-                  <span><i class="glyphicon glyphicon-user"></i> <%=study.getMem_id()%></span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        
-        <div class="row justify-content-center" >
-          <div class="col-lg-8 mb-5">
+            
+            
             <form action="StudyUpdate" method="post" enctype="multipart/form-data">
-
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <label class="text-white" for="tagInput">Tag</label> 
-                  <input type="text" id="tagInput" class="form-control" name="study_content"  value="<%=study.getStudy_content() %>" required>
-                  <div id="tagContainer"></div>
-                </div>
-              </div>
-
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <label class="text-white" for="message">파일 첨부 : </label> 
-                  <input type="file" id="file-upload" name="study_photo" value=<%=study.getStudy_photo() %> accept="image/*" style="border: none; border-bottom:1px solid #fff; outline: none;">
-                  <img id="preview" src="" alt="미리보기 이미지" style="display: none;">
-                </div>
-              </div>
-              
-              <br>
-              <div class="row form-group" align="center">
-                <div class="col-md-12">
-                  <input type="submit" value="수정" class="post-input-btn">
-                  <input type="submit" value="취소" class="post-input-btn" onclick="history.back();">
-                </div>
-              </div>
-
-            </form>
+					<table class="study_post_table">
+					<tr><td colspan="2" id="post_title_td"><h2 class="post-title">공부 기록</h2></td></tr>
+						<tr>
+							<td class="study_td"><label class="image_label" for="subject">태그</label></td>
+							<td class="study_td">
+							<input type="hidden" name="study_idx" value="<%= study.getStudy_idx() %>">
+							<input type="text" id="study_content" name="study_content" class="join-input" value="<%=study.getStudy_content() %>" placeholder="#새 태그 추가" required></td>
+						</tr>
+						<tr>
+							<td class="study_td">
+							<div class="post-display-block image_label">사진 첨부</div></td>
+							<td class="study_td">
+							<label> 
+								<img src="${contextPath}/uploads/<%=study.getStudy_photo() %>" alt="이미지 추가하기" id="input-image" />
+								<input type="file" id="study_photo" name="study_photo"  accept="image/*" style="display: none;">
+							</label>
+							</td>
+						</tr>
+						<tr>
+						<td colspan='2' class="btns_td">
+						<input type="submit" id="study_submit" value="수정" class="post-input-btn" > 
+						<input type="button" value="취소" class="post-input-btn" onclick="history.back();">
+						</td>
+						</tr>
+					</table>
+				</form>
           </div>
 
         </div>
-      </div>
-    </div>
 
-    <div class="footer py-4">
-      <div class="container-fluid text-center">
-        <p>
-          Copyright &copy;<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-        </p>
-      </div>
-    </div>
-
-  </div>
   
    <script>
-        const imageInput = document.getElementById('file-upload');
-        const preview = document.getElementById('preview');
+   const imageInput = document.getElementById('study_photo');
+   const preview = document.getElementById('preview');
+   var mem_id = document.getElementById('mem_id');
+   
+   document.getElementById('study_photo').addEventListener('change', handleImageChange);
 
-        imageInput.addEventListener('change', function() {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    preview.src = event.target.result;
-                    preview.style.display = 'block';
-                }
-                reader.readAsDataURL(file);
-            } else {
-                preview.style.display = 'none';
-            }
-        });
+	function handleImageChange(event) {
+		const file = event.target.files[0]; // 파일 선택
+
+		if (file) {
+			const reader = new FileReader(); // FileReader 생성
+
+			// 파일을 읽은 후 호출되는 함수
+			reader.onload = function(e) {
+				const imageUrl = e.target.result; // Base64로 인코딩된 이미지 데이터
+				const image_preview = document.getElementById('input-image');
+				image_preview.src = imageUrl; // 이미지의 src 속성 변경
+				image_preview.style.width = 'auto';
+			};
+
+			reader.readAsDataURL(file); // 파일을 Base64 데이터 URL로 읽음
+		} else {
+			document.getElementById('input-image').src = "${contextPath}/resources/icon/add (1).png"; // 파일이 없으면 이미지 초기화
+			document.getElementById('input-image').style.width = '30px'; // 파일이 없으면 이미지 초기화
+		}
+	}
     </script>
     
     <script>

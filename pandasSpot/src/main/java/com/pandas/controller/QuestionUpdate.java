@@ -21,8 +21,7 @@ public class QuestionUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ServletContext context = request.getServletContext();
-		String uploadPath = context.getRealPath("upload");
+		String uploadPath = "C:\\Users\\smhrd\\git\\repository\\pandasSpot\\src\\main\\webapp\\uploads";
 		int maxSize = 500 * 1024 * 1024; // 5MB
 		
 		HttpSession session = request.getSession();

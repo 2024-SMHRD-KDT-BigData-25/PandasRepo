@@ -124,6 +124,7 @@
 						<tr>
 							<td class="info_content_single">
 								<div class="follow_info" id="calendar"></div>
+								
 							</td>
 							<td class="info_content_single">
 								<div class="follow_info" id="mypost"></div>
@@ -136,7 +137,7 @@
 
 
 	</div>
-	
+	<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
 	<script>
 		$("#info_edit_btn").on("click", function(event) {
 			location.href = "${contextPath}/infoUpdate.jsp";
@@ -242,6 +243,15 @@
 			//prepend() : 앞쪽에 추가 => 누적
 			$("#following").html(html)
 		}
+		
+	      document.addEventListener('DOMContentLoaded', function() {
+	          var calendarEl = document.getElementById('calendar');
+	          var calendar = new FullCalendar.Calendar(calendarEl, {
+	            initialView: 'dayGridMonth'
+	          });
+	          calendar.render();
+	        });
+
 	</script>
 
 </body>
