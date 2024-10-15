@@ -1,3 +1,4 @@
+<%@page import="com.pandas.model.StudyTimeDAO"%>
 <%@page import="com.pandas.model.Members"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -11,15 +12,6 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<style type="text/css">
-.my_name_container {
-	display: block;
-}
-
-.my_info_container {
-	display: block;
-}
-</style>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
@@ -27,8 +19,11 @@
 	Members member = (Members) session.getAttribute("member");
 	String temp = member.getMem_birthdate();
 	String birth = temp.substring(0, 4) + "-" + temp.substring(4, 6) + "-" + temp.substring(6);
+	StudyTimeDAO sDao = new StudyTimeDAO();
+	String mem_id = member.getMem_id();
+	String stime = sDao.getStudyTime(mem_id);
 	%>
-	<div class="pages_info" id="main_mem_id"><%= member.getMem_id() %></div>
+	<div class="pages_info" id="main_mem_id"><%= mem_id %></div>
 	<div class="content-container" data-aos="fade">
 
 		<table class="info_table">
@@ -87,7 +82,7 @@
 
 				<td class="member_info_td_1" id="following_cnt">팔로잉</td>
 
-				<td class="member_info_td_1" id="study_time_cnt">오늘 공부 시간</td>
+				<td class="member_info_td_1" id="study_time_cnt"><%= stime %></td>
 			</tr>
 
 			<tr>
@@ -138,6 +133,7 @@
 
 	</div>
 	<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+
 	<script>
 		$("#info_edit_btn").on("click", function(event) {
 			location.href = "${contextPath}/infoUpdate.jsp";
@@ -152,7 +148,6 @@
 					"mem_id" : mem_id
 				},
 				success : function(response) {
-					console.log(response);
 					// response는 JSON 형식의 응답
 					const diaries = response.diaries; // 다이어리 목록
 					const followers = response.followers; // 팔로워 목록

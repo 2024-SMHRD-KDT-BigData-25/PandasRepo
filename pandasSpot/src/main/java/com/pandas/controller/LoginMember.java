@@ -40,7 +40,9 @@ public class LoginMember extends HttpServlet {
 				SchoolDAO sDao = new SchoolDAO();
 				res.setMem_school_name(sDao.findSchoolName(res.getMem_school()));
 				HttpSession session = request.getSession();
+				session.setMaxInactiveInterval(6000); // 10분 = 600초
 				session.setAttribute("member", res);
+
 				response.sendRedirect("main.jsp");
 			} else {
 				errorMsg = "아이디 비밀번호를 확인해주세요!";

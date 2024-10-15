@@ -181,4 +181,14 @@
 	<insert id="QnAyNewComment" parameterType="com.pandas.model.QuestionComments">
 		INSERT INTO QUESTION_COMMENTS (q_idx, cmt_content, mem_id) VALUES (#{q_idx}, #{cmt_content}, #{mem_id})
 	</insert>
+	
+	<insert id="StudyTimeInsert" parameterType="com.pandas.model.StudyTimes">
+		INSERT INTO STUDYTIMES (mem_id) VALUES (#{mem_id})
+	</insert>
+	<update id="StudyTimeUpdate" parameterType="com.pandas.model.StudyTimes">
+		update STUDYTIMES set STUDY_TIME = #{study_time} where mem_id = #{mem_id}
+	</update>
+	<select id="GetStudyTime" parameterType="String" resultType="String">
+		select study_time from STUDYTIMES where mem_id = #{mem_id}
+	</select>
 </mapper> 

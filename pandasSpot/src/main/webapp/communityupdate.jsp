@@ -64,7 +64,7 @@
 						
 						<tr>
 							<td class="td_left">
-							<label class="image_label" for="subject">제목</label> </td>
+							<label class="image_label" for="subject">제목</label></td>
 							<td class="td_right"><input class="post_text_input" type="text" name="comm_title" value="<%=comm.getComm_title() %>" required></td>
 							<!-- 원본 제목 삽입 -->
 						</tr>

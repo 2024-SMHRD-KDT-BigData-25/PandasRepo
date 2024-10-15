@@ -14,6 +14,8 @@ import com.pandas.model.MemberDAO;
 import com.pandas.model.SchoolDAO;
 import com.pandas.model.Members;
 import com.pandas.model.Schools;
+import com.pandas.model.StudyTimeDAO;
+import com.pandas.model.StudyTimes;
 
 @WebServlet("/Join")
 public class JoinMember extends HttpServlet {
@@ -83,12 +85,14 @@ public class JoinMember extends HttpServlet {
         double mem_school_num = sdao.findSchool(m_school);
 
         Members joinMember = new Members(mem_id, mem_pw, mem_name, mem_nick, mem_birthdate, mem_school_num, img);
-
+        
         MemberDAO dao = new MemberDAO();
         int res = dao.join(joinMember);
         if (res > 0) {
             System.out.println(mem_id + " 가입 완료");
             response.sendRedirect("Login.jsp");
+            StudyTimeDAO stDAO = new StudyTimeDAO();
+            stDAO.insertStudyTime(mem_id);
         } else {
             System.out.println("가입 실패");
             response.sendRedirect("join.jsp");

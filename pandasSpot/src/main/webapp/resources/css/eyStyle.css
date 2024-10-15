@@ -144,6 +144,15 @@ body {
 	padding-bottom: 30px;
 }
 
+.login-content-container {
+	display: flex; /* Flexbox로 컨테이너 설정 */
+	height: auto;
+	justify-content: center; /* 수평 중앙 정렬 */
+	align-items: center; /* 수직 중앙 정렬 */
+	padding-bottom: 30px;
+	margin: auto;
+}
+
 .join-title {
 	font-family: 둥근미소;
 	text-align: center;
@@ -890,4 +899,52 @@ video {
 
 .study_post_table {
 	margin : auto;
+}
+
+.location_mark {
+	color : #EE4E4E;
+	font-size: 30px;
+}
+#main_title_td {
+	width: 70%;
+}
+
+#calendar{
+	width: 80%;
+	height: fit-content;
+}
+
+.fc-toolbar-title {
+	font-size: 15px;
+}
+
+.fc-button {
+	font-size: 15px;
+    width: 50px
+}
+
+#time_modal_close {
+	float: right;
+}
+
+.study_time_check {
+	font-family: 교육새음;
+	font-size: 30px;
+    margin: 10px auto 5px auto;
+}
+
+
+.time_btn {
+	display: inline-block;
+	font-family:김콩해체;
+	background: #C0C78C;
+	color: white;
+	margin: 5px;
+	font-size: 15px;
+	width: 70px;
+	height: 40px;
+}
+
+.time_btn:hover {
+	background-color: #45a049;
 }

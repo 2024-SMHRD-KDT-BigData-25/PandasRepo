@@ -1,3 +1,4 @@
+<%@page import="com.pandas.model.StudyTimeDAO"%>
 <%@page import="com.pandas.model.Members"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -20,15 +21,19 @@
 		
 		Members member = (Members)session.getAttribute("member");  
 		String homeHref = "";
+		String StudyTime =""; 
 		if (member == null) {
 			homeHref = "Login.jsp";
 		}
 		else {
 			homeHref = "main.jsp";
+			StudyTimeDAO dao = new StudyTimeDAO();
+			StudyTime = dao.getStudyTime(member.getMem_id());
 		}
 	%>
 	<% if (member != null) {%>
 			<div class="pages_info" id="member_nick"><%= member.getMem_nick() %></div>
+			<div class="hidden" id="member_id"><%= member.getMem_id() %></div>
 	<% } %>
 	<div class="header-container header-title-cotainer">
 		<a class="header-title" href="<%= homeHref%>">SPOT</a>
@@ -70,6 +75,7 @@
 			</li>
 		</ul>
 	</div>
+	<div id="study_time_val" class="hidden"><%= StudyTime %></div>
 	
 	<div id="chatModal" class="modal">
 		<div class="modal-content">
@@ -112,17 +118,23 @@
 	<div id="studyTimeModal" class="modal">
 		<div class="modal-content">
 			<div class="modal-header">
-			<table><tr>
-			<td>
 				<h2 class="open_chat_title">공부 시간 측정</h2>
 				<span class="close" id="time_modal_close">&times;</span>
-				 <p>경과 시간: <span id="timer">0</span> 초</p>
-				 
-				 </td></tr>
 			</div>
-			</table>
+			<div class="study_time_check">
+				<span id="stopwatch">00:00:00</span>
+			</div>
+
+			<div class="study_time_check">
+				<button class="time_btn btn" id="time_record_start" onclick="startClock()">START</button>
+				<button class="time_btn btn" id="time_record_stop" onclick="stopClock()">STOP</button>
+				<button class="time_btn btn" id="time_record_reset" onclick="resetClock()">RESET</button>
+				<button class="time_btn btn" id="time_record_record" >RECORD</button>
+			</div>
+
 		</div>
 	</div>
+
 </header>
 
 	<script src="${contextPath}/resources/js/jquery-3.3.1.min.js"></script>
@@ -143,33 +155,92 @@
 	<script src="${contextPath}/resources/js/jquery.mousewheel.min.js"></script>
 
 	<script src="${contextPath}/resources/js/main.js"></script>
-	<script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
-	
+
 
 <script>
 var studyTimeModal = document.getElementById("studyTimeModal");
-var videoElement = document.getElementById("webcamVideo");
 var friendModal = document.getElementById("friendModal");
 var chatModal = document.getElementById("chatModal");
 
 // 공부 시간 측정 버튼 클릭 시 모달 열기
 $("#study_time_btn").on("click", function() {
-	console.log(studyTimeModal)
 	var study = $("#studyTimeModal");
 	study.css("display", "flex");
-    startWebcam();  // 웹캠 시작
 });
 
 // 공부 시간 측정 모달 닫기
 $("#time_modal_close").on("click", function() {
     studyTimeModal.style.display = "none";
 });
+
+let timerId;
+let time = 0;
+const stopwatch = document.getElementById("stopwatch");
+let  hour, min, sec;
+
+
+function printTime() {
+    time++;
+    stopwatch.innerText = getTimeFormatString();
+}
+
+//시계 시작 - 재귀호출로 반복실행
+function startClock() {
+    printTime();
+    stopClock();
+    timerId = setTimeout(startClock, 1000);
+}
+
+//시계 중지
+function stopClock() {
+    if (timerId != null) {
+        clearTimeout(timerId);
+    }
+}
+
+// 시계 초기화
+function resetClock() {
+    stopClock()
+    stopwatch.innerText = "00:00:00";
+    time = 0;
+}
+
+// 시간(int)을 시, 분, 초 문자열로 변환
+function getTimeFormatString() {
+    hour = parseInt(String(time / (60 * 60)));
+    min = parseInt(String((time - (hour * 60 * 60)) / 60));
+    sec = time % 60;
+
+    return String(hour).padStart(2, '0') + ":" + String(min).padStart(2, '0') + ":" + String(sec).padStart(2, '0');
+}
+
+$("#time_record_record").on("click", function() {
+	var old_study_time = $("#study_time_val").text().split(":");
+	
+	var old_time = parseInt(old_study_time[2]) + parseInt(old_study_time[1]) * 60  + parseInt(old_study_time[0]) * 60 * 60;
+	
+	var new_time = getTimeFormatString(old_time + time);
+	console.log(new_time);
+	var mem_id = $("#member_id").text();
+	$.ajax({
+		url : "StudyTimeUpdate", //요청경로
+		type : "post", //요청방식(http 요청 메서드)
+		data : {"mem_id" : mem_id,
+				"study_time" : new_time},
+		success : function(){
+			alert("success!")
+		},
+		error : function(){
+			alert("통신 실패!")
+		}
+	}) 
+	
+});
 	
 // 모달 바깥 클릭 시 닫기
 window.onclick = function(event) {
     if (event.target == studyTimeModal) {
         studyTimeModal.style.display = "none";
-        stopWebcam();  // 웹캠 종료
     } else if (event.target == friendModal) {
         friendModal.style.display = "none";
     }
@@ -220,7 +291,6 @@ window.onclick = function(event) {
 		var resultContainer = document.getElementById("friendList");
 		resultContainer.innerHTML = ""; // 이전 결과 초기화
 		data.forEach(function(item) {
-			console.log(item);
 			var friendlink = document.createElement("a");
 			friendlink.className = "find_school_result"
 			friendlink.style.display = "block";
