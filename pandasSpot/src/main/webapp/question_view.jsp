@@ -77,7 +77,7 @@
    	</div>
 	<div class="form-group">
 					<div class="main">
-						<span>질문하세요
+						<span>
 						<%=question.getQ_content() %>
 						</span>
 					<div><img class="board_img_content" alt="게시물 이미지"

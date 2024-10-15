@@ -14,7 +14,6 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.pandas.model.Communities;
 import com.pandas.model.CommunityDAO;
-import com.pandas.model.Members;
 
 
 @WebServlet("/CommunityPost")

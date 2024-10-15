@@ -30,12 +30,12 @@
 				<form action="QuestionUpdate" method="post" enctype="multipart/form-data">
 					<table class="post_table">
 					<tr><td colspan="2" id="post_title_td"><h2 class="post-title">Q & A</h2></td></tr>
-					<tr><td><input class="hidden post_text_input" type="text" id="subject" name="diary_idx"  value="<%=q.getQ_idx() %>" required></td></tr>
+					<tr><td><input type="hidden" name="q_idx"  value="<%=idx%>" required></td></tr>
 	
 						<tr>
 							<td class="td_left">
 							<label class="image_label" for="subject">제목</label> </td>
-							<td class="td_right"><input class="post_text_input" type="text" id="subject" name="q_title" value="<%=q.getQ_title() %>" required></td>
+							<td class="td_right"><input class="post_text_input" type="text" name="q_title" value="<%=q.getQ_title() %>" required></td>
 							<!-- 원본 제목 삽입 -->
 						</tr>
 						<tr>

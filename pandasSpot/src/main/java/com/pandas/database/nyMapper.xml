@@ -11,7 +11,7 @@
 	<!-- question 수정 -->
 	<update id="QuestionUpdate" parameterType="com.pandas.model.Questions">
 		update questions set q_title=#{q_title} , q_content=#{q_content} ,
-		q_file=#{q_file} , q_workbook=#{q_workbook} , created_at=SYSDATE || '(수정)' where q_idx=#{q_idx}
+		q_file=#{q_file} , q_workbook=#{q_workbook} where q_idx=#{q_idx}
 	</update>
 	
 	<!-- community 삭제 -->
