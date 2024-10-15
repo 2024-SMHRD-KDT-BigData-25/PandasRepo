@@ -34,7 +34,7 @@
 	%> 
 	
 		<!-- 게시글 부분 -->
-	<div class="hidden" id="q_idx"><%= idx %></div>
+	<div class="hidden" id="diary_idx"><%= idx %></div>
 	<div data-aos="fade">
 		<h2 class="join-title before-table">Study Log</h2>
 	</div>

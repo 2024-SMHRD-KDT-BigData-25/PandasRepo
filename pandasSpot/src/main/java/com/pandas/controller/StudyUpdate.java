@@ -34,14 +34,15 @@ public class StudyUpdate extends HttpServlet {
 
 		String study_file = multi.getParameter("study_photo");
 		
-		int study_idx = Integer.parseInt(request.getParameter("study_idx"));
+		int study_idx = Integer.parseInt(multi.getParameter("study_idx"));
 		String study_content = multi.getParameter("study_content");
 		
-		Studies updateStudy = new Studies();
+		System.out.println(study_idx + study_content + study_file);
+		Studies updateStudy = new Studies(study_idx, study_content, study_file);
 		
 		StudyDAO dao = new StudyDAO();
 		int res = dao.StudyUpdate(updateStudy);	
-		if (res != 1) {
+		if (res > 0 ) {
 			System.out.println("Q & A 게시물 수정 완료!");
 			response.sendRedirect("StudyList.jsp");
 		}
