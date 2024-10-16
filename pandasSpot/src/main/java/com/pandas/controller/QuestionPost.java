@@ -28,7 +28,9 @@ public class QuestionPost extends HttpServlet {
 		Members member = (Members)session.getAttribute("member");
 		String mem_id = member.getMem_id();
 
-		String uploadPath = "C:\\Users\\smhrd\\git\\repository\\pandasSpot\\src\\main\\webapp\\uploads";
+//		String uploadPath = "C:\\Users\\smhrd\\git\\repository\\pandasSpot\\src\\main\\webapp\\uploads";
+		ServletContext context = request.getServletContext();
+		String uploadPath = context.getRealPath("uploads");
 
         int maxSize = 5 * 1024 * 1024; // 최대 파일 크기: 5MB
 

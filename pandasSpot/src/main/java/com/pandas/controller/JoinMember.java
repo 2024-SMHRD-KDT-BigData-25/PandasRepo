@@ -2,6 +2,8 @@ package com.pandas.controller;
 
 import java.io.File;
 import java.io.IOException;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +27,9 @@ public class JoinMember extends HttpServlet {
             throws ServletException, IOException {
         // MultipartRequest => COS 라이브러리를 사용하여 파일 업로드 처리
     	// 업로드 경로 설정
-    	String uploadPath = "C:\\Users\\smhrd\\git\\repository\\pandasSpot\\src\\main\\webapp\\uploads";
+//    	String uploadPath = "C:\\Users\\smhrd\\git\\repository\\pandasSpot\\src\\main\\webapp\\uploads";
+		ServletContext context = request.getServletContext();
+		String uploadPath = context.getRealPath("uploads");
 
         int maxSize = 5 * 1024 * 1024; // 최대 파일 크기: 5MB
 

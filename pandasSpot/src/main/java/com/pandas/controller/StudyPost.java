@@ -5,6 +5,8 @@ import java.io.IOException;
 
 import java.io.File;
 import java.io.IOException;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,8 +27,9 @@ public class StudyPost extends HttpServlet {
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 업로드할 파일의 경로 설정
-    	String uploadPath = "C:\\Users\\smhrd\\git\\repository\\pandasSpot\\src\\main\\webapp\\uploads";
-
+//    	String uploadPath = "C:\\Users\\smhrd\\git\\repository\\pandasSpot\\src\\main\\webapp\\uploads";
+		ServletContext context = request.getServletContext();
+		String uploadPath = context.getRealPath("uploads");
         int maxSize = 5 * 1024 * 1024; // 최대 파일 크기: 5MB
 
         // 파일 업로드 객체 생성

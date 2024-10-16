@@ -179,7 +179,7 @@
 				var date = data[i].created_at.substr(2, 8);
 				html += "<div>"
 				html += "<div class='my_post_list'>" + (i + 1) + "</div>"
-				html += "<div class='my_post_list my_post_title'><a class='table_a_tags' href='study_view.jsp?idx="
+				html += "<div class='my_post_list my_post_title'><a class='table_a_tags' href='diary_view.jsp?idx="
 						+ data[i].diary_idx
 						+ "'>"
 						+ data[i].diary_title

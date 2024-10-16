@@ -31,7 +31,8 @@ public class UpdateMember extends HttpServlet {
 		// MultipartRequest => COS
 		Members oldMember = (Members) request.getSession().getAttribute("member");
 		ServletContext context = request.getServletContext();
-		String uploadPath = context.getRealPath("upload");
+//		String uploadPath = "C:\\Users\\smhrd\\git\\repository\\pandasSpot\\src\\main\\webapp\\uploads";
+		String uploadPath = context.getRealPath("uploads");
 		int maxSize = 500 * 1024 * 1024; // 5MB
 
 		// (request, 파일 저장 경로, 최대 파일 크기(용량), 인코딩 타입 지정, 파일 이름 생성 규칙)
