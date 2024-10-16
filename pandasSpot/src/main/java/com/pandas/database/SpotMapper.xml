@@ -188,6 +188,7 @@
 	<update id="StudyTimeUpdate" parameterType="com.pandas.model.StudyTimes">
 		update STUDYTIMES set STUDY_TIME = #{study_time} where mem_id = #{mem_id}
 	</update>
+	
 	<select id="GetStudyTime" parameterType="String" resultType="String">
 		select study_time from STUDYTIMES where mem_id = #{mem_id}
 	</select>

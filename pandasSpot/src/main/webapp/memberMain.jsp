@@ -1,3 +1,4 @@
+<%@page import="com.pandas.model.StudyTimeDAO"%>
 <%@page import="com.pandas.model.SchoolDAO"%>
 <%@page import="com.pandas.model.MemberDAO"%>
 <%@page import="com.pandas.model.Members"%>
@@ -26,6 +27,9 @@
 	member.setMem_school_name(sDao.findSchoolName(member.getMem_school()));
 	String temp = member.getMem_birthdate();
 	String birth = temp.substring(0, 4) + "-" + temp.substring(4, 6) + "-" + temp.substring(6);
+	StudyTimeDAO studyDao = new StudyTimeDAO();
+	String mem_id = member.getMem_id();
+	String stime = studyDao.getStudyTime(mem_id);
 	%>
 	<div class="pages_info" id="main_mem_id"><%= member.getMem_id() %></div>
 	<div class="pages_info" id="login_mem_id"><%= loginMember.getMem_id() %></div>
@@ -85,7 +89,7 @@
 
 				<td class="member_info_td_1" id="following_cnt">팔로잉</td>
 
-				<td class="member_info_td_1" id="study_time_cnt">오늘 공부 시간</td>
+				<td class="member_info_td_1" id="study_time_cnt"><%= stime %></td>
 			</tr>
 
 			<tr>
@@ -134,12 +138,8 @@
 
 
 	</div>
-	
+	<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
 	<script>
-		$("#info_edit_btn").on("click", function(event) {
-			location.href = "${contextPath}/infoUpdate.jsp";
-		})
-		
 		var mem_id = document.getElementById("main_mem_id").innerText;
 		var login_mem_id = document.getElementById("login_mem_id").innerText;
 		
@@ -177,10 +177,10 @@
 					printFollowingList(followings);
 					
 				
-					if (!login_mem_id.equals(mem_id) && followers.includes(login_mem_id)) {
+					if (login_mem_id.equals != mem_id && followers.includes(login_mem_id)) {
 						$("#follow_icons").html(unfollow_icon);
 					}
-					else if (!login_mem_id.equals(mem_id) && !followers.includes(login_mem_id)) {
+					else if (login_mem_id.equals != mem_id && !followers.includes(login_mem_id)) {
 						$("#follow_icons").html(follow_icon);
 					}
 					
@@ -233,7 +233,7 @@
 				var date = data[i].created_at.substr(2, 8);
 				html += "<div>"
 				html += "<div class='my_post_list'>" + (i + 1) + "</div>"
-				html += "<div class='my_post_list my_post_title'><a class='table_a_tags' href='study_view.jsp?idx="
+				html += "<div class='my_post_list my_post_title'><a class='table_a_tags' href='diary_view.jsp?idx="
 						+ data[i].diary_idx
 						+ "'>"
 						+ data[i].diary_title
@@ -293,6 +293,14 @@
 			//prepend() : 앞쪽에 추가 => 누적
 			$("#following").html(html)
 		}
+		
+		document.addEventListener('DOMContentLoaded', function() {
+	          var calendarEl = document.getElementById('calendar');
+	          var calendar = new FullCalendar.Calendar(calendarEl, {
+	            initialView: 'dayGridMonth'
+	          });
+	          calendar.render();
+	        });
 	</script>
 
 </body>

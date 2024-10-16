@@ -643,7 +643,7 @@ header {
 .info_table {
 	width: 60%;
 	font-size:20px;
-	font-family: 김콩해체;
+	font-family: 다예쁨;
 	color: #3C3D37;
 	background-color: ivory;
     border-radius: 5%;
@@ -910,17 +910,13 @@ video {
 }
 
 #calendar{
+	font-family: '다예쁨';
 	width: 80%;
 	height: fit-content;
 }
 
 .fc-toolbar-title {
 	font-size: 15px;
-}
-
-.fc-button {
-	font-size: 15px;
-    width: 50px
 }
 
 #time_modal_close {
@@ -947,4 +943,18 @@ video {
 
 .time_btn:hover {
 	background-color: #45a049;
+}
+
+.fc .fc-toolbar-title {
+    font-size: 15px;
+    margin: 0px;
+}
+
+.fc .fc-button {
+	width: fit-content;
+    font-size: 10px;
+}
+
+.fc-daygrid-day-events {
+	display: none;
 }

@@ -228,7 +228,8 @@ $("#time_record_record").on("click", function() {
 		data : {"mem_id" : mem_id,
 				"study_time" : new_time},
 		success : function(){
-			alert("success!")
+			alert("공부시간이 기록되었습니다!");
+			location.reload(true);
 		},
 		error : function(){
 			alert("통신 실패!")
