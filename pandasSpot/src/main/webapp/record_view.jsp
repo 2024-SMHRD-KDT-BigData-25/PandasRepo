@@ -91,8 +91,7 @@
 					<%} %></div>
 					</div>
 					</td>
-					<td class="post_th_2"></td>
-					<td class="post_th_3" style="white-space: nowrap;"><button id="like-button" style=" background: transparent; border: none; cursor: pointer;">
+					<td class="post_th_2"><button id="like-button" style=" background: transparent; border: none; cursor: pointer;">
     				❤️ <span id="like-count" class="like" ><%=study.getStudy_likes() %>
     				</span></button></td>
     			</tr>

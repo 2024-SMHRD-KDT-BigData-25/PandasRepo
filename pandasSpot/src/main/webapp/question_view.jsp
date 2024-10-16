@@ -69,8 +69,7 @@
 					</tr>
 					</table>
 					</td>
-					<td class="post_th_2"><span class="like"><%=question.getQ_workbook()%></span></td>
-					<td class="post_th_3"></td>
+					<td class="like post_th_2">문제집: <span class="like"><%=question.getQ_workbook()%></span></td>
     			</tr>
    			 </table>
    		</div>

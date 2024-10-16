@@ -274,8 +274,5 @@ font-style: normal;
 }
 .post_th_2 {
 	width: 50%;
-	text-align: center;
-}
-.post_th_3 {
-	width: 5%;
+	text-align:right;
 }

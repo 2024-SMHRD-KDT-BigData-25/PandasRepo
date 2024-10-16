@@ -72,8 +72,7 @@
 					</table>
 					
 					</td>
-					<td class="post_th_2"></td>
-					<td class="post_th_3" style="white-space: nowrap;">
+					<td class="post_th_2">
 					<button id="like-button" style=" background: transparent; border: none; cursor: pointer;">
     				❤️ <span id="like-count" class="like" ><%=community.getComm_likes() %>
     				</span></button>
