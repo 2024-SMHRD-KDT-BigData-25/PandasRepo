@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class StudyTimes {
 	private String mem_id;
-	private String study_time;
+	private String study_time="0:0:0";
 	public StudyTimes(String mem_id) {
 		super();
 		this.mem_id = mem_id;

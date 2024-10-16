@@ -32,6 +32,13 @@ public class DiaryDAO {
 		return list;
 	}
 	
+	public List<Diaries> getMemberList(int page) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		List<Diaries> list = sqlSession.selectList("ecMapper.pageDiary", page);
+		sqlSession.close();
+		return list;
+	}
+	
 	public List<Diaries> getMyPostList(String id) {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		List<Diaries> list = sqlSession.selectList("SpotMapper.MyPostList", id);

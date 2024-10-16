@@ -120,7 +120,6 @@
 						<tr>
 							<td class="info_td_title">일정 관리</td>
 							<td class="info_td_title">Study Log
-								<button id="more_post">&plus;</button>
 							</td>
 						</tr>
 						<tr>
@@ -225,9 +224,11 @@
 			}) 
 		}
 
+		var postLen = 0;
 		function printPostList(data) {
 			var html = "", //id=>list 곳에 추가가 될 html 코드
 			dlength = data.length;
+			postLen = data.length;
 			var len = data.length >= 5 ? 5 : data.length;
 			for (var i = 0; i < len; i++) {
 				var date = data[i].created_at.substr(2, 8);

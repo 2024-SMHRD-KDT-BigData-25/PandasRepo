@@ -82,7 +82,9 @@
 
 				<td class="member_info_td_1" id="following_cnt">팔로잉</td>
 
-				<td class="member_info_td_1" id="study_time_cnt"><%= stime %></td>
+				<td class="member_info_td_1" id="study_time_cnt"><%= stime %>
+				<i class="fa-solid fa-clock-rotate-left" id="study_time_reset"></i>
+				</td>
 			</tr>
 
 			<tr>
@@ -113,7 +115,6 @@
 						<tr>
 							<td class="info_td_title">일정 관리</td>
 							<td class="info_td_title">Study Log
-								<button id="more_post">&plus;</button>
 							</td>
 						</tr>
 						<tr>
@@ -246,6 +247,23 @@
 	          });
 	          calendar.render();
 	        });
+	      
+	      $("#study_time_reset").on("click", function() {
+	    	  $.ajax({
+					url : "StudyTimeReset", //요청경로
+					type : "post", //요청방식(http 요청 메서드)
+					data : {
+						"mem_id" : mem_id
+					},
+					success : function() {
+						alert("공부 시간이 reset 되었습니다!");
+						location.reload(true);
+					},
+					error : function() {
+						alert("통신 실패!")
+					}
+				})
+	      });
 
 	</script>
 
