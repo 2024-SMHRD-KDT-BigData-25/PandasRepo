@@ -43,7 +43,7 @@
 </style>
 </head>
 <body>
-	<jsp:include page="header.jsp" />
+<%@ include file="header.jsp"%>
 
 	<div class="content-container" data-aos="fade">
 		<div class="post-container">
@@ -55,7 +55,9 @@
 						<tr>
 							<td class="td_left">
 							<label class="image_label" for="subject">제목</label> </td>
-							<td class="td_right"><input class="post_text_input" type="text" id="subject" name="comm_title" required></td>
+							<td class="td_right">
+							<input type="hidden" name="mem_id" value="<%=member.getMem_id() %>">
+							<input class="post_text_input" type="text" id="subject" name="comm_title" required></td>
 						</tr>
 						<tr>
 							<td class="td_left">

@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -69,11 +68,11 @@ public class CommunityPost extends HttpServlet {
 
 		String comm_title = multi.getParameter("comm_title");
 		String comm_content = multi.getParameter("comm_content");
-		int comm_idx = Integer.parseInt(multi.getParameter("comm_idx"));
+		String mem_id = multi.getParameter("mem_id");
 		
 	
-		System.out.println(comm_title + comm_content + img + comm_idx);
-		Communities postComm = new Communities(comm_title, comm_content, img, comm_idx);
+		System.out.println(comm_title + comm_content + img + mem_id);
+		Communities postComm = new Communities(comm_title, comm_content, img, mem_id);
 		
 		CommunityDAO dao = new CommunityDAO();
 		int res = dao.CommunityPost(postComm);

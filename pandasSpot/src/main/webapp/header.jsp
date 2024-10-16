@@ -315,7 +315,7 @@ window.onclick = function(event) {
 	//모달 열기 함수
 	function chatButtonClick() {
 		webSocket = new WebSocket(
-				"ws://localhost:8081/pandasSpot/chat?nickname="
+				"ws://172.30.1.89:8081/pandasSpot/chat?nickname="
 						+ userNickname)
 	
 		webSocket.onopen = onOpen

@@ -5,7 +5,7 @@
 		resultType="com.pandas.model.Studies">
 		SELECT * FROM (
 		SELECT A.*, ROWNUM AS RNUM FROM ( 
-		SELECT * FROM studies ORDER BY STUDY_IDX ASC ) A)
+		SELECT * FROM studies ORDER BY STUDY_IDX DESC ) A)
 		WHERE RNUM between ((#{pages} -1)*15+1) and #{pages}*15
 	</select>
 	<select id="getStudyLength" resultType="int">
