@@ -966,3 +966,49 @@ video {
 #study_time_reset:hover {
 	transform: scale(1.1);
 }
+
+.study_images_div{
+	width: 250px; 
+	height: 250px;
+	 /* div 영역을 넘는 부분은 숨김 */
+	display: flex; /* 이미지를 중앙 정렬하기 위해 flex 사용 */
+	justify-content: center;
+	align-items: center;
+    margin: auto;
+}
+
+.study_images {
+	max-height: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.study_posts {
+	display: inline-block;
+	width: 350px;
+	height: 350px;
+	margin: 10px;
+	text-align: center;
+	background-color: ivory;
+	padding: 10px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.record-content-list-table {
+	font-size: 1em;
+	width: 100%;
+	padding: 10px 0 10px 0;
+	margin: 50px auto 0 auto;
+	border-collapse: collapse;
+}
+
+.study_content_div {
+	text-align: center;
+}
+
+.study_title_style {
+	text-decoration: none;
+	color: black;
+}

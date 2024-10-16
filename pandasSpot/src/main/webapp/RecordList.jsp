@@ -21,27 +21,26 @@
 <body>
 
 	<%@ include file="header.jsp"%>
-	
-	<% 
+
+	<%
 	StudyDAO dao = new StudyDAO();
 	int length = dao.getStudyLength();
 	%>
-		<div class="pages_info" id="pages_info"><%= length %></div>
-	<div class="content-container" data-aos="fade" >
+	<div class="pages_info" id="pages_info"><%=length%></div>
+	<div class="content-container" data-aos="fade">
 		<h2 class="join-title before-table">공부 기록</h2>
 	</div>
-	<div class="content-container" data-aos="fade" style="display: grid; grid-template-rows: repeat(3, auto); justify-items: center; margin-top: 50px;">
-		<table class="content-list-table" style="width: 90%; text-align: center;" >
-			<tbody id="list">
-			</tbody>
+	<div class="study_content_div">
+		<table id="list" class="record-content-list-table" style="width: 90%;">
 		</table>
-		<div id="page_list"></div>
-		<div>
-		<button class="btn board_btn" id="to_write_btn" onclick="location.href='recordpost.jsp'">글쓰기</button>
-		</div>
 	</div>
-	
-
+		<div id="table_footer">
+			<div id="page_list"></div>
+			<div>
+				<button class="btn board_btn" id="to_write_btn"
+					onclick="location.href='recordpost.jsp'">글쓰기</button>
+			</div>
+		</div>
 
 
 	<script src="${contextPath}/resources/js/jquery-3.3.1.min.js"></script>
@@ -73,8 +72,9 @@
 	//게시물 전체 정보 불러오기(비동기통신-ajax)
 	//http://localhost:8081/mavenboard1/boardlist.jsp
 	//http://localhost:8081/mavenboard1/board
+	var total_length = 0;
 	$(document).ready(function(){
-		var total_length = document.getElementById("pages_info").innerText;
+		total_length = document.getElementById("pages_info").innerText;
 		const itemsPerPage = 15	;
 		const pages = Math.floor(total_length / itemsPerPage) + (total_length % itemsPerPage != 0 ? 1 : 0); 
 		getList(1);
@@ -119,19 +119,36 @@
 	}
 	
 	function printList(data){
-		var data = JSON.parse(data)
+		console.log(total_length);
+		var data = JSON.parse(data);
 		var html = "" //id=>list 곳에 추가가 될 html 코드
-		
-		for(var board of data){
-		  html += "<a href='record_view.jsp?idx="+board.Study_idx+"'>"
-		  html += "<div style= 'display: inline-block; width: 350px; height:350px; margin: 10px; text-align: center; border: 1px solid black; padding: 10px; flex-direction: column; justify-content: center; align-items: center;'>"
-	      html += "<p style= 'font-family: 교육새음; font-size: 20px; font-weight: 400; color: #333;'>"+board.Mem_id+"</p>"
+		for (let i = 0; i < total_length; i++){
+			var board = data[i];
+		 	if (i % 3 == 0) {
+		  	html += "<tr>"  ;
+		 	}
+		 	html += "<td class='study_posts'>";
+		 	html += "<a class='study_title_style' href='record_view.jsp?idx="+board.Study_idx+"'>";
+	      	html += "<p style= 'font-family: 교육새음; font-size: 20px; font-weight: 400; color: #333;'>"+board.Mem_id+"</p>";
 	   	  // 이미지 경로를 img 태그로 출력
-	      html += "<img src='${contextPath}/uploads/" + board.Study_photo + "' alt='Uploaded Image' style='width: 250px; height: 250px;'>";
+	   	  	html += "<div class='study_images_div'>";
+	      	html += "<img class='study_images' src='${contextPath}/uploads/" + board.Study_photo + "' alt='Uploaded Image'>";
+	      	html += "</div>"
 	      //html += "<td><button class='btn btn-primary py-2 px-4 text-white' onclick='deleteBoard("+board.q_idx+")'>삭제</button></td>"
-	      html += "</div>"
-	      html += "</a>"
+	      	html += "</a>"
+	      	html += "</td>"
+	      		if (i % 3 == 2) {
+	    		  	html += "</tr>"  ;
+	    		 	} 
 	    }
+		let temp_lenghth = 2 - total_length % 3;
+		for (let i = 0; i <= temp_lenghth; i++) {
+			html += "<td class='study_posts' style='background: transparent;'>";
+			html += "</td>"
+			if (i % 3 == 2) {
+	    		  	html += "</tr>"  ;
+	    	} 
+		}
 		$("#list").html(html)
 	}
 </script>

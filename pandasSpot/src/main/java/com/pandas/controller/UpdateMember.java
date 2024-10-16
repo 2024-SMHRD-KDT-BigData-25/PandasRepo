@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -65,6 +66,9 @@ public class UpdateMember extends HttpServlet {
 		int res = dao.update(joinMember);
 		if (res > 0) {
 			System.out.println(mem_id + " 수정 완료");
+			HttpSession session = request.getSession();
+			joinMember.setMem_school_name(mem_school_name);
+			session.setAttribute("member", joinMember);
 			response.sendRedirect("main.jsp");
 		} else {
 			System.out.println("수정 실패");

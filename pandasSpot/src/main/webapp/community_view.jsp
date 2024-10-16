@@ -201,7 +201,7 @@
 
         // 게시글 수정 버튼
         $("#to_update_btn").on("click", function (event) {
-            location.href = "${contextPath}/communityupdate.jsp?idx=" + c_idx;
+            location.href = "${contextPath}/communityupdate.jsp?idx=" + c_idx;7
         });
 
 
@@ -223,6 +223,21 @@
 
         $("#dat_content").html(html);
     }
+    
+    $("#to_delete_btn").on("click", function() {
+    	$.ajax({
+			url : "CommunityDelete", //요청경로
+			type : "get", //요청방식(http 요청 메서드)
+			data : {"comm_idx" : c_idx},
+			success : function(){
+				location.href = "${contextPath}/CommList.jsp";
+			},
+			error : function(){
+				alert("통신 실패!")
+			}
+			
+		})
+    });
 
     // 좋아요 업데이트 함수
     function updateLikes(data) {
